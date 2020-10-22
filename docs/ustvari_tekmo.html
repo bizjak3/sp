@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TapPlay</title>
+    <link rel="stylesheet" href="./izgled.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="ustvari col-sm-12 col-md-10 col-lg-6">
+      <form class="" method="post">
+        <div class="">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d31325.282550843705!2d14.522774429847034!3d46.055292090769285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ssl!2ssi!4v1603358504069!5m2!1ssl!2ssi" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </div>
+        <div class="">
+          <div class="form-group">
+            <label class="">Ime</label>
+            <input type="text" class="form-control" name="ime">
+          </div>
+          <div class="form-group">
+            <label class="">Datum</label>
+            <input type="date" class="form-control" name="datum" required>
+          </div>
+          <div class="form-group">
+            <label class="">Ura</label>
+            <input type="time" class="form-control" name="ura" required>
+          </div>
+          <div class="form-group">
+              <label class="">Število igralcev</label>
+              <div class="form-row ">
+                <div class="form-group col-md-4">
+                  <label class="">Min: </label>
+                  <input type="number" min="4" max="12" step="2" value="4" class="form-control" name="minIgralcev" required>
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="">Max: </label>
+                  <input type="number" min="6" max="12" step="2" value="6" class="form-control" name="maxIgralcev">
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="">Že prijavljeni: </label>
+                  <input type="number" value="0" class="form-control" name="prijavljeni">
+                </div>
+              </div>
+
+          </div>
+          <div class="form-group">
+            <label class="">Opombe</label>
+            <textarea name="komentarji" class="form-control" rows="4" cols="36">Vnesite dodatne opombe</textarea>
+          </div>
+          <div class="text-center">
+            <input type="submit" class="btn btn-success col-md-3" value="Ustvari">
+            <input type="reset" class="btn btn-warning col-md-3" value="Ponastavi">
+            <input type="button" class="btn btn-danger col-md-3" value="Prekliči">
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
