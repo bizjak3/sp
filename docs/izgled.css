@@ -14,6 +14,61 @@
 
 /* ZACETEK MATJAZ ================================================================================= */
 
+
+/* krogec za sliko*/
+.profilka{
+    border-radius: 50%;
+}
+
+.sidebar{
+    margin-right: 20px;
+}
+
+.list_item{
+    padding: 20px;
+}
+.sidebar .nav-list li.active{
+    background-color: lightblue;
+    color: black;
+}
+
+.sidebar .nav-list li.noactive{
+    color: black;
+}
+
+.sidebar .nav-list li{
+    position: relative;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.list-text{
+    font-size: 17px;
+    color: black;
+}
+
+.noactive:hover{
+    background-color: lightblue!important;
+}
+
+.info{
+    background-color: lightblue;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 3px;
+}
+
+.profil{
+    border-radius: 50%;
+}
+
+.interactive{
+    background-color: lightblue;
+    color: darkblue;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 /* KONEC MATJAZ =================================================================================== */
 
 
