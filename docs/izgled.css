@@ -20,11 +20,54 @@
 
 
 /* ZACETEK MITJA ================================================================================== */
-.ustvari {
-    align-items: center;
-    margin-left: 50%;
-    margin-top: 100px;
+.naslov {
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: lightblue;
 }
+
+.profile-name{
+    display: table-cell;
+    vertical-align: middle;
+}
+.profil {
+    display: table;
+    padding: 2px;
+    background-color: lightblue;
+}
+
+.dropdown-menu{
+    display: none;
+}
+
+.dropdown-menu a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.profil:hover .dropdown-menu{
+    display: block;
+}
+.profil:click .dropdown-menu{
+    display: block;
+}
+
+.profile-pic {
+    float: right;
+}
+
+.ustvari {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: lightblue;
+}
+
 /* KONEC MITJA ==================================================================================== */
 
 
