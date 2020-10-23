@@ -18,32 +18,31 @@
         <img src="logo_temen.png" class="rounded" alt="LOGO" width="500">
 
     </div>
-
     <div class="col container">
         <div class="prijava">
+            <form class="" method="post" >
+                <div class="form-group" align="center">
+                    <label for="email">Elektronski naslov:</label>
+                    <input type="email" class="form-control" id="email"
+                           placeholder="Vnesi elektronski naslov"name="email" required>
+                </div>
 
-            <div class="form-group" align="center">
-                <label for="email">Elektronski naslov:</label>
-                <input type="email" class="form-control" id="email"
-                       placeholder="Vnesi elektronski naslov"name="email">
-            </div>
+                <div class="form-group" align="center">
+                    <label for="geslo">Geslo:</label>
+                    <input type="password" class="form-control" id="geslo"
+                           placeholder="Vnesi geslo" name="geslo" required>
+                </div>
 
-            <div class="form-group" align="center">
-                <label for="geslo">Geslo:</label>
-                <input type="password" class="form-control" id="geslo"
-                       placeholder="Vnesi geslo" name="geslo" required>
-            </div>
+                <div class="checkbox" align="center">
+                    <label><input type="checkbox" name="remember"> Zapomni se</label>
+                </div>
+                <div class="geslo" align="center">
+                    <a href="#" class="col stretched-link">Pozabil sem geslo</a>
+                </div>
+                <br>
 
-            <div class="checkbox" align="center">
-                <label><input type="checkbox" name="remember"> Zapomni se</label>
-            </div>
-            <div class="geslo" align="center">
-                <a href="#" class="col stretched-link">Pozabil sem geslo</a>
-            </div>
-            <br>
-
-            <input type="submit" class="btn btn-primary btn-block" value="Prijava">
-
+                <input type="submit" class="btn btn-primary btn-block" value="Prijava">
+            </form>
             <br>
 
             <button type="button" class="btn btn-success btn-block" data-toggle="modal"
@@ -58,16 +57,17 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 <br>
+
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col form-group">
                                         <label for="email">Ime:</label>
                                         <input type="name" class="form-control" id="name"
-                                               placeholder="Vnesi ime"name="name">
+                                               placeholder="Vnesi ime"name="name" required>
                                     </div>
-                                    <div class="col">
+                                    <div class="col form-group">
                                         <label for="geslo">Priimek:</label>
                                         <input type="surname" class="form-control" id="surname"
-                                               placeholder="Vnesi prrimek" name="surname">
+                                               placeholder="Vnesi priimek" name="surname" required>
                                     </div>
                                 </div>
                                 <br>
@@ -86,28 +86,27 @@
                                         <option value="2">Moški</option>
                                         <option value="2">Helikopter</option>
                                     </select>
-
-
                                 </form>
+
                                     <br>
 
                                 <div class="form-group">
                                     <label for="email">Elektronski naslov:</label>
                                     <input type="email" class="form-control" id="email"
-                                           placeholder="Vnesi elektronski naslov"name="email">
+                                           placeholder="Vnesi elektronski naslov"name="email" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="geslo">Geslo:</label>
                                     <input type="password" class="form-control" id="geslo"
-                                           placeholder="Vnesi geslo" name="geslo">
+                                           placeholder="Vnesi geslo" name="geslo" required>
                                 </div>
 
                                 <div class="checkbox" align="center">
                                     <label><input type="checkbox" name="remember"> Želim prejemati obvestila </label>
                                 </div>
 
-                                <button type="button" class="btn btn-success btn-block" data-dismiss="modal">Prijavi se</button>
+                                <input type="submit" class="btn btn-success btn-block" value="Prijavi se">
 
                             </div>
                         </div>
