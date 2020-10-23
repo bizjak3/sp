@@ -20,7 +20,7 @@
             <div class="row row-content">
 
                 <!--prvi stolpec-->
-                <div class="col-12 col-xl-3 pt-5">
+                <div class="col-xl-3 col-sm-12 pt-3">
                     <!-- tle se začne seznam opcij -->
                     <aside>
                         <nav class="sidebar">
@@ -48,13 +48,14 @@
                 </div>
 
                 <!--drugi stolpec-->
-                <div class="col-2 mt-2">
+                <div class="col-xl-2 col-sm-12 bg-light mt-2">
                     <!-- tle je slika -->
-                    <img src="img/IMG_20201020_175337_2.jpg" class="img-fluid profil" >
+                    <img class="d-none d-xl-block img-fluid profil" src="img/IMG_20201020_175337_2.jpg"><!-- Image to show on screens from small to extra large -->
+                    <img class="d-xl-none img-fluid profil" width="200" height="40" src="img/IMG_20201020_175337_2.jpg"><!-- Image to show on extra small screen (mobile portrait) -->
                 </div>
 
                 <!--tretji stolpec-->
-                <div class="col-7 pt-5 bg-light">
+                <div class="col-xl-7 col-sm-12 pt-5 bg-light">
                     <!-- tle se začne seznam informacij -->
                     <div class="row display-4 m-2 border-info">
                         <div class="col">
