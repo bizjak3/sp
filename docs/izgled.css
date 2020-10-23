@@ -101,7 +101,7 @@
     display: table-cell;
     vertical-align: middle;
 }
-.profil {
+.profil-dropdown {
     display: table;
     padding: 2px;
     background-color: lightblue;
@@ -118,10 +118,7 @@
   display: block;
 }
 
-.profil:hover .dropdown-menu{
-    display: block;
-}
-.profil:click .dropdown-menu{
+.profil-dropdown:hover .dropdown-menu{
     display: block;
 }
 
