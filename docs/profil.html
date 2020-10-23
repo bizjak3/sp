@@ -6,9 +6,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--link na bootstrap,fontawesome in custom css-->
-    <link rel="stylesheet" type="text/css" href="add/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="add/fontawesome/css/all.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="izgled.css">
+    <!--link na boostrap js in jquery-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 
@@ -23,20 +25,20 @@
                         <nav class="sidebar">
                             <ul class="list-unstyled nav-list">
 
-                                <li class="list_item active">
-                                    <i class="fas fa-user"></i><a href="#"><span class="list-text"> Moj profil</span></a>
+                                <li class="list_item active" onclick="window.location.href='profil.html'">
+                                    <i class="fas fa-user"></i><span class="list-text"> Moj profil</span>
                                 </li>
 
-                                <li class="list_item noactive">
-                                    <i class="fas fa-history"></i><a href="#"><span class="list-text"> Zgodovina</span></a>
+                                <li class="list_item noactive" onclick="window.location.href='zgodovina.html'">
+                                    <i class="fas fa-history"></i><span class="list-text"> Zgodovina</span>
                                 </li>
 
-                                <li class="list_item noactive">
-                                    <i class="fas fa-cog"></i><a href="#"><span class="list-text"> Nastavitve</span></a>
+                                <li class="list_item noactive" onclick="window.location.href='nastavitve.html'">
+                                    <i class="fas fa-cog"></i><span class="list-text"> Nastavitve</span>
                                 </li>
 
-                                <li class="list_item noactive">
-                                    <i class="fas fa-sign-out-alt"></i><a href="#"><span class="list-text"> Odjava</span></a>
+                                <li class="list_item noactive"">
+                                    <i class="fas fa-sign-out-alt"></i><span class="list-text"> Odjava</span>
                                 </li>
 
                             </ul>
@@ -47,7 +49,7 @@
                 <!--drugi stolpec-->
                 <div class="col-2 col-md-2 col-xl-2 pt-3">
                     <!-- tle je slika -->
-                    <img src="img/IMG_20201020_175337_2.jpg" class="img-thumbnail" >
+                    <img src="img/IMG_20201020_175337_2.jpg" class="img-fluid profil" >
                 </div>
 
                 <!--tretji stolpec-->
@@ -96,8 +98,6 @@
     </div>
 
 
-        <!--link na boostrap js in jquery-->
-        <script type="text/javascript" src="add/jQuery/jquery-3.5.1.min.js"></script>
-        <script type="text/javascript" src="add/bootstrap/js/bootstrap.min.js"></script>
+
 </body>
 </html>
