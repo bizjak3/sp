@@ -6,7 +6,22 @@
 
 
 /* ZACETEK TJAS =================================================================================== */
+.vertical-center {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
 
+.container{
+    background-color: lightblue;
+    padding: 30px;
+    border-radius: 25px;
+}
+
+.registracija{
+    background-color: lightblue;
+    padding: 20px;
+}
 /* KONEC TJAS ===================================================================================== */
 
 
