@@ -56,8 +56,8 @@
                         <a class="dropdown-item disabled" href="#">Janez Novak</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" onclick="window.location.href='profil.html'" ><i class="fas fa-user"></i> Profil</a>
-                        <a class="dropdown-item" onclick="window.location.href='nastavitve.html'"><i class="fas fa-cog"></i> Nastavitve</a>
                         <a class="dropdown-item" onclick="window.location.href='zgodovina.html'"><i class="fas fa-history"></i> Zgodovina</a>
+                        <a class="dropdown-item" onclick="window.location.href='nastavitve.html'"><i class="fas fa-cog"></i> Nastavitve</a>
                         <a class="dropdown-item" onclick="window.location.href='Prijava.html'"><i class="fas fa-sign-out-alt"></i> Odjava</a>
                     </div>
                 </li>
@@ -195,8 +195,10 @@
 
 
                     <!-- Gumb za ban (moderator only)-->
-                    <div class="row align-items-end m-2">
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ban">Onemogoči uporabnika</button>
+                    <div class="row m-2 align-items-end">
+                        <div class="col">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ban">Onemogoči uporabnika</button>
+                        </div>
                     </div>
 
                     <!-- Modal => to je popup -->

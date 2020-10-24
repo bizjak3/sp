@@ -54,7 +54,7 @@
     padding: 20px;
 }
 .sidebar .nav-list li.active{
-    background-color: lightblue;
+    background-color: tomato;
     color: black;
 }
 
@@ -74,11 +74,11 @@
 }
 
 .noactive:hover{
-    background-color: lightblue!important;
+    background-color: lightgray!important;
 }
 
 .info{
-    background-color: lightblue;
+
     font-weight: bolder;
     font-size: 20px;
     padding: 3px;

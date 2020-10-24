@@ -56,8 +56,8 @@
                         <a class="dropdown-item disabled" href="#">Janez Novak</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" onclick="window.location.href='profil.html'" ><i class="fas fa-user"></i> Profil</a>
-                        <a class="dropdown-item" onclick="window.location.href='nastavitve.html'"><i class="fas fa-cog"></i> Nastavitve</a>
                         <a class="dropdown-item" onclick="window.location.href='zgodovina.html'"><i class="fas fa-history"></i> Zgodovina</a>
+                        <a class="dropdown-item" onclick="window.location.href='nastavitve.html'"><i class="fas fa-cog"></i> Nastavitve</a>
                         <a class="dropdown-item" onclick="window.location.href='Prijava.html'"><i class="fas fa-sign-out-alt"></i> Odjava</a>
                     </div>
                 </li>
@@ -123,11 +123,11 @@
                         <div class="row justify-content-center mb-1">
                             <div class="col text-center">
                                 <ul class="list-unstyled nav-list">
-                                    <li class="list_item active" onclick="window.location.href='profil.html'">
+                                    <li class="list_item noactive" onclick="window.location.href='profil.html'">
                                         <i class="fas fa-user"></i><span class="list-text"> Moj profil</span>
                                     </li>
 
-                                    <li class="list_item noactive" onclick="window.location.href='zgodovina.html'">
+                                    <li class="list_item active" onclick="window.location.href='zgodovina.html'">
                                         <i class="fas fa-history"></i><span class="list-text"> Zgodovina</span>
                                     </li>
 
@@ -158,69 +158,53 @@
                 <!--Tle se začnejo podatki-->
                 <div class="card-body px-1 py-1" style="height:100%;">
 
-                    <!--Primarni atributi => glava tabele-->
-                    <div class="row border border-primary m-2 info">
-                        <div class="col">ID</div>
-                        <div class="col">Ime tekme</div>
-                        <div class="col">Kraj</div>
-                        <div class="col">Datum</div>
-                        <div class="col">Ura</div>
-                    </div>
-
-                    <!--Tle se potem vrstijo tekme ena po ena-->
-                    <div class="row m-2 info">
-                        <div class="col">
-                            1
-                        </div>
-                        <div class="col">
-                            <a href="#"><span class="interactive">kekec</span></a>
-                        </div>
-                        <div class="col">
-                            hell
-                        </div>
-                        <div class="col">
-                            10.05.2020
-                        </div>
-                        <div class="col">
-                            10:15
-                        </div>
-                    </div>
+                    <!-- zavijem da je kartica skrollable in se ne preliva cez -->
+                    <div class="scrollable" style="height:100%; overflow-y: auto;">
 
 
-                    <div class="row m-2 info">
-                        <div class="col">
-                            2
-                        </div>
-                        <div class="col">
-                            <a href="#"><span class="interactive">kekec</span></a>
-                        </div>
-                        <div class="col">
-                            hell
-                        </div>
-                        <div class="col">
-                            10.05.2020
-                        </div>
-                        <div class="col">
-                            10:15
-                        </div>
-                    </div>
+                        <!-- seznam vseh iger za test samo 9 x iger dodanih -->
+                        <ul class="list-group" style="width:100%; height:100%;">
 
-                    <div class="row m-2 info">
-                        <div class="col">
-                            3
-                        </div>
-                        <div class="col">
-                            <a href="#"><span class="interactive">kekec</span></a>
-                        </div>
-                        <div class="col">
-                            hell
-                        </div>
-                        <div class="col">
-                            10.05.2020
-                        </div>
-                        <div class="col">
-                            10:15
-                        </div>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <a class="text-dark" href="#"> Ljubljana, Rožna cesta 32 <br>17.1.2020 | 18:30 </a>
+                                <span class="badge badge-danger badge-pill">Zaključena</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <a class="text-dark" href="#">Ljubljana, Litijska cesta 4 <br>18.5.2020 | 16:20</a>
+                                <span class="badge badge-danger badge-pill">Zaključena</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <a class="text-dark" href="#">Ljubljana, Topniška 7 <br>16.7.2020 | 17:15</a>
+                                <span class="badge badge-danger badge-pill">Zaključena</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <a class="text-dark" href="#">Ljubljana, Rožna cesta 32 <br>17.1.2020 | 18:30</a>
+                                <span class="badge badge-danger badge-pill">Zaključena</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <a class="text-dark" href="#">Ljubljana, Litijska cesta 4 <br>18.5.2020 | 16:20</a>
+                                <span class="badge badge-danger badge-pill">Zaključena</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <a class="text-dark" href="#">Ljubljana, Topniška 7 <br>16.7.2020 | 17:15</a>
+                                <span class="badge badge-danger badge-pill">Zaključena</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <a class="text-dark" href="#">Ljubljana, Rožna cesta 32 <br>17.1.2020 | 18:30</a>
+                                <span class="badge badge-danger badge-pill">Zaključena</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <a class="text-dark" href="#">Ljubljana, Litijska cesta 4 <br>18.5.2020 | 16:20</a>
+                                <span class="badge badge-danger badge-pill">Zaključena</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <a class="text-dark" href="#">Ljubljana, Topniška 7 <br>16.7.2020 | 17:15</a>
+                                <span class="badge badge-danger badge-pill">Zaključena</span>
+                            </li>
+
+
+                        </ul>
+
                     </div>
 
                 </div>
