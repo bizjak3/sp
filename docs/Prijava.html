@@ -1,124 +1,178 @@
-
 <!DOCTYPE html>
-<html lang="sl">
+<html lang="sl" style="height: 100%">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="./izgled.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-    <title>Prijava</title>
+
+    <title>Registracija</title>
 </head>
-<body>
+<body style="background-color: lightgrey; padding-top:60px; padding-bottom:20px; height:100%;">
 
-<div class="jumbotron vertical-center">
-    <div class="col slika" align = "center">
-        <img src="logo_temen.png" class="img-fluid alt="LOGO" width="500">
-    </div>
-    <div class="col container">
-        <div class="prijava">
-            <form class="" method="post" >
-                <div class="form-group" align="center">
-                    <label for="email">Elektronski naslov:</label>
-                    <input type="email" class="form-control" id="email"
-                           placeholder="Vnesi elektronski naslov"name="email" required>
-                </div>
+<dev class="imeZgoraj">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+        <div class="container-lg px-3">
+            <a class="navbar-brand" href="homepage.html">
+                <img  src="./slike/logo_svetel.png" id="headerLogoPrijava"> <b><i>Tap & Play</i></b>
+            </a>
+        </div>
+    </nav>
+</dev>
 
-                <div class="form-group" align="center">
-                    <label for="geslo">Geslo:</label>
-                    <input type="password" class="form-control" id="geslo"
-                           placeholder="Vnesi geslo" name="geslo" required>
-                </div>
+<div class="container-xl h-100">
+    <div class="row h-25"></div>
+    <div class="row h-50">
+        <div class="col-xl-6 col-sm-12 pt-3 h-100 slika">
+            <div class="col" align = "center">
+                <img src="logo_temen.png" class="img-fluid alt="LOGO" width="200">
+                <h1 class="display-4">Tap & Play</h1>
+                <blockquote class="blockquote">
+                    <p class="mb-0">Ustvari, najdi, igraj!</p>
+                </blockquote>
+            </div>
+        </div>
 
-                <div class="checkbox" align="center">
-                    <label><input type="checkbox" name="remember"> Zapomni se</label>
-                </div>
-                <div class="geslo" align="center">
-                    <a href="#" class="col stretched-link">Pozabil sem geslo</a>
-                </div>
-                <br>
 
-                <input type="submit" class="btn btn-primary btn-block" value="Prijava">
-            </form>
-            <br>
-
-            <button type="button" class="btn btn-success btn-block" data-toggle="modal"
-                    data-target="#modalnoOkno">Registracija</button>
-            <div class="modal fade" id="modalnoOkno" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <div class="registracija">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <br>
-
-                                <div class="row">
-                                    <div class="col form-group">
-                                        <label for="email">Ime:</label>
-                                        <input type="name" class="form-control" id="name"
-                                               placeholder="Vnesi ime"name="name" required>
-                                    </div>
-                                    <div class="col form-group">
-                                        <label for="geslo">Priimek:</label>
-                                        <input type="surname" class="form-control" id="surname"
-                                               placeholder="Vnesi priimek" name="surname" required>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="form-group">
-                                    <label class="">Datum rojstva</label>
-                                    <input type="date" class="form-control" name="datum" required>
-                                </div>
-
-                                <br>
-
-                                <form class="form-inline">
-                                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Spol</label>
-                                    <select class="col-sm custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                        <option selected>Izberi...</option>
-                                        <option value="1">Ženska</option>
-                                        <option value="2">Moški</option>
-                                        <option value="2">Helikopter</option>
-                                    </select>
-                                </form>
-
-                                    <br>
-
-                                <div class="form-group">
-                                    <label for="email">Elektronski naslov:</label>
+        <div class="col-xl-6 col-sm-12 pt-3 h-100">
+            <div class="card border-dark" >
+                <div class="card-body px-10 py-10">
+                    <div class="col container">
+                        <div class="prijava">
+                            <form class="" method="post" >
+                                <div class="form-group" align="center">
                                     <input type="email" class="form-control" id="email"
-                                           placeholder="Vnesi elektronski naslov"name="email" required>
+                                           placeholder="Vnesi elektronski naslov" name="email" required>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="geslo">Geslo:</label>
+                                <div class="form-group" align="center">
                                     <input type="password" class="form-control" id="geslo"
                                            placeholder="Vnesi geslo" name="geslo" required>
                                 </div>
 
                                 <div class="checkbox" align="center">
-                                    <label><input type="checkbox" name="remember"> Želim prejemati obvestila </label>
+                                    <label><input type="checkbox" name="remember"> Zapomni se</label>
                                 </div>
 
-                                <input type="submit" class="btn btn-success btn-block" value="Prijavi se">
+                                <button type="button" class="btn btn-link btn-block" data-toggle="modal"
+                                        data-target="#exampleModal">Pozabil sem geslo</button>
 
-                            </div>
+                                <input type="submit" class="btn btn-primary btn-block" value="Prijava" >
+
+                            </form>
+
+                            <br>
+
+                            <button type="button" class="btn btn-success btn-block" data-toggle="modal"
+                                    data-target="#modalnoOkno">Registracija</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Pozabil sem geslo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Elektronski naslov:</label>
+                        <input type="email" class="form-control" id="email"
+                               placeholder="Vnesi elektronski naslov"name="email" required>
+                    </div>
+
+                    Link za zamenjavo gesla vam pošljemo na vaš naslov elektronske pošte
+
+                    <div class="modal-footer mt-4">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
+                        <button type="button" class="btn btn-primary">Pošji</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalnoOkno" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="registracija">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times</span>
+                    </button>
+
+                    <br>
+                    <form class="" method="post">
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label for="email">Ime:</label>
+                                <input type="name" class="form-control" id="name"
+                                       placeholder="Vnesi ime"name="name" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label for="geslo">Priimek:</label>
+                                <input type="surname" class="form-control" id="surname"
+                                       placeholder="Vnesi priimek" name="surname" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="">Datum rojstva</label>
+                            <input type="date" class="form-control" name="datum" required>
+                        </div>
+
+                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Spol</label>
+                        <select class="custom-select my-1 mr-sm-2 mb-3" id="inlineFormCustomSelectPref">
+                            <option selected>Izberi...</option>
+                            <option value="1">Ženska</option>
+                            <option value="2">Moški</option>
+                        </select>
+
+
+                        <div class="form-group">
+                            <label for="email">Elektronski naslov:</label>
+                            <input type="email" class="form-control" id="email"
+                                   placeholder="Vnesi elektronski naslov"name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="geslo">Geslo:</label>
+                            <input type="password" class="form-control" id="geslo"
+                                   placeholder="Vnesi geslo" name="geslo" required>
+                        </div>
+
+                        <div class="checkbox" align="center">
+                            <label><input type="checkbox" name="remember"> Želim prejemati obvestila </label>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-success btn-block mt-4" value="Prijavi se">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
-</body>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#modalnoOkno").modal('hide');
+    });
+</script>
 </body>
-</html>
