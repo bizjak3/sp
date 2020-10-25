@@ -5,7 +5,7 @@ Lastni projekt pri predmetu **Spletno programiranje** v študijskem letu **2020/
 
 ## 1. LP
 
-###Tap & Play
+### Tap & Play
 
 Spletna aplikacija omogoča navdušencem nogometa hiter in varen zmenek za tekmo. Vsak igralec lahko ustvari novo igro ali se lahko pridruži že obstoječim. Že obstoječe tekme so vidne na zemljevidu. Najdemo pa jih tudi na seznamu. Po končani tekmi lahko vsak uporabnik oceni svoje soigralce in nasprotnike. Popvrečna ocena bo vidna v profilu.  
 
@@ -32,13 +32,13 @@ V sistemu obstajata dve vrsti uporabnikov: običajen uporabnik in moderator. Mod
 Stran do katere lahko vsak prijavljen uporabnik dostopa prek navigacijske vrstice..
 Stran je razdeljena na levo kartico, kjer je navigacijski stolpec ter slika, kratek opis igralca ter njegova ocena, ter desno stran kjer se glede na izbran pogled vsebina spreminja.
 
-####[profil](docs/profil.html)
+#### [profil](docs/profil.html)
 Tukaj so splošne informacije igralca kot so ime ter priimek, email in telefon. Do tega pogleda lahko dostopajo tudi ostali igralci, vidijo pa le kar jim uporabnik omogoči pod nastavitvami.
 
-####[zgodovina](docs/zgodovina.html)
+#### [zgodovina](docs/zgodovina.html)
 Tukaj si lahko uporabnik ogleda pretekle tekme. Ko se tekma zaključi lahko preko "pop upa" (klik na tekmo) oceni soigralce ki so sodelovali v tekmi.
 
-####[nastavitve](docs/nastavitve.html)
+#### [nastavitve](docs/nastavitve.html)
 Tukaj lahko uporabnik spreminja osebene podatke ter lahko nastavlja katere informacije bodo dostopne drugim uporabnikom ter kako ga lahko aplikacija obvešča o dogodkih.
 
 
