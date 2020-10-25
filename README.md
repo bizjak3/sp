@@ -7,7 +7,7 @@ Lastni projekt pri predmetu **Spletno programiranje** v študijskem letu **2020/
 
 ### Tap & Play
 
-Spletna aplikacija omogoča navdušencem nogometa hiter in varen zmenek za tekmo. Vsak igralec lahko ustvari novo igro ali se lahko pridruži že obstoječim. Že obstoječe tekme so vidne na zemljevidu. Najdemo pa jih tudi na seznamu. Po končani tekmi lahko vsak uporabnik oceni svoje soigralce in nasprotnike. Popvrečna ocena bo vidna v profilu.  
+Spletna aplikacija omogoča navdušencem nogometa hitro in varno organizacijo tekem. Vsak igralec lahko ustvari novo igro ali pa se pridruži že obstoječim. Že obstoječe tekme so vidne na zemljevidu, najdemo pa jih tudi na seznamu. Po končani tekmi lahko vsak uporabnik oceni svoje soigralce in nasprotnike glede zanesljivosti in točnosti. Povprečna ocena skupaj z ostalimi informacijami uporabnika je vidna v profilu. 
 
 
 ### Prijava in registracija uporabnika
@@ -53,6 +53,11 @@ Stran je namenjena kreiranju novega vnosa tekme. Obvezno je treba izpolniti para
 Pop-up je namenjen podrobnejšemu prikazu tekme in možnosti prijave/odjave igralcev. Kreator in moderator pa imasta možnost urejanja in brisanja tekme. Pop-up prikazuje lokacijo v vtičniku Google maps in vreme v vtičniku ARSO.
 
 Ko se tekma zaključi, lahko igralci na tem pogledu ocenijo njihove soigralce.
+
+### Domača stran
+#### [homepage.html](docs/homepage.html)
+
+Domača stran je namenjena prikazu vseh prihajajočih tekem. Vse tekme so označene na zemljevidu (vstavljen preko Google maps), prav tako je desno od zemljevida seznam vseh tekem, na katerem so naštete tekme s splošnimi informacijami (število prostih mest, kraj, datum, ura). Spodaj desno je še gumb "ustvari novo tekmo", ki uporabnika popelje do strani na kateri lahko doda tekmo. V glavi strani je tudi polje za iskanje po tekmah in uporabnikih ter ikona, po kateri lahko uporabnik dostopa do svojega profila, zgodovine, nastavitev, ali pa se odjavi.
 
 ### Razlike med brskalniki
 
