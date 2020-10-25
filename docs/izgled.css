@@ -114,43 +114,6 @@
 
 /* ZACETEK MITJA ================================================================================== */
 
-.naslov {
-    margin-top: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    background-color: lightblue;
-}
-
-.profile-name{
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.profil-dropdown {
-    display: table;
-    padding: 2px;
-    background-color: lightblue;
-}
-
-.dropdown-meni{
-    display: none;
-}
-
-.dropdown-meni a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.profil-dropdown:hover .dropdown-meni{
-    display: block;
-}
-
-.profile-pic {
-    float: right;
-}
-
 .ustvari {
     margin-top: 10px;
     margin-left: auto;
