@@ -33,7 +33,7 @@ Stran do katere lahko vsak prijavljen uporabnik dostopa prek navigacijske vrstic
 Stran je razdeljena na levo kartico, kjer je navigacijski stolpec ter slika, kratek opis igralca ter njegova ocena, ter desno stran kjer se glede na izbran pogled vsebina spreminja.
 
 #### [profil](docs/profil.html)
-Tukaj so splošne informacije igralca kot so ime ter priimek, email in telefon. Do tega pogleda lahko dostopajo tudi ostali igralci, vidijo pa le kar jim uporabnik omogoči pod nastavitvami.
+Tukaj so splošne informacije igralca kot so ime ter priimek, email in telefon. Do tega pogleda(v okrnjeni obliki) lahko dostopajo tudi ostali igralci, vidijo pa le kar jim uporabnik omogoči pod nastavitvami.
 
 #### [zgodovina](docs/zgodovina.html)
 Tukaj si lahko uporabnik ogleda pretekle tekme. Ko se tekma zaključi lahko preko "pop upa" (klik na tekmo) oceni soigralce ki so sodelovali v tekmi.
