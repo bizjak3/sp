@@ -39,7 +39,7 @@ Tukaj so splošne informacije igralca kot so ime ter priimek, email in telefon. 
 Tukaj si lahko uporabnik ogleda pretekle tekme. Ko se tekma zaključi lahko preko "pop upa" (klik na tekmo) oceni soigralce ki so sodelovali v tekmi.
 
 #### [nastavitve](docs/nastavitve.html)
-Tukaj lahko uporabnik spreminja osebene podatke ter lahko nastavlja katere informacije bodo dostopne drugim uporabnikom ter kako ga lahko aplikacija obvešča o dogodkih.
+Tukaj lahko uporabnik spreminja osebene podatke ter lahko nastavlja katere informacije bodo dostopne drugim uporabnikom, ter kako ga lahko aplikacija obvešča o dogodkih.
 
 
 ### Dodajanje tekme
