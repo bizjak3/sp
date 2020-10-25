@@ -13,8 +13,12 @@ Spletna aplikacija omogoča navdušencem nogometa hiter in varen zmenek za tekmo
 ### [Prijava.html](Prijava.html)
 
 Stran omogoča prijavo posameznega igralca v spletno aplikacijo. Tu dobimo navaden form za prijavo, kjer mora uporabnik vnesti elektronski naslov in geslo.   
-Če uporabnik ni še prijavljen v spletno aplikacijo se lahko registrira. Pojavi se "Pop-up" v katerem mora uporabnik vnesti lastne podatke     
-  
+Če uporabnik ni še prijavljen v spletno aplikacijo se lahko registrira. Pojavi se "Pop-up" v katerem uporabnik vnese lastne podatke.
+
+
+Na dnu strani dobimo tudi "footer", v katerem se nahaja kratek opis spletne aplikacije, vir zemljevida ter vir vremena.    
+Na koncu pa še kontaktne informacije.
+
 #### Prilagajanje strani
 
 Stran se prilagodi glede na velikost ekrana. Na računalnikih in večjih tablicah bo v ospredju "Tap&Play" logo ter napis, ob strani pa obrazec za prijavo.   
