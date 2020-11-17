@@ -112,6 +112,5 @@ function validatePassword() {
     if (err) {
         return false;
     }
-
     return true;
 }
