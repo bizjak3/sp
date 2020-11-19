@@ -1,0 +1,29 @@
+{
+  "name": "LP-03",
+  "version": "1.0.0",
+  "description": "Lastni projekt pri predmetu **Spletno programiranje** v študijskem letu **2020/2021**.",
+  "main": "index.js",
+  "directories": {
+    "doc": ""
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sp-2020-2021/LP-03.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sp-2020-2021/LP-03/issues"
+  },
+  "homepage": "https://github.com/sp-2020-2021/LP-03#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-generator": "^4.16.1",
+    "express-handlebars": "^5.2.0",
+    "handlebars": "^4.7.6"
+  }
+}

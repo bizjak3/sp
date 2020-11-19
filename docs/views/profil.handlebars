@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Moj profil</title>
+
+    <!-- import bootstrap in font awesome -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!-- ikona in link do css -->
+    <link rel="stylesheet" href="izgled_header.css">
+    <link rel="stylesheet" href="izgled.css">
+    <link rel="icon" type='image/x-icon' href="./slike/logo_ikona.ico">
+
+    <!-- pisave -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body style="background-color:#c3c3c3; padding-top:60px; padding-bottom:20px; height:100%;">
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+    <!-- ta kontejner v navbaru se je prilagajal drugace kot tisti za vsebino, ceprav
+    sta oba enake velikosti, dodal padding px-3 ker navbar avtomatsko odvzame padding iz kontejnerja -->
+    <div class="container-lg px-3" >
+
+        <!-- navbar logo -->
+        <a class="navbar-brand" href="homepage.html">
+            <img  src="./slike/logo_svetel.png" id="headerLogo"> <b><i>Tap & Play</i></b>
+        </a>
+
+        <!-- za kolaps pri majhnih zaslonih -->
+        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"> </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+            <!-- Search form -->
+            <form class="form-inline ml-auto">
+                <button class="btn btn-sm btn-outline-light my-2 my-sm-0" type="submit"> <i class="fas fa-search"></i></button>
+                <input class="form-control-sm ml-sm-1 " type="search" placeholder="Išči" aria-label="Search">
+            </form>
+
+            <!-- dropwdown meni -->
+            <ul class="navbar-nav ml-2">
+
+                <li class="nav-item dropdown " >
+                    <a id="testMenuRazlika1" class="nav-link dropdown-toggle"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+                    <div id="testMenuRazlika2" class="dropdown-menu dropdown-menu-right"  id="dropdownMeni" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item disabled" href="#">Janez Novak</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="./profil.html"><i class="fas fa-user"></i> Profil</a>
+                        <a class="dropdown-item" href="./zgodovina.html"><i class="fas fa-history"></i> Zgodovina</a>
+                        <a class="dropdown-item" href="./nastavitve.html"><i class="fas fa-cog"></i> Nastavitve</a>
+                        <a class="dropdown-item" href="./Prijava.html"><i class="fas fa-sign-out-alt"></i> Odjava</a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+
+
+    </div>
+</nav>
+
+<div class="container-lg">
+
+    <div class="row">
+        <!--prva kartica-->
+        {{> profilNav}}
+
+        <!--druga kartica-->
+        <div class="col-md-8 col-sm-12">
+            <div class="card  border-dark">
+
+                <!--Ime kartice-->
+                <div class="card-header bg-dark text-white ">
+                    Moj profil
+                </div>
+
+                <!--Tle se začnejo podatki-->
+                <div class="card-body px-1 py-1">
+
+                    <!--ime in priimek-->
+                    <div class="row m-2 info">
+                        <div class="col">
+                            Ime in Priimek
+                        </div>
+                        <div class="col">
+                            Janez Novak
+                        </div>
+                    </div>
+
+                    <!--Email-->
+                    <div class="row m-2 info">
+                        <div class="col">
+                            Email
+                        </div>
+                        <div class="col info">
+                            janeznovak@gmail.com
+                        </div>
+                    </div>
+
+                    <!--Grafična ocena-->
+                    <div class="row m-2 info">
+                        <div class="col">
+                            Ocena
+                        </div>
+                        <div class="col info">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                    </div>
+
+
+                    <!-- Gumb za ban (moderator only)-->
+                    <div class="row m-2 align-items-end">
+                        <div class="col">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ban">Onemogoči uporabnika</button>
+                        </div>
+                    </div>
+
+                    <!-- Modal => to je popup -->
+                    <div class="modal fade" id="ban" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">BAN</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Za koliko časa želite onemogočiti uporabnika?</p>
+
+                                    <label for="quantity">Izberi med 0 in 30 dni:</label>
+                                    <input type="number" id="quantity" name="quantity" min="1" max="30">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Prekliči</button>
+                                    <button type="button" class="btn btn-danger">Potrdi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
