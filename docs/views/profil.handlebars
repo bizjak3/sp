@@ -73,7 +73,7 @@
 
     <div class="row">
         <!--prva kartica-->
-        {{> profilNav}}
+        {{> profilNav this}}
 
         <!--druga kartica-->
         <div class="col-md-8 col-sm-12">
@@ -93,7 +93,7 @@
                             Ime in Priimek
                         </div>
                         <div class="col">
-                            Janez Novak
+                            {{ ime }} {{ priimek }}
                         </div>
                     </div>
 
@@ -103,7 +103,7 @@
                             Email
                         </div>
                         <div class="col info">
-                            janeznovak@gmail.com
+                            {{ email }}
                         </div>
                     </div>
 
@@ -113,11 +113,7 @@
                             Ocena
                         </div>
                         <div class="col info">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
+                            {{{zvezdica ocena }}}
                         </div>
                     </div>
 
