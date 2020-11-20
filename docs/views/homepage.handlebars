@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="sl" style="height:100%;">
+<head>
+    <meta charset="utf-8">
+
+    <!-- import bootstrap in font awesome -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!-- ikona in link do css -->
+    <link rel="stylesheet" href="izgled_homepage.css">
+    <link rel="stylesheet" href="izgled_header.css">
+    <link rel="icon" type='image/x-icon' href="logo_ikona.ico">
+
+    <!-- pisave -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <title>Tap & Play</title>
+
+</head>
+
+
+<body style="background-color:#c3c3c3; padding-top:60px; padding-bottom:20px; height:100%;">
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+    <!-- ta kontejner v navbaru se je prilagajal drugace kot tisti za vsebino, ceprav
+    sta oba enake velikosti, dodal padding px-3 ker navbar avtomatsko odvzame padding iz kontejnerja -->
+    <div class="container-lg px-3" >
+
+        <!-- navbar logo -->
+        <a class="navbar-brand" href="homepage.html">
+            <img  src="logo_svetel.png" id="headerLogo"> <b><i>Tap & Play</i></b>
+        </a>
+
+        <!-- za kolaps pri majhnih zaslonih -->
+        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"> </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+            <!-- Search form -->
+            <form class="form-inline ml-auto">
+                <button class="btn btn-sm btn-outline-light my-2 my-sm-0" type="submit"> <i class="fas fa-search"></i></button>
+                <input class="form-control-sm ml-sm-1 " type="search" placeholder="Išči" aria-label="Search">
+            </form>
+
+            <!-- dropwdown meni -->
+            <ul class="navbar-nav ml-2">
+
+                <li class="nav-item dropdown " >
+                    <a id="testMenuRazlika1" class="nav-link dropdown-toggle"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+                    <div id="testMenuRazlika2" class="dropdown-menu dropdown-menu-right"  id="dropdownMeni" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item disabled" href="#">{{ime}} {{priimek}}</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="./profil.html"><i class="fas fa-user"></i> Profil</a>
+                        <a class="dropdown-item" href="./zgodovina.html"><i class="fas fa-history"></i> Zgodovina</a>
+                        <a class="dropdown-item" href="./nastavitve.html"><i class="fas fa-cog"></i> Nastavitve</a>
+                        <a class="dropdown-item" href="./Prijava.html"><i class="fas fa-sign-out-alt"></i> Odjava</a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+
+
+    </div>
+</nav>
+
+
+<!-- vsebina kontejner ki ni header -->
+<div class="container-lg" style="height:100%;">
+
+    <div class="row" style="height:100%;">
+
+        <div class="col-sm-8" style="height:100%">
+
+            <div class="card border-dark" style="height:100%" >
+                <div class="card-header bg-dark text-white">Zemljevid tekem</div>
+                <div class="card-body px-0 py-0">
+
+                    <iframe style="width:100%; height:100%;" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d48666.20422273859!2d14.511775487167021!3d46.048551539631106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ssl!2ssi!4v1603462133152!5m2!1ssl!2ssi" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-4 " style="height:100%;">
+
+            <div class="row" style=" height:90%;">
+                <div class="card  border-dark" style="width:100%; height:100%;" >
+                    <div class="card-header bg-dark text-white">Seznam tekem</div>
+                    <div class="card-body px-1 py-1" style="height:100%;">
+
+                        <!-- zavijem da je kartica skrollable in se ne preliva cez -->
+                        <div class="scrollable" style="height:100%; overflow-y: auto;">
+
+
+                            <!-- seznam vseh iger za test samo 9 x iger dodanih -->
+                            <ul class="list-group" style="width:100%; height:100%;">
+
+                                {{#each tekma}}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#"> {{this.kraj}}, {{this.ulica}} {{this.ul_stevilka}} <br>{{this.datum}} | {{this.ura}} </a>
+                                        <span class="badge badge-primary badge-pill">{{this.st_igralcev}}</span>
+                                    </li>
+                                {{/each}}
+
+
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row py-2 px-2" style="height:10%;">
+                <!-- gumb za ustvaritev nove igre -->
+                <button type="button" class="btn btn-primary " id="gumbNovaIgra"><i class="fas fa-plus mr-2"></i>Ustvari novo tekmo</button>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

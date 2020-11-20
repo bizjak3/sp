@@ -125,6 +125,51 @@ app.get('/ustvari_tekmo', (req, res) => {
     });
 })
 
+
+
+app.get('/homepage', (req, res) => {
+    res.render('homepage',{
+        layout: false,
+        homepage: true,
+        ime: 'Janezz',
+        priimek: 'Novakk',
+
+        tekma : [
+            {
+                kraj : "Ljubljana",
+                ulica : "Rožna cesta",
+                ul_stevilka : "32",
+                datum : "20.20.2020",
+                ura : "18:00",
+                st_igralcev : "4/10",
+
+
+            },
+            {
+                kraj : "Novo Mesto",
+                ulica : "Kurentska ulica",
+                ul_stevilka : "10a",
+                datum : "20.11.2011",
+                ura : "15:00",
+                st_igralcev : "6/16",
+
+
+            },
+            {
+                kraj : "Ljubljana",
+                ulica : "Celovška",
+                ul_stevilka : "1",
+                datum : "20.20.2056",
+                ura : "12:00",
+                st_igralcev : "1/18",
+
+
+            },
+
+        ]
+    });
+})
+
 app.listen(8080, () => {
     console.log('Server is starting at port ', 8080);
 })
