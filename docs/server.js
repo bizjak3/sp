@@ -43,9 +43,9 @@ const hbs = exphbs.create({
             if(ocena < 1)
                 return "<span class=\"badge badge-danger\">SLABA OCENA!</span>";
             if(ocena == 5)
-                return "<span class=\"badge badge-danger\">SUPER OCENA!</span>";
+                return "<span class=\"badge btn btn-success\">SUPER OCENA!</span>";
 
-            return "<span class=\"badge badge-danger\">POVPREČNA OCENA</span>";
+            return "<span class=\"badge btn btn-primary\">POVPREČNA OCENA</span>";
         }
     }
 })
