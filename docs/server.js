@@ -95,6 +95,7 @@ app.get('/pop_up_tekma', (req, res) => {
     res.render('pop_up_tekma', {
         layout: false,
         ustvari_tekmo: true,
+        urejamo: false,
         tekma : {
                     kreator : "Janez Novak",
                     lokacija : "Ljubljana, Rožna cesta 13",
@@ -117,11 +118,11 @@ app.get('/pop_up_tekma', (req, res) => {
     });
 })
 
+
 app.get('/ustvari_tekmo', (req, res) => {
     res.render('ustvari_tekmo', {
         layout: false,
         ustvari_tekmo: true
-
     });
 })
 
