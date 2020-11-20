@@ -91,6 +91,39 @@ app.get('/nastavitve', (req, res) => {
     });
 })
 
+app.get('/pop_up_tekma', (req, res) => {
+    res.render('pop_up_tekma', {
+        layout: false,
+        ustvari_tekmo: true,
+        tekma : {
+                    kreator : "Janez Novak",
+                    lokacija : "Ljubljana, Rožna cesta 13",
+                    datum : "6. 9. 2020",
+                    ura : "4:20",
+                    steviloIgralcev: "7",
+                    maksimalnoSteviloIgralcev: "16",
+                    opis : "idk nigga",
+                            igralci : [
+                                {
+                                    ime : "janez",
+                                    rating : "5"
+                                },
+                                {
+                                    ime : "Robi",
+                                    rating : "4.7"
+                                }
+                            ]
+                }
+    });
+})
+
+app.get('/ustvari_tekmo', (req, res) => {
+    res.render('ustvari_tekmo', {
+        layout: false,
+        ustvari_tekmo: true
+
+    });
+})
 
 app.listen(8080, () => {
     console.log('Server is starting at port ', 8080);

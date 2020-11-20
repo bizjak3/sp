@@ -32,25 +32,25 @@ V sistemu obstajata dve vrsti uporabnikov: običajen uporabnik in moderator. Mod
 Stran do katere lahko vsak prijavljen uporabnik dostopa prek navigacijske vrstice..
 Stran je razdeljena na levo kartico, kjer je navigacijski stolpec ter slika, kratek opis igralca ter njegova ocena, ter desno stran kjer se glede na izbran pogled vsebina spreminja.
 
-#### [profil](docs/profil.html)
+#### [profil](docs/oldHTML/profil.html)
 Tukaj so splošne informacije igralca kot so ime ter priimek, email in telefon. Do tega pogleda(v okrnjeni obliki) lahko dostopajo tudi ostali igralci, vidijo pa le kar jim uporabnik omogoči pod nastavitvami.
 
-#### [zgodovina](docs/zgodovina.html)
+#### [zgodovina](docs/oldHTML/zgodovina.html)
 Tukaj si lahko uporabnik ogleda pretekle tekme. Ko se tekma zaključi lahko preko "pop upa" (klik na tekmo) oceni soigralce ki so sodelovali v tekmi.
 
-#### [nastavitve](docs/nastavitve.html)
+#### [nastavitve](docs/oldHTML/nastavitve.html)
 Tukaj lahko uporabnik spreminja osebene podatke ter lahko nastavlja katere informacije bodo dostopne drugim uporabnikom, ter kako ga lahko aplikacija obvešča o dogodkih.
 
 
 ### Dodajanje tekme
-#### [ustvari_tekmo.html](docs/ustvari_tekmo.html)
+#### [ustvari_tekmo.html](docs/oldHTML/ustvari_tekmo.html)
 
 Stran je namenjena kreiranju novega vnosa tekme. Obvezno je treba izpolniti parametre lokacija, datum, ura in število igralcev. Pod število igralcev je obvezno vnesti samo minimalno število. Maksimalno število lahko opcijsko spremenimo, sicer se privzeto izbere. Število že prijavljenih je namenjeno, da lahko "dodamo" igralce ki nimajo računa. Kot dodatno polje je polje za opombe, ki ni obvezno. Lahko pa dodamo različne opombe o zahtevah, priporočilih ali obvestilih.
 
 ### Podroben opis tekme
-#### [pop_up_tekma.html](docs/pop_up_tekma.html)
+#### [pop_up_tekma.html](docs/oldHTML/pop_up_tekma.html)
 
-Pop-up je namenjen podrobnejšemu prikazu tekme in možnosti prijave/odjave igralcev. Kreator in moderator pa imasta možnost urejanja in brisanja tekme. Pop-up prikazuje lokacijo v vtičniku Google maps in vreme v vtičniku ARSO.
+Pop-up je namenjen podrobnejšemu prikazu tekme (master/detail vzorec) in možnosti prijave/odjave igralcev. Kreator in moderator pa imasta možnost urejanja in brisanja tekme. Pop-up prikazuje lokacijo v vtičniku Google maps in vreme v vtičniku ARSO.
 
 Ko se tekma zaključi, lahko igralci na tem pogledu ocenijo njihove soigralce.
 
