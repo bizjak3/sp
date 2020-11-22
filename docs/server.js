@@ -13,6 +13,8 @@ app.use(express.static('js'));
 //helper za zvezdice
 const hbs = exphbs.create({
 
+    defaultLayout: 'main',
+
     //direktorij partials
     partialsDir: 'views/partials',
 
@@ -58,7 +60,6 @@ app.set('view engine', 'handlebars');
 // Rounting?
 app.get('/profil', (req, res) => {
     res.render('profil',{
-        layout: false,
         profil: true,
         ime: 'Janez',
         priimek: 'Novak',
@@ -69,7 +70,6 @@ app.get('/profil', (req, res) => {
 
 app.get('/zgodovina', (req, res) => {
     res.render('zgodovina',{
-        layout: false,
         zgodovina: true,
         ime: 'Janez',
         priimek: 'Novak',
@@ -80,7 +80,6 @@ app.get('/zgodovina', (req, res) => {
 
 app.get('/nastavitve', (req, res) => {
     res.render('nastavitve',{
-        layout: false,
         nastavitve: true,
         ime: 'Janez',
         priimek: 'Novak',
