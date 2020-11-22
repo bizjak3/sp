@@ -1,68 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>Ustvari tekmo</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="./izgled_header.css">
-    <link rel="stylesheet" href="./izgled.css">
-    <link rel="icon" type='image/x-icon' href="./slike/logo_ikona.ico">
-
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-  </head>
-
-  <body style="background-color: #c3c3c3;">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
-      <!-- ta kontejner v navbaru se je prilagajal drugace kot tisti za vsebino, ceprav
-      sta oba enake velikosti, dodal padding px-3 ker navbar avtomatsko odvzame padding iz kontejnerja -->
-      <div class="container-lg px-3" >
-
-        <!-- navbar logo -->
-        <a class="navbar-brand" href="homepage.html">
-          <img  src="./slike/logo_svetel.png" id="headerLogo"> <b><i>Tap & Play</i></b>
-        </a>
-
-        <!-- za kolaps pri majhnih zaslonih -->
-        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"> </span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
-          <!-- Search form -->
-          <form class="form-inline ml-auto">
-            <button class="btn btn-sm btn-outline-light my-2 my-sm-0" type="submit"> <i class="fas fa-search"></i></button>
-            <input class="form-control-sm ml-sm-1 " type="search" placeholder="Išči" aria-label="Search">
-          </form>
-
-          <!-- dropwdown meni -->
-          <ul class="navbar-nav ml-2">
-
-            <li class="nav-item dropdown " >
-              <a id="testMenuRazlika1" class="nav-link dropdown-toggle"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user-circle"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right"  id="dropdownMeni" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item disabled" href="#">Janez Novak</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="./profil.html"><i class="fas fa-user"></i> Profil</a>
-                <a class="dropdown-item" href="./zgodovina.html"><i class="fas fa-history"></i> Zgodovina</a>
-                <a class="dropdown-item" href="./nastavitve.html"><i class="fas fa-cog"></i> Nastavitve</a>
-                <a class="dropdown-item" href="./Prijava.html"><i class="fas fa-sign-out-alt"></i> Odjava</a>
-              </div>
-            </li>
-          </ul>
-
-        </div>
-
-
-      </div>
-    </nav>
+{{>header this}}
     <div class="container-lg">
       <div class="ustvari">
         <div class="card border-dark" style="padding-bottom: 10px;" >
@@ -121,7 +57,7 @@
                 <div class="text-center col-sm-12 col-md-12 col-lg-12">
                   <input type="submit" class="btn btn-success col-md-3 mt-1" value="Ustvari">
                   <input type="reset" class="btn btn-warning col-md-3 mt-1" value="Ponastavi">
-                  <a href="homepage.html" class="btn btn-danger col-md-3 mt-1">Prekliči</a>
+                  <a href="/" class="btn btn-danger col-md-3 mt-1">Prekliči</a>
                 </div>
 
               </div>
@@ -136,6 +72,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-  </body>
-
-</html>
+    {{>footer this}}

@@ -8,7 +8,12 @@ app.use(express.static('css'));
 app.use(express.static('js'));
 
 
-
+var pop_up_router = require('./routes/pop_up_tekma');
+var nastavitve_router = require('./routes/nastavitve');
+var profil_router = require('./routes/profil');
+var zgodovina_router = require('./routes/zgodovina');
+var ustvari_tekmo_router = require('./routes/ustvari_tekmo');
+var homepage_router = require('./routes/homepage');
 
 //helper za zvezdice
 const hbs = exphbs.create({
@@ -57,118 +62,13 @@ const hbs = exphbs.create({
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-// Rounting?
-app.get('/profil', (req, res) => {
-    res.render('profil',{
-        profil: true,
-        ime: 'Janez',
-        priimek: 'Novak',
-        email: "janezek@gmail.com",
-        ocena: 3
-    });
-})
 
-app.get('/zgodovina', (req, res) => {
-    res.render('zgodovina',{
-        zgodovina: true,
-        ime: 'Janez',
-        priimek: 'Novak',
-        email: "janezek@gmail.com",
-        ocena: 3
-    });
-})
-
-app.get('/nastavitve', (req, res) => {
-    res.render('nastavitve',{
-        nastavitve: true,
-        ime: 'Janez',
-        priimek: 'Novak',
-        email: "janezek@gmail.com",
-        ocena: 3,
-        telefon: '010569412',
-        geslo: 'Security? NO'
-    });
-})
-
-app.get('/pop_up_tekma', (req, res) => {
-    res.render('pop_up_tekma', {
-        layout: false,
-        ustvari_tekmo: true,
-        urejamo: false,
-        tekma : {
-                    kreator : "Janez Novak",
-                    lokacija : "Ljubljana, Rožna cesta 13",
-                    datum : "6. 9. 2020",
-                    ura : "4:20",
-                    steviloIgralcev: "7",
-                    maksimalnoSteviloIgralcev: "16",
-                    opis : "idk nigga",
-                            igralci : [
-                                {
-                                    ime : "janez",
-                                    rating : "5"
-                                },
-                                {
-                                    ime : "Robi",
-                                    rating : "4.7"
-                                }
-                            ]
-                }
-    });
-})
-
-
-app.get('/ustvari_tekmo', (req, res) => {
-    res.render('ustvari_tekmo', {
-        layout: false,
-        ustvari_tekmo: true
-    });
-})
-
-
-
-app.get('/homepage', (req, res) => {
-    res.render('homepage',{
-        layout: false,
-        homepage: true,
-        ime: 'Janezz',
-        priimek: 'Novakk',
-
-        tekma : [
-            {
-                kraj : "Ljubljana",
-                ulica : "Rožna cesta",
-                ul_stevilka : "32",
-                datum : "20.20.2020",
-                ura : "18:00",
-                st_igralcev : "4/10",
-
-
-            },
-            {
-                kraj : "Novo Mesto",
-                ulica : "Kurentska ulica",
-                ul_stevilka : "10a",
-                datum : "20.11.2011",
-                ura : "15:00",
-                st_igralcev : "6/16",
-
-
-            },
-            {
-                kraj : "Ljubljana",
-                ulica : "Celovška",
-                ul_stevilka : "1",
-                datum : "20.20.2056",
-                ura : "12:00",
-                st_igralcev : "1/18",
-
-
-            },
-
-        ]
-    });
-})
+app.use('/', pop_up_router);
+app.use('/', nastavitve_router);
+app.use('/', profil_router);
+app.use('/', zgodovina_router);
+app.use('/', ustvari_tekmo_router);
+app.use('/', homepage_router);
 
 app.listen(8080, () => {
     console.log('Server is starting at port ', 8080);
