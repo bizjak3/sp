@@ -21,9 +21,17 @@
   },
   "homepage": "https://github.com/sp-2020-2021/LP-03#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "express": "^4.17.1",
+    "express-flash": "^0.0.2",
     "express-generator": "^4.16.1",
     "express-handlebars": "^5.2.0",
-    "handlebars": "^4.7.6"
+    "express-session": "^1.17.1",
+    "handlebars": "^4.7.6",
+    "modules": "^0.4.0",
+    "mongoose": "^5.10.15",
+    "nodemon": "^2.0.6",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   }
 }

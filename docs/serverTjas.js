@@ -36,8 +36,8 @@ app.use(flash());
 
 
 
-app.use('/', require('./routes/index'))
-app.use('/users', require('./routes/users'))
+app.use('/', require('./routes/users'))
+app.use('/homepage', require('./routes/index'))
 
 
 app.listen(8080, console.log('Server started on port 8080'));
