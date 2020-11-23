@@ -14,7 +14,7 @@ var profil = (req, res) => {
         ime: 'Janez',
         priimek: 'Novak',
         email: "janezek@gmail.com",
-        ocena: 3
+        ocena: 1
     });
 };
 

@@ -34,8 +34,6 @@ app.use(passport.session());
 
 app.use(flash());
 
-
-
 app.use('/', require('./routes/users'))
 app.use('/homepage', require('./routes/index'))
 

@@ -47,7 +47,7 @@ const hbs = exphbs.create({
             return rezultat;
         },
         ocenaIgralca: function (ocena){
-            if(ocena < 1)
+            if(ocena < 2)
                 return "<span class=\"badge badge-danger\">SLABA OCENA!</span>";
             if(ocena == 5)
                 return "<span class=\"badge btn btn-success\">SUPER OCENA!</span>";
