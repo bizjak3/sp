@@ -7,9 +7,12 @@ const passport = require('passport');
 const User = require('../models/User');
 const { forwardAuthenticated } = require('../config/auth');
 
-router.get('/', (req, res) => res.render('login'));
 
-router.get('/register', (req, res) => res.render('register'));
+// Login Page
+router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
+
+// Register Page
+router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 
 
 router.post('/register', (req, res) => {
@@ -68,7 +71,7 @@ router.post('/register', (req, res) => {
                         newUser.save()
                             .then(user => {
                                 req.flash('success', 'Uspesno ste se registrirali')
-                                res.redirect('/');
+                                res.redirect('/login');
                             })
                             .catch(err => console.log(err))
                     }))
@@ -81,8 +84,8 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
-        successRedirect: '/homepage',
-        failureRedirect: '/',
+        successRedirect: '/',
+        failureRedirect: '/login',
         failureFlash: true
     })(req, res, next);
 });
@@ -91,7 +94,7 @@ router.post('/login', (req, res, next) => {
 router.get('/logout', (req, res) => {
     req.logout();
     req.flash('success_msg', 'You are logged out');
-    res.redirect('/');
+    res.redirect('/login');
 });
 
 module.exports = router;

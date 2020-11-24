@@ -26,12 +26,15 @@
     "express-flash": "^0.0.2",
     "express-generator": "^4.16.1",
     "express-handlebars": "^5.2.0",
+    "express-hbs": "^2.3.4",
     "express-session": "^1.17.1",
     "handlebars": "^4.7.6",
+    "hbs": "^4.1.1",
     "modules": "^0.4.0",
     "mongoose": "^5.10.15",
     "nodemon": "^2.0.6",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7"
   }
 }

@@ -1,5 +1,129 @@
 
-<h1>Pozdravljen  {{name}} </h1>
+
+
+    <!-- ikona in link do css -->
+    <link rel="stylesheet" href="/css/izgled_homepage.css">
+    <link rel="stylesheet" href="/css/izgled_header.css">
+    <link rel="icon" type='image/x-icon' href="/slike/logo_ikona.ico">
+
+    <!-- pisave -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+
+
+<body style="background-color:#c3c3c3; padding-top:60px; padding-bottom:20px; height:100%;">
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+    <!-- ta kontejner v navbaru se je prilagajal drugace kot tisti za vsebino, ceprav
+    sta oba enake velikosti, dodal padding px-3 ker navbar avtomatsko odvzame padding iz kontejnerja -->
+    <div class="container-lg px-3" >
+
+        <!-- navbar logo -->
+        <a class="navbar-brand" href="../oldHTML/homepage.html">
+            <img  src="/slike/logo_svetel.png" id="headerLogo"> <b><i>Tap & Play</i></b>
+        </a>
+
+        <!-- za kolaps pri majhnih zaslonih -->
+        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"> </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+            <!-- Search form -->
+            <form class="form-inline ml-auto">
+                <button class="btn btn-sm btn-outline-light my-2 my-sm-0" type="submit"> <i class="fas fa-search"></i></button>
+                <input class="form-control-sm ml-sm-1 " type="search" placeholder="Išči" aria-label="Search">
+            </form>
+
+            <!-- dropwdown meni -->
+            <ul class="navbar-nav ml-2">
+
+                <li class="nav-item dropdown " >
+                    <a id="testMenuRazlika1" class="nav-link dropdown-toggle"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+                    <div id="testMenuRazlika2" class="dropdown-menu dropdown-menu-right"  id="dropdownMeni" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item disabled" href="#">{{name}} {{surname}}</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/profil"><i class="fas fa-user"></i> Profil</a>
+                        <a class="dropdown-item" href="/zgodovina"><i class="fas fa-history"></i> Zgodovina</a>
+                        <a class="dropdown-item" href="/nastavitve"><i class="fas fa-cog"></i> Nastavitve</a>
+                        <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Odjava</a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+
+
+    </div>
+</nav>
+
+
+<!-- vsebina kontejner ki ni header -->
+<div class="container-lg" style="height:100%;">
+
+    <div class="row" style="height:100%;">
+
+        <div class="col-sm-8" style="height:100%">
+
+            <div class="card border-dark" style="height:100%" >
+                <div class="card-header bg-dark text-white">Zemljevid tekem</div>
+                <div class="card-body px-0 py-0">
+
+                    <iframe style="width:100%; height:100%;" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d48666.20422273859!2d14.511775487167021!3d46.048551539631106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ssl!2ssi!4v1603462133152!5m2!1ssl!2ssi" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-4 " style="height:100%;">
+
+            <div class="row" style=" height:90%;">
+                <div class="card  border-dark" style="width:100%; height:100%;" >
+                    <div class="card-header bg-dark text-white">Seznam tekem</div>
+                    <div class="card-body px-1 py-1" style="height:100%;">
+
+                        <!-- zavijem da je kartica skrollable in se ne preliva cez -->
+                        <div class="scrollable" style="height:100%; overflow-y: auto;">
+
+
+                            <!-- seznam vseh iger za test samo 9 x iger dodanih -->
+                            <ul class="list-group" style="width:100%; height:100%;">
+
+                                {{#each tekma}}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#"> {{this.kraj}}, {{this.ulica}} {{this.ul_stevilka}} <br>{{this.datum}} | {{this.ura}} </a>
+                                        <span class="badge badge-primary badge-pill">{{this.st_igralcev}}</span>
+                                    </li>
+                                {{/each}}
+
+
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row py-2 px-2" style="height:10%;">
+                <!-- gumb za ustvaritev nove igre -->
+                <button type="button" class="btn btn-primary " id="gumbNovaIgra"><i class="fas fa-plus mr-2"></i>Ustvari novo tekmo</button>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
 
 
 
