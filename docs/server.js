@@ -13,11 +13,12 @@ require('./config/passport')(passport);
 //Database config
 const db = require('./config/keys').mongoURI;
 
-
 //Connect to MongoDb
 mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }, )
     .then(() => console.log('Database connected...'))
     .catch(err => console.log(err));
+
+
 
 app.engine('handlebars', exphbs( { helpers: require('./views/helpers/hlps')} ));
 app.set('view engine', 'handlebars');
@@ -42,6 +43,8 @@ app.use('/', require('./routes/users'));
 app.use('/', require('./routes/index'));
 app.use('/', require('./routes/profil'));
 app.use('/', require('./routes/pop_up_tekma'));
+app.use('/', require('./routes/ustvari_tekmo'));
+
 
 
 app.listen(8080, console.log('Server started on port 8080'));
