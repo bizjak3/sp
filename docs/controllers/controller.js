@@ -63,11 +63,11 @@ var ustvari_tekmo = (req, res) => {
 };
 
 var homepage = (req, res) => {
-    res.render('homepage',{
-        layout: false,
+    res.render('hmpg',{
+        layout: 'main',
         homepage: true,
-        ime: 'Janezz',
-        priimek: 'Novakk',
+        name: 'Janezz',
+        surname: 'Novakk',
 
         tekma : [
             {

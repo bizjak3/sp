@@ -39,8 +39,8 @@ app.use(passport.session());
 
 app.use(flash());
 
+app.use('/', require('./routes/homepage'));
 app.use('/', require('./routes/users'));
-app.use('/', require('./routes/index'));
 app.use('/', require('./routes/profil'));
 app.use('/', require('./routes/pop_up_tekma'));
 app.use('/', require('./routes/ustvari_tekmo'));

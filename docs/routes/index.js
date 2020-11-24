@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
-
+const kontroler = require('../controllers/controller');
 // DA ni treba nardit vsakic login
 /*
 router.get('/', ensureAuthenticated, (req, res) =>
