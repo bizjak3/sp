@@ -20,6 +20,30 @@ const UserSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    smsOdpade: {
+        type: Boolean,
+        default: true
+    },
+    emailOdpade: {
+        type: Boolean,
+        default: true
+    },
+    smsPrihaja: {
+        type: Boolean,
+        default: true
+    },
+    emailPrihaja: {
+        type: Boolean,
+        default: true
+    },
+    emailDrugi: {
+        type: Boolean,
+        default: true
+    },
+    telDrugi: {
+        type: Boolean,
+        default: true
     }
 });
 

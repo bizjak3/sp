@@ -126,4 +126,15 @@
 
 /* ZACETEK RIHARD ================================================================================= */
 
+
+#gumbNovaIgra {
+    width:100%;
+    height:100%;
+    font-size:2.2vh;
+    display: flex;
+    align-items: center; /* Vertical center alignment */
+    justify-content: center; /* Horizontal center alignment */
+
+}
+
 /* KONEC RIHARD =================================================================================== */

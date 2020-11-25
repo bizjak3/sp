@@ -14,7 +14,14 @@
             <!-- zgornj kartica-->
             <div class="card-deck" >
                 <div class="card  border-dark">
-                    <div class="card-header bg-dark text-white ">Nastavitve</div>
+                    <div class="card-header bg-dark text-white ">
+                        <div class="row">
+                            <div class="col">Nastavitve</div>
+                            <div class="col"><a href="nastavitve_uredi"><span class="interactive text-white">Uredi osebne podatke</span></a></div>
+                        </div>
+                    </div>
+
+                    <!-- card body-->
                     <div class="card-body px-1 py-1">
 
                         <div class="row m-2 info">
@@ -24,7 +31,7 @@
                             <div class="col">
                                 {{ime}} {{priimek}}
                             </div>
-                            <div class="col"><a href="#"><span class="interactive">Uredi</span></a></div>
+
                         </div>
 
                         <div class="row m-2 info">
@@ -34,7 +41,6 @@
                             <div class="col">
                                 {{email}}
                             </div>
-                            <div class="col"><a href="#"><span class="interactive">Uredi</span></a></div>
                         </div>
 
                         <div class="row m-2 info">
@@ -44,7 +50,6 @@
                             <div class="col">
                                 {{telefon}}
                             </div>
-                            <div class="col"><a href="#"><span class="interactive">Uredi</span></a></div>
                         </div>
 
                         <div class="row m-2 info">
@@ -54,7 +59,6 @@
                             <div class="col">
                                 {{geslo}}
                             </div>
-                            <div class="col"><a href="#"><span class="interactive">Zamenjaj</span></a></div>
                         </div>
 
                     </div>
@@ -64,12 +68,16 @@
             <!-- srednja kartica-->
             <div class="card-deck pt-2">
                 <div class="card  border-dark">
-                    <div class="card-header bg-dark text-white ">Nastavitve obveščanja</div>
-                    <div class="card-body px-1 py-1">
+                    <div class="card-header bg-dark text-white ">
+                        <div class="row">
+                            <div class="col">Nastavitve obveščanja</div>
+                        </div>
+                    </div>
 
+                    <div class="card-body px-1 py-1">
                         <div class="row m-2 info border-bottom">
                             <div class="col">
-                                Izberite kako vas lahko obveščamo o naslednjih dogodkih
+                                Obveščanje
                             </div>
                         </div>
 
@@ -82,13 +90,13 @@
                         <div class="row info m-2 border-bottom">
                             <div class="col">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="smsOdpoved">
-                                    <label class="form-check-label" for="smsOdpoved">
+                                    <input class="form-check-input" type="checkbox" value="" id="smsOdpoved" {{#if smsOdpade}} checked {{/if}} >
+                                    <label class="form-check-label" for="smsOdpoved" default="true">
                                         Sms obveščanje
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="emailodpoved">
+                                    <input class="form-check-input" type="checkbox" value="" id="emailodpoved" {{#if emailOdpade}} checked {{/if}}>
                                     <label class="form-check-label" for="emailodpoved">
                                         Email obveščanje
                                     </label>
@@ -105,26 +113,24 @@
                         <div class="row info m-2">
                             <div class="col">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="smsPrihajujoča">
+                                    <input class="form-check-input" type="checkbox" value="" id="smsPrihajujoča" {{#if smsPrihaja}} checked {{/if}}>
                                     <label class="form-check-label" for="smsPrihajujoča">
                                         Sms obveščanje
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="emailPrihajujoča">
+                                    <input class="form-check-input" type="checkbox" value="" id="emailPrihajujoča" {{#if emailPrihaja}} checked {{/if}}>
                                     <label class="form-check-label" for="emailPrihajujoča">
                                         Email obveščanje
                                     </label>
                                 </div>
                             </div>
                         </div>
-
                         <div class="row info m-2">
                             <div class="col">
-                                <button type="button" class="btn btn-success">Shrani</button>
+                                <button type="button" onClick="urediObvescanje()" class="btn btn-success">Shrani</button>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -145,13 +151,13 @@
                         <div class="row info m-2">
                             <div class="col">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="emailPokazi">
+                                    <input class="form-check-input" type="checkbox" value="" id="emailPokazi" {{#if emailDrugi}} checked {{/if}}>
                                     <label class="form-check-label" for="emailPokazi">
                                         Moj email
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="telPokazi">
+                                    <input class="form-check-input" type="checkbox" value="" id="telPokazi" {{#if telDrugi}} checked {{/if}}>
                                     <label class="form-check-label" for="telPokazi">
                                         Mojo telefonsko številko
                                     </label>
@@ -161,7 +167,7 @@
 
                         <div class="row info m-2">
                             <div class="col">
-                                <button type="button" class="btn btn-success">Shrani</button>
+                                <button type="button" onClick="urediZasebnost()" class="btn btn-success">Shrani</button>
                             </div>
                         </div>
                     </div>
