@@ -19,7 +19,7 @@
     <div class="container-lg px-3" >
 
         <!-- navbar logo -->
-        <a class="navbar-brand" href="../oldHTML/homepage.html">
+        <a class="navbar-brand" href="/">
             <img  src="/slike/logo_svetel.png" id="headerLogo"> <b><i>Tap & Play</i></b>
         </a>
 
@@ -97,7 +97,7 @@
                                 {{#each tekma}}
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <a class="text-dark" href="#"> {{this.kraj}}, {{this.ulica}} {{this.ul_stevilka}} <br>{{this.datum}} | {{this.ura}} </a>
-                                        <span class="badge badge-primary badge-pill">{{this.st_igralcev}}</span>
+                                        <span class="badge badge-primary badge-pill">{{this.prijavljeni}}/{{this.maxIgralcev}}</span>
                                     </li>
                                 {{/each}}
 
@@ -125,7 +125,4 @@
 
 </div>
 
-
-
-<a href="/logout" class="btn btn-secondary">Logout</a>
 

@@ -10,13 +10,18 @@ const app = express();
 
 require('./config/passport')(passport);
 
-//Database config
-const db = require('./config/keys').mongoURI;
-
-//Connect to MongoDb
-mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }, )
+//Lokalna baza
+mongoose.connect("mongodb://localhost:27017", { useNewUrlParser: true, useUnifiedTopology: true }, )
     .then(() => console.log('Database connected...'))
     .catch(err => console.log(err));
+
+//Globalna baza
+//const db = require('./config/keys').mongoURI;
+/*
+mongoose.connect("mongodb://localhost:27017", { useNewUrlParser: true, useUnifiedTopology: true }, )
+    .then(() => console.log('Database connected...'))
+    .catch(err => console.log(err));
+*/
 
 
 

@@ -63,45 +63,15 @@ var ustvari_tekmo = (req, res) => {
 };
 
 var homepage = (req, res) => {
-    res.render('hmpg',{
-        layout: 'main',
-        homepage: true,
-        name: 'Janezz',
-        surname: 'Novakk',
-
-        tekma : [
-            {
-                kraj : "Ljubljana",
-                ulica : "Rožna cesta",
-                ul_stevilka : "32",
-                datum : "20.20.2020",
-                ura : "18:00",
-                st_igralcev : "4/10",
-
-
-            },
-            {
-                kraj : "Novo Mesto",
-                ulica : "Kurentska ulica",
-                ul_stevilka : "10a",
-                datum : "20.11.2011",
-                ura : "15:00",
-                st_igralcev : "6/16",
-
-
-            },
-            {
-                kraj : "Ljubljana",
-                ulica : "Celovška",
-                ul_stevilka : "1",
-                datum : "20.20.2056",
-                ura : "12:00",
-                st_igralcev : "1/18",
-
-
-            },
-
-        ]
+    const Tekma = require('../models/Tekma');
+    Tekma.find({}).lean().exec({}, function (err, tekma) {
+        res.render('hmpg', {
+            layout: 'main',
+            homepage: true,
+            name: 'Janezz',
+            surname: 'Novakk',
+            tekma: tekma,
+        });
     });
 };
 
