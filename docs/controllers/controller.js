@@ -1,6 +1,6 @@
-var zgodovina = (req, res) => {
-    res.render('zgodovina',{
-        zgodovina: true,
+var moje_tekme = (req, res) => {
+    res.render('moje_tekme',{
+        moje_tekme: true,
         ime: 'Janez',
         priimek: 'Novak',
         email: "janezek@gmail.com",
@@ -111,7 +111,7 @@ module.exports = {
     nastavitve,
     nastavitve_uredi,
     profil,
-    zgodovina,
+    moje_tekme,
     homepage,
     db
 };
