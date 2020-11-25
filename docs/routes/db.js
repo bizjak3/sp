@@ -27,7 +27,7 @@ router.post('/db', (req, res) => {
 });
 
 router.post('/db_izbrisi', (req, res) => {
-    Tekma.remove({}, function(err) {
+    Tekma.deleteMany({}, function(err) {
             if (err) {
                 console.log(err)
             } else {
