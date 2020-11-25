@@ -49,6 +49,7 @@ app.use('/', require('./routes/users'));
 app.use('/', require('./routes/profil'));
 app.use('/', require('./routes/pop_up_tekma'));
 app.use('/', require('./routes/ustvari_tekmo'));
+app.use('/', require('./routes/db'));
 
 
 

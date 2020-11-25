@@ -75,11 +75,18 @@ var homepage = (req, res) => {
     });
 };
 
+var db = (req, res) => {
+    res.render('db', {
+        ustvari_tekmo: true
+    });
+};
+
 module.exports = {
     pop_up_tekma,
     ustvari_tekmo,
     nastavitve,
     profil,
     zgodovina,
-    homepage
+    homepage,
+    db
 };
