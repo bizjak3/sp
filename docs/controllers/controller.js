@@ -1,6 +1,6 @@
-var zgodovina = (req, res) => {
-    res.render('zgodovina',{
-        zgodovina: true,
+var moje_tekme = (req, res) => {
+    res.render('moje_tekme',{
+        moje_tekme: true,
         ime: 'Janez',
         priimek: 'Novak',
         email: "janezek@gmail.com",
@@ -26,7 +26,31 @@ var nastavitve = (req, res) => {
         email: "janezek@gmail.com",
         ocena: 3,
         telefon: '010569412',
-        geslo: 'Security? NO'
+        geslo: 'Security? NO',
+        smsOdpade: true,
+        emailOdpade: true,
+        smsPrihaja: false,
+        emailPrihaja: true,
+        emailDrugi: false,
+        telDrugi: true
+    });
+};
+
+var nastavitve_uredi = (req, res) => {
+    res.render('nastavitve_uredi',{
+        nastavitve_uredi: true,
+        ime: 'Janez',
+        priimek: 'Novak',
+        email: "janezek@gmail.com",
+        ocena: 3,
+        telefon: '010569412',
+        geslo: 'Security? NO',
+        smsOdpade: true,
+        emailOdpade: true,
+        smsPrihaja: false,
+        emailPrihaja: true,
+        emailDrugi: false,
+        telDrugi: true
     });
 };
 
@@ -85,8 +109,9 @@ module.exports = {
     pop_up_tekma,
     ustvari_tekmo,
     nastavitve,
+    nastavitve_uredi,
     profil,
-    zgodovina,
+    moje_tekme,
     homepage,
     db
 };
