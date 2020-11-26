@@ -27,7 +27,7 @@
                             <!-- vreme -->
                             <div class="row h-50 mb-3" style="overflow: hidden;">
                                 <div class="h-100 w-100" style="text-align: center; overflow: hidden; background-color: #0082bc">
-                                    <iframe src="https://vreme.arso.gov.si/widget/?width=260px&loc=Ljubljana" style="border:0; height: 185px; width: 260px;"></iframe>
+                                    <iframe src="https://vreme.arso.gov.si/widget/?width=260px&loc={{tekma.kraj}}" style="border:0; height: 185px; width: 260px;"></iframe>
                                 </div>
                             </div>
 
@@ -59,7 +59,7 @@
 
                                             <div class="row m-2 border-bottom pb-2">
                                                 <div class="col">
-                                                    {{tekma.kreator}}
+                                                    {{tekma.kraj}}
                                                 </div>
                                             </div>
 

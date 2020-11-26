@@ -96,7 +96,7 @@
 
                                 {{#each tekma}}
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <a class="text-dark" href="/pop_up_tekma"> {{this.kraj}}, {{this.ulica}} {{this.ul_stevilka}} <br>{{this.datum}} | {{this.ura}} </a>
+                                        <a class="text-dark" href="/pop_up_tekma/{{this._id}}"> {{this.kraj}}, {{this.ulica}} {{this.ul_stevilka}} <br>{{this.datum}} | {{this.ura}} </a>
                                         <span class="badge badge-primary badge-pill">{{this.prijavljeni}}/{{this.maxIgralcev}}</span>
                                     </li>
                                 {{/each}}
