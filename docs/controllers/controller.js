@@ -1,3 +1,16 @@
+const mongoose = require('mongoose');
+
+const Tekma = require('../models/Tekma');
+
+var apiParametri = {
+  streznik: 'http://localhost:' + (process.env.PORT || 8080)
+};
+
+const axios = require('axios').create({
+  baseURL: apiParametri.streznik,
+  timeout: 5000
+});
+
 var moje_tekme = (req, res) => {
     res.render('moje_tekme',{
         moje_tekme: true,
@@ -56,12 +69,12 @@ var nastavitve_uredi = (req, res) => {
 
 var pop_up_tekma = (req, res) => {
     res.render('pop_up_tekma', {
-        ustvari_tekmo: true,
+        //ustvari_tekmo: true,
         urejamo: false,
         tekma : {
             kreator : "Janez Novak",
             lokacija : "Ljubljana, Rožna cesta 13",
-            datum : "6. 9. 2020",
+            datum : "8. 9. 2020",
             ura : "4:20",
             steviloIgralcev: "7",
             maksimalnoSteviloIgralcev: "16",
@@ -78,6 +91,40 @@ var pop_up_tekma = (req, res) => {
             ]
         }
     });
+};
+
+const podrobnostiTekme = (req, res) => {
+  pridobiPodrobnostiTekme(req, res, (req, res, vsebina) => {
+    prikaziPodrobnostiTekme(req, res, vsebina);
+  });
+};
+
+const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
+    let idTekme = req.params.id;
+    console.log(idTekme);
+    Tekma.findOne({_id: idTekme}).lean().exec({}, function (err, tekma) {
+            res.render('pop_up_tekma', {
+                layout: 'main',
+                urejamo: true,
+                name: 'Janezz',
+                surname: 'Novakk',
+                tekma: tekma,
+            });
+        });
+};
+
+const prikaziPodrobnostiTekme = (req, res, podrobnostiTekme) => {
+  res.render('lokacija-podrobnosti', {
+    title: Tekma,
+    glavaStrani: {
+      naslov: podrobnostiLokacije.naziv
+    },
+    stranskaOrodnaVrstica: {
+      kontekst: 'je na EduGeoCache, ker je zanimiva lokacija, ki si jo lahko ogledate, ko ste brez idej za kratek izlet.',
+      poziv: 'Če vam je lokacija všeč, ali pa tudi ne, dodajte svoj komentar in s tem pomagajte ostalim uporabnikom pri odločitvi.'
+    },
+    tekma: podrobnostiTekme
+  });
 };
 
 var ustvari_tekmo = (req, res) => {
@@ -113,5 +160,6 @@ module.exports = {
     profil,
     moje_tekme,
     homepage,
-    db
+    db,
+    podrobnostiTekme
 };
