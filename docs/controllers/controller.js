@@ -101,11 +101,12 @@ const podrobnostiTekme = (req, res) => {
 
 const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
     let idTekme = req.params.id;
+    let urejanje = req.params.urejanje;
     console.log(idTekme);
     Tekma.findOne({_id: idTekme}).lean().exec({}, function (err, tekma) {
             res.render('pop_up_tekma', {
                 layout: 'main',
-                urejamo: true,
+                urejamo: false,
                 name: 'Janezz',
                 surname: 'Novakk',
                 tekma: tekma,

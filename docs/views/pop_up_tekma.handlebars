@@ -35,7 +35,6 @@
 
 
                         <!-- drugi stolpec - podatki o tekmi -->
-                        {{#if urejamo}}
                             <div class="col-lg-4 col-md-12 col-sm-12 mb-1">
                                 <div class="card  border-dark">
 
@@ -71,7 +70,7 @@
 
                                             <div class="row m-2 border-bottom pb-2">
                                                 <div class="col">
-                                                    {{tekma.lokacija}}
+                                                    {{tekma.kraj}}
                                                 </div>
                                             </div>
 
@@ -82,10 +81,16 @@
                                             </div>
 
                                             <div class="row m-2 border-bottom pb-2">
+                                                {{#if urejamo}}
                                                 <div class="col">
                                                     <input type="date" class="form-control" name="datum" required>
                                                     <input type="time" class="form-control" name="ura" required>
                                                 </div>
+                                                {{else}}
+                                                <div class="col">
+                                                    {{tekma.datum}} | {{tekma.ura}}
+                                                </div>
+                                                {{/if}}
                                             </div>
 
                                             <div class="row m-2 info">
@@ -96,7 +101,7 @@
 
                                             <div class="row m-2 info border-bottom pb-2">
                                                 <div class="col">
-                                                    <span class="badge badge-primary badge-pill">{{tekma.steviloIgralcev}}/{{tekma.maksimalnoSteviloIgralcev}}</span>
+                                                    <span class="badge badge-primary badge-pill">{{tekma.prijavljeni}}/{{tekma.maxIgralcev}}</span>
                                                 </div>
                                             </div>
 
@@ -108,9 +113,15 @@
                                             </div>
 
                                             <div class="row m-2 border-bottom pb-2">
-                                                    <div class="col">
-                                                        <textarea name="komentarji" class="form-control" rows="4" cols="36"  placeholder="Vnesite dodatne opombe"></textarea>
-                                                    </div>
+                                                    {{#if urejamo}}
+                                                        <div class="col">
+                                                            <textarea name="komentarji" class="form-control" rows="4" cols="36"  placeholder="Vnesite dodatne opombe"></textarea>
+                                                        </div>
+                                                    {{else}}
+                                                        <div class="col">
+                                                            {{tekma.opis}}
+                                                        </div>
+                                                    {{/if}}
                                             </div>
                                             <div class="row m-2 border-bottom pb-2">
                                                     <div class="col">
@@ -122,86 +133,6 @@
                                     </div>
                                 </div>
                             </div>
-                        {{else}}
-                            <div class="col-lg-4 col-md-12 col-sm-12 mb-1">
-                                <div class="card  border-dark">
-
-                                        <!--Ime kartice-->
-                                        <div class="card-header bg-dark text-white">
-                                            <div class="row justify-content-center">
-                                                <div class="col text-center">
-                                                    Informacije o tekmi
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body px-1 py-1">
-
-                                        <!--Podatki o tekmi style "info" je za odebeljene črke-->
-                                        <div class="row m-2 info">
-                                            <div class="col">
-                                                Tekmo je ustvaril:
-                                            </div>
-                                        </div>
-
-                                        <div class="row m-2 border-bottom pb-2">
-                                            <div class="col">
-                                                {{tekma.kreator}}
-                                            </div>
-                                        </div>
-
-                                        <div class="row m-2 info">
-                                            <div class="col">
-                                                Lokacija:
-                                            </div>
-                                        </div>
-
-                                        <div class="row m-2 border-bottom pb-2">
-                                            <div class="col">
-                                                {{tekma.lokacija}}
-                                            </div>
-                                        </div>
-
-                                        <div class="row m-2 info">
-                                            <div class="col">
-                                                Datum in ura:
-                                            </div>
-                                        </div>
-
-                                        <div class="row m-2 border-bottom pb-2">
-                                            <div class="col">
-                                                {{tekma.datum}} | {{tekma.ura}}
-                                            </div>
-                                        </div>
-
-                                        <div class="row m-2 info">
-                                            <div class="col">
-                                                Število do sedaj prijavljenih igralcev:
-                                            </div>
-                                        </div>
-
-                                        <div class="row m-2 info border-bottom pb-2">
-                                            <div class="col">
-                                                <span class="badge badge-primary badge-pill">{{tekma.steviloIgralcev}}/{{tekma.maksimalnoSteviloIgralcev}}</span>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="row m-2 info">
-                                            <div class="col">
-                                                Opis tekme:
-                                            </div>
-                                        </div>
-
-                                        <div class="row m-2 border-bottom pb-2">
-                                            <div class="col">
-                                                {{tekma.opis}}
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        {{/if}}
 
                         <!-- tretji stolpec - igralci na tekmi + ocene -->
                         <div class="col-lg-4 col-md-12 col-sm-12 mb-1">
@@ -246,5 +177,3 @@
         </div>
     </div>
 </div>
-
-{{>footer this}}
