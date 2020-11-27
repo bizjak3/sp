@@ -66,114 +66,117 @@
             </div>
 
             <!-- srednja kartica-->
-            <div class="card-deck pt-2">
-                <div class="card  border-dark">
-                    <div class="card-header bg-dark text-white ">
-                        <div class="row">
-                            <div class="col">Nastavitve obveščanja</div>
-                        </div>
-                    </div>
-
-                    <div class="card-body px-1 py-1">
-                        <div class="row m-2 info border-bottom">
-                            <div class="col">
-                                Obveščanje
+            <form method="POST" action="/nastavitve_osebni">
+                <div class="card-deck pt-2">
+                    <div class="card  border-dark">
+                        <div class="card-header bg-dark text-white ">
+                            <div class="row">
+                                <div class="col">Nastavitve obveščanja</div>
                             </div>
                         </div>
 
-                        <div class="row m-2 info">
-                            <div class="col">
-                                Obvestilo v primeru da tekma odpade:
-                            </div>
-                        </div>
-
-                        <div class="row info m-2 border-bottom">
-                            <div class="col">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="smsOdpoved" {{#if smsOdpade}} checked {{/if}} >
-                                    <label class="form-check-label" for="smsOdpoved" default="true">
-                                        Sms obveščanje
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="emailodpoved" {{#if emailOdpade}} checked {{/if}}>
-                                    <label class="form-check-label" for="emailodpoved">
-                                        Email obveščanje
-                                    </label>
+                        <div class="card-body px-1 py-1">
+                            <div class="row m-2 info border-bottom">
+                                <div class="col">
+                                    Obveščanje
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row m-2 info">
-                            <div class="col">
-                                Obvestilo o prihajujoči tekmi:
-                            </div>
-                        </div>
-
-                        <div class="row info m-2">
-                            <div class="col">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="smsPrihajujoča" {{#if smsPrihaja}} checked {{/if}}>
-                                    <label class="form-check-label" for="smsPrihajujoča">
-                                        Sms obveščanje
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="emailPrihajujoča" {{#if emailPrihaja}} checked {{/if}}>
-                                    <label class="form-check-label" for="emailPrihajujoča">
-                                        Email obveščanje
-                                    </label>
+                            <div class="row m-2 info">
+                                <div class="col">
+                                    Obvestilo v primeru da tekma odpade:
                                 </div>
                             </div>
-                        </div>
-                        <div class="row info m-2">
-                            <div class="col">
-                                <button type="button" onClick="urediObvescanje()" class="btn btn-success">Shrani</button>
+
+                            <div class="row info m-2 border-bottom">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="smsOdpoved" value="true" id="smsOdpoved" {{#if smsOdpade}} checked {{/if}} >
+                                        <label class="form-check-label" for="smsOdpoved" default="true">
+                                            Sms obveščanje
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="emailOdpoved" value="true" id="emailodpoved" {{#if emailOdpade}} checked {{/if}}>
+                                        <label class="form-check-label" for="emailodpoved">
+                                            Email obveščanje
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row m-2 info">
+                                <div class="col">
+                                    Obvestilo o prihajujoči tekmi:
+                                </div>
+                            </div>
+
+                            <div class="row info m-2">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="smsPrihajujoča" value="true" id="smsPrihajujoča" {{#if smsPrihaja}} checked {{/if}}>
+                                        <label class="form-check-label" for="smsPrihajujoča">
+                                            Sms obveščanje
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="emailprihajujoče" value="true" id="emailPrihajujoča" {{#if emailPrihaja}} checked {{/if}}>
+                                        <label class="form-check-label" for="emailPrihajujoča">
+                                            Email obveščanje
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row info m-2">
+                                <div class="col">
+                                    <input type="submit" class="btn btn-success"></input>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
+            </form>
 
             <!-- spodnja kartica-->
-            <div class="card-deck pt-2">
-                <div class="card  border-dark">
-                    <div class="card-header bg-dark text-white ">Nastavitve zasebnosti</div>
-                    <div class="card-body px-1 py-1">
+            <form method="POST" action="/nastavitve_osebni">
+                <div class="card-deck pt-2">
+                    <div class="card  border-dark">
+                        <div class="card-header bg-dark text-white ">Nastavitve zasebnosti</div>
+                        <div class="card-body px-1 py-1">
 
-                        <div class="row m-2 info border-bottom">
-                            <div class="col">
-                                Drugi uporabniki lahko vidijo:
-                            </div>
-                        </div>
-
-                        <div class="row info m-2">
-                            <div class="col">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="emailPokazi" {{#if emailDrugi}} checked {{/if}}>
-                                    <label class="form-check-label" for="emailPokazi">
-                                        Moj email
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="telPokazi" {{#if telDrugi}} checked {{/if}}>
-                                    <label class="form-check-label" for="telPokazi">
-                                        Mojo telefonsko številko
-                                    </label>
+                            <div class="row m-2 info border-bottom">
+                                <div class="col">
+                                    Drugi uporabniki lahko vidijo:
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row info m-2">
-                            <div class="col">
-                                <button type="button" onClick="urediZasebnost()" class="btn btn-success">Shrani</button>
+                            <div class="row info m-2">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="emailPokazi" value="true" id="emailPokazi" {{#if emailDrugi}} checked {{/if}}>
+                                        <label class="form-check-label" for="emailPokazi">
+                                            Moj email
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="telPokazi" value="true" id="telPokazi" {{#if telDrugi}} checked {{/if}}>
+                                        <label class="form-check-label" for="telPokazi">
+                                            Mojo telefonsko številko
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row info m-2">
+                                <div class="col">
+                                    <input type="submit" class="btn btn-success"></input>
+                                </div>
                             </div>
                         </div>
+
                     </div>
-
                 </div>
-            </div>
+            </form>
         </div>
 
     </div>

@@ -1,0 +1,176 @@
+{{> header this}}
+
+<!--container za vso vsebino-->
+<div class="container-lg h-100">
+
+
+    <div class="row">
+        <!--prva kartica-->
+        <div class="col-md-4 col-sm-12 mb-2">
+            <div class="card border-dark">
+
+                <!--Ime kartice-->
+                <div class="card-header bg-dark text-white">
+                    <div class="row justify-content-center">
+                        <div class="col text-center">
+                            {{ime}} {{priimek}}
+                        </div>
+                    </div>
+                </div>
+
+                <!--Tle se začne nav menu-->
+                <div class="card-body px-0 py-0">
+                    <nav class="sidebar">
+
+                        <!-- tle je slika -->
+                        <div class="row">
+                            <img class="img-fluid profil m-2 mx-auto" width="200" height="40" alt="Profilna slika" src="/slike/IMG_20201020_175337_2.jpg"><!-- Image to show on screens from small to extra large -->
+                        </div>
+
+                        <!--opis igralca al neki ?-->
+                        <div class="row justify-content-center">
+                            <div class="col text-center">
+                                Amaterski igralec
+                            </div>
+                        </div>
+
+                        <!-- Tle bi lahko dali kake achievmente ? -->
+                        <div class="row justify-content-center">
+                            <div class="col text-center">
+                                {{{ ocenaIgralca ocena }}}
+                            </div>
+                        </div>
+
+                        <!--število zvezdic-->
+                        <div class="row justify-content-center mb-1">
+                            {{{zvezdica ocena }}}
+                        </div>
+
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!--Tle se začne druga kartica-->
+        <div class="col-md-8 col-sm-12">
+
+            <!-- zgornj kartica-->
+            <div class="card-deck" >
+                <div class="card  border-dark">
+                    <div class="card-header bg-dark text-white ">
+                        <div class="row">
+                            <div class="col">Profil</div>
+                        </div>
+                    </div>
+
+                    <!-- card body-->
+                    <div class="card-body px-1 py-1">
+
+                        <div class="row m-2 info">
+                            <div class="col">
+                                Ime in Priimek
+                            </div>
+                            <div class="col">
+                                {{ime}} {{priimek}}
+                            </div>
+
+                        </div>
+
+                        <div class="row m-2 info">
+                            <div class="col">
+                                Email:
+                            </div>
+                            <div class="col">
+                                {{email}}
+                            </div>
+                        </div>
+
+                        <div class="row m-2 info">
+                            <div class="col">
+                                Telefon
+                            </div>
+                            <div class="col">
+                                {{telefon}}
+                            </div>
+                        </div>
+
+                        <div class="row m-2 info">
+                            <div class="col">
+                                Geslo:
+                            </div>
+                            <div class="col">
+                                {{geslo}}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- srednja kartica-->
+                <div class="card-deck pt-2">
+                    <div class="card  border-dark">
+                        <div class="card-header bg-dark text-white ">
+                            <div class="row">
+                                <div class="col">Tekme</div>
+                            </div>
+                        </div>
+
+                        <div class="card-body px-1 py-1">
+
+                            <!-- zavijem da je kartica skrollable in se ne preliva cez -->
+                            <div class="scrollable" style="overflow-y: auto;">
+
+
+                                <!-- seznam vseh iger za test samo 9 x iger dodanih -->
+                                <ul class="list-group">
+
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#"> Ljubljana, Rožna cesta 32 <br>17.1.2020 | 18:30 </a>
+                                        <span class="badge badge-danger badge-pill">Zaključena</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">Ljubljana, Litijska cesta 4 <br>18.5.2020 | 16:20</a>
+                                        <span class="badge badge-danger badge-pill">Odpadla</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">Ljubljana, Topniška 7 <br>16.7.2020 | 17:15</a>
+                                        <span class="badge badge-danger badge-pill">Zaključena</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">Ljubljana, Rožna cesta 32 <br>17.1.2020 | 18:30</a>
+                                        <span class="badge badge-danger badge-pill">Zaključena</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">Ljubljana, Litijska cesta 4 <br>18.5.2020 | 16:20</a>
+                                        <span class="badge badge-danger badge-pill">Odpadla</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">Ljubljana, Topniška 7 <br>16.7.2020 | 17:15</a>
+                                        <span class="badge badge-danger badge-pill">Zaključena</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">Ljubljana, Rožna cesta 32 <br>17.1.2020 | 18:30</a>
+                                        <span class="badge badge-danger badge-pill">Zaključena</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">Ljubljana, Litijska cesta 4 <br>18.5.2020 | 16:20</a>
+                                        <span class="badge badge-danger badge-pill">Zaključena</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">Ljubljana, Topniška 7 <br>16.7.2020 | 17:15</a>
+                                        <span class="badge badge-danger badge-pill">Zaključena</span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+
+</div>
+{{> footer}}
