@@ -31,6 +31,16 @@ var profil = (req, res) => {
     });
 };
 
+var profil_ostali = (req, res) => {
+    res.render('profil_ostali',{
+        profil: true,
+        ime: 'Janez',
+        priimek: 'Novak',
+        email: "janezek@gmail.com",
+        ocena: 1
+    });
+};
+
 var nastavitve = (req, res) => {
     res.render('nastavitve',{
         nastavitve: true,
@@ -153,14 +163,73 @@ var db = (req, res) => {
     });
 };
 
+const nastavitve_uredi_POST = (req, res) => {
+    const { ime, priimek, email, telefon, geslo, geslo1 } = req.body;
+    let errors = [];
+
+    if(geslo !== geslo1){
+        errors.push(1);
+        req.flash('error', 'Gesli se ne ujemata');
+    }
+
+    if (geslo.length < 6) {
+        errors.push(1);
+        req.flash('error', 'Geslo mora vsebovati vsaj 6 znakov')
+    }
+
+    if (errors.length > 0) {
+        res.render('nastavitve_uredi', {
+            errors,
+            ime,
+            priimek,
+            email,
+            telefon,
+            geslo,
+            geslo1
+        })
+    }else{
+        res.render('/profil');
+    }
+
+    //res.redirect('/nastavitve_uredi');
+}
+
+const nastavitve_POST = (req, res) => {
+    const { smsOdpoved, emailOdpoved, smsPrihajujoča, emailprihajujoče} = req.body;
+    let errors = [];
+
+    res.render('nastavitve_uredi', {
+        smsOdpoved,
+        emailOdpoved,
+        smsPrihajujoča,
+        emailprihajujoče
+    })
+}
+
+const nastavitve_osebni_POST = (req,res) =>{
+
+    const { telPokazi, emailPokazi} = req.body;
+    let errors = [];
+
+    res.render('nastavitve_uredi', {
+        telPokazi,
+        emailPokazi
+    })
+
+}
+
 module.exports = {
     pop_up_tekma,
     ustvari_tekmo,
     nastavitve,
     nastavitve_uredi,
     profil,
+    profil_ostali,
     moje_tekme,
     homepage,
     db,
+    nastavitve_uredi_POST,
+    nastavitve_osebni_POST,
+    nastavitve_POST,
     podrobnostiTekme
 };

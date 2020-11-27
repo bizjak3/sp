@@ -27,77 +27,71 @@
                                 Ime in Priimek
                         </div>
 
-                        <div class="form-row m-2 info">
-                            <div class="col">
-                                <form>
-                                    <input type="text" id="ime" class="form-control" value={{ime}} required></input>
-                                </form>
+                        <form method="POST" action="/nastavitve_uredi">
+                            <div class="form-row m-2 info">
+                                <div class="col">
+                                        <input type="text" id="ime" name="ime" class="form-control" value="{{ime}}" required></input>
+                                </div>
+
+                                <div class="col">
+                                        <input type="text" id="priimek" name="priimek" class="form-control" value="{{priimek}}" required></input>
+                                </div>
                             </div>
 
-                            <div class="col">
-                                <form>
-                                    <input type="text" id="priimek" class="form-control" value={{priimek}} required></input>
-                                </form>
+                            <div class="row m-2 info">
+                                    Email:
                             </div>
-                        </div>
+                            <div class="row m-2 info">
+                                        <div class="col">
+                                            <input type="email" id="email" name="email" class="form-control" value="{{email}}" required></input>
+                                        </div>
+                                <p class="error"><p id="email_error"></p>
+                            </div>
 
-                        <div class="row m-2 info">
-                                Email:
-                        </div>
-                        <div class="row m-2 info">
-                            <form>
+
+                            <div class="row m-2 info">
+                                    Telefon
+                            </div>
+                            <div class="row m-2 info">
                                     <div class="col">
-                                        <input type="email" id="email"  class="form-control" value={{email}} required></input>
+                                        <input class="form-control" type="tel" id="telefon" name="telefon" value="{{telefon}}" required></input>
                                     </div>
-                            </form>
-                            <p class="error"><p id="email_error"></p>
-                        </div>
+                                <p class="error"><p id="tel_error"></p>
+                            </div>
 
+                            <div class="row m-2 info">
+                                    Geslo:
+                            </div>
 
-                        <div class="row m-2 info">
-                                Telefon
-                        </div>
-                        <div class="row m-2 info">
-                            <form>
+                            <div class="row m-2 info">
+                                    <div class="col">
+                                        <input type="password" class="form-control" id="geslo" name="geslo" value="{{geslo}}" required></input>
+                                    </div>
+                            </div>
+
+                            <div class="row m-2 info">
+                                Ponovno vpišite geslo:
+                            </div>
+                            <div class="row m-2 info">
+                                    <div class="col">
+                                        <input type="password" class="form-control" id="geslo1" name="geslo1" value="{{geslo}}" required></input>
+                                    </div>
+                                <p class="error"><p id="geslo_error"></p>
+                            </div>
+
+                            {{> napake}}
+
+                            <div class="row info m-2">
                                 <div class="col">
-                                    <input class="form-control" type="tel" id="telefon" value={{telefon}} required></input>
+                                    <input type="submit" id="urediOsebne"  class="btn btn-success"></input>
                                 </div>
-                            </form>
-                            <p class="error"><p id="tel_error"></p>
-                        </div>
+                            </div>
 
-                        <div class="row m-2 info">
-                                Geslo:
-                        </div>
-
-                        <div class="row m-2 info">
-                            <form>
-                                <div class="col">
-                                    <input type="password" class="form-control" id="geslo" value={{geslo}} required></input>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="row m-2 info">
-                            Ponovno vpišite geslo:
-                        </div>
-                        <div class="row m-2 info">
-                            <form>
-                                <div class="col">
-                                    <input type="password" class="form-control" id="geslo1" value={{geslo}} required></input>
-                                </div>
-                            </form>
-                            <p class="error"><p id="geslo_error"></p>
-                        </div>
-
+                        </form>
 
 
                     </div>
-                    <div class="row info m-2">
-                        <div class="col">
-                            <button type="button" id="urediOsebne" onClick="urediOsebne()" class="btn btn-success">Shrani</button>
-                        </div>
-                    </div>
+
 
                 </div>
             </div>
