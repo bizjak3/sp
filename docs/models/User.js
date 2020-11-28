@@ -43,6 +43,10 @@ const UserSchema = new mongoose.Schema({
     telDrugi: {
         type: Boolean,
         default: true
+    },
+    ocene: {
+        type: Number,
+        default: 0
     }
 });
 

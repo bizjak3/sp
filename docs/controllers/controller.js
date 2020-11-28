@@ -254,13 +254,13 @@ const podrobnostiTekme = (req, res) => {
 const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
     let idTekme = req.params.id;
     let urejanje = req.params.urejanje;
-
     Tekma.findOne({_id: idTekme}).exec((err, tekma) => {
         if(err){
             console.log(err);
             res.status(400);
         }
         let playerIDs = tekma.igralci;
+        //playerIDs.push(tekma.kreator);
         User.find({_id: playerIDs}).lean().exec((err, igralci) => {
             if(err){
                 console.log(err);
@@ -273,10 +273,13 @@ const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
                                     name: element.name,
                                     surname: element.surname
                                     });
-                if(element._id == "5fc28813120bfa0ab6f59887"){
+
+                if(element._id + "" === req.user._id + ""){
                     pridruzen = true;
                 }
             });
+            //let kreator = sodelujoci[sodelujoci.length - 1].name;
+            //sodelujoci.pop();
             res.render('pop_up_tekma', {
                 layout: 'main',
                 urejamo: false,
@@ -292,6 +295,9 @@ const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
 
 const urediTekmo = (req, res, povratniKlic) => {
     let idTekme = req.params.id;
+
+    let userID = "" + req.user._id;
+
     Tekma.findOne({_id: idTekme}).exec({}, function (err, tekma){
         if(err){
             console.log(err);
@@ -310,7 +316,7 @@ const urediTekmo = (req, res, povratniKlic) => {
                                     name: element.name,
                                     surname: element.surname
                                     });
-                if(element._id == "5fc28813120bfa0ab6f59887"){
+                if(element._id + "" === req.user._id + ""){
                     pridruzen = true;
                 }
             });
@@ -358,7 +364,7 @@ const pridruziSeTekmi = (req, res, done) => {
     let idTekme = req.params.id;
     Tekma.updateOne(
          { _id: idTekme },
-         { $push: { igralci: "5fc28813120bfa0ab6f59887" } },
+         { $push: { igralci: req.user._id } },
          done
     );
     Tekma.updateOne(
@@ -374,7 +380,7 @@ const odjaviOdTekme = (req, res, done) => {
     let idTekme = req.params.id;
     Tekma.updateOne(
          { _id: idTekme },
-         { $pull: { igralci: "5fc28813120bfa0ab6f59887" } },
+         { $pull: { igralci: req.user._id } },
          done
     );
     Tekma.updateOne(

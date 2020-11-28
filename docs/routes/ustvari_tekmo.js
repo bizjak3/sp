@@ -11,7 +11,7 @@ router.post('/ustvari_tekmo', (req, res) => {
     let { kraj, datum, ura, minIgralcev, maxIgralcev, prijavljeni, komentarji } = req.body;
     prijavljeni += 1;
     const newTekma = new Tekma({
-        kreator: "ajdi",
+        kreator: req.user._id,
         kraj,
         datum,
         ura,
@@ -19,7 +19,7 @@ router.post('/ustvari_tekmo', (req, res) => {
         maxIgralcev,
         prijavljeni,
         opis: komentarji,
-        igralci: ["5fc27b713c481de7f329677b"]
+        igralci: [req.user._id]
     });
 
     newTekma.save()
