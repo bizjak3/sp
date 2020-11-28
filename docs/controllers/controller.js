@@ -1,6 +1,28 @@
 const mongoose = require('mongoose');
-
 const Tekma = require('../models/Tekma');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey('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');
+
+const posljiEmail = (email,subject,text) => {
+    const msg = {
+        to: email.toString(),
+        from: 'testektesto@gmail.com', // Use the email address or domain you verified above
+        subject: subject.toString(),
+        text: text.toString(),
+    };
+//ES6
+    sgMail
+        .send(msg)
+        .then(() => {
+            console.log("Email sent");
+        }, error => {
+            console.error(error);
+
+            if (error.response) {
+                console.error(error.response.body)
+            }
+        });
+}
 
 var apiParametri = {
   streznik: 'http://localhost:' + (process.env.PORT || 8080)
@@ -188,10 +210,10 @@ const nastavitve_uredi_POST = (req, res) => {
             geslo1
         })
     }else{
-        res.render('/profil');
+        posljiEmail('bizjak3@gmail.com','Sprememba nastavitev','Nastavitve uspešno spremenjene');
+        res.render('profil');
     }
 
-    //res.redirect('/nastavitve_uredi');
 }
 
 const nastavitve_POST = (req, res) => {
