@@ -207,6 +207,7 @@ const nastavitve_uredi_POST = (req, res) => {
             user.name = ime;
             user.surname = priimek;
             user.email = email;
+            user.telefon = telefon;
 
             bcrypt.genSalt(10, (err, salt) =>
                 bcrypt.hash(geslo, salt, (err, hash) => {
