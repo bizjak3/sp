@@ -12,10 +12,10 @@ router.post('/db', (req, res) => {
 
     var tekme = []
 
-    tekme[0] = new Tekma({kreator: "id", kraj: 'Ljubljana', datum: "10 12 2020", ura: '15 - 30', minIgralcev: 6, maxIgralcev: 10, prijavljeni: 4, opis: "peepeepoopoo"});
-    tekme[1] = new Tekma({kreator: "id", kraj: 'Maribor', datum: "20 12 2020", ura: '20 - 30', minIgralcev: 10, maxIgralcev: 10, prijavljeni: 1});
-    tekme[2] = new Tekma({kreator: "id", kraj: 'Murska Sobota', datum: "5 12 2020", ura: '09 - 50', minIgralcev: 10, maxIgralcev: 10, prijavljeni: 8, opis: "gremo mi po svoje"});
-    tekme[3] = new Tekma({kreator: "id", kraj: 'Trst', datum: "2 12 2020", ura: '10 - 00', minIgralcev: 10, maxIgralcev: 10, prijavljeni: 5});
+    tekme[0] = new Tekma({kreator: 'id', kraj: 'Ljubljana', datum: "10 12 2020", ura: '15 - 30', minIgralcev: 6, maxIgralcev: 10, prijavljeni: 4, opis: "peepeepoopoo", igralci: ['id']});
+    tekme[1] = new Tekma({kreator: 'id', kraj: 'Maribor', datum: "20 12 2020", ura: '20 - 30', minIgralcev: 10, maxIgralcev: 10, prijavljeni: 1, igralci: ['id']});
+    tekme[2] = new Tekma({kreator: 'id', kraj: 'Murska Sobota', datum: "5 12 2020", ura: '09 - 50', minIgralcev: 10, maxIgralcev: 10, prijavljeni: 8, opis: "gremo mi po svoje", igralci: ['id']});
+    tekme[3] = new Tekma({kreator: 'id', kraj: 'Trst', datum: "2 12 2020", ura: '10 - 00', minIgralcev: 10, maxIgralcev: 10, prijavljeni: 5, igralci: ['id']});
 
     var i;
     for (i = 0; i < tekme.length; i++) {
