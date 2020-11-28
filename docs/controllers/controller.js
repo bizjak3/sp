@@ -152,6 +152,62 @@ const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
 };
 
 
+
+const urediTekmo = (req, res, povratniKlic) => {
+    let idTekme = req.params.id;
+    Tekma.findOne({_id: idTekme}).lean().exec({}, function (err, tekma) {
+            res.render('pop_up_tekma', {
+                layout: 'main',
+                urejamo: true,
+                name: 'Janezz',
+                surname: 'Novakk',
+                tekma: tekma,
+            });
+        });
+};
+
+const urediTekmo_POST = (req, res) => {
+    const {datum, ura, komentarji} = req.body;
+    let idTekme = req.params.id;
+    Tekma.findOne({_id: idTekme}, function (err, tekma) {
+        tekma.datum = datum;
+        tekma.ura = ura;
+        tekma.opis = komentarji;
+        tekma.save(function (err) {
+            if (err) {
+                console.log(err);
+            }
+        });
+    });
+
+    res.redirect('/pop_up_tekma/' + idTekme);
+};
+
+const izbrisiTekmo = (req, res) => {
+    let idTekme = req.params.id;
+    Tekma.deleteOne({_id: idTekme}, function (err){
+        if(err){
+            console.log(err);
+        }
+    });
+    res.redirect('/');
+};
+
+const pridruziSeTekmi = (req, res) => {
+    let idTekme = req.params.id;
+    Tekma.find({_id: idTekme}, function (err, tekma){
+        console.log(tekma.igralci);
+        tekma.igralci.push("Robi Trobi");
+    });
+};
+
+const odjaviOdTekme = (req, res) => {
+    let idTekme = req.params.id;
+    Tekma.find({_id: idTekme}, function (err, tekma){
+        tekma.igralci.pull("Robi Trobi");
+    });
+};
+
 var ustvari_tekmo = (req, res) => {
     res.render('ustvari_tekmo', {
         ustvari_tekmo: true
@@ -224,7 +280,7 @@ const nastavitve_uredi_POST = (req, res) => {
                 }));
         });
         posljiEmail(email,'Sprememba nastavitev','Nastavitve uspešno spremenjene');
-        res.redirect('/profil');
+        res.render('profil');
     }
 
 }
@@ -297,5 +353,10 @@ module.exports = {
     nastavitve_osebni_POST,
     nastavitve_POST,
     podrobnostiTekme,
+    urediTekmo,
+    urediTekmo_POST,
+    izbrisiTekmo,
+    pridruziSeTekmi,
+    odjaviOdTekme,
     pozabil_geslo
 };
