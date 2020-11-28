@@ -30,7 +30,9 @@ mongoose.connect("mongodb://localhost:27017", { useNewUrlParser: true, useUnifie
 
 
 
-app.engine('handlebars', exphbs( { helpers: require('./views/helpers/hlps')} ));
+app.engine('handlebars', exphbs( { helpers: require('./views/helpers/hlps'),   runtimeOptions: {
+        allowProtoPropertiesByDefault: true, allowProtoMethodsByDefault: true
+}} ));
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 

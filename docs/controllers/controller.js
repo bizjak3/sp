@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Tekma = require('../models/Tekma');
+const User = require('../models/User');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey('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');
 
@@ -49,7 +50,8 @@ var profil = (req, res) => {
         ime: 'Janez',
         priimek: 'Novak',
         email: "janezek@gmail.com",
-        ocena: 1
+        ocena: 1,
+        user: req.user
     });
 };
 
@@ -77,7 +79,8 @@ var nastavitve = (req, res) => {
         smsPrihaja: false,
         emailPrihaja: true,
         emailDrugi: false,
-        telDrugi: true
+        telDrugi: true,
+        user: req.user
     });
 };
 
@@ -95,7 +98,8 @@ var nastavitve_uredi = (req, res) => {
         smsPrihaja: false,
         emailPrihaja: true,
         emailDrugi: false,
-        telDrugi: true
+        telDrugi: true,
+        user: req.user
     });
 };
 
@@ -146,19 +150,6 @@ const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
         });
 };
 
-const prikaziPodrobnostiTekme = (req, res, podrobnostiTekme) => {
-  res.render('lokacija-podrobnosti', {
-    title: Tekma,
-    glavaStrani: {
-      naslov: podrobnostiLokacije.naziv
-    },
-    stranskaOrodnaVrstica: {
-      kontekst: 'je na EduGeoCache, ker je zanimiva lokacija, ki si jo lahko ogledate, ko ste brez idej za kratek izlet.',
-      poziv: 'Če vam je lokacija všeč, ali pa tudi ne, dodajte svoj komentar in s tem pomagajte ostalim uporabnikom pri odločitvi.'
-    },
-    tekma: podrobnostiTekme
-  });
-};
 
 var ustvari_tekmo = (req, res) => {
     res.render('ustvari_tekmo', {
@@ -173,8 +164,9 @@ var homepage = (req, res) => {
             layout: 'main',
             homepage: true,
             name: 'Janezz',
-            surname: 'Novakk',
+            surname: 'Novak',
             tekma: tekma,
+            user: req.user
         });
     });
 };
@@ -186,7 +178,7 @@ var db = (req, res) => {
 };
 
 const nastavitve_uredi_POST = (req, res) => {
-    const { ime, priimek, email, telefon, geslo, geslo1 } = req.body;
+    const { id, ime, priimek, email, telefon, geslo, geslo1 } = req.body;
     let errors = [];
 
     if(geslo !== geslo1){
@@ -210,7 +202,18 @@ const nastavitve_uredi_POST = (req, res) => {
             geslo1
         })
     }else{
-        posljiEmail('bizjak3@gmail.com','Sprememba nastavitev','Nastavitve uspešno spremenjene');
+        User.findOne({_id: id}, function (err, user) {
+            user.name = ime;
+            user.surname = priimek;
+            user.email = email;
+            user.password = geslo;
+            user.save(function (err) {
+                if (err) {
+                    console.log(err)
+                }
+            });
+        });
+        posljiEmail(email,'Sprememba nastavitev','Nastavitve uspešno spremenjene');
         res.render('profil');
     }
 

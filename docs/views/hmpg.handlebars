@@ -44,7 +44,7 @@
                         <i class="fas fa-user-circle"></i>
                     </a>
                     <div id="testMenuRazlika2" class="dropdown-menu dropdown-menu-right"  id="dropdownMeni" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item disabled" href="#">{{name}} {{surname}}</a>
+                        <a class="dropdown-item disabled" href="#">{{user.name}} {{user.surname}}</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/profil"><i class="fas fa-user"></i> Profil</a>
                         <a class="dropdown-item" href="/zgodovina"><i class="fas fa-history"></i> Zgodovina</a>
@@ -100,8 +100,6 @@
                                         <span class="badge badge-primary badge-pill">{{this.prijavljeni}}/{{this.maxIgralcev}}</span>
                                     </li>
                                 {{/each}}
-
-
 
                             </ul>
 
