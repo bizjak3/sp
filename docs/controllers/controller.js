@@ -77,19 +77,19 @@ const axios = require('axios').create({
 
 var moje_tekme = (req, res) => {
 
+
     let id = req.user._id.toString();
     id = id+'.jpg';
     gfs.files.findOne({ filename: id.toString() }, (err, file) => {
         // Check if files
         if (!file || file.length === 0) {
-            res.render('profil',{
+            res.render('moje_tekme',{
                 image: false,
-                profil: true,
                 moje_tekme: true,
                 user: req.user
             });
         } else {
-            res.render('profil',{
+            res.render('moje_tekme',{
                 image: true,
                 slika: file.filename,
                 moje_tekme: true,
@@ -163,14 +163,13 @@ var nastavitve = (req, res) => {
     gfs.files.findOne({ filename: id.toString() }, (err, file) => {
         // Check if files
         if (!file || file.length === 0) {
-            res.render('profil',{
+            res.render('nastavitve',{
                 image: false,
-                profil: true,
                 nastavitve: true,
                 user: req.user
             });
         } else {
-            res.render('profil',{
+            res.render('nastavitve',{
                 image: true,
                 slika: file.filename,
                 nastavitve: true,
@@ -187,13 +186,13 @@ var nastavitve_uredi = (req, res) => {
     gfs.files.findOne({ filename: id.toString() }, (err, file) => {
         // Check if files
         if (!file || file.length === 0) {
-            res.render('profil',{
+            res.render('nastavitve_uredi',{
                 image: false,
                 nastavitve_uredi: true,
                 user: req.user
             });
         } else {
-            res.render('profil',{
+            res.render('nastavitve_uredi',{
                 image: true,
                 slika: file.filename,
                 nastavitve_uredi: true,
@@ -531,6 +530,14 @@ const pozabil_geslo =  (req, res) => {
 const nalozi = upload.single('file');
 
 const nalozi_sliko = (req, res) => {
+
+    let id = req.user._id.toString();
+    id = id+'.jpg';
+    gfs.remove({ filename: id.toString(), root: 'uploads' }, (err, gridStore) => {
+        if (err) {
+            return res.status(404).json({err: err});
+        }
+    });
 
     res.redirect('/profil');
 
