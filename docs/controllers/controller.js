@@ -29,6 +29,22 @@ conn.once('open',() => {
 const storage = new GridFsStorage({
     url: mongoURI,
     file: (req, file) => {
+        let id = req.user._id.toString();
+        id = id + '.jpg';
+
+        gfs.files.findOne({ filename: id.toString() }, (err, file) => {
+            // Check if files
+            if (!file || file.length === 0) {
+            }
+            else{
+                gfs.remove({filename: id.toString(), root: 'uploads'}, (err, gridStore) => {
+                    if (err) {
+                    }
+                });
+
+            }
+        });
+
         return new Promise((resolve, reject) => {
 
             //spremeni na id+extension
@@ -531,13 +547,6 @@ const nalozi = upload.single('file');
 
 const nalozi_sliko = (req, res) => {
 
-    let id = req.user._id.toString();
-    id = id+'.jpg';
-    gfs.remove({ filename: id.toString(), root: 'uploads' }, (err, gridStore) => {
-        if (err) {
-            return res.status(404).json({err: err});
-        }
-    });
 
     res.redirect('/profil');
 
