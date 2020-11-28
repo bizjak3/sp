@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Tekma = require('../models/Tekma');
 const User = require('../models/User');
+const bcrypt = require('bcrypt');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey('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');
 
@@ -206,7 +207,15 @@ const nastavitve_uredi_POST = (req, res) => {
             user.name = ime;
             user.surname = priimek;
             user.email = email;
-            user.password = geslo;
+
+            bcrypt.genSalt(10, (err, salt) =>
+                bcrypt.hash(geslo, salt, (err, hash) => {
+                    if (err) throw err;
+
+                    user.password = hash;
+
+                }));
+
             user.save(function (err) {
                 if (err) {
                     console.log(err)
