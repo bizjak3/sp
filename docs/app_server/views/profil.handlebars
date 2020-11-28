@@ -1,0 +1,101 @@
+{{> header this}}
+
+<div class="container-lg h-100">
+
+    <div class="row">
+        <!--prva kartica-->
+        {{> profilNav this}}
+
+        <!--druga kartica-->
+        <div class="col-md-8 col-sm-12">
+            <div class="card  border-dark">
+
+                <!--Ime kartice-->
+                <div class="card-header bg-dark text-white ">
+                    Moj profil
+                </div>
+
+                <!--Tle se začnejo podatki-->
+                <div class="card-body px-1 py-1">
+
+                    <!--ime in priimek-->
+                    <div class="row m-2 info">
+                        <div class="col">
+                            Ime in Priimek
+                        </div>
+                        <div class="col">
+                            {{ user.name }} {{ user.surname }}
+                        </div>
+                    </div>
+
+                    <!--Email-->
+                    <div class="row m-2 info">
+                        <div class="col">
+                            Email
+                        </div>
+                        <div class="col info">
+                            {{ user.email }}
+                        </div>
+                    </div>
+
+                    <!--Telefon-->
+                    <div class="row m-2 info">
+                        <div class="col">
+                            Telefon
+                        </div>
+                        <div class="col info">
+                            {{ user.telefon }}
+                        </div>
+                    </div>
+
+                    <!--Grafična ocena-->
+                    <div class="row m-2 info">
+                        <div class="col">
+                            Ocena
+                        </div>
+                        <div class="col info">
+                            {{{zvezdica ocena }}}
+                        </div>
+                    </div>
+
+
+                    <!-- Gumb za ban (moderator only)-->
+                    <div class="row m-2 align-items-end">
+                        <div class="col">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ban">Onemogoči uporabnika</button>
+                        </div>
+                    </div>
+
+                    <!-- Modal => to je popup -->
+                    <div class="modal fade" id="ban" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">BAN</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Za koliko časa želite onemogočiti uporabnika?</p>
+
+                                    <label for="quantity">Izberi med 0 in 30 dni:</label>
+                                    <input type="number" id="quantity" name="quantity" min="1" max="30">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Prekliči</button>
+                                    <button type="button" class="btn btn-danger">Potrdi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{{> footer}}
+

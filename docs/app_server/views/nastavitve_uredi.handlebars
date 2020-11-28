@@ -1,0 +1,111 @@
+{{> header this}}
+
+<!--container za vso vsebino-->
+<div class="container-lg h-100">
+
+
+    <div class="row">
+        <!--prva kartica-->
+        {{> profilNav this}}
+
+        <!--Tle se začne druga kartica-->
+        <div class="col-md-8 col-sm-12">
+
+            <!-- zgornj kartica-->
+            <div class="card-deck" >
+                <div class="card  border-dark">
+                    <div class="card-header bg-dark text-white ">
+                        <div class="row">
+                            <div class="col">Nastavitve</div>
+                        </div>
+                    </div>
+
+                    <!-- card body-->
+                    <div class="card-body px-1 py-1">
+
+                        <div class="row m-2 info">
+                            Ime in Priimek
+                        </div>
+
+
+
+                        <form method="POST" action="/nastavitve_uredi">
+
+                            <input type="name" id="idNastavitve" name="id" class="form-control" value="{{user._id}}" required>
+
+
+                            <div class="form-row m-2 info">
+
+                                <div class="col">
+                                    <input type="name" id="ime" name="ime" class="form-control" value="{{user.name}}" required>
+                                </div>
+
+                                <div class="col">
+                                    <input type="surname" id="priimek" name="priimek" class="form-control" value="{{user.surname}}" required>
+                                </div>
+                            </div>
+
+                            <div class="row m-2 info">
+                                Email:
+                            </div>
+                            <div class="row m-2 info">
+                                <div class="col">
+                                    <input type="email" id="email" name="email" class="form-control" value="{{user.email}}" required>
+                                </div>
+                                <p class="error"><p id="email_error"></p>
+                            </div>
+
+
+                            <div class="row m-2 info">
+                                Telefon
+                            </div>
+                            <div class="row m-2 info">
+                                <div class="col">
+                                    <input class="form-control" type="tel" id="telefon" name="telefon" value="{{user.telefon}}" required>
+                                </div>
+                                <p class="error"><p id="tel_error"></p>
+                            </div>
+
+                            <div class="row m-2 info">
+                                Geslo:
+                            </div>
+
+                            <div class="row m-2 info">
+                                <div class="col">
+                                    <input type="password" class="form-control" id="geslo" name="geslo"  required>
+                                </div>
+                            </div>
+
+                            <div class="row m-2 info">
+                                Ponovno vpišite geslo:
+                            </div>
+                            <div class="row m-2 info">
+                                <div class="col">
+                                    <input type="password" class="form-control" id="geslo1" name="geslo1"  required>
+                                </div>
+                                <p class="error"><p id="geslo_error"></p>
+                            </div>
+
+                            {{> napake}}
+
+                            <div class="row info m-2">
+                                <div class="col">
+                                    <input type="submit" id="urediOsebne"  class="btn btn-success">
+                                </div>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+{{> footer}}
