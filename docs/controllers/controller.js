@@ -549,5 +549,10 @@ module.exports = {
     podrobnostiTekme,
     pozabil_geslo,
     najdiSliko,
+    urediTekmo,
+    urediTekmo_POST,
+    izbrisiTekmo,
+    pridruziSeTekmi,
+    odjaviOdTekme,
     nalozi
 };
