@@ -16,7 +16,11 @@
 
                 <!-- tle je slika -->
                 <div class="row">
-                    <img class="img-fluid profil m-2 mx-auto" width="200" height="40" alt="Profilna slika" src="/slike/IMG_20201020_175337_2.jpg"><!-- Image to show on screens from small to extra large -->
+                    {{#if image}}
+                        <img class="img-fluid profil m-2 mx-auto" width="200" height="40" alt="Profilna slika" src="/image/{{slika}}">
+                    {{else}}
+                        <img class="img-fluid profil m-2 mx-auto" width="200" height="40" alt="Image not found" src="">
+                    {{/if}}
                 </div>
 
                 <!--opis igralca al neki ?-->

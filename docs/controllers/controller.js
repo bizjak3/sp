@@ -5,6 +5,60 @@ const bcrypt = require('bcrypt');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey('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');
 
+
+//slike
+const crypto = require('crypto');
+const multer = require('multer');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
+const path = require('path')
+
+const mongoURI = "mongodb://localhost:27017/test"
+const conn = mongoose.createConnection(mongoURI);
+
+//init gfs
+let gfs;
+conn.once('open',() => {
+    //stream na bazo za slike
+    gfs = Grid(conn.db,mongoose.mongo);
+    gfs.collection('uploads');
+})
+
+const najdiSlike = () => {
+
+    gfs.files.find().toArray((err, files) => {
+        // Check if files
+        if (!files || files.length === 0) {
+            console.log("files not found");
+            return;
+        }
+
+        // Files exist
+        return files;
+    })
+
+}
+
+//storage engine
+const storage = new GridFsStorage({
+    url: mongoURI,
+    file: (req, file) => {
+        return new Promise((resolve, reject) => {
+
+            //spremeni na id+extension
+            const filename = '1' + path.extname(file.originalname);
+            const fileInfo = {
+                filename: filename,
+                bucketName: 'uploads'
+            };
+            resolve(fileInfo);
+
+        });
+    }
+});
+const upload = multer({ storage });
+//konec slik
+
 const posljiEmail = (email,subject,text) => {
     const msg = {
         to: email.toString(),
@@ -45,15 +99,57 @@ var moje_tekme = (req, res) => {
     });
 };
 
-var profil = (req, res) => {
-    res.render('profil',{
-        profil: true,
-        ime: 'Janez',
-        priimek: 'Novak',
-        email: "janezek@gmail.com",
-        ocena: 1,
-        user: req.user
+const najdiSliko = (req,res) =>{
+    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+        // Check if file
+        if (!file || file.length === 0) {
+            return res.status(404).json({
+                err: 'No file exists'
+            });
+        }
+
+        // Check if image
+        if (file.contentType === 'image/jpeg' || file.contentType === 'image/png' || file.contentType === 'image/jpg') {
+            // Read output to browser
+            const readstream = gfs.createReadStream(file.filename);
+            readstream.pipe(res);
+        } else {
+            res.status(404).json({
+                err: 'Not an image'
+            });
+        }
     });
+}
+
+var profil = (req, res) => {
+
+    gfs.files.findOne({ filename: '1.jpg' }, (err, file) => {
+        // Check if files
+        if (!file || file.length === 0) {
+            res.render('profil',{
+                image: false,
+                profil: true,
+                ime: 'Janez',
+                priimek: 'Novak',
+                email: "janezek@gmail.com",
+                ocena: 1,
+                user: req.user
+            });
+        } else {
+            console.log(file.filename);
+            res.render('profil',{
+                image: true,
+                slika: file.filename,
+                profil: true,
+                ime: 'Janez',
+                priimek: 'Novak',
+                email: "janezek@gmail.com",
+                ocena: 1,
+                user: req.user
+            });
+        }
+    });
+
 };
 
 var profil_ostali = (req, res) => {
@@ -230,26 +326,53 @@ const nastavitve_uredi_POST = (req, res) => {
 }
 
 const nastavitve_POST = (req, res) => {
-    const { smsOdpoved, emailOdpoved, smsPrihajujoča, emailprihajujoče} = req.body;
+    const {id, smsOdpoved, emailOdpoved, smsPrihajujoča, emailprihajujoče} = req.body;
     let errors = [];
 
-    res.render('nastavitve_uredi', {
-        smsOdpoved,
-        emailOdpoved,
-        smsPrihajujoča,
-        emailprihajujoče
-    })
+    User.findOne({_id: id}, function (err, user) {
+        if(!smsOdpoved)
+            user.smsOdpade = false;
+        else
+            user.smsOdpade = true;
+
+        if(!emailOdpoved)
+            user.emailOdpade = false;
+        else
+            user.emailOdpade = true;
+
+        if(!smsPrihajujoča)
+            user.smsPrihaja = false;
+        else
+            user.smsPrihaja = true;
+
+        if(!emailprihajujoče)
+            user.emailPrihaja = false;
+        else
+            user.emailPrihaja = trueM
+
+    });
+    res.redirect('/profil');
 }
 
 const nastavitve_osebni_POST = (req,res) =>{
 
-    const { telPokazi, emailPokazi} = req.body;
+    const {id, telPokazi, emailPokazi} = req.body;
     let errors = [];
 
-    res.render('nastavitve_uredi', {
-        telPokazi,
-        emailPokazi
-    })
+    User.findOne({_id: id}, function (err, user) {
+
+        if(!telPokazi)
+            user.telDrugi = false;
+        else
+            user.telDrugi = true;
+
+        if(!emailPokazi)
+            user.emailDrugi = false;
+        else
+            user.emailDrugi = true;
+
+    });
+    res.redirect('/profil');
 
 }
 
@@ -283,6 +406,14 @@ const pozabil_geslo =  (req, res) => {
     res.redirect("/login");
 }
 
+const nalozi = upload.single('file');
+
+const nalozi_sliko = ( req, res) => {
+
+    res.redirect('/profil');
+
+};
+
 module.exports = {
     pop_up_tekma,
     ustvari_tekmo,
@@ -295,7 +426,10 @@ module.exports = {
     db,
     nastavitve_uredi_POST,
     nastavitve_osebni_POST,
+    nalozi_sliko,
     nastavitve_POST,
     podrobnostiTekme,
-    pozabil_geslo
+    pozabil_geslo,
+    najdiSliko,
+    nalozi
 };
