@@ -49,7 +49,9 @@
                                         <div class="card-body px-1 py-1">
 
                                         <!--Podatki o tekmi style "info" je za odebeljene črke-->
+                                        {{#if urejamo}}
                                         <form method="post">
+                                        {{/if}}
                                             <div class="row m-2 info">
                                                 <div class="col">
                                                     Tekmo je ustvaril:
@@ -58,7 +60,7 @@
 
                                             <div class="row m-2 border-bottom pb-2">
                                                 <div class="col">
-                                                    {{tekma.kraj}}
+                                                    {{tekma.kreator}}
                                                 </div>
                                             </div>
 
@@ -83,8 +85,8 @@
                                             <div class="row m-2 border-bottom pb-2">
                                                 {{#if urejamo}}
                                                 <div class="col">
-                                                    <input type="date" class="form-control" name="datum" required>
-                                                    <input type="time" class="form-control" name="ura" required>
+                                                    <input type="date" class="form-control" name="datum" value="{{tekma.datum}}" required>
+                                                    <input type="time" class="form-control" name="ura" value="{{tekma.ura}}" required>
                                                 </div>
                                                 {{else}}
                                                 <div class="col">
@@ -115,7 +117,7 @@
                                             <div class="row m-2 border-bottom pb-2">
                                                     {{#if urejamo}}
                                                         <div class="col">
-                                                            <textarea name="komentarji" class="form-control" rows="4" cols="36"  placeholder="Vnesite dodatne opombe"></textarea>
+                                                            <textarea name="komentarji" class="form-control" rows="4" cols="36"  placeholder="Vnesite dodatne opombe">{{tekma.opis}}</textarea>
                                                         </div>
                                                     {{else}}
                                                         <div class="col">
@@ -123,13 +125,15 @@
                                                         </div>
                                                     {{/if}}
                                             </div>
+                                            {{#if urejamo}}
                                             <div class="row m-2 border-bottom pb-2">
                                                     <div class="col">
                                                         <input type="submit" class="btn btn-primary" value="Shrani">
-                                                        <a href="/pop_up_tekma" class="btn btn-danger">Prekliči</a>
+                                                        <a href="/pop_up_tekma/{{tekma._id}}" class="btn btn-danger">Prekliči</a>
                                                     </div>
                                             </div>
                                         </form>
+                                        {{/if}}
                                     </div>
                                 </div>
                             </div>
@@ -167,12 +171,15 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Izbriši</button>
-                <a href="/pop_up_tekma/uredi">
+                <a href="{{tekma._id}}/izbris">
+                    <button type="button" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Izbriši</button>
+                </a>
+                <a href="{{tekma._id}}/uredi">
                     <button type="button" class="btn btn-secondary"><i class="fas fa-edit"></i> Uredi</button>
                 </a>
-                <button type="button" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Pridruži se</button>
-
+                <a href="{{tekma._id}}/pridruzi">
+                    <button type="button" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Pridruži se</button>
+                </a>
             </div>
         </div>
     </div>

@@ -9,6 +9,10 @@ var hourFormat = {
 };
 
 const tekma = new mongoose.Schema({
+    kreator: {
+        type: String,
+        required: true
+    },
     kraj: {
         type: String,
         required: true
@@ -32,6 +36,14 @@ const tekma = new mongoose.Schema({
     prijavljeni: {
         type: Number,
         required: true
+    },
+    opis: {
+        type: String,
+        required: false
+    },
+    igralci: {
+        type: [String],
+        required: false
     }
 });
 
