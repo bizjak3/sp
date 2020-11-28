@@ -215,16 +215,16 @@ const nastavitve_uredi_POST = (req, res) => {
 
                     user.password = hash;
 
-                }));
+                    user.save(function (err) {
+                        if (err) {
+                            console.log(err)
+                        }
+                    });
 
-            user.save(function (err) {
-                if (err) {
-                    console.log(err)
-                }
-            });
+                }));
         });
         posljiEmail(email,'Sprememba nastavitev','Nastavitve uspešno spremenjene');
-        res.render('profil');
+        res.redirect('/profil');
     }
 
 }
@@ -253,6 +253,36 @@ const nastavitve_osebni_POST = (req,res) =>{
 
 }
 
+const pozabil_geslo =  (req, res) => {
+    const { email } = req.body;
+
+    let novoGeslo = Math.random().toString(36).substring(1);
+
+    console.log(email)
+
+    User.findOne( {email: email}, function(err, user) {
+        bcrypt.genSalt(10, (err, salt) =>
+            bcrypt.hash(novoGeslo, salt, (err, hash) => {
+                if (err) throw err;
+
+                user.password = hash;
+
+                user.save(function (err) {
+                    if (err) {
+                        console.log(err)
+                    }
+                });
+
+            }));
+
+
+
+    })
+
+    posljiEmail(email,'Sprememba gesla', "Novo geslo je: " + novoGeslo);
+    res.redirect("/login");
+}
+
 module.exports = {
     pop_up_tekma,
     ustvari_tekmo,
@@ -266,5 +296,6 @@ module.exports = {
     nastavitve_uredi_POST,
     nastavitve_osebni_POST,
     nastavitve_POST,
-    podrobnostiTekme
+    podrobnostiTekme,
+    pozabil_geslo
 };

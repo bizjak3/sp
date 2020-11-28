@@ -7,6 +7,8 @@ const passport = require('passport');
 const User = require('../models/User');
 const { forwardAuthenticated } = require('../config/auth');
 
+const kontroler = require('../controllers/controller');
+
 
 // Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
@@ -81,6 +83,8 @@ router.post('/register', (req, res) => {
 });
 
 //Login handle
+
+router.post('/pozabil_geslo', kontroler.pozabil_geslo);
 
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
