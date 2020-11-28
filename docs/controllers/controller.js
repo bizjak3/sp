@@ -24,20 +24,6 @@ conn.once('open',() => {
     gfs.collection('uploads');
 })
 
-const najdiSlike = () => {
-
-    gfs.files.find().toArray((err, files) => {
-        // Check if files
-        if (!files || files.length === 0) {
-            console.log("files not found");
-            return;
-        }
-
-        // Files exist
-        return files;
-    })
-
-}
 
 //storage engine
 const storage = new GridFsStorage({
@@ -46,7 +32,7 @@ const storage = new GridFsStorage({
         return new Promise((resolve, reject) => {
 
             //spremeni na id+extension
-            const filename = '1' + path.extname(file.originalname);
+            const filename =  req.user._id.toString() + '.jpg';
             const fileInfo = {
                 filename: filename,
                 bucketName: 'uploads'
@@ -90,16 +76,31 @@ const axios = require('axios').create({
 });
 
 var moje_tekme = (req, res) => {
-    res.render('moje_tekme',{
-        moje_tekme: true,
-        ime: 'Janez',
-        priimek: 'Novak',
-        email: "janezek@gmail.com",
-        ocena: 3
+
+    let id = req.user._id.toString();
+    id = id+'.jpg';
+    gfs.files.findOne({ filename: id.toString() }, (err, file) => {
+        // Check if files
+        if (!file || file.length === 0) {
+            res.render('profil',{
+                image: false,
+                profil: true,
+                moje_tekme: true,
+                user: req.user
+            });
+        } else {
+            res.render('profil',{
+                image: true,
+                slika: file.filename,
+                moje_tekme: true,
+                user: req.user
+            });
+        }
     });
 };
 
 const najdiSliko = (req,res) =>{
+    //id uporabnika
     gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
         // Check if file
         if (!file || file.length === 0) {
@@ -123,28 +124,21 @@ const najdiSliko = (req,res) =>{
 
 var profil = (req, res) => {
 
-    gfs.files.findOne({ filename: '1.jpg' }, (err, file) => {
+    let id = req.user._id.toString();
+    id = id+'.jpg';
+    gfs.files.findOne({ filename: id.toString() }, (err, file) => {
         // Check if files
         if (!file || file.length === 0) {
             res.render('profil',{
                 image: false,
                 profil: true,
-                ime: 'Janez',
-                priimek: 'Novak',
-                email: "janezek@gmail.com",
-                ocena: 1,
                 user: req.user
             });
         } else {
-            console.log(file.filename);
             res.render('profil',{
                 image: true,
                 slika: file.filename,
                 profil: true,
-                ime: 'Janez',
-                priimek: 'Novak',
-                email: "janezek@gmail.com",
-                ocena: 1,
                 user: req.user
             });
         }
@@ -163,41 +157,51 @@ var profil_ostali = (req, res) => {
 };
 
 var nastavitve = (req, res) => {
-    res.render('nastavitve',{
-        nastavitve: true,
-        ime: 'Janez',
-        priimek: 'Novak',
-        email: "janezek@gmail.com",
-        ocena: 3,
-        telefon: '010569412',
-        geslo: 'Security? NO',
-        smsOdpade: true,
-        emailOdpade: true,
-        smsPrihaja: false,
-        emailPrihaja: true,
-        emailDrugi: false,
-        telDrugi: true,
-        user: req.user
+
+    let id = req.user._id.toString();
+    id = id+'.jpg';
+    gfs.files.findOne({ filename: id.toString() }, (err, file) => {
+        // Check if files
+        if (!file || file.length === 0) {
+            res.render('profil',{
+                image: false,
+                profil: true,
+                nastavitve: true,
+                user: req.user
+            });
+        } else {
+            res.render('profil',{
+                image: true,
+                slika: file.filename,
+                nastavitve: true,
+                user: req.user
+            });
+        }
     });
 };
 
 var nastavitve_uredi = (req, res) => {
-    res.render('nastavitve_uredi',{
-        nastavitve_uredi: true,
-        ime: 'Janez',
-        priimek: 'Novak',
-        email: "janezek@gmail.com",
-        ocena: 3,
-        telefon: '010569412',
-        geslo: 'Security? NO',
-        smsOdpade: true,
-        emailOdpade: true,
-        smsPrihaja: false,
-        emailPrihaja: true,
-        emailDrugi: false,
-        telDrugi: true,
-        user: req.user
+
+    let id = req.user._id.toString();
+    id = id+'.jpg';
+    gfs.files.findOne({ filename: id.toString() }, (err, file) => {
+        // Check if files
+        if (!file || file.length === 0) {
+            res.render('profil',{
+                image: false,
+                nastavitve_uredi: true,
+                user: req.user
+            });
+        } else {
+            res.render('profil',{
+                image: true,
+                slika: file.filename,
+                nastavitve_uredi: true,
+                user: req.user
+            });
+        }
     });
+
 };
 
 var pop_up_tekma = (req, res) => {
@@ -526,7 +530,7 @@ const pozabil_geslo =  (req, res) => {
 
 const nalozi = upload.single('file');
 
-const nalozi_sliko = ( req, res) => {
+const nalozi_sliko = (req, res) => {
 
     res.redirect('/profil');
 
