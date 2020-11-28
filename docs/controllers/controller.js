@@ -4,7 +4,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey('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');
-
+const methodOverride = require('method-override');
 
 //slike
 const crypto = require('crypto');
@@ -58,6 +58,21 @@ const storage = new GridFsStorage({
         });
     }
 });
+
+const izbrisi = (req,res) => {
+
+    let id = req.user._id.toString();
+    id = id + '.jpg';
+    gfs.remove({filename: id.toString(), root: 'uploads'}, (err, gridStore) => {
+        if (err) {
+            console.log(err);
+        }
+    });
+
+    res.redirect('/nastavitve_uredi');
+
+}
+
 const upload = multer({ storage });
 //konec slik
 
@@ -469,8 +484,11 @@ const nastavitve_uredi_POST = (req, res) => {
 }
 
 const nastavitve_POST = (req, res) => {
-    const {id, smsOdpoved, emailOdpoved, smsPrihajujoča, emailprihajujoče} = req.body;
+    const {smsOdpoved, emailOdpoved, smsPrihajujoča, emailprihajujoče} = req.body;
     let errors = [];
+
+
+    let id = req.user._id;
 
     User.findOne({_id: id}, function (err, user) {
         if(!smsOdpoved)
@@ -491,10 +509,16 @@ const nastavitve_POST = (req, res) => {
         if(!emailprihajujoče)
             user.emailPrihaja = false;
         else
-            user.emailPrihaja = trueM
+            user.emailPrihaja = true;
+
+        user.save(function (err) {
+            if (err) {
+                console.log(err);
+            }
+        });
 
     });
-    res.redirect('/profil');
+    res.redirect('/nastavitve');
 }
 
 const nastavitve_osebni_POST = (req,res) =>{
@@ -502,7 +526,7 @@ const nastavitve_osebni_POST = (req,res) =>{
     const {id, telPokazi, emailPokazi} = req.body;
     let errors = [];
 
-    User.findOne({_id: id}, function (err, user) {
+    User.findOne({_id: req.user._id}, function (err, user) {
 
         if(!telPokazi)
             user.telDrugi = false;
@@ -514,8 +538,14 @@ const nastavitve_osebni_POST = (req,res) =>{
         else
             user.emailDrugi = true;
 
+        user.save(function (err) {
+            if (err) {
+                console.log(err);
+            }
+        });
+
     });
-    res.redirect('/profil');
+    res.redirect('/nastavitve');
 
 }
 
@@ -580,5 +610,6 @@ module.exports = {
     izbrisiTekmo,
     pridruziSeTekmi,
     odjaviOdTekme,
+    izbrisi,
     nalozi
 };
