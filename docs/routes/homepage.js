@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const {ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 const kontroler = require('../controllers/controller');
 
-router.get('/', kontroler.homepage);
+
+router.get('/', ensureAuthenticated, kontroler.homepage);
 
 
 module.exports = router;

@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey('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');
 const methodOverride = require('method-override');
+const {ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 //slike
 const crypto = require('crypto');
