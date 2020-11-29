@@ -7,30 +7,6 @@ const Tekma = require('../models/Tekma');
 
 router.get('/ustvari_tekmo', kontroler.ustvari_tekmo);
 
-router.post('/ustvari_tekmo', (req, res) => {
-    let {lat, lng, kraj, datum, ura, minIgralcev, maxIgralcev, prijavljeni, komentarji } = req.body;
-    prijavljeni += 1;
-
-    const newTekma = new Tekma({
-        kreator: req.user._id,
-        lat,
-        lng,
-        kraj,
-        datum,
-        ura,
-        minIgralcev,
-        maxIgralcev,
-        prijavljeni,
-        opis: komentarji,
-        igralci: [req.user._id],
-        status: "prijave"
-    });
-
-    newTekma.save()
-        .then(tekma => {
-            res.redirect('/');
-        })
-        .catch(err => console.log(err))
-});
+router.post('/ustvari_tekmo', kontroler.ustvari_tekmo_POST);
 
 module.exports = router;

@@ -15,35 +15,70 @@ const Tekma = require('./models/Tekma');
 
 var http = require('http');
 
+var cas = 'weather.marela.team/api/v2/arso/opozorila?lat=XXXlon=XXX&time=XXX';
+var trenutna = '/api/v2/arso/opozorila/trenutna?';
+
 var options = {
     host : 'weather.marela.team',
-    path: '/api/v2/arso/opozorila/trenutna?lat=45.88674219700143&lon=13.905384725727284',
+    path: '/api/v2/arso/opozorila/trenutna?',
     headers: {
         'Content-Type': 'application/json',
         'app-id': 'm3EYx2vqsGNziQ5PlJmpb1Cjvob0JPs5y6GZK3LP27r8zhtEmMNUaUjx3YpqTVb4ezpoIJMEkq6PDjYLQAT9shlgWvu8dQvlfYOBBYqhtAXL9BxsNst5FuDqYb5LFIYt'
     }
-}
+};
 
-var a;
-
-var vreme = function(response){
-      let data = '';
-      response.on('data', chunk => {
-        data += chunk;
-      })
-      response.on('end', () => {
-        a = JSON.parse(data);
-      })
-}
-
-async function weatherCheck(){
-    Tekma.find({}).exec((err, tekma) => {
-
+function weatherCheck(){
+    Tekma.find({status: "prijave"}).exec((err, tekme) => {
+        tekme.forEach(tekma => {
+            let id = tekma._id;
+            options.path = trenutna + "lat=" + tekma.lat + "&lon=" + tekma.lng;
+            let cajt = new Date();
+            let d = new Date(tekma.datum);
+            let t = new Date();
+            d.setHours(0, 0, 0, 0);
+            t.setHours(0, 0, 0, 0);
+            if(d + "" == t + ""){
+                if((tekma.ura+ "") == (cajt.getHours() + 2 + ":" + cajt.getMinutes())){
+                    http.request(options, (podatki) => {
+                          let data = '';
+                          podatki.on('data', chunk => {
+                            data += chunk;
+                          })
+                          podatki.on('end', () => {
+                            let p = JSON.parse(data);
+                            p.opozorila.forEach(element => {
+                                if(element.stopnja != 'zelena'){
+                                    tekma.status = 'odpadla';
+                                    tekma.save();
+                                }
+                            });
+                          })
+                    }).end();
+                }
+            }
+        });
     });
-    http.request(options, vreme).end();
+};
 
-}
-
+function statusCheck(){
+    Tekma.find({status: "prijave"}).exec((err, tekme) => {
+        tekme.forEach(tekma => {
+            let id = tekma._id;
+            options.path += "lat=" + tekma.lat + "&lon=" + tekma.lng;
+            let cajt = new Date();
+            let d = new Date(tekma.datum);
+            let t = new Date();
+            d.setHours(0, 0, 0, 0);
+            t.setHours(0, 0, 0, 0);
+            if(d + "" == t + ""){
+                if(tekma.ura.split(':')[0] + "" < cajt.getHours() + ""){
+                    tekma.status = 'zakljucena';
+                    tekma.save();
+                }
+            }
+        });
+    });
+};
 
 //slike
 const methodOverride = require('method-override');
@@ -55,7 +90,7 @@ const lokalna_baza = "mongodb://localhost:27017";
 const docker_baza = "mongodb://mongo:27017/mongo_baza";
 
 //Lokalna baza
-mongoose.connect(lokalna_baza, { useNewUrlParser: true, useUnifiedTopology: true }, )
+mongoose.connect(process.env.MONGODB_URI || lokalna_baza, { useNewUrlParser: true, useUnifiedTopology: true }, )
     .then(() => console.log('Database connected...'))
     .catch(err => console.log(err));
 
@@ -67,9 +102,14 @@ mongoose.connect("mongodb://localhost:27017", { useNewUrlParser: true, useUnifie
     .catch(err => console.log(err));
 */
 
-app.engine('handlebars', exphbs( { helpers: require('./views/helpers/hlps'),   runtimeOptions: {
-        allowProtoPropertiesByDefault: true, allowProtoMethodsByDefault: true
-}} ));
+app.engine('handlebars',
+    exphbs( {
+        helpers: require('./views/helpers/hlps'),
+        runtimeOptions: {
+            allowProtoPropertiesByDefault: true,
+            allowProtoMethodsByDefault: true
+    }}
+));
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
@@ -98,13 +138,13 @@ app.use('/', require('./routes/db'));
 app.use('/', require('./routes/search'));
 
 
-//http.request(options, vreme).end();
+//weatherCheck();
 
-//console.log(a);
+statusCheck();
 
-//setInterval(weatherCheck, 3000);
+setInterval(statusCheck, 5000);
 
-weatherCheck();
+var PORT = process.env.PORT || 8080;
 
-app.listen(8080, console.log('Server started on port 8080'));
+app.listen(PORT, console.log('Server started on port ' + PORT));
 

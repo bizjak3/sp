@@ -54,48 +54,13 @@
                             Ocena
                         </div>
                         <div class="col info">
-                            {{{zvezdica ocena }}}
+                            {{{zvezdica user.ocena }}}
                         </div>
                     </div>
 
-
-                    <!-- Gumb za ban (moderator only)-->
-                    <div class="row m-2 align-items-end">
-                        <div class="col">
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ban">Onemogoči uporabnika</button>
-                        </div>
-                    </div>
-
-                    <!-- Modal => to je popup -->
-                    <div class="modal fade" id="ban" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">BAN</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Za koliko časa želite onemogočiti uporabnika?</p>
-
-                                    <label for="quantity">Izberi med 0 in 30 dni:</label>
-                                    <input type="number" id="quantity" name="quantity" min="1" max="30">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Prekliči</button>
-                                    <button type="button" class="btn btn-danger">Potrdi</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-{{> footer}}
 

@@ -19,7 +19,7 @@
                     {{#if image}}
                         <img class="img-fluid profil m-2 mx-auto" width="200" height="40" alt="Profilna slika" src="/image/{{slika}}">
                     {{else}}
-                        <img class="img-fluid profil m-2 mx-auto" width="200" height="40" alt="Image not found" src="/slike/logo_svetel.png">
+                        <img class="img-fluid profil m-2 mx-auto" width="200" height="40" alt="Image not found" src="/slike/defualtProfile.jpg">
                     {{/if}}
                 </div>
 
@@ -33,13 +33,13 @@
                 <!-- Tle bi lahko dali kake achievmente ? -->
                 <div class="row justify-content-center">
                     <div class="col text-center">
-                        {{{ ocenaIgralca ocena }}}
+                        {{{ ocenaIgralca user.ocena }}}
                     </div>
                 </div>
 
                 <!--število zvezdic-->
                 <div class="row justify-content-center mb-1">
-                    {{{zvezdica ocena }}}
+                    {{{zvezdica user.ocena }}}
                 </div>
 
                 <!--Tle so opcije za sprehod po menuju-->

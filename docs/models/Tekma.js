@@ -56,6 +56,10 @@ const tekma = new mongoose.Schema({
     status: {
         type: String,   //odpadla, zakljucena, prijave
         required: true
+    },
+    zeOcenili: {
+        type: [String],
+        required: false
     }
 });
 
