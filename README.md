@@ -120,24 +120,18 @@ Passport se uporabi za validacijo uporabnika. S passport knjižnico se preveri �
 Pošlje ga na login stran.
 
 
+## 3. LP
 
-
+Dinamična spletna aplikacija s podatkovno bazo
 
 ##Link do heroku aplikacije
-https://tap-play.herokuapp.com/
+https://tap-play.herokuapp.com
 
 ##Navodila za namestitev in zagon aplikacije
 Sprva pridobite našo aplikacijo preko GIT-a. To lahko storite kar znotraj "Webstorma", s tem da kopirate naš repozitorij ali kar shranite zip datoteko.   
 Znotraj datoteke se v terminalu premaknete v docs (cd docs). Aplikacijo boste zagnali v Docker-ju. V terminal napišete " docker-compose up ". Nato počakate,
 da se shranijo vsi moduli. Ko bo tega konec bo naša aplikacija dostopna na " localhost ".   
 Nato morate dostopat do localhost/db. Tu lahko vnesete testne podatke. Nato pa se lahko kot uporabnik registrirate in prijavite
-
-
-
-
-## 3. LP
-
-Dinamična spletna aplikacija s podatkovno bazo
 
 
 ## 4. LP
