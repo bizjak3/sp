@@ -607,7 +607,7 @@ var ustvari_tekmo_POST = (req, res) => {
 
 var homepage = (req, res) => {
     const Tekma = require('../models/Tekma');
-    Tekma.find({}).lean().exec({}, function (err, tekma) {
+    Tekma.find({status: "prijave"}).lean().exec({}, function (err, tekma) {
         res.render('hmpg', {
             layout: 'main',
             homepage: true,
@@ -852,7 +852,7 @@ var search = (req, res) => {
     //console.log(iskalni_niz3);
 
 
-    Tekma.find({}).exec((err, tekma) => {
+    Tekma.find({status: "prijave"}).exec((err, tekma) => {
         let tabelaTekem = [];
         let tabelaUporabnikov = [];
 
