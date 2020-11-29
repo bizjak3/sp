@@ -28,10 +28,11 @@ conn.once('open', () => {
     gfs.collection('uploads');
 })
 
+//KOSMCSODMANFJASFN
 
 //storage engine
 const storage = new GridFsStorage({
-    url: mongoURI,
+    url: process.env.MONGODB_URI || mongoURI,
     file: (req, file) => {
         let id = req.user._id.toString();
         id = id + '.jpg';
