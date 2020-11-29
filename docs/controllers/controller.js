@@ -116,32 +116,20 @@ var moje_tekme = (req, res) => {
 
     let id = req.user._id.toString();
     id = id+'.jpg';
-
-    let tekme = req.user.tekme;
-    let tabelaTest = [];
-
-    for(var i = 0; i < tekme.length; i++){
-        Tekma.findOne({_id: tekme[i]}, function (err, novo) {
-            tabelaTest[i] = novo;
-        });
-    }
-
     gfs.files.findOne({ filename: id.toString() }, (err, file) => {
         // Check if files
         if (!file || file.length === 0) {
             res.render('moje_tekme',{
                 image: false,
                 moje_tekme: true,
-                user: req.user,
-                tekme: tabelaTest
+                user: req.user
             });
         } else {
             res.render('moje_tekme',{
                 image: true,
                 slika: file.filename,
                 moje_tekme: true,
-                user: req.user,
-                tekme: tabelaTest
+                user: req.user
             });
         }
     });
@@ -205,17 +193,8 @@ var profil_ostali = (req, res) => {
             console.log(err);
             res.redirect("/");
         }
+
         igralec = igralec[0];
-
-        let test = igralec.tekme;
-        let tabelaTest = [];
-
-        for(var i = 0; i < test.length; i++){
-            Tekma.findOne({_id: test[i]}, function (err, novo) {
-                tabelaTest[i] = novo;
-            });
-        }
-
 
         gfs.files.findOne({ filename: igralec.toString() }, (err, file) => {
             // Check if files
@@ -230,8 +209,7 @@ var profil_ostali = (req, res) => {
                     telefon: igralec.telefon,
                     ocena: igralec.ocena,
                     telDrugi: igralec.telDrugi,
-                    emailDrugi: igralec.emailDrugi,
-                    tekme: tabelaTest
+                    emailDrugi: igralec.emailDrugi
                 });
             } else {
                 res.render('profil_ostali',{
@@ -245,8 +223,7 @@ var profil_ostali = (req, res) => {
                     telefon: igralec.telefon,
                     ocena: igralec.ocena,
                     telDrugi: igralec.telDrugi,
-                    emailDrugi: igralec.emailDrugi,
-                    tekme: tabelaTest
+                    emailDrugi: igralec.emailDrugi
                 });
             }
         });
@@ -537,16 +514,23 @@ const pridruziSeTekmi = (req, res, done) => {
         return res.redirect('/login');
     }
     let idTekme = req.params.id;
-    Tekma.updateOne(
-         { _id: idTekme },
-         { $push: { igralci: req.user._id } },
-         done
-    );
-    Tekma.updateOne(
-         { _id: idTekme },
-         { $inc: { prijavljeni: 1}},
-         done
-    );
+
+    Tekma.findOne({_id: idTekme}).lean().exec((err, t) => {
+        if(t.status == 'prijave'){
+            if(!t.igralci.includes(req.user._id + "")){
+                Tekma.updateOne(
+                     { _id: idTekme },
+                     { $push: { igralci: req.user._id } },
+                     done
+                );
+                Tekma.updateOne(
+                     { _id: idTekme },
+                     { $inc: { prijavljeni: 1}},
+                     done
+                );
+            }
+        }
+    });
 
     let userid = req.user;
     User.updateOne(
@@ -554,7 +538,6 @@ const pridruziSeTekmi = (req, res, done) => {
         { $push: {tekme: idTekme}},
         done
     );
-
     res.redirect('/pop_up_tekma/' + idTekme);
 };
 
@@ -563,16 +546,23 @@ const odjaviOdTekme = (req, res, done) => {
         return res.redirect('/login');
     }
     let idTekme = req.params.id;
-    Tekma.updateOne(
-         { _id: idTekme },
-         { $pull: { igralci: req.user._id } },
-         done
-    );
-    Tekma.updateOne(
-         { _id: idTekme },
-         { $inc: { prijavljeni: -1}},
-         done
-    );
+
+    Tekma.findOne({_id: idTekme}).lean().exec((err, t) => {
+        if(t.status == 'prijave'){
+            if(t.igralci.includes(req.user._id + "")){
+                Tekma.updateOne(
+                     { _id: idTekme },
+                     { $pull: { igralci: req.user._id } },
+                     done
+                );
+                Tekma.updateOne(
+                     { _id: idTekme },
+                     { $inc: { prijavljeni: -1}},
+                     done
+                );
+            }
+        }
+    });
 
     User.updateOne(
         {_id: userid},
@@ -586,7 +576,6 @@ var ustvari_tekmo = (req, res) => {
     if(!req.user){
         return res.redirect('/login');
     }
-
     res.render('ustvari_tekmo', {
         ustvari_tekmo: true
     });

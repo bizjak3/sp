@@ -1,0 +1,66 @@
+{{>header this}}
+
+<div class="container-lg" style="height:100%;">
+
+    <div class="row" style="height:100%;">
+
+        <div class="col-sm-12" style="height:100%">
+
+            <div class="card border-dark" style="height:100%" >
+
+                <div class="card-header bg-dark text-white">Rezultati iskanja</div>
+
+                <div class="card-body px-1 py-1" style="height:100%;">
+
+                    <!-- zavijem da je kartica skrollable in se ne preliva cez -->
+                    <div class="scrollable" style="height:100%; overflow-y: auto;">
+
+                        <!--script>
+                            var url_string = window.location.href;
+                            var url = new URL(url_string);
+                            var c = url.searchParams.get("search_niz");
+                            console.log(c);
+                        </script-->
+
+                        <ul class="list-group" style="width:100%; height:100%;">
+
+                            {{#each tabelaTekem}}
+
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a class="text-dark" href="/pop_up_tekma/{{this._id}}"> {{this.kraj}},<br>{{this.datum}} | {{this.ura}} </a>
+                                    <span class="badge badge-primary badge-pill">{{this.prijavljeni}}/{{this.maxIgralcev}}</span>
+                                </li>
+
+                            {{/each}}
+
+                            {{#each tabelaUporabnikov}}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a class="text-dark" href="/profil_ostali/{{this._id}}">{{this.name}} {{this.surname}}</a>
+                                </li>
+                            {{/each}}
+
+
+                        </ul>
+
+
+
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>

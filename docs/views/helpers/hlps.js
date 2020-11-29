@@ -21,6 +21,21 @@ module.exports = {
 
         return "<span class=\"badge btn btn-primary\">POVPREČNA OCENA</span>";
     },
+    pridobiMesto: function (kraj) {
+        let k = kraj + "";
+        let n = k.split(',');
+        return n[n.length - 1].slice(1, n[n.length - 1].length);
+    },
+    upper: function (kraj){
+        let k = kraj + "";
+        let n = k.split(',');
+        return n[n.length - 1].slice(1, n[n.length - 1].length).toUpperCase();
+    },
+    lower: function (kraj){
+        let k = kraj + "";
+        let n = k.split(',');
+        return n[n.length - 1].slice(1, n[n.length - 1].length).toLowerCase();
+    }
 
     //dodal rihard
     /*
