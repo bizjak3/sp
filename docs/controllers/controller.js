@@ -526,6 +526,13 @@ const pridruziSeTekmi = (req, res, done) => {
             }
         }
     });
+
+    let userid = req.user;
+    User.updateOne(
+        {_id: userid},
+        { $push: {tekme: idTekme}},
+        done
+    );
     res.redirect('/pop_up_tekma/' + idTekme);
 };
 
@@ -552,6 +559,12 @@ const odjaviOdTekme = (req, res, done) => {
             }
         }
     });
+
+    User.updateOne(
+        {_id: userid},
+        { $pull: {tekme: idTekme}},
+        done
+    );
     res.redirect('/pop_up_tekma/' + idTekme);
 };
 
