@@ -200,40 +200,43 @@ var profil_ostali = (req, res) => {
         }
 
         igralec = igralec[0];
-
-        gfs.files.findOne({ filename: igralec.toString() }, (err, file) => {
-            // Check if files
-            if (!file || file.length === 0) {
-                res.render('profil_ostali',{
-                    image: false,
-                    profil: true,
-                    user: req.user,
-                    name: igralec.name,
-                    surname: igralec.surname,
-                    email: igralec.email,
-                    telefon: igralec.telefon,
-                    ocena: igralec.ocena,
-                    telDrugi: igralec.telDrugi,
-                    emailDrugi: igralec.emailDrugi
-                });
-            } else {
-                res.render('profil_ostali',{
-                    image: true,
-                    slika: file.filename,
-                    profil: true,
-                    user: req.user,
-                    name: igralec.name,
-                    surname: igralec.surname,
-                    email: igralec.email,
-                    telefon: igralec.telefon,
-                    ocena: igralec.ocena,
-                    telDrugi: igralec.telDrugi,
-                    emailDrugi: igralec.emailDrugi
-                });
-            }
+        let tekme = igralec.tekme;
+        Tekma.find().where('_id').in(tekme).exec((err, records) => {
+            gfs.files.findOne({ filename: igralec.toString() }, (err, file) => {
+                // Check if files
+                if (!file || file.length === 0) {
+                    res.render('profil_ostali',{
+                        image: false,
+                        profil: true,
+                        user: req.user,
+                        name: igralec.name,
+                        surname: igralec.surname,
+                        email: igralec.email,
+                        telefon: igralec.telefon,
+                        ocena: igralec.ocena,
+                        telDrugi: igralec.telDrugi,
+                        emailDrugi: igralec.emailDrugi,
+                        tekme: records
+                    });
+                } else {
+                    res.render('profil_ostali',{
+                        image: true,
+                        slika: file.filename,
+                        profil: true,
+                        user: req.user,
+                        name: igralec.name,
+                        surname: igralec.surname,
+                        email: igralec.email,
+                        telefon: igralec.telefon,
+                        ocena: igralec.ocena,
+                        telDrugi: igralec.telDrugi,
+                        emailDrugi: igralec.emailDrugi,
+                        tekme: records
+                    });
+                }
+            });
         });
     });
-
 
 };
 
