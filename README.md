@@ -68,11 +68,10 @@ Domača stran je namenjena prikazu vseh prihajajočih tekem. Vse tekme so označ
 * Opera in Chrome pri vnosnih poljih tipa **ura** in **datum** samodejno vključita tudi ustrezni ikoni, medtem ko Firefox tega ne stori
 * Firefox ima v vnosnem polju **ura** 12-urni način, Chrome in Opera pa imata 24-urni način
 
-## 2. LP
-
-Dinamična spletna aplikacija z logiko na strani strežnika
 
 # 2.LP
+
+Dinamična spletna aplikacija z logiko na strani strežnika
 
 ##Vnosna polja
 
@@ -109,24 +108,30 @@ Dinamična spletna aplikacija z logiko na strani strežnika
 * spremembra profilne slike - lahko uploadamo jpeg ali png sliko in jo nastavimo kot profilno sliko
 
 ##Npm knjižnice
+####bcrypt
+Bcrypt uporabljamo za kodiranje gesla. V bazo ne shranimo geslo kot je bilo napisano. Shranimo hash, ki ga s pomočjo funkcij v bcryptu ustvarimo.  
+Uporabljamo tudi funkcijo bcryt compare, ki vnešeno geslo v form preveri če je enako šifriranemu geslu v podatkovni bazi.
+
+####express-flash
+Express-flash uporabimo za pokaz sporočil. Če se pojavi napaka se pojavi "flash-message", v katerem je zapisano besedilo, ki je povezano s tipom napake
+
+####passport, passport-local
+Passport se uporabi za validacijo uporabnika. S passport knjižnico se preveri če je geslo uporabnika pravilno. S passportom naredimo, da če uporabnik ni prijavljen ne mora na homepage. 
+Pošlje ga na login stran.
 
 
+## 3. LP
+
+Dinamična spletna aplikacija s podatkovno bazo
 
 ##Link do heroku aplikacije
-https://tap-play.herokuapp.com/
+https://tap-play.herokuapp.com
 
 ##Navodila za namestitev in zagon aplikacije
 Sprva pridobite našo aplikacijo preko GIT-a. To lahko storite kar znotraj "Webstorma", s tem da kopirate naš repozitorij ali kar shranite zip datoteko.   
 Znotraj datoteke se v terminalu premaknete v docs (cd docs). Aplikacijo boste zagnali v Docker-ju. V terminal napišete " docker-compose up ". Nato počakate,
 da se shranijo vsi moduli. Ko bo tega konec bo naša aplikacija dostopna na " localhost ".   
 Nato morate dostopat do localhost/db. Tu lahko vnesete testne podatke. Nato pa se lahko kot uporabnik registrirate in prijavite
-
-
-
-
-## 3. LP
-
-Dinamična spletna aplikacija s podatkovno bazo
 
 
 ## 4. LP

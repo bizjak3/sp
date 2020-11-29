@@ -4,14 +4,12 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey('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');
-const methodOverride = require('method-override');
 
 //slike
 const crypto = require('crypto');
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
-const path = require('path')
 
 const mongoURI = "mongodb://localhost:27017/test"
 
