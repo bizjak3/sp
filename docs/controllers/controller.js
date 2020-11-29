@@ -428,15 +428,17 @@ const oceniIgralce_POST = (req, res, done) => {
             }
             let i = 0;
             igralci.map(user => {
-                let trenutnaOcena = user.ocena;
-                let trenutnoSteviloOcen = user.steviloOcen;
+                if(ocene.ocena[i] >= 1 || ocene.ocena[i] <= 5){
+                    let trenutnaOcena = user.ocena;
+                    let trenutnoSteviloOcen = user.steviloOcen;
 
-                let koncnaOcena = trenutnaOcena + (ocene.ocena[i] - trenutnaOcena) / trenutnoSteviloOcen;
-                let koncnoStevilo = trenutnoSteviloOcen + 1;
-                user.ocena = koncnaOcena;
-                user.steviloOcen = koncnoStevilo;
-                user.save();
-                i++;
+                    let koncnaOcena = trenutnaOcena + (ocene.ocena[i] - trenutnaOcena) / trenutnoSteviloOcen;
+                    let koncnoStevilo = trenutnoSteviloOcen + 1;
+                    user.ocena = koncnaOcena;
+                    user.steviloOcen = koncnoStevilo;
+                    user.save();
+                    i++;
+                }
             });
         });
     });

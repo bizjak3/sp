@@ -11,7 +11,7 @@ const bcrypt = require('bcrypt');
 
 router.get('/db', kontroler.db)
 
-router.post('/db', (req, res) => {
+router.post('/db', (req, res, done) => {
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash("geslo123", salt, (err, hash) => {
             if (err) throw err;
@@ -43,6 +43,11 @@ router.post('/db', (req, res) => {
                     console.log(err);
                 }
             });
+            User.updateOne(
+                { _id: uporabnik._id},
+                { $push: { tekme: tekma._id } },
+                done
+            );
         });
     });
 
@@ -78,6 +83,11 @@ router.post('/db', (req, res) => {
                     console.log(err);
                 }
             });
+            User.updateOne(
+                { _id: uporabnik._id},
+                { $push: { tekme: tekma._id } },
+                done
+            );
         });
     });
 
@@ -89,18 +99,15 @@ router.post('/db_izbrisi', (req, res) => {
     Tekma.deleteMany({}, function(err) {
             if (err) {
                 console.log(err)
-            } else {
-                res.redirect('/');
             }
         }
     );
     User.deleteMany({}, function(err) {
         if(err) {
             console.log(err);
-        }else{
-            res.redirect('/');
         }
     });
+    res.redirect('/');
 })
 
 module.exports = router;
