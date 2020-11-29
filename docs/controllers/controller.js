@@ -234,39 +234,10 @@ var nastavitve_uredi = (req, res) => {
 
 };
 
-var pop_up_tekma = (req, res) => {
-    res.render('pop_up_tekma', {
-        //ustvari_tekmo: true,
-        urejamo: false,
-        tekma : {
-            kreator : "Janez Novak",
-            lokacija : "Ljubljana, Rožna cesta 13",
-            datum : "8. 9. 2020",
-            ura : "4:20",
-            steviloIgralcev: "7",
-            maksimalnoSteviloIgralcev: "16",
-            opis : "idk nigga",
-            igralci : [
-                {
-                    ime : "janez",
-                    rating : "5"
-                },
-                {
-                    ime : "Robi",
-                    rating : "4.7"
-                }
-            ]
-        }
-    });
-};
-
-const podrobnostiTekme = (req, res) => {
-  pridobiPodrobnostiTekme(req, res, (req, res, vsebina) => {
-    prikaziPodrobnostiTekme(req, res, vsebina);
-  });
-};
-
-const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
+const podrobnostiTekme = (req, res, povratniKlic) => {
+    if(!req.user){
+         return res.redirect('/login');
+    }
     let idTekme = req.params.id;
     let urejanje = req.params.urejanje;
     Tekma.findOne({_id: idTekme}).exec((err, tekma) => {
@@ -275,40 +246,53 @@ const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
             res.status(400);
         }
         let playerIDs = tekma.igralci;
-        //playerIDs.push(tekma.kreator);
         User.find({_id: playerIDs}).lean().exec((err, igralci) => {
             if(err){
                 console.log(err);
                 res.status(400);
             }
-            let sodelujoci = [];
-            let pridruzen = false;
-            igralci.forEach(element => {
-                sodelujoci.push({   id: element._id,
-                                    name: element.name,
-                                    surname: element.surname
-                                    });
-
-                if(element._id + "" === req.user._id + ""){
-                    pridruzen = true;
+            let ustvarnik = tekma.kreator;
+            User.findOne({_id: ustvarnik}).lean().exec((err, kreator) => {
+                if(err){
+                    console.log(err);
+                    res.status(400);
                 }
-            });
-            //let kreator = sodelujoci[sodelujoci.length - 1].name;
-            //sodelujoci.pop();
-            res.render('pop_up_tekma', {
-                layout: 'main',
-                urejamo: false,
-                pridruzen: pridruzen,
-                name: 'Janezz',
-                surname: 'Novakk',
-                tekma: tekma,
-                sodelujoci: sodelujoci
+                let sodelujoci = [];
+                let pridruzen = false;
+                igralci.forEach(element => {
+                    sodelujoci.push({   id: element._id,
+                                        name: element.name,
+                                        surname: element.surname,
+                                        rating: element.ocena
+                                        });
+
+                    if(element._id + "" === req.user._id + ""){
+                        pridruzen = true;
+                    }
+                });
+
+                res.render('pop_up_tekma', {
+                    layout: 'main',
+                    ime: req.user.name,
+                    priimek: req.user.surname,
+                    lahkoOcenjamo: true,
+                    ocenjamo: false,
+                    urejamo: false,
+                    pridruzen: pridruzen,
+                    tekma: tekma,
+                    kreator: kreator,
+                    sodelujoci: sodelujoci
+                });
             });
         });
     });
 };
 
-const urediTekmo = (req, res, povratniKlic) => {
+const oceniIgralce = (req, res) => {
+
+    if(!req.user){
+        return res.redirect('/login');
+    }
     let idTekme = req.params.id;
 
     let userID = "" + req.user._id;
@@ -324,31 +308,135 @@ const urediTekmo = (req, res, povratniKlic) => {
                 console.log(err);
                 res.redirect('/');
             }
-            let sodelujoci = [];
-            let pridruzen = false;
-            igralci.forEach(element => {
-                sodelujoci.push({   id: element._id,
-                                    name: element.name,
-                                    surname: element.surname
-                                    });
-                if(element._id + "" === req.user._id + ""){
-                    pridruzen = true;
+            let ustvarnik = tekma.kreator;
+            User.findOne({_id: ustvarnik}).lean().exec((err, kreator) => {
+                if(err){
+                    console.log(err);
+                    res.status(400);
                 }
-            });
-            res.render('pop_up_tekma', {
-                layout: 'main',
-                urejamo: true,
-                pridruzen: pridruzen,
-                name: 'Janezz',
-                surname: 'Novakk',
-                tekma: tekma,
-                sodelujoci: sodelujoci
+                let sodelujoci = [];
+                let pridruzen = false;
+                igralci.forEach(element => {
+                    sodelujoci.push({   id: element._id,
+                                        name: element.name,
+                                        surname: element.surname,
+                                        rating: element.ocena
+                                        });
+
+                    if(element._id + "" === req.user._id + ""){
+                        pridruzen = true;
+                    }
+                });
+
+                res.render('pop_up_tekma', {
+                    layout: 'main',
+                    ime: req.user.name,
+                    priimek: req.user.surname,
+                    lahkoOcenjamo: true,
+                    ocenjamo: true,
+                    urejamo: false,
+                    pridruzen: pridruzen,
+                    tekma: tekma,
+                    kreator: kreator,
+                    sodelujoci: sodelujoci,
+                });
             });
         });
     });
 };
 
+const oceniIgralce_POST = (req, res) => {
+    if(!req.user){
+        return res.redirect('/login');
+    }
+    let idTekme = req.params.id;
+    let ocene = req.body;
+    Tekma.findOne({_id: idTekme}, function (err, tekma) {
+        let playerIDs = tekma.igralci;
+        User.find({_id: playerIDs}, function (err, igralci){
+            if(err){
+                console.log(err);
+                res.redirect('/');
+            }
+            let i = 0;
+            igralci.map(user => {
+                let trenutnaOcena = user.ocena;
+                let trenutnoSteviloOcen = user.steviloOcen;
+
+                let koncnaOcena = trenutnaOcena + (ocene.ocena[i] - trenutnaOcena) / trenutnoSteviloOcen;
+                let koncnoStevilo = trenutnoSteviloOcen + 1;
+                user.ocena = koncnaOcena;
+                user.steviloOcen = koncnoStevilo;
+                user.save();
+                i++;
+            });
+        });
+    });
+    res.redirect('/pop_up_tekma/' + idTekme);
+};
+
+const urediTekmo = (req, res, povratniKlic) => {
+
+    if(!req.user){
+        return res.redirect('/login');
+    }
+    let idTekme = req.params.id;
+    let userID = "" + req.user._id;
+
+    Tekma.findOne({_id: idTekme}).exec({}, function (err, tekma){
+        if(err){
+            console.log(err);
+            res.redirect('/');
+        }
+        let playerIDs = tekma.igralci;
+        User.find({_id: playerIDs}).lean().exec({}, function (err, igralci){
+            if(err){
+                console.log(err);
+                res.redirect('/');
+            }
+            let ustvarnik = tekma.kreator;
+            User.findOne({_id: ustvarnik}).lean().exec((err, kreator) => {
+                if(err){
+                    console.log(err);
+                    res.status(400);
+                }
+                let sodelujoci = [];
+                let pridruzen = false;
+                igralci.forEach(element => {
+                    sodelujoci.push({   id: element._id,
+                                        name: element.name,
+                                        surname: element.surname,
+                                        rating: element.ocena
+                                        });
+
+                    if(element._id + "" === req.user._id + ""){
+                        pridruzen = true;
+                    }
+                });
+
+                res.render('pop_up_tekma', {
+                    layout: 'main',
+                    ime: req.user.name,
+                    priimek: req.user.surname,
+                    lahkoOcenjamo: true,
+                    ocenjamo: false,
+                    urejamo: true,
+                    pridruzen: pridruzen,
+                    tekma: tekma,
+                    kreator: kreator,
+                    sodelujoci: sodelujoci
+                });
+            });
+        });
+    });
+};
+
+
+
 const urediTekmo_POST = (req, res) => {
+    if(!req.user){
+        return res.redirect('/login');
+    }
     const {datum, ura, komentarji} = req.body;
     let idTekme = req.params.id;
     Tekma.findOne({_id: idTekme}, function (err, tekma) {
@@ -366,6 +454,9 @@ const urediTekmo_POST = (req, res) => {
 };
 
 const izbrisiTekmo = (req, res) => {
+    if(!req.user){
+        return res.redirect('/login');
+    }
     let idTekme = req.params.id;
     Tekma.deleteOne({_id: idTekme}, function (err){
         if(err){
@@ -376,6 +467,9 @@ const izbrisiTekmo = (req, res) => {
 };
 
 const pridruziSeTekmi = (req, res, done) => {
+    if(!req.user){
+        return res.redirect('/login');
+    }
     let idTekme = req.params.id;
     Tekma.updateOne(
          { _id: idTekme },
@@ -392,6 +486,9 @@ const pridruziSeTekmi = (req, res, done) => {
 };
 
 const odjaviOdTekme = (req, res, done) => {
+    if(!req.user){
+        return res.redirect('/login');
+    }
     let idTekme = req.params.id;
     Tekma.updateOne(
          { _id: idTekme },
@@ -407,6 +504,9 @@ const odjaviOdTekme = (req, res, done) => {
 };
 
 var ustvari_tekmo = (req, res) => {
+    if(!req.user){
+        return res.redirect('/login');
+    }
     res.render('ustvari_tekmo', {
         ustvari_tekmo: true
     });
@@ -589,7 +689,6 @@ const nalozi_sliko = (req, res) => {
 };
 
 module.exports = {
-    pop_up_tekma,
     ustvari_tekmo,
     nastavitve,
     nastavitve_uredi,
@@ -611,5 +710,7 @@ module.exports = {
     pridruziSeTekmi,
     odjaviOdTekme,
     izbrisi,
-    nalozi
+    nalozi,
+    oceniIgralce,
+    oceniIgralce_POST
 };

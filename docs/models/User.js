@@ -44,9 +44,13 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    ocene: {
+    ocena: {
         type: Number,
         default: 0
+    },
+    steviloOcen: {
+        type: Number,
+        default: 1
     }
 });
 
