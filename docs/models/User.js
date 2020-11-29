@@ -50,6 +50,10 @@ const UserSchema = new mongoose.Schema({
     },
     bannedDate: {
         type: Date
+    },
+    tekme:{
+        type: Array,
+        default: [""]
     }
 });
 
