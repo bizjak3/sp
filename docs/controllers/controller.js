@@ -435,8 +435,6 @@ const urediTekmo = (req, res, povratniKlic) => {
     });
 };
 
-
-
 const urediTekmo_POST = (req, res) => {
     if(!req.user){
         return res.redirect('/login');
@@ -588,27 +586,17 @@ const nastavitve_uredi_POST = (req, res) => {
 }
 
 const nastavitve_POST = (req, res) => {
-    const {smsOdpoved, emailOdpoved, smsPrihajujoča, emailprihajujoče} = req.body;
+    const {emailOdpoved, emailprihajujoče} = req.body;
     let errors = [];
 
 
     let id = req.user._id;
 
     User.findOne({_id: id}, function (err, user) {
-        if(!smsOdpoved)
-            user.smsOdpade = false;
-        else
-            user.smsOdpade = true;
-
         if(!emailOdpoved)
             user.emailOdpade = false;
         else
             user.emailOdpade = true;
-
-        if(!smsPrihajujoča)
-            user.smsPrihaja = false;
-        else
-            user.smsPrihaja = true;
 
         if(!emailprihajujoče)
             user.emailPrihaja = false;
@@ -627,7 +615,7 @@ const nastavitve_POST = (req, res) => {
 
 const nastavitve_osebni_POST = (req,res) =>{
 
-    const {id, telPokazi, emailPokazi} = req.body;
+    const {telPokazi, emailPokazi} = req.body;
     let errors = [];
 
     User.findOne({_id: req.user._id}, function (err, user) {

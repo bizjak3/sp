@@ -20,15 +20,7 @@ const UserSchema = new mongoose.Schema({
     telefon: {
         type: String
     },
-    smsOdpade: {
-        type: Boolean,
-        default: true
-    },
     emailOdpade: {
-        type: Boolean,
-        default: true
-    },
-    smsPrihaja: {
         type: Boolean,
         default: true
     },
@@ -51,6 +43,13 @@ const UserSchema = new mongoose.Schema({
     steviloOcen: {
         type: Number,
         default: 1
+    },
+    banned: {
+        type: Boolean,
+        default: false
+    },
+    bannedDate: {
+        type: Date
     }
 });
 
