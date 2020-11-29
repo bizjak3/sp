@@ -16,9 +16,9 @@ const path = require('path')
 const mongoURI = "mongodb://localhost:27017/test"
 
 //Docker baza
-//const mongoURI = "mongodb://mongo:27017/mongo-baza"
+const mongoURIDocker = "mongodb://mongo:27017/mongo-baza"
 
-const conn = mongoose.createConnection( process.env.MONGODB_URI || mongoURI, { useNewUrlParser: true, useUnifiedTopology: true});
+const conn = mongoose.createConnection( process.env.MONGODB_URI ||  mongoURI, { useNewUrlParser: true, useUnifiedTopology: true});
 
 //init gfs
 let gfs;
@@ -28,11 +28,14 @@ conn.once('open', () => {
     gfs.collection('uploads');
 })
 
-//KOSMCSODMANFJASFN
 
 //storage engine
 const storage = new GridFsStorage({
-    url: process.env.MONGODB_URI || mongoURI,
+
+    //docker
+    //url: mongodb://mongo:27017/mongo-baza
+
+    url: process.env.MONGODB_URI ||  mongoURI,
     file: (req, file) => {
         let id = req.user._id.toString();
         id = id + '.jpg';
