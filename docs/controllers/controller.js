@@ -278,11 +278,16 @@ var nastavitve_uredi = (req, res) => {
     });
 
 };
-
-const podrobnostiTekme = (req, res, povratniKlic) => {
+const podrobnostiTekme = (req, res) => {
     if(!req.user){
          return res.redirect('/login');
     }
+    pridobiPodrobnostiTekme(req, res, (req, res, vsebina) => {
+        prikaziPodrobnostiTekme(req, res, vsebina);
+    });
+};
+
+const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
     let idTekme = req.params.id;
     let urejanje = req.params.urejanje;
     Tekma.findOne({_id: idTekme}).exec((err, tekma) => {
@@ -315,88 +320,95 @@ const podrobnostiTekme = (req, res, povratniKlic) => {
                         pridruzen = true;
                     }
                 });
-
-                res.render('pop_up_tekma', {
-                    layout: 'main',
-                    ime: req.user.name,
-                    priimek: req.user.surname,
-                    lahkoOcenjamo: true,
-                    ocenjamo: false,
-                    urejamo: false,
-                    pridruzen: pridruzen,
-                    tekma: tekma,
-                    kreator: kreator,
-                    sodelujoci: sodelujoci
-                });
+                povratniKlic(req, res, {
+                                        layout: 'main',
+                                        user: req.user,
+                                        lahkoOcenjamo: true,
+                                        ocenjamo: false,
+                                        urejamo: false,
+                                        pridruzen: pridruzen,
+                                        tekma: tekma,
+                                        kreator: kreator,
+                                        sodelujoci: sodelujoci
+                                        });
             });
         });
-    });
+    })
+};
+
+const prikaziPodrobnostiTekme = (req, res, vsebina) => {
+
+    let lahkoOcenjamo = true;
+    let ocenjamo = false;
+    let urejamo = false;
+    let lahkoUrejamo = false;
+
+    if(vsebina.tekma.status == 'prijave'){
+        lahkoUrejamo = true;
+    }else{
+        if(vsebina.tekma.igralci.includes(req.user._id + "")){
+            if(vsebina.tekma.zeOcenili.includes(req.user._id + "")){
+                lahkoOcenjamo = false;
+            }
+        }
+    }
+
+    res.render('pop_up_tekma', {layout: vsebina.layout,
+                                user: vsebina.user,
+                                lahkoOcenjamo: lahkoOcenjamo,
+                                ocenjamo: ocenjamo,
+                                urejamo: urejamo,
+                                lahkoUrejamo: lahkoUrejamo,
+                                pridruzen: vsebina.pridruzen,
+                                tekma: vsebina.tekma,
+                                kreator: vsebina.kreator,
+                                sodelujoci: vsebina.sodelujoci});
 };
 
 const oceniIgralce = (req, res) => {
-
     if(!req.user){
-        return res.redirect('/login');
+         return res.redirect('/login');
     }
-    let idTekme = req.params.id;
-
-    let userID = "" + req.user._id;
-
-    Tekma.findOne({_id: idTekme}).exec({}, function (err, tekma){
-        if(err){
-            console.log(err);
-            res.redirect('/');
-        }
-        let playerIDs = tekma.igralci;
-        User.find({_id: playerIDs}).lean().exec({}, function (err, igralci){
-            if(err){
-                console.log(err);
-                res.redirect('/');
-            }
-            let ustvarnik = tekma.kreator;
-            User.findOne({_id: ustvarnik}).lean().exec((err, kreator) => {
-                if(err){
-                    console.log(err);
-                    res.status(400);
-                }
-                let sodelujoci = [];
-                let pridruzen = false;
-                igralci.forEach(element => {
-                    sodelujoci.push({   id: element._id,
-                                        name: element.name,
-                                        surname: element.surname,
-                                        rating: element.ocena
-                                        });
-
-                    if(element._id + "" === req.user._id + ""){
-                        pridruzen = true;
-                    }
-                });
-
-                res.render('pop_up_tekma', {
-                    layout: 'main',
-                    ime: req.user.name,
-                    priimek: req.user.surname,
-                    lahkoOcenjamo: true,
-                    ocenjamo: true,
-                    urejamo: false,
-                    pridruzen: pridruzen,
-                    tekma: tekma,
-                    kreator: kreator,
-                    sodelujoci: sodelujoci,
-                });
-            });
-        });
+    pridobiPodrobnostiTekme(req, res, (req, res, vsebina) => {
+        prikaziOcenjanjeTekme(req, res, vsebina);
     });
 };
 
-const oceniIgralce_POST = (req, res) => {
+const prikaziOcenjanjeTekme = (req, res, vsebina) => {
+    let lahkoOcenjamo = false;
+    let ocenjamo = false;
+    let urejamo = false;
+    let lahkoUrejamo = false;
+    if(vsebina.tekma.status == 'prijave'){
+        return res.redirect('/pop_up_tekma/' + vsebina.tekma._id);
+    }else{
+        lahkoOcenjamo = true;
+        ocenjamo = true;
+    }
+
+    res.render('pop_up_tekma', {layout: vsebina.layout,
+                                user: vsebina.user,
+                                lahkoOcenjamo: lahkoOcenjamo,
+                                ocenjamo: ocenjamo,
+                                urejamo: urejamo,
+                                pridruzen: vsebina.pridruzen,
+                                tekma: vsebina.tekma,
+                                kreator: vsebina.kreator,
+                                sodelujoci: vsebina.sodelujoci});
+};
+
+const oceniIgralce_POST = (req, res, done) => {
     if(!req.user){
         return res.redirect('/login');
     }
     let idTekme = req.params.id;
     let ocene = req.body;
     Tekma.findOne({_id: idTekme}, function (err, tekma) {
+        Tekma.updateOne(
+            { _id: idTekme },
+            { $push: { zeOcenili: req.user._id } },
+            done
+        );
         let playerIDs = tekma.igralci;
         User.find({_id: playerIDs}, function (err, igralci){
             if(err){
@@ -421,59 +433,34 @@ const oceniIgralce_POST = (req, res) => {
 };
 
 const urediTekmo = (req, res, povratniKlic) => {
-
     if(!req.user){
-        return res.redirect('/login');
+         return res.redirect('/login');
     }
-    let idTekme = req.params.id;
-    let userID = "" + req.user._id;
-
-    Tekma.findOne({_id: idTekme}).exec({}, function (err, tekma){
-        if(err){
-            console.log(err);
-            res.redirect('/');
-        }
-        let playerIDs = tekma.igralci;
-        User.find({_id: playerIDs}).lean().exec({}, function (err, igralci){
-            if(err){
-                console.log(err);
-                res.redirect('/');
-            }
-            let ustvarnik = tekma.kreator;
-            User.findOne({_id: ustvarnik}).lean().exec((err, kreator) => {
-                if(err){
-                    console.log(err);
-                    res.status(400);
-                }
-                let sodelujoci = [];
-                let pridruzen = false;
-                igralci.forEach(element => {
-                    sodelujoci.push({   id: element._id,
-                                        name: element.name,
-                                        surname: element.surname,
-                                        rating: element.ocena
-                                        });
-
-                    if(element._id + "" === req.user._id + ""){
-                        pridruzen = true;
-                    }
-                });
-
-                res.render('pop_up_tekma', {
-                    layout: 'main',
-                    ime: req.user.name,
-                    priimek: req.user.surname,
-                    lahkoOcenjamo: true,
-                    ocenjamo: false,
-                    urejamo: true,
-                    pridruzen: pridruzen,
-                    tekma: tekma,
-                    kreator: kreator,
-                    sodelujoci: sodelujoci
-                });
-            });
-        });
+    pridobiPodrobnostiTekme(req, res, (req, res, vsebina) => {
+        prikaziUrejanjeTekme(req, res, vsebina);
     });
+};
+
+const prikaziUrejanjeTekme = (req, res, vsebina) => {
+    let lahkoOcenjamo = false;
+    let ocenjamo = false;
+    let urejamo = false;
+    let lahkoUrejamo = false;
+
+    if(vsebina.tekma.status == 'prijave'){
+        lahkoUrejamo = true;
+        urejamo = true;
+    }
+
+    res.render('pop_up_tekma', {layout: vsebina.layout,
+                                user: vsebina.user,
+                                lahkoOcenjamo: lahkoOcenjamo,
+                                ocenjamo: ocenjamo,
+                                urejamo: urejamo,
+                                pridruzen: vsebina.pridruzen,
+                                tekma: vsebina.tekma,
+                                kreator: vsebina.kreator,
+                                sodelujoci: vsebina.sodelujoci});
 };
 
 const urediTekmo_POST = (req, res) => {
@@ -483,14 +470,16 @@ const urediTekmo_POST = (req, res) => {
     const {datum, ura, komentarji} = req.body;
     let idTekme = req.params.id;
     Tekma.findOne({_id: idTekme}, function (err, tekma) {
-        tekma.datum = datum;
-        tekma.ura = ura;
-        tekma.opis = komentarji;
-        tekma.save(function (err) {
-            if (err) {
-                console.log(err);
-            }
-        });
+        if(tekma.status != 'prijave'){
+            tekma.datum = datum;
+            tekma.ura = ura;
+            tekma.opis = komentarji;
+            tekma.save(function (err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        }
     });
 
     res.redirect('/pop_up_tekma/' + idTekme);
@@ -513,18 +502,25 @@ const pridruziSeTekmi = (req, res, done) => {
     if(!req.user){
         return res.redirect('/login');
     }
-    let idTekme = req.params.id;
-    Tekma.updateOne(
-         { _id: idTekme },
-         { $push: { igralci: req.user._id } },
-         done
-    );
-    Tekma.updateOne(
-         { _id: idTekme },
-         { $inc: { prijavljeni: 1}},
-         done
-    );
 
+    let idTekme = req.params.id;
+
+    Tekma.findOne({_id: idTekme}).lean().exec((err, t) => {
+        if(t.status == 'prijave'){
+            if(!t.igralci.includes(req.user._id + "")){
+                Tekma.updateOne(
+                     { _id: idTekme },
+                     { $push: { igralci: req.user._id } },
+                     done
+                );
+                Tekma.updateOne(
+                     { _id: idTekme },
+                     { $inc: { prijavljeni: 1}},
+                     done
+                );
+            }
+        }
+    });
     res.redirect('/pop_up_tekma/' + idTekme);
 };
 
@@ -532,17 +528,25 @@ const odjaviOdTekme = (req, res, done) => {
     if(!req.user){
         return res.redirect('/login');
     }
+
     let idTekme = req.params.id;
-    Tekma.updateOne(
-         { _id: idTekme },
-         { $pull: { igralci: req.user._id } },
-         done
-    );
-    Tekma.updateOne(
-         { _id: idTekme },
-         { $inc: { prijavljeni: -1}},
-         done
-    );
+
+    Tekma.findOne({_id: idTekme}).lean().exec((err, t) => {
+        if(t.status == 'prijave'){
+            if(t.igralci.includes(req.user._id + "")){
+                Tekma.updateOne(
+                     { _id: idTekme },
+                     { $pull: { igralci: req.user._id } },
+                     done
+                );
+                Tekma.updateOne(
+                     { _id: idTekme },
+                     { $inc: { prijavljeni: -1}},
+                     done
+                );
+            }
+        }
+    });
     res.redirect('/pop_up_tekma/' + idTekme);
 };
 
@@ -553,6 +557,50 @@ var ustvari_tekmo = (req, res) => {
     res.render('ustvari_tekmo', {
         ustvari_tekmo: true
     });
+};
+
+var ustvari_tekmo_POST = (req, res) => {
+    if(!req.user){
+        return res.redirect('/login');
+    }
+    let {lat, lng, kraj, datum, ura, minIgralcev, maxIgralcev, prijavljeni, komentarji } = req.body;
+    prijavljeni += 1;
+
+    let d = new Date(datum); //dd-mm-YYYY
+    let t = new Date();
+    t.setHours(0, 0, 0, 0);
+    d.setHours(0, 0, 0, 0);
+
+    if(d < t) {
+        return;
+    }else if(d + "" == t + ""){
+        var now = new Date();
+
+        if (now.getHours() + ":" + now.getMinutes() > ura + "") {
+            return;
+        }
+    }
+
+    const newTekma = new Tekma({
+        kreator: req.user._id,
+        lat,
+        lng,
+        kraj,
+        datum,
+        ura,
+        minIgralcev,
+        maxIgralcev,
+        prijavljeni,
+        opis: komentarji,
+        igralci: [req.user._id],
+        status: "prijave"
+    });
+
+    newTekma.save()
+        .then(tekma => {
+            res.redirect('/');
+        })
+        .catch(err => console.log(err))
 };
 
 var homepage = (req, res) => {
@@ -811,5 +859,6 @@ module.exports = {
     nalozi,
     oceniIgralce,
     oceniIgralce_POST,
-    register
+    register,
+    ustvari_tekmo_POST
 };
