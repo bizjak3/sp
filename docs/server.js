@@ -51,10 +51,11 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 
-
+const lokalna_baza = "mongodb://localhost:27017";
+const docker_baza = "mongodb://mongo:27017/mongo_baza";
 
 //Lokalna baza
-mongoose.connect("mongodb://localhost:27017", { useNewUrlParser: true, useUnifiedTopology: true }, )
+mongoose.connect(lokalna_baza, { useNewUrlParser: true, useUnifiedTopology: true }, )
     .then(() => console.log('Database connected...'))
     .catch(err => console.log(err));
 
