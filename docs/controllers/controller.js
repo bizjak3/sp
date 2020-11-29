@@ -107,11 +107,6 @@ var apiParametri = {
   streznik: 'http://localhost:' + (process.env.PORT || 8080)
 };
 
-const axios = require('axios').create({
-  baseURL: apiParametri.streznik,
-  timeout: 5000
-});
-
 var moje_tekme = (req, res) => {
 
 
