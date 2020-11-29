@@ -536,6 +536,8 @@ var db = (req, res) => {
     });
 };
 
+
+
 const nastavitve_uredi_POST = (req, res) => {
     const { id, ime, priimek, email, telefon, geslo, geslo1 } = req.body;
     let errors = [];
@@ -693,6 +695,56 @@ const nalozi_sliko = (req, res) => {
 };
 
 
+var search = (req, res) => {
+    var bbb = req.url;
+    var iskalni_niz1  = bbb.split("?")[1];
+    var iskalni_niz2 = iskalni_niz1.split("=");
+    var iskalni_niz3;
+    if (iskalni_niz2[0] == "search_niz") {
+        iskalni_niz3 = (iskalni_niz2[1]).toLowerCase();
+    } else {
+        res.redirect("/");
+    }
+
+    //console.log(iskalni_niz3);
+
+
+    Tekma.find({}).exec((err, tekma) => {
+        let tabelaTekem = [];
+        let tabelaUporabnikov = [];
+
+        User.find({}).exec((err,user) => {
+
+            for(var i=0; i < user.length; i++) {
+                let trenutniIme = (user[i].name).toLowerCase();
+                let trenutniPriimek = (user[i].surname).toLowerCase();
+
+                if (trenutniIme.includes(iskalni_niz3) || trenutniPriimek.includes(iskalni_niz3)) {
+                    tabelaUporabnikov.push(user[i]);
+                }
+            }
+
+        });
+
+
+        for(var i=0; i < tekma.length; i++) {
+            let trenutniKraj =(tekma[i].kraj).toLowerCase();
+            if ((trenutniKraj.includes(iskalni_niz3)) == true) {
+                //console.log("se je izvedel if");
+                tabelaTekem.push(tekma[i]);
+            }
+        }
+
+       // console.log("tabela tekem spodej");
+        // console.log(tabelaTekem);
+
+        res.render('search', {tabelaTekem: tabelaTekem, tabelaUporabnikov : tabelaUporabnikov});
+
+    });
+
+};
+
+
 module.exports = {
     ustvari_tekmo,
     nastavitve,
@@ -717,5 +769,8 @@ module.exports = {
     izbrisi,
     nalozi,
     oceniIgralce,
-    oceniIgralce_POST
+    oceniIgralce_POST,
+
+    search
+
 };

@@ -95,6 +95,8 @@ app.use('/', require('./routes/pop_up_tekma'));
 app.use('/', require('./routes/ustvari_tekmo'));
 app.use('/', require('./routes/db'));
 
+app.use('/', require('./routes/search'));
+
 
 //http.request(options, vreme).end();
 
