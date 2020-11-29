@@ -14,6 +14,10 @@ const Grid = require('gridfs-stream');
 const path = require('path')
 
 const mongoURI = "mongodb://localhost:27017/test"
+
+//Docker
+//const mongoURI = "mongodb://mongo:27017/mongo-baza"
+
 const conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true});
 
 //init gfs
