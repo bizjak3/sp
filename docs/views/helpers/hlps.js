@@ -1,5 +1,13 @@
 
 module.exports = {
+    zvezdice: function(ocena, opcija){
+        let vrni = '';
+        for(let i = 0; i <= 5; ++i) {
+            let pobarvane = ocena >= i ? ' checked' : '';
+            vrni += `<span class='fa fa-star${pobarvane}'></span>`;
+        }
+        return new Handlebars.SafeString(vrni);
+    },
     zvezdica: function (ocena){
         let rezultat = "";
         for(var i = 0; i < 5; i++){
