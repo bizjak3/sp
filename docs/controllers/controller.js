@@ -890,6 +890,19 @@ var search = (req, res) => {
 
 };
 
+const izbrisiUporabnika = (req, res) => {
+    id = req.user._id;
+    User.deleteMany({_id: id}, function (err) {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            res.redirect("/logout")
+        }
+    })
+
+}
+
 
 module.exports = {
     ustvari_tekmo,
@@ -918,5 +931,6 @@ module.exports = {
     oceniIgralce_POST,
     register,
     ustvari_tekmo_POST,
-    search
+    search,
+    izbrisiUporabnika
 };

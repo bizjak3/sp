@@ -108,6 +108,9 @@ Dinamična spletna aplikacija z logiko na strani strežnika
 * geslo - zamenjava gesla, vsaj 6 znakov
 * spremembra profilne slike - lahko uploadamo jpeg ali png sliko in jo nastavimo kot profilno sliko
 
+##Npm knjižnice
+
+
 
 ##Link do heroku aplikacije
 https://tap-play.herokuapp.com/
@@ -117,6 +120,8 @@ Sprva pridobite našo aplikacijo preko GIT-a. To lahko storite kar znotraj "Webs
 Znotraj datoteke se v terminalu premaknete v docs (cd docs). Aplikacijo boste zagnali v Docker-ju. V terminal napišete " docker-compose up ". Nato počakate,
 da se shranijo vsi moduli. Ko bo tega konec bo naša aplikacija dostopna na " localhost ".   
 Nato morate dostopat do localhost/db. Tu lahko vnesete testne podatke. Nato pa se lahko kot uporabnik registrirate in prijavite
+
+
 
 
 ## 3. LP
