@@ -6,14 +6,11 @@
 
 
 <!-- okno - okno se vstavi po navbar-ju direktno v body in pred tistim kontejnerjem za vsebino -->
-<div class="" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="container-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark">
                 <h5 class="modal-title text-white" id="exampleModalLongTitle">Tekma</h5>
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
 
@@ -67,7 +64,7 @@
 
                                             <div class="row m-2 border-bottom pb-2">
                                                 <div class="col">
-                                                    {{tekma.kreator}}
+                                                    <a class="text-dark" href="/profil_ostali/{{kreator._id}}">{{kreator.name}} {{kreator.surname}}</a>
                                                 </div>
                                             </div>
 
@@ -114,7 +111,6 @@
                                                 </div>
                                             </div>
 
-
                                             <div class="row m-2 info">
                                                 <div class="col">
                                                     Opis tekme:
@@ -159,14 +155,44 @@
                                 <div class="card-body px-1 py-1">
                                     <div class="scrollable" style="height:100%; overflow-y: auto;">
                                         <ul class="list-group seznam" style="height: 50vh; width:100%; min-height: 300px">
-                                            {{#each tekma.igralci}}
-                                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                    <a class="col-sm text-dark" href="#">{{this.ime}}</a>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <a class="col-sm text-dark" href="#">{{this.rating}}</a>
-                                                </li>
-                                            {{/each}}
+                                            {{#unless ocenjamo}}
+                                                {{#each sodelujoci}}
+                                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                        <a class="col-sm text-dark" href="/profil_ostali/{{this.id}}">{{this.name}} {{this.surname}}</a>
+                                                        {{{zvezdica this.rating}}}
+                                                    </li>
+                                                {{/each}}
+                                            {{else}}
+                                                <form method="post">
+                                                    {{#each sodelujoci}}
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            <a class="col-sm text-dark" href="/profil_ostali">{{this.name}} {{this.surname}}</a>
+                                                            <select name="ocena" class="">
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option selected>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                            </select>
+                                                        </li>
+                                                    {{/each}}
+                                            {{/unless}}
                                         </ul>
+                                        {{#unless ocenjamo}}
+                                        {{#if lahkoOcenjamo}}
+                                        <div class="modal-footer">
+                                            <a href="/pop_up_tekma/{{tekma._id}}/oceni">
+                                                <button class="btn btn-primary"><i class="fa fa-star checked"></i> Oceni</button>
+                                            </a>
+                                        </div>
+                                        {{/if}}
+                                        {{else}}
+                                        <div class="modal-footer">
+                                             <input type="submit" class="btn btn-primary footer" value="Oceni">
+                                             <a href="/pop_up_tekma/{{tekma._id}}" class="btn btn-danger">Prekliči</a>
+                                        </div>
+                                        </form>
+                                        {{/unless}}
                                     </div>
                                 </div>
                             </div>
@@ -178,15 +204,21 @@
 
             </div>
             <div class="modal-footer">
-                <a href="{{tekma._id}}/izbris">
+                <a href="/pop_up_tekma/{{tekma._id}}/izbris">
                     <button type="button" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Izbriši</button>
                 </a>
-                <a href="{{tekma._id}}/uredi">
+                <a href="/pop_up_tekma/{{tekma._id}}/uredi">
                     <button type="button" class="btn btn-secondary"><i class="fas fa-edit"></i> Uredi</button>
                 </a>
-                <a href="{{tekma._id}}/pridruzi">
-                    <button type="button" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Pridruži se</button>
-                </a>
+                {{#if pridruzen}}
+                    <a href="/pop_up_tekma/{{tekma._id}}/odjavi">
+                        <button type="button" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Odjavi se</button>
+                    </a>
+                {{else}}
+                    <a href="/pop_up_tekma/{{tekma._id}}/pridruzi">
+                        <button type="button" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Pridruži se</button>
+                    </a>
+                {{/if}}
             </div>
         </div>
     </div>

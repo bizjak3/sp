@@ -10,9 +10,11 @@ require('./config/passport')(passport);
 const app = express();
 
 
-
-
-
+//slike
+const methodOverride = require('method-override');
+const bodyParser = require('body-parser')
+app.use(bodyParser.json());
+app.use(methodOverride('_method'));
 
 
 //Lokalna baza
@@ -27,8 +29,6 @@ mongoose.connect("mongodb://localhost:27017", { useNewUrlParser: true, useUnifie
     .then(() => console.log('Database connected...'))
     .catch(err => console.log(err));
 */
-
-
 
 app.engine('handlebars', exphbs( { helpers: require('./views/helpers/hlps'),   runtimeOptions: {
         allowProtoPropertiesByDefault: true, allowProtoMethodsByDefault: true

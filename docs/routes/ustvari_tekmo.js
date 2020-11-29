@@ -8,10 +8,11 @@ const Tekma = require('../models/Tekma');
 router.get('/ustvari_tekmo', kontroler.ustvari_tekmo);
 
 router.post('/ustvari_tekmo', (req, res) => {
-    const {lat, lng, kraj, datum, ura, minIgralcev, maxIgralcev, prijavljeni, komentarji } = req.body;
+    let {lat, lng, kraj, datum, ura, minIgralcev, maxIgralcev, prijavljeni, komentarji } = req.body;
+    prijavljeni += 1;
 
     const newTekma = new Tekma({
-        kreator: "ajdi",
+        kreator: req.user._id,
         lat,
         lng,
         kraj,
@@ -21,7 +22,7 @@ router.post('/ustvari_tekmo', (req, res) => {
         maxIgralcev,
         prijavljeni,
         opis: komentarji,
-        igralci: ["ajdi"]
+        igralci: [req.user._id]
     });
 
     newTekma.save()
