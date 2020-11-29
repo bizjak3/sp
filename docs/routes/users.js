@@ -47,7 +47,7 @@ router.post('/register', (req, res) => {
                 if(user) {
                     //User exists
                     errors.push(1);
-                    req.flash('error', 'Uporabnik ze obstaja');
+                    req.flash('error', 'Uporabnik že obstaja');
                     res.render('register', {
                         errors,
                         name,
@@ -72,7 +72,7 @@ router.post('/register', (req, res) => {
 
                         newUser.save()
                             .then(user => {
-                                req.flash('success', 'Uspesno ste se registrirali')
+                                req.flash('success', 'Uspešno ste se registrirali')
                                 res.redirect('/login');
                             })
                             .catch(err => console.log(err))
@@ -97,7 +97,7 @@ router.post('/login', (req, res, next) => {
 
 router.get('/logout', (req, res) => {
     req.logout();
-    req.flash('success_msg', 'You are logged out');
+    req.flash('success_msg', 'Uspešno ste se odjavili');
     res.redirect('/login');
 });
 

@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey('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');
 const methodOverride = require('method-override');
-const {ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 //slike
 const crypto = require('crypto');
@@ -15,11 +14,11 @@ const Grid = require('gridfs-stream');
 const path = require('path')
 
 const mongoURI = "mongodb://localhost:27017/test"
-const conn = mongoose.createConnection(mongoURI);
+const conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true});
 
 //init gfs
 let gfs;
-conn.once('open',() => {
+conn.once('open', () => {
     //stream na bazo za slike
     gfs = Grid(conn.db,mongoose.mongo);
     gfs.collection('uploads');
@@ -688,6 +687,7 @@ const nalozi_sliko = (req, res) => {
     res.redirect('/profil');
 
 };
+
 
 module.exports = {
     ustvari_tekmo,
