@@ -114,34 +114,29 @@ var moje_tekme = (req, res) => {
     id = id+'.jpg';
 
     let tekme = req.user.tekme;
-    let tabelaTest = [];
-
-    for(var i = 0; i < tekme.length; i++){
-        Tekma.findOne({_id: tekme[i]}, function (err, novo) {
-            tabelaTest[i] = novo;
+    Tekma.find().where('_id').in(tekme).exec((err, records) => {
+        console.log(records);
+        gfs.files.findOne({ filename: id.toString() }, (err, file) => {
+            // Check if files
+            if (!file || file.length === 0) {
+                res.render('moje_tekme',{
+                    image: false,
+                    moje_tekme: true,
+                    user: req.user,
+                    tekme: records,
+                    user: req.user
+                });
+            } else {
+                res.render('moje_tekme',{
+                    image: true,
+                    slika: file.filename,
+                    moje_tekme: true,
+                    user: req.user,
+                    tekme: records,
+                    user: req.user
+                });
+            }
         });
-    }
-
-    gfs.files.findOne({ filename: id.toString() }, (err, file) => {
-        // Check if files
-        if (!file || file.length === 0) {
-            res.render('moje_tekme',{
-                image: false,
-                moje_tekme: true,
-                user: req.user,
-                tekme: tabelaTest,
-                user: req.user
-            });
-        } else {
-            res.render('moje_tekme',{
-                image: true,
-                slika: file.filename,
-                moje_tekme: true,
-                user: req.user,
-                tekme: tabelaTest,
-                user: req.user
-            });
-        }
     });
 };
 
