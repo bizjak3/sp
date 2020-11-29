@@ -13,7 +13,7 @@
                 <div class="card-header bg-dark text-white">
                     <div class="row justify-content-center">
                         <div class="col text-center">
-                            {{ime}} {{priimek}}
+                            {{ name }} {{ surname }}
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,11 @@
 
                         <!-- tle je slika -->
                         <div class="row">
-                            <img class="img-fluid profil m-2 mx-auto" width="200" height="40" alt="Profilna slika" src="/slike/IMG_20201020_175337_2.jpg"><!-- Image to show on screens from small to extra large -->
+                            {{#if image}}
+                                <img class="img-fluid profil m-2 mx-auto" width="200" height="40" alt="Profilna slika" src="/image/{{slika}}">
+                            {{else}}
+                                <img class="img-fluid profil m-2 mx-auto" width="200" height="40" alt="Image not found" src="/slike/logo_svetel.png">
+                            {{/if}}
                         </div>
 
                         <!--opis igralca al neki ?-->
@@ -43,7 +47,7 @@
 
                         <!--število zvezdic-->
                         <div class="row justify-content-center mb-1">
-                            {{{zvezdica ocena }}}
+                            {{{ zvezdica ocena }}}
                         </div>
 
                     </nav>
@@ -71,7 +75,7 @@
                                 Ime in Priimek
                             </div>
                             <div class="col">
-                                {{ime}} {{priimek}}
+                                {{ test }} {{ surname }}
                             </div>
 
                         </div>
@@ -81,7 +85,11 @@
                                 Email:
                             </div>
                             <div class="col">
-                                {{email}}
+                                {{#if emailDrugi}}
+                                    {{email}}
+                                {{else}}
+                                    Uporabni ne želi deliti email naslova
+                                {{/if}}
                             </div>
                         </div>
 
@@ -90,16 +98,11 @@
                                 Telefon
                             </div>
                             <div class="col">
-                                {{telefon}}
-                            </div>
-                        </div>
-
-                        <div class="row m-2 info">
-                            <div class="col">
-                                Geslo:
-                            </div>
-                            <div class="col">
-                                {{geslo}}
+                                {{#if telDrugi}}
+                                    {{telefon}}
+                                {{else}}
+                                    Uporabni ne želi deliti telefonske številke
+                                {{/if}}
                             </div>
                         </div>
 
@@ -173,4 +176,3 @@
 
 
 </div>
-{{> footer}}

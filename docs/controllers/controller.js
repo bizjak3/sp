@@ -182,13 +182,53 @@ var profil = (req, res) => {
 };
 
 var profil_ostali = (req, res) => {
-    res.render('profil_ostali',{
-        profil: true,
-        ime: 'Janez',
-        priimek: 'Novak',
-        email: "janezek@gmail.com",
-        ocena: 1
+
+    if(!req.user){
+        return res.redirect('/login');
+    }
+    let userId = req.params.id;
+    User.find({_id: userId}, function (err,igralec){
+        if(err){
+            console.log(err);
+            res.redirect("/");
+        }
+
+        igralec = igralec[0];
+
+        gfs.files.findOne({ filename: igralec.toString() }, (err, file) => {
+            // Check if files
+            if (!file || file.length === 0) {
+                res.render('profil_ostali',{
+                    image: false,
+                    profil: true,
+                    user: req.user,
+                    name: igralec.name,
+                    surname: igralec.surname,
+                    email: igralec.email,
+                    telefon: igralec.telefon,
+                    ocena: igralec.ocena,
+                    telDrugi: igralec.telDrugi,
+                    emailDrugi: igralec.emailDrugi
+                });
+            } else {
+                res.render('profil_ostali',{
+                    image: true,
+                    slika: file.filename,
+                    profil: true,
+                    user: req.user,
+                    name: igralec.name,
+                    surname: igralec.surname,
+                    email: igralec.email,
+                    telefon: igralec.telefon,
+                    ocena: igralec.ocena,
+                    telDrugi: igralec.telDrugi,
+                    emailDrugi: igralec.emailDrugi
+                });
+            }
+        });
     });
+
+
 };
 
 var nastavitve = (req, res) => {
@@ -674,7 +714,6 @@ const pozabil_geslo =  (req, res) => {
 const nalozi = upload.single('file');
 
 const nalozi_sliko = (req, res) => {
-
 
     res.redirect('/profil');
 
