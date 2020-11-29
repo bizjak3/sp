@@ -15,10 +15,10 @@ const path = require('path')
 
 const mongoURI = "mongodb://localhost:27017/test"
 
-//Docker
+//Docker baza
 //const mongoURI = "mongodb://mongo:27017/mongo-baza"
 
-const conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true});
+const conn = mongoose.createConnection( process.env.MONGODB_URI || mongoURI, { useNewUrlParser: true, useUnifiedTopology: true});
 
 //init gfs
 let gfs;
