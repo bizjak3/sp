@@ -55,3 +55,31 @@ function validacijaOsebnih() {
 
 
 }
+
+function validacijaTekmaUra(){
+    var datum = document.forms["ustvari"]["datum"].value;
+    var ura = document.forms["ustvari"]["ura"].value;
+
+    let d = new Date(datum); //dd-mm-YYYY
+    let t = new Date();
+    t.setHours(0, 0, 0, 0);
+    d.setHours(0, 0, 0, 0);
+    console.log(d, t);
+
+    if(d < t) {
+        document.getElementById('obvestilo').innerHTML = "Preveri vneseni datum!";
+        document.getElementById('obvestilo').style.visibility = "visible";
+        return false;
+    }else if(d + "" == t + ""){
+        var now = new Date();
+
+        console.log((now.getHours() + ":" + now.getMinutes()), ura);
+        if (now.getHours() + ":" + now.getMinutes() > ura + "") {
+            document.getElementById('obvestilo').innerHTML = "Preveri vneseno uro!";
+            document.getElementById('obvestilo').style.visibility = "visible";
+            return false;
+        }
+    }
+
+    return true;
+}

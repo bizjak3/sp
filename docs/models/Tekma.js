@@ -52,6 +52,10 @@ const tekma = new mongoose.Schema({
     igralci: {
         type: [String],
         required: false
+    },
+    status: {
+        type: String,   //odpadla, zakljucena, prijave
+        required: true
     }
 });
 

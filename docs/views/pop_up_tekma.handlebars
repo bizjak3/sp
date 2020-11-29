@@ -54,7 +54,7 @@
 
                                 <!--Podatki o tekmi style "info" je za odebeljene črke-->
                                 {{#if urejamo}}
-                                <form method="post">
+                                <form method="post" name="ustvari" onsubmit="return validacijaTekmaUra()">
                                 {{/if}}
                                 <div class="row m-2 info">
                                     <div class="col">
@@ -129,7 +129,10 @@
                                     {{/if}}
                                 </div>
                                 {{#if urejamo}}
-                                    <div class="row m-2 border-bottom pb-2">
+                                        <div id="obvestilo" style="visibility: hidden" class="alert alert-danger">
+
+                                        </div>
+                                    <div class="row m-2 border-bottom pb-2" style="text-align:center">
                                         <div class="col">
                                             <input type="submit" class="btn btn-primary" value="Shrani">
                                             <a href="/pop_up_tekma/{{tekma._id}}" class="btn btn-danger">Prekliči</a>

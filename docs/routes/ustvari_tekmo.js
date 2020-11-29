@@ -22,7 +22,8 @@ router.post('/ustvari_tekmo', (req, res) => {
         maxIgralcev,
         prijavljeni,
         opis: komentarji,
-        igralci: [req.user._id]
+        igralci: [req.user._id],
+        status: "prijave"
     });
 
     newTekma.save()

@@ -37,7 +37,7 @@
           </div>
 
           <div class="col-sm-12 col-md-12 col-lg-12">
-            <form class="" method="post" action="/ustvari_tekmo">
+            <form name="ustvari" method="post" action="/ustvari_tekmo" onsubmit="return validacijaTekmaUra()">
 
               <div class="">
 
@@ -86,7 +86,7 @@
 
                     <div class="form-group col-md-4">
                       <label class="">Že prijavljeni: </label>
-                      <input type="number" value="0" class="form-control" name="prijavljeni">
+                      <input type="number" min="0" value="0" class="form-control" name="prijavljeni">
                     </div>
 
                   </div>
@@ -97,12 +97,15 @@
                   <label class="">Opombe</label>
                   <textarea name="komentarji" class="form-control" rows="4" cols="36"  placeholder="Vnesite dodatne opombe"></textarea>
                 </div>
+                <div id="obvestilo" style="visibility: hidden" class="alert alert-danger">
 
+                </div>
                 <div class="text-center col-sm-12 col-md-12 col-lg-12">
                   <input type="submit" class="btn btn-success col-md-3 mt-1" value="Ustvari">
                   <input type="reset" class="btn btn-warning col-md-3 mt-1" value="Ponastavi">
                   <a href="/" class="btn btn-danger col-md-3 mt-1">Prekliči</a>
                 </div>
+
 
               </div>
             </form>

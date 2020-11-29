@@ -10,11 +10,47 @@ require('./config/passport')(passport);
 const app = express();
 
 
+// vreme
+const Tekma = require('./models/Tekma');
+
+var http = require('http');
+
+var options = {
+    host : 'weather.marela.team',
+    path: '/api/v2/arso/opozorila/trenutna?lat=45.88674219700143&lon=13.905384725727284',
+    headers: {
+        'Content-Type': 'application/json',
+        'app-id': 'm3EYx2vqsGNziQ5PlJmpb1Cjvob0JPs5y6GZK3LP27r8zhtEmMNUaUjx3YpqTVb4ezpoIJMEkq6PDjYLQAT9shlgWvu8dQvlfYOBBYqhtAXL9BxsNst5FuDqYb5LFIYt'
+    }
+}
+
+var a;
+
+var vreme = function(response){
+      let data = '';
+      response.on('data', chunk => {
+        data += chunk;
+      })
+      response.on('end', () => {
+        a = JSON.parse(data);
+      })
+}
+
+async function weatherCheck(){
+    Tekma.find({}).exec((err, tekma) => {
+
+    });
+    http.request(options, vreme).end();
+
+}
+
+
 //slike
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
+
 
 
 //Lokalna baza
@@ -59,6 +95,13 @@ app.use('/', require('./routes/ustvari_tekmo'));
 app.use('/', require('./routes/db'));
 
 
+//http.request(options, vreme).end();
+
+//console.log(a);
+
+//setInterval(weatherCheck, 3000);
+
+weatherCheck();
 
 app.listen(8080, console.log('Server started on port 8080'));
 
