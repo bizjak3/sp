@@ -476,11 +476,11 @@ const nastavitve_uredi_POST = (req, res) => {
                     });
 
                 }));
-        });
-        posljiEmail(email,'Sprememba nastavitev','Nastavitve uspešno spremenjene');
-        res.redirect('/profil');
-    }
 
+            posljiEmail(email,'Sprememba nastavitev','Nastavitve uspešno spremenjene');
+            res.redirect('/profil');
+        });
+    }
 }
 
 const nastavitve_POST = (req, res) => {

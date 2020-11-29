@@ -29,7 +29,7 @@
 
 
 
-                        <form method="POST" action="/nastavitve_uredi">
+                        <form name="urediOsebne" action="/nastavitve_uredi" onsubmit="return validacijaOsebnih()" method="POST">
 
                             <input type="name" id="idNastavitve" name="id" class="form-control" value="{{user._id}}" required>
 

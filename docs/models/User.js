@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     telefon: {
-        type: Number
+        type: String
     },
     smsOdpade: {
         type: Boolean,
