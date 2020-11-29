@@ -119,12 +119,24 @@ var moje_tekme = (req, res) => {
 
     let id = req.user._id.toString();
     id = id+'.jpg';
+
+    let tekme = req.user.tekme;
+    let tabelaTest = [];
+
+    for(var i = 0; i < tekme.length; i++){
+        Tekma.findOne({_id: tekme[i]}, function (err, novo) {
+            tabelaTest[i] = novo;
+        });
+    }
+
     gfs.files.findOne({ filename: id.toString() }, (err, file) => {
         // Check if files
         if (!file || file.length === 0) {
             res.render('moje_tekme',{
                 image: false,
                 moje_tekme: true,
+                user: req.user,
+                tekme: tabelaTest,
                 user: req.user
             });
         } else {
@@ -132,6 +144,8 @@ var moje_tekme = (req, res) => {
                 image: true,
                 slika: file.filename,
                 moje_tekme: true,
+                user: req.user,
+                tekme: tabelaTest,
                 user: req.user
             });
         }
@@ -281,6 +295,7 @@ var nastavitve_uredi = (req, res) => {
     });
 
 };
+
 const podrobnostiTekme = (req, res) => {
     if(!req.user){
          return res.redirect('/login');
@@ -577,7 +592,7 @@ var ustvari_tekmo = (req, res) => {
     });
 };
 
-var ustvari_tekmo_POST = (req, res) => {
+var ustvari_tekmo_POST = (req, res, done) => {
     if(!req.user){
         return res.redirect('/login');
     }
@@ -616,6 +631,11 @@ var ustvari_tekmo_POST = (req, res) => {
 
     newTekma.save()
         .then(tekma => {
+            User.updateOne(
+                {_id: req.user},
+                { $push: {tekme: tekma.id}},
+                done
+            );
             res.redirect('/');
         })
         .catch(err => console.log(err))
@@ -640,8 +660,6 @@ var db = (req, res) => {
         ustvari_tekmo: true
     });
 };
-
-
 
 const nastavitve_uredi_POST = (req, res) => {
     const { id, ime, priimek, email, telefon, geslo, geslo1 } = req.body;
