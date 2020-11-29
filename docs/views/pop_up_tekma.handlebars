@@ -215,7 +215,7 @@
                 <button type="button" class="btn btn-secondary"><i class="fas fa-edit"></i> Uredi</button>
             </a>
             {{/if}}
-            {{#unless lahkoOcenjamo}}
+            {{#if lahkoUrejamo}}
             {{#if pridruzen}}
                 <a href="/pop_up_tekma/{{tekma._id}}/odjavi">
                     <button type="button" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Odjavi se</button>
@@ -225,7 +225,7 @@
                     <button type="button" class="btn btn-primary "><i class="fas fa-sign-in-alt"></i> Pridruži se</button>
                 </a>
             {{/if}}
-            {{/unless}}
+            {{/if}}
         </div>
 
     </div>

@@ -338,7 +338,7 @@ const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
 
 const prikaziPodrobnostiTekme = (req, res, vsebina) => {
 
-    let lahkoOcenjamo = true;
+    let lahkoOcenjamo = false;
     let ocenjamo = false;
     let urejamo = false;
     let lahkoUrejamo = false;
@@ -349,6 +349,8 @@ const prikaziPodrobnostiTekme = (req, res, vsebina) => {
         if(vsebina.tekma.igralci.includes(req.user._id + "")){
             if(vsebina.tekma.zeOcenili.includes(req.user._id + "")){
                 lahkoOcenjamo = false;
+            }else{
+                lahkoOcenjamo = true;
             }
         }
     }
