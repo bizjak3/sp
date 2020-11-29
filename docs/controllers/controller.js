@@ -568,6 +568,7 @@ const odjaviOdTekme = (req, res, done) => {
         }
     });
 
+    let userid = req.user;
     User.updateOne(
         {_id: userid},
         { $pull: {tekme: idTekme}},
