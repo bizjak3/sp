@@ -13,6 +13,14 @@ const tekma = new mongoose.Schema({
         type: String,
         required: true
     },
+    lat: {
+        type: Number,
+        required: true
+    },
+    lng: {
+        type: Number,
+        required: true
+    },
     kraj: {
         type: String,
         required: true

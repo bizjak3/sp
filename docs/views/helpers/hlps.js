@@ -28,5 +28,23 @@ module.exports = {
             return "<span class=\"badge btn btn-success\">SUPER OCENA!</span>";
 
         return "<span class=\"badge btn btn-primary\">POVPREČNA OCENA</span>";
+    },
+
+    //dodal rihard
+    /*
+    convert: function(context) {
+        return JSON.stringify(context);
     }
+
+     */
+ //konec dodaje
 };
+
+//dodal rihard
+/*
+('json', function(context) {
+    return JSON.stringify(context);
+});
+*/
+
+//konec dodaje
