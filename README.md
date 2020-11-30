@@ -75,25 +75,25 @@ Domača stran je namenjena prikazu vseh prihajajočih tekem. Vse tekme so označ
 
 Dinamična spletna aplikacija z logiko na strani strežnika
 
-##Vnosna polja
+## Vnosna polja
 
-####Login stran
+#### Login stran
 * mail - elektronski naslov. Dovoljen je le naslov tipa a@b.c
 * geslo - geslo uporabnika, geslo mora biti enako geslu, s katerim se je uporabnik registriral
 
-#####Pozabil sem geslo
+##### Pozabil sem geslo
 * mail - elektronski naslov na katerega se pošlje novo zgenerirano geslo. Dovljen naslov tipa a@b.c
 
-####Registracija
+#### Registracija
 * ime - ime uporabnika.   
 * priimek - priimek uporabnika  
 * mail - elektronski naslov uporabnika. Dovoljen je le naslov tipa a@b.c
 * gesli - geslo uporabnika, gesli se morata ujemati in biti dolgi vsaj 6 znakov  
 
-####Homepage
+#### Homepage
 * išči - poišče se uporabnika ali tekmo
 
-####Ustvarjanje tekme
+#### Ustvarjanje tekme
 * kraj - kraj tekme. Izbere se na zemljevidu. Ob kliku na zemljevid se v polju "Kraj" zapiše naslov 
 * datum - datum tekme. Oblika datuma  
 * ura - ura tekme  
@@ -101,7 +101,7 @@ Dinamična spletna aplikacija z logiko na strani strežnika
 * maksimalno število igralcev - max. število igralcev na tekmi  
 * že prijavljeni - število igralcev, ki se bodo udeležili tekmi a niso prijavljeni v aplikacija  
 
-####Urejanje osebnih podatkov
+#### Urejanje osebnih podatkov
 * ime - lahko spremenimo ime uporabnika
 * priimek - lahko spremenimo priimek uporabnika
 * mail - lahko spremenimo mail uporabnika. Dovoljen je le naslov tipa a@b.c
@@ -109,28 +109,34 @@ Dinamična spletna aplikacija z logiko na strani strežnika
 * geslo - zamenjava gesla, vsaj 6 znakov
 * spremembra profilne slike - lahko uploadamo jpeg ali png sliko in jo nastavimo kot profilno sliko
 
-##Npm knjižnice
-####bcrypt
+## Npm knjižnice
+#### bcrypt
 Bcrypt uporabljamo za kodiranje gesla. V bazo ne shranimo geslo kot je bilo napisano. Shranimo hash, ki ga s pomočjo funkcij v bcryptu ustvarimo.  
 Uporabljamo tudi funkcijo bcryt compare, ki vnešeno geslo v form preveri če je enako šifriranemu geslu v podatkovni bazi.
 
-####express-flash
+#### express-flash
 Express-flash uporabimo za pokaz sporočil. Če se pojavi napaka se pojavi "flash-message", v katerem je zapisano besedilo, ki je povezano s tipom napake
 
-####passport, passport-local
+#### passport, passport-local
 Passport se uporabi za validacijo uporabnika. S passport knjižnico se preveri če je geslo uporabnika pravilno. S passportom naredimo, da če uporabnik ni prijavljen ne mora na homepage. 
 Pošlje ga na login stran.
 
-####@sendgrid/mail
+#### @sendgrid/mail
 Uporabljamo za pošiljanje emailov preko sendgrid api-ja
 
-####gridfs-stream
+#### gridfs-stream
 Za "stream" datoteke na bazo
 
-####multer & multer-gridfs-storage
+#### multer & multer-gridfs-storage
 Za razkosavanje datoteke na manjše kose
 
-##Delovanje na različnih napravah
+#### http
+Knjižnica je uporabljena za dostopanje do podatkov za različna opozorila.
+
+#### openweather-apis
+Uporabljena za prikaz vremena na lokaciji.
+
+## Delovanje na različnih napravah
 Aplikacija deluje na telefonu, tablici in računalniku.
 
 
@@ -138,10 +144,10 @@ Aplikacija deluje na telefonu, tablici in računalniku.
 
 Dinamična spletna aplikacija s podatkovno bazo
 
-##Link do heroku aplikacije
+## Link do heroku aplikacije
 https://tap-play.herokuapp.com
 
-##Navodila za namestitev in zagon aplikacije
+## Navodila za namestitev in zagon aplikacije
 Sprva pridobite našo aplikacijo preko GIT-a. To lahko storite kar znotraj "Webstorma", s tem da kopirate naš repozitorij ali kar shranite zip datoteko.   
 Znotraj datoteke se v terminalu premaknete v docs (cd docs). Aplikacijo boste zagnali v Docker-ju. V terminal napišete " docker-compose up ". Nato počakate,
 da se shranijo vsi moduli. Ko bo tega konec bo naša aplikacija dostopna na " localhost ".   
