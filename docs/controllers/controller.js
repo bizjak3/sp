@@ -8,7 +8,7 @@ sgMail.setApiKey('SG.MlEHyfQXS9OPyHhYglCDJQ.SGXYntFb_VjolavwdTxfUfgodbFAyMhfn5fW
 var weather = require('openweather-apis');
 weather.setUnits('metric');
 weather.setAPPID('2d46165b2a3d0734271c8271f8c9e8fa');
-weather.setLang('en');
+weather.setLang('sl');
 //slike
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
@@ -337,7 +337,7 @@ const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
                 }
                 weather.getAllWeather(function(err, temp){
                     if(err) console.log(err);
-                    console.log(temp);
+                    //console.log(temp);
                     let sodelujoci = [];
                     let pridruzen = false;
                     igralci.forEach(element => {

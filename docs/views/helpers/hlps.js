@@ -24,17 +24,17 @@ module.exports = {
     pridobiMesto: function (kraj) {
         let k = kraj + "";
         let n = k.split(',');
-        return n[n.length - 1].slice(1, n[n.length - 1].length);
+        return n[n.length - 1]
     },
     upper: function (kraj){
         let k = kraj + "";
         let n = k.split(',');
-        return n[n.length - 1].slice(1, n[n.length - 1].length).toUpperCase();
+        return n[n.length - 1].toUpperCase();
     },
     lower: function (kraj){
         let k = kraj + "";
         let n = k.split(',');
-        return n[n.length - 1].slice(1, n[n.length - 1].length).toLowerCase();
+        return n[n.length - 1].toLowerCase();
     }
 
     //dodal rihard
