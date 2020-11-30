@@ -4,8 +4,6 @@ const mongoose = require('mongoose');
 const flash = require('express-flash');
 const session = require('express-session');
 const passport = require('passport');
-const path = require('path')
-require('dotenv').config()
 require('./config/passport')(passport);
 const app = express();
 
@@ -141,9 +139,10 @@ app.use('/', require('./routes/search'));
 
 //weatherCheck();
 
-statusCheck();
+//statusCheck();
 
-setInterval(statusCheck, 5000);
+setInterval(statusCheck, 300000);
+setInterval(weatherCheck, 900000);
 
 var PORT = process.env.PORT || 8080;
 

@@ -4,14 +4,11 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey('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');
-const methodOverride = require('method-override');
 
 //slike
-const crypto = require('crypto');
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
-const path = require('path')
 
 const mongoURI = "mongodb://localhost:27017/test"
 
@@ -109,32 +106,38 @@ var apiParametri = {
   streznik: 'http://localhost:' + (process.env.PORT || 8080)
 };
 
-const axios = require('axios').create({
-  baseURL: apiParametri.streznik,
-  timeout: 5000
-});
-
 var moje_tekme = (req, res) => {
 
 
     let id = req.user._id.toString();
     id = id+'.jpg';
-    gfs.files.findOne({ filename: id.toString() }, (err, file) => {
-        // Check if files
-        if (!file || file.length === 0) {
-            res.render('moje_tekme',{
-                image: false,
-                moje_tekme: true,
-                user: req.user
-            });
-        } else {
-            res.render('moje_tekme',{
-                image: true,
-                slika: file.filename,
-                moje_tekme: true,
-                user: req.user
-            });
-        }
+
+    let tekme = req.user.tekme;
+    Tekma.find().where('_id').in(tekme).exec((err, records) => {
+        console.log(records);
+        gfs.files.findOne({ filename: id.toString() }, (err, file) => {
+            // Check if files
+            if (!file || file.length === 0) {
+                res.render('moje_tekme',{
+                    image: false,
+                    moje_tekme: true,
+                    user: req.user,
+                    title: "Moje tekme",
+                    tekme: records,
+                    user: req.user
+                });
+            } else {
+                res.render('moje_tekme',{
+                    image: true,
+                    title: "Moje tekme",
+                    slika: file.filename,
+                    moje_tekme: true,
+                    user: req.user,
+                    tekme: records,
+                    user: req.user
+                });
+            }
+        });
     });
 };
 
@@ -171,11 +174,13 @@ var profil = (req, res) => {
             res.render('profil',{
                 image: false,
                 profil: true,
+                title: "Profil",
                 user: req.user
             });
         } else {
             res.render('profil',{
                 image: true,
+                title: "Profil",
                 slika: file.filename,
                 profil: true,
                 user: req.user
@@ -198,40 +203,45 @@ var profil_ostali = (req, res) => {
         }
 
         igralec = igralec[0];
-
-        gfs.files.findOne({ filename: igralec.toString() }, (err, file) => {
-            // Check if files
-            if (!file || file.length === 0) {
-                res.render('profil_ostali',{
-                    image: false,
-                    profil: true,
-                    user: req.user,
-                    name: igralec.name,
-                    surname: igralec.surname,
-                    email: igralec.email,
-                    telefon: igralec.telefon,
-                    ocena: igralec.ocena,
-                    telDrugi: igralec.telDrugi,
-                    emailDrugi: igralec.emailDrugi
-                });
-            } else {
-                res.render('profil_ostali',{
-                    image: true,
-                    slika: file.filename,
-                    profil: true,
-                    user: req.user,
-                    name: igralec.name,
-                    surname: igralec.surname,
-                    email: igralec.email,
-                    telefon: igralec.telefon,
-                    ocena: igralec.ocena,
-                    telDrugi: igralec.telDrugi,
-                    emailDrugi: igralec.emailDrugi
-                });
-            }
+        let tekme = igralec.tekme;
+        Tekma.find().where('_id').in(tekme).exec((err, records) => {
+            gfs.files.findOne({ filename: igralec.toString() }, (err, file) => {
+                // Check if files
+                if (!file || file.length === 0) {
+                    res.render('profil_ostali',{
+                        image: false,
+                        profil: true,
+                        user: req.user,
+                        title: "Profil",
+                        name: igralec.name,
+                        surname: igralec.surname,
+                        email: igralec.email,
+                        telefon: igralec.telefon,
+                        ocena: igralec.ocena,
+                        telDrugi: igralec.telDrugi,
+                        emailDrugi: igralec.emailDrugi,
+                        tekme: records
+                    });
+                } else {
+                    res.render('profil_ostali',{
+                        image: true,
+                        slika: file.filename,
+                        profil: true,
+                        title: "Profil",
+                        user: req.user,
+                        name: igralec.name,
+                        surname: igralec.surname,
+                        email: igralec.email,
+                        telefon: igralec.telefon,
+                        ocena: igralec.ocena,
+                        telDrugi: igralec.telDrugi,
+                        emailDrugi: igralec.emailDrugi,
+                        tekme: records
+                    });
+                }
+            });
         });
     });
-
 
 };
 
@@ -245,11 +255,13 @@ var nastavitve = (req, res) => {
             res.render('nastavitve',{
                 image: false,
                 nastavitve: true,
+                title: "Nastavitve",
                 user: req.user
             });
         } else {
             res.render('nastavitve',{
                 image: true,
+                title: "Nastavitve",
                 slika: file.filename,
                 nastavitve: true,
                 user: req.user
@@ -268,11 +280,13 @@ var nastavitve_uredi = (req, res) => {
             res.render('nastavitve_uredi',{
                 image: false,
                 nastavitve_uredi: true,
+                title: "Nastavitve",
                 user: req.user
             });
         } else {
             res.render('nastavitve_uredi',{
                 image: true,
+                title: "Nastavitve",
                 slika: file.filename,
                 nastavitve_uredi: true,
                 user: req.user
@@ -281,6 +295,7 @@ var nastavitve_uredi = (req, res) => {
     });
 
 };
+
 const podrobnostiTekme = (req, res) => {
     if(!req.user){
          return res.redirect('/login');
@@ -381,6 +396,7 @@ const prikaziPodrobnostiTekme = (req, res, vsebina) => {
 
     res.render('pop_up_tekma', {layout: vsebina.layout,
                                 user: vsebina.user,
+                                title: "Tekma",
                                 lahkoOcenjamo: lahkoOcenjamo,
                                 ocenjamo: ocenjamo,
                                 urejamo: urejamo,
@@ -414,6 +430,7 @@ const prikaziOcenjanjeTekme = (req, res, vsebina) => {
 
     res.render('pop_up_tekma', {layout: vsebina.layout,
                                 user: vsebina.user,
+                                title: "Tekma",
                                 lahkoOcenjamo: lahkoOcenjamo,
                                 ocenjamo: ocenjamo,
                                 urejamo: urejamo,
@@ -443,15 +460,17 @@ const oceniIgralce_POST = (req, res, done) => {
             }
             let i = 0;
             igralci.map(user => {
-                let trenutnaOcena = user.ocena;
-                let trenutnoSteviloOcen = user.steviloOcen;
+                if(ocene.ocena[i] >= 1 || ocene.ocena[i] <= 5){
+                    let trenutnaOcena = user.ocena;
+                    let trenutnoSteviloOcen = user.steviloOcen;
 
-                let koncnaOcena = trenutnaOcena + (ocene.ocena[i] - trenutnaOcena) / trenutnoSteviloOcen;
-                let koncnoStevilo = trenutnoSteviloOcen + 1;
-                user.ocena = koncnaOcena;
-                user.steviloOcen = koncnoStevilo;
-                user.save();
-                i++;
+                    let koncnaOcena = trenutnaOcena + (ocene.ocena[i] - trenutnaOcena) / trenutnoSteviloOcen;
+                    let koncnoStevilo = trenutnoSteviloOcen + 1;
+                    user.ocena = koncnaOcena;
+                    user.steviloOcen = koncnoStevilo;
+                    user.save();
+                    i++;
+                }
             });
         });
     });
@@ -479,6 +498,7 @@ const prikaziUrejanjeTekme = (req, res, vsebina) => {
     }
 
     res.render('pop_up_tekma', {layout: vsebina.layout,
+                                title: "Tekma",
                                 user: vsebina.user,
                                 lahkoOcenjamo: lahkoOcenjamo,
                                 ocenjamo: ocenjamo,
@@ -547,6 +567,13 @@ const pridruziSeTekmi = (req, res, done) => {
             }
         }
     });
+
+    let userid = req.user;
+    User.updateOne(
+        {_id: userid},
+        { $push: {tekme: idTekme}},
+        done
+    );
     res.redirect('/pop_up_tekma/' + idTekme);
 };
 
@@ -573,6 +600,13 @@ const odjaviOdTekme = (req, res, done) => {
             }
         }
     });
+
+    let userid = req.user;
+    User.updateOne(
+        {_id: userid},
+        { $pull: {tekme: idTekme}},
+        done
+    );
     res.redirect('/pop_up_tekma/' + idTekme);
 };
 
@@ -581,11 +615,13 @@ var ustvari_tekmo = (req, res) => {
         return res.redirect('/login');
     }
     res.render('ustvari_tekmo', {
-        ustvari_tekmo: true
+        ustvari_tekmo: true,
+        user: req.user,
+        title: "Ustvari tekmo"
     });
 };
 
-var ustvari_tekmo_POST = (req, res) => {
+var ustvari_tekmo_POST = (req, res, done) => {
     if(!req.user){
         return res.redirect('/login');
     }
@@ -624,19 +660,26 @@ var ustvari_tekmo_POST = (req, res) => {
 
     newTekma.save()
         .then(tekma => {
+            User.updateOne(
+                {_id: req.user},
+                { $push: {tekme: tekma.id}},
+                done
+            );
             res.redirect('/');
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err);
+            res.redirect('/ustvari_tekmo');
+        });
 };
 
 var homepage = (req, res) => {
     const Tekma = require('../models/Tekma');
-    Tekma.find({status: "prijave"}).lean().exec({}, function (err, tekma) {
+    Tekma.find({}).lean().exec({}, function (err, tekma) {
         res.render('hmpg', {
             layout: 'main',
             homepage: true,
-            name: 'Janezz',
-            surname: 'Novak',
+            title: "Tap & Play",
             tekma: tekma,
             user: req.user
         });
@@ -645,11 +688,10 @@ var homepage = (req, res) => {
 
 var db = (req, res) => {
     res.render('db', {
-        ustvari_tekmo: true
+        ustvari_tekmo: true,
+        title: "Baza"
     });
 };
-
-
 
 const nastavitve_uredi_POST = (req, res) => {
     const { id, ime, priimek, email, telefon, geslo, geslo1 } = req.body;
@@ -669,6 +711,7 @@ const nastavitve_uredi_POST = (req, res) => {
         res.render('nastavitve_uredi', {
             errors,
             ime,
+            title: "Nastavitve",
             priimek,
             email,
             telefon,
@@ -815,6 +858,7 @@ const register = (req, res) => {
         res.render('register', {
             errors,
             name,
+            title: "Registracija",
             surname,
             email,
             password,
@@ -829,6 +873,7 @@ const register = (req, res) => {
                     req.flash('error', 'Uporabnik že obstaja');
                     res.render('register', {
                         errors,
+                        title: "Registracija",
                         name,
                         surname,
                         email,
@@ -876,7 +921,7 @@ var search = (req, res) => {
     //console.log(iskalni_niz3);
 
 
-    Tekma.find({status: "prijave"}).exec((err, tekma) => {
+    Tekma.find({}).exec((err, tekma) => {
         let tabelaTekem = [];
         let tabelaUporabnikov = [];
 
@@ -905,11 +950,24 @@ var search = (req, res) => {
        // console.log("tabela tekem spodej");
         // console.log(tabelaTekem);
 
-        res.render('search', {tabelaTekem: tabelaTekem, tabelaUporabnikov : tabelaUporabnikov});
+        res.render('search', {tabelaTekem: tabelaTekem, title: "Iskanje", tabelaUporabnikov : tabelaUporabnikov});
 
     });
 
 };
+
+const izbrisiUporabnika = (req, res) => {
+    id = req.user._id;
+    User.deleteMany({_id: id}, function (err) {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            res.redirect("/logout")
+        }
+    })
+
+}
 
 
 
@@ -942,5 +1000,6 @@ module.exports = {
     oceniIgralce_POST,
     register,
     ustvari_tekmo_POST,
-    search
+    search,
+    izbrisiUporabnika
 };

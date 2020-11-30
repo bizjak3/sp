@@ -16,6 +16,7 @@ router.post('/nastavitve',kontroler.nastavitve_POST);
 router.post('/nastavitve_osebni',kontroler.nastavitve_osebni_POST);
 router.post('/upload',kontroler.nalozi,kontroler.nalozi_sliko);
 router.post('/delete',kontroler.izbrisi);
+router.post('/izbrisi', kontroler.izbrisiUporabnika);
 
 
 module.exports = router;
