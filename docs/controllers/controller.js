@@ -5,6 +5,10 @@ const bcrypt = require('bcrypt');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey('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');
 
+var weather = require('openweather-apis');
+weather.setUnits('metric');
+weather.setAPPID('2d46165b2a3d0734271c8271f8c9e8fa');
+weather.setLang('en');
 //slike
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
@@ -13,7 +17,9 @@ const Grid = require('gridfs-stream');
 const mongoURI = "mongodb://localhost:27017/test"
 
 //Docker baza
-const mongoURIDocker = "mongodb://mongo:27017/mongo-baza"
+const mongoURIDocker = "mongodb://mongo:27017/mongo-baza";
+
+
 
 const conn = mongoose.createConnection( process.env.MONGODB_URI ||  mongoURI, { useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -313,6 +319,10 @@ const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
             console.log(err);
             res.status(400);
         }
+
+        weather.setCoordinate(tekma.lat, tekma.lng);
+
+
         let playerIDs = tekma.igralci;
         User.find({_id: playerIDs}).lean().exec((err, igralci) => {
             if(err){
@@ -325,30 +335,35 @@ const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
                     console.log(err);
                     res.status(400);
                 }
-                let sodelujoci = [];
-                let pridruzen = false;
-                igralci.forEach(element => {
-                    sodelujoci.push({   id: element._id,
-                                        name: element.name,
-                                        surname: element.surname,
-                                        rating: element.ocena
-                                        });
+                weather.getAllWeather(function(err, temp){
+                    if(err) console.log(err);
+                    console.log(temp);
+                    let sodelujoci = [];
+                    let pridruzen = false;
+                    igralci.forEach(element => {
+                        sodelujoci.push({   id: element._id,
+                                            name: element.name,
+                                            surname: element.surname,
+                                            rating: element.ocena
+                                            });
 
-                    if(element._id + "" === req.user._id + ""){
-                        pridruzen = true;
-                    }
+                        if(element._id + "" === req.user._id + ""){
+                            pridruzen = true;
+                        }
+                    });
+                    povratniKlic(req, res, {
+                                            layout: 'main',
+                                            user: req.user,
+                                            lahkoOcenjamo: true,
+                                            ocenjamo: false,
+                                            urejamo: false,
+                                            pridruzen: pridruzen,
+                                            tekma: tekma,
+                                            kreator: kreator,
+                                            sodelujoci: sodelujoci,
+                                            vreme: temp
+                                            });
                 });
-                povratniKlic(req, res, {
-                                        layout: 'main',
-                                        user: req.user,
-                                        lahkoOcenjamo: true,
-                                        ocenjamo: false,
-                                        urejamo: false,
-                                        pridruzen: pridruzen,
-                                        tekma: tekma,
-                                        kreator: kreator,
-                                        sodelujoci: sodelujoci
-                                        });
             });
         });
     })
@@ -383,6 +398,7 @@ const prikaziPodrobnostiTekme = (req, res, vsebina) => {
                                 pridruzen: vsebina.pridruzen,
                                 tekma: vsebina.tekma,
                                 kreator: vsebina.kreator,
+                                vreme: vsebina.vreme,
                                 sodelujoci: vsebina.sodelujoci});
 };
 
@@ -416,6 +432,7 @@ const prikaziOcenjanjeTekme = (req, res, vsebina) => {
                                 pridruzen: vsebina.pridruzen,
                                 tekma: vsebina.tekma,
                                 kreator: vsebina.kreator,
+                                vreme: vsebina.vreme,
                                 sodelujoci: vsebina.sodelujoci});
 };
 
@@ -485,6 +502,7 @@ const prikaziUrejanjeTekme = (req, res, vsebina) => {
                                 pridruzen: vsebina.pridruzen,
                                 tekma: vsebina.tekma,
                                 kreator: vsebina.kreator,
+                                vreme: vsebina.vreme,
                                 sodelujoci: vsebina.sodelujoci});
 };
 
@@ -947,6 +965,9 @@ const izbrisiUporabnika = (req, res) => {
     })
 
 }
+
+
+
 
 
 module.exports = {
