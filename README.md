@@ -88,18 +88,19 @@ Dinamična spletna aplikacija z logiko na strani strežnika
 * ime - ime uporabnika. Dovoljeni so vsi znaki.  
 * priimek - priimek uporabnika. Dovoljeni so vsi znaki.
 * mail - elektronski naslov uporabnika. Dovoljen je le naslov tipa a@b.c
-* gesli - geslo uporabnika, gesli se morata ujemati in biti dolgi vsaj 6 znakov  
+* gesli - geslo uporabnika, gesli se morata ujemati in biti dolgi vsaj 6 znakov.
 
 #### Homepage
 * išči - poišče se uporabnika ali tekmo. Dovoljeni so vsi znaki.
 
 #### Ustvarjanje tekme
-* kraj - kraj tekme. Izbere se s klikom na zemljevid. Ob kliku na zemljevid se v polju "Kraj" samodejno zapiše naslov, ki ga uporabnik ne more spreminjati
+* kraj - kraj tekme. Izbere se s klikom na zemljevid. Ob kliku na zemljevid se v polju "Kraj" samodejno zapiše naslov, ki ga uporabnik ne more spreminjati.
 * datum - datum tekme. Dovoljen vnos tipa datum. 
 * ura - ura tekme. Dovoljen vnos tipa ure.
 * minimalno število igralcev - min. število igralcev na tekmi. Dovoljeno je sodo število večje ali enako 4.  
 * maksimalno število igralcev - max. število igralcev na tekmi. Dovoljeno je pozitivno sodo število večje ali enako 4. 
 * že prijavljeni - število igralcev, ki se bodo udeležili tekmi a niso prijavljeni v aplikacijo. 
+* opombe - Dovoljeni so vsi znaki.
 
 #### Urejanje osebnih podatkov
 * ime - lahko spremenimo ime uporabnika. Dovoljeni so vsi znaki.
@@ -108,6 +109,14 @@ Dinamična spletna aplikacija z logiko na strani strežnika
 * telefon - dodamo/spremenimo telefon uporabnika. Dovoljenih je 9 števk.  
 * geslo - zamenjava gesla, vsaj 6 znakov. Dovoljeni so vsi znaki.
 * spremembra profilne slike - lahko naložimo sliko in jo nastavimo kot profilno sliko.
+
+#### Urejanje tekme
+* datum - dovoljen je tip vnosa datum.
+* ura - dovoljen je tip vnosa ura.
+* opombe - dovoljeni so vsi znaki.
+
+#### Ocenjevanje uporabnikov
+* ocena - vnosno polje je dropdown s števili od 1 - 5.
 
 ## Npm knjižnice
 #### bcrypt
