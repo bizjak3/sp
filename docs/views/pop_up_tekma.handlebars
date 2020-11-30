@@ -41,7 +41,7 @@
                                 <!--iframe src="http://www.weather-mikimuster.com/builder/index.html#/widgets/37.577475/22.130864/kraj/si/c/vertical/3/337abf/250" frameborder="0" scrolling="no" width="250px" height="395px"></iframe-->
 
                                 </br>
-                                <h1 class="display-4 text-center" style="font-size: 8vh;"><i class="fas fa-thermometer-quarter"></i> <strong>{{vreme.main.temp }}°C</strong></h1>
+                                <h1 class="display-4 text-center"><i class="fas fa-thermometer-quarter"></i> <strong>{{vreme.main.temp }}°C</strong></h1>
                                 <h5 class="text-center"><i class="fas fa-wind"></i> {{ vreme.wind.speed}} m/s</h5>
                             <h5 class="text-center">{{#each vreme.weather}}<img src="http://openweathermap.org/img/wn/{{this.icon}}.png">{{this.description}}{{/each}}</h5>
 
