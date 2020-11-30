@@ -124,29 +124,29 @@ Bcrypt uporabljamo za kodiranje gesla. V bazo ne shranimo geslo kot je bilo napi
 Uporabljamo tudi funkcijo bcryt compare, ki vnešeno geslo v form preveri če je enako šifriranemu geslu v podatkovni bazi.
 
 #### express-flash
-Express-flash uporabimo za pokaz sporočil. Če se pojavi napaka se pojavi "flash-message", v katerem je zapisano besedilo, ki je povezano s tipom napake
+Express-flash uporabimo za prikaz sporočil. Če se pojavi napaka se pojavi "flash-message", v katerem je zapisano besedilo, ki je povezano s tipom napake.
 
 #### passport, passport-local
 Passport se uporabi za validacijo uporabnika. S passport knjižnico se preveri če je geslo uporabnika pravilno. S passportom naredimo, da če uporabnik ni prijavljen ne mora na homepage. 
 Pošlje ga na login stran.
 
 #### @sendgrid/mail
-Uporabljamo za pošiljanje emailov preko sendgrid api-ja
+Uporabljamo za pošiljanje emailov preko sendgrid api-ja.
 
 #### gridfs-stream
-Za "stream" datoteke na bazo
+Za "stream" datoteke na bazo (uporabljeno pri zamenjavi slike profila).
 
 #### multer & multer-gridfs-storage
-Za razkosavanje datoteke na manjše kose
+Za razkosavanje datoteke na manjše kose (uporabljeno pri zamenjavi slike profila).
 
 #### http
 Knjižnica je uporabljena za dostopanje do podatkov za različna opozorila.
 
 #### openweather-apis
-Uporabljena za prikaz vremena na lokaciji.
+Uporabljena za pridobitev podatkov glede trenutnega vremena.
 
 ## Delovanje na različnih napravah
-Aplikacija deluje na telefonu, tablici in računalniku.
+Aplikacija deluje na telefonu, tablici in računalniku. Testirali smo na več napravah različnih velikosti.
 
 
 ## 3. LP
@@ -154,13 +154,13 @@ Aplikacija deluje na telefonu, tablici in računalniku.
 Dinamična spletna aplikacija s podatkovno bazo
 
 ## Link do heroku aplikacije
-https://tap-play.herokuapp.com
+https://tap-n-play.herokuapp.com
 
 ## Navodila za namestitev in zagon aplikacije
-Sprva pridobite našo aplikacijo preko GIT-a. To lahko storite kar znotraj "Webstorma", s tem da kopirate naš repozitorij ali kar shranite zip datoteko.   
-Znotraj datoteke se v terminalu premaknete v docs (cd docs). Aplikacijo boste zagnali v Docker-ju. V terminal napišete " docker-compose up ". Nato počakate,
-da se shranijo vsi moduli. Ko bo tega konec bo naša aplikacija dostopna na " localhost ".   
-Nato morate dostopat do localhost/db. Tu lahko vnesete testne podatke. Nato pa se lahko kot uporabnik registrirate in prijavite
+* Sprva pridobite našo aplikacijo z GIT-a. To lahko storite kar znotraj "Webstorma", s tem da klonirate naš repozitorij (Get from version control), ali pa kar shranite zip datoteko.   
+* Znotraj datoteke se v terminalu premaknete v mapo docs ("cd docs"). Aplikacijo boste zagnali v Docker-ju. V terminal napišete "docker-compose up". Nato počakate, da se naložijo vse potrebne datoteke in vzpostavi okolje.
+* Po koncu zgornjega procesa je aplikacija dostopna na localhost naslovu.   
+* Sedaj lahko aplikacijo normalno uporabljate. Če hočete vnesti nekaj testnih vnosov lahko dostopate do localhost/db. Tam lahko vnesete testne podatke.
 
 
 ## 4. LP
