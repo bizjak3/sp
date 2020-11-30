@@ -52,8 +52,7 @@ const UserSchema = new mongoose.Schema({
         type: Date
     },
     tekme:{
-        type: Array,
-        default: [""]
+        type: [String]
     }
 });
 

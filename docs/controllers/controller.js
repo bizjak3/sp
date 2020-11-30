@@ -122,12 +122,14 @@ var moje_tekme = (req, res) => {
                     image: false,
                     moje_tekme: true,
                     user: req.user,
+                    title: "Moje tekme",
                     tekme: records,
                     user: req.user
                 });
             } else {
                 res.render('moje_tekme',{
                     image: true,
+                    title: "Moje tekme",
                     slika: file.filename,
                     moje_tekme: true,
                     user: req.user,
@@ -172,11 +174,13 @@ var profil = (req, res) => {
             res.render('profil',{
                 image: false,
                 profil: true,
+                title: "Profil",
                 user: req.user
             });
         } else {
             res.render('profil',{
                 image: true,
+                title: "Profil",
                 slika: file.filename,
                 profil: true,
                 user: req.user
@@ -208,6 +212,7 @@ var profil_ostali = (req, res) => {
                         image: false,
                         profil: true,
                         user: req.user,
+                        title: "Profil",
                         name: igralec.name,
                         surname: igralec.surname,
                         email: igralec.email,
@@ -222,6 +227,7 @@ var profil_ostali = (req, res) => {
                         image: true,
                         slika: file.filename,
                         profil: true,
+                        title: "Profil",
                         user: req.user,
                         name: igralec.name,
                         surname: igralec.surname,
@@ -249,11 +255,13 @@ var nastavitve = (req, res) => {
             res.render('nastavitve',{
                 image: false,
                 nastavitve: true,
+                title: "Nastavitve",
                 user: req.user
             });
         } else {
             res.render('nastavitve',{
                 image: true,
+                title: "Nastavitve",
                 slika: file.filename,
                 nastavitve: true,
                 user: req.user
@@ -272,11 +280,13 @@ var nastavitve_uredi = (req, res) => {
             res.render('nastavitve_uredi',{
                 image: false,
                 nastavitve_uredi: true,
+                title: "Nastavitve",
                 user: req.user
             });
         } else {
             res.render('nastavitve_uredi',{
                 image: true,
+                title: "Nastavitve",
                 slika: file.filename,
                 nastavitve_uredi: true,
                 user: req.user
@@ -365,6 +375,7 @@ const prikaziPodrobnostiTekme = (req, res, vsebina) => {
 
     res.render('pop_up_tekma', {layout: vsebina.layout,
                                 user: vsebina.user,
+                                title: "Tekma",
                                 lahkoOcenjamo: lahkoOcenjamo,
                                 ocenjamo: ocenjamo,
                                 urejamo: urejamo,
@@ -398,6 +409,7 @@ const prikaziOcenjanjeTekme = (req, res, vsebina) => {
 
     res.render('pop_up_tekma', {layout: vsebina.layout,
                                 user: vsebina.user,
+                                title: "Tekma",
                                 lahkoOcenjamo: lahkoOcenjamo,
                                 ocenjamo: ocenjamo,
                                 urejamo: urejamo,
@@ -427,15 +439,17 @@ const oceniIgralce_POST = (req, res, done) => {
             }
             let i = 0;
             igralci.map(user => {
-                let trenutnaOcena = user.ocena;
-                let trenutnoSteviloOcen = user.steviloOcen;
+                if(ocene.ocena[i] >= 1 || ocene.ocena[i] <= 5){
+                    let trenutnaOcena = user.ocena;
+                    let trenutnoSteviloOcen = user.steviloOcen;
 
-                let koncnaOcena = trenutnaOcena + (ocene.ocena[i] - trenutnaOcena) / trenutnoSteviloOcen;
-                let koncnoStevilo = trenutnoSteviloOcen + 1;
-                user.ocena = koncnaOcena;
-                user.steviloOcen = koncnoStevilo;
-                user.save();
-                i++;
+                    let koncnaOcena = trenutnaOcena + (ocene.ocena[i] - trenutnaOcena) / trenutnoSteviloOcen;
+                    let koncnoStevilo = trenutnoSteviloOcen + 1;
+                    user.ocena = koncnaOcena;
+                    user.steviloOcen = koncnoStevilo;
+                    user.save();
+                    i++;
+                }
             });
         });
     });
@@ -463,6 +477,7 @@ const prikaziUrejanjeTekme = (req, res, vsebina) => {
     }
 
     res.render('pop_up_tekma', {layout: vsebina.layout,
+                                title: "Tekma",
                                 user: vsebina.user,
                                 lahkoOcenjamo: lahkoOcenjamo,
                                 ocenjamo: ocenjamo,
@@ -579,7 +594,9 @@ var ustvari_tekmo = (req, res) => {
         return res.redirect('/login');
     }
     res.render('ustvari_tekmo', {
-        ustvari_tekmo: true
+        ustvari_tekmo: true,
+        user: req.user,
+        title: "Ustvari tekmo"
     });
 };
 
@@ -629,7 +646,10 @@ var ustvari_tekmo_POST = (req, res, done) => {
             );
             res.redirect('/');
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err);
+            res.redirect('/ustvari_tekmo');
+        });
 };
 
 var homepage = (req, res) => {
@@ -638,8 +658,7 @@ var homepage = (req, res) => {
         res.render('hmpg', {
             layout: 'main',
             homepage: true,
-            name: 'Janezz',
-            surname: 'Novak',
+            title: "Tap & Play",
             tekma: tekma,
             user: req.user
         });
@@ -648,7 +667,8 @@ var homepage = (req, res) => {
 
 var db = (req, res) => {
     res.render('db', {
-        ustvari_tekmo: true
+        ustvari_tekmo: true,
+        title: "Baza"
     });
 };
 
@@ -670,6 +690,7 @@ const nastavitve_uredi_POST = (req, res) => {
         res.render('nastavitve_uredi', {
             errors,
             ime,
+            title: "Nastavitve",
             priimek,
             email,
             telefon,
@@ -816,6 +837,7 @@ const register = (req, res) => {
         res.render('register', {
             errors,
             name,
+            title: "Registracija",
             surname,
             email,
             password,
@@ -830,6 +852,7 @@ const register = (req, res) => {
                     req.flash('error', 'Uporabnik že obstaja');
                     res.render('register', {
                         errors,
+                        title: "Registracija",
                         name,
                         surname,
                         email,
@@ -906,7 +929,7 @@ var search = (req, res) => {
        // console.log("tabela tekem spodej");
         // console.log(tabelaTekem);
 
-        res.render('search', {tabelaTekem: tabelaTekem, tabelaUporabnikov : tabelaUporabnikov});
+        res.render('search', {tabelaTekem: tabelaTekem, title: "Iskanje", tabelaUporabnikov : tabelaUporabnikov});
 
     });
 
