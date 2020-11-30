@@ -59,7 +59,7 @@ Ko se tekma zaključi, lahko igralci na tem pogledu ocenijo njihove soigralce.
 
 Domača stran je namenjena prikazu vseh prihajajočih tekem. Vse tekme so označene na zemljevidu (vstavljen preko Google maps), prav tako je desno od zemljevida seznam vseh tekem, na katerem so naštete tekme s splošnimi informacijami (število prostih mest, kraj, datum, ura). Spodaj desno je še gumb "ustvari novo tekmo", ki uporabnika popelje do strani na kateri lahko doda tekmo. S klikom na kazalec tekme na zemljevidu, ali pa s klikom tekme v seznamu se pojavi pojavno okno z več podrobnostmi glede tekme. V naglavni vrstici strani je tudi polje za iskanje po tekmah in uporabnikih ter ikona, po kateri lahko uporabnik dostopa do svojega profila, zgodovine, nastavitev, ali pa se odjavi.
 
-(Master/detail vzorec => seznam vseh tekem v bližini)
+(Master/detail vzorec => seznam vseh tekem)
 
 ### Razlike med brskalniki
 
