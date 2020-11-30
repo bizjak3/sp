@@ -79,35 +79,35 @@ Dinamična spletna aplikacija z logiko na strani strežnika
 
 #### Login stran
 * mail - elektronski naslov. Dovoljen je le naslov tipa a@b.c
-* geslo - geslo uporabnika, geslo mora biti enako geslu, s katerim se je uporabnik registriral
+* geslo - geslo uporabnika, geslo mora biti enako geslu, s katerim se je uporabnik registriral. Dovoljeni so vsi znaki, pod pogojem da je geslo dolžine najmanj 6 znakov.
 
 ##### Pozabil sem geslo
 * mail - elektronski naslov na katerega se pošlje novo zgenerirano geslo. Dovljen naslov tipa a@b.c
 
 #### Registracija
-* ime - ime uporabnika.   
-* priimek - priimek uporabnika  
+* ime - ime uporabnika. Dovoljeni so vsi znaki.  
+* priimek - priimek uporabnika. Dovoljeni so vsi znaki.
 * mail - elektronski naslov uporabnika. Dovoljen je le naslov tipa a@b.c
 * gesli - geslo uporabnika, gesli se morata ujemati in biti dolgi vsaj 6 znakov  
 
 #### Homepage
-* išči - poišče se uporabnika ali tekmo
+* išči - poišče se uporabnika ali tekmo. Dovoljeni so vsi znaki.
 
 #### Ustvarjanje tekme
-* kraj - kraj tekme. Izbere se na zemljevidu. Ob kliku na zemljevid se v polju "Kraj" zapiše naslov 
-* datum - datum tekme. Oblika datuma  
-* ura - ura tekme  
-* minimalno število igralcev - min. število igralcev na tekmi  
-* maksimalno število igralcev - max. število igralcev na tekmi  
-* že prijavljeni - število igralcev, ki se bodo udeležili tekmi a niso prijavljeni v aplikacija  
+* kraj - kraj tekme. Izbere se s klikom na zemljevid. Ob kliku na zemljevid se v polju "Kraj" samodejno zapiše naslov, ki ga uporabnik ne more spreminjati
+* datum - datum tekme. Dovoljen vnos tipa datum. 
+* ura - ura tekme. Dovoljen vnos tipa ure.
+* minimalno število igralcev - min. število igralcev na tekmi. Dovoljeno je sodo število večje ali enako 4.  
+* maksimalno število igralcev - max. število igralcev na tekmi. Dovoljeno je pozitivno sodo število večje ali enako 4. 
+* že prijavljeni - število igralcev, ki se bodo udeležili tekmi a niso prijavljeni v aplikacijo. 
 
 #### Urejanje osebnih podatkov
-* ime - lahko spremenimo ime uporabnika
-* priimek - lahko spremenimo priimek uporabnika
+* ime - lahko spremenimo ime uporabnika. Dovoljeni so vsi znaki.
+* priimek - lahko spremenimo priimek uporabnika. Dovoljeni so vsi znaki.
 * mail - lahko spremenimo mail uporabnika. Dovoljen je le naslov tipa a@b.c
 * telefon - dodamo/spremenimo telefon uporabnika. Dovoljenih je 9 števk.  
-* geslo - zamenjava gesla, vsaj 6 znakov
-* spremembra profilne slike - lahko uploadamo jpeg ali png sliko in jo nastavimo kot profilno sliko
+* geslo - zamenjava gesla, vsaj 6 znakov. Dovoljeni so vsi znaki.
+* spremembra profilne slike - lahko naložimo sliko in jo nastavimo kot profilno sliko.
 
 ## Npm knjižnice
 #### bcrypt
