@@ -10,6 +10,7 @@ require('./config/passport')(passport);
 const app = express();
 
 
+
 // vreme
 const Tekma = require('./models/Tekma');
 

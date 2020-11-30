@@ -298,6 +298,27 @@ const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
             console.log(err);
             res.status(400);
         }
+
+//dodal rihard za vreme
+
+        var weather = require('openweather-apis');
+
+        weather.setLang('en');
+        weather.setCoordinate(tekma.lat, tekma.lng);
+        weather.setUnits('metric');
+        weather.setAPPID('2d46165b2a3d0734271c8271f8c9e8fa');
+
+        var blabla;
+        weather.getTemperature(function(err, temp){
+            if(err) console.log(err);
+            console.log(temp);
+            blabla = temp;
+            // normal execution with no error
+
+        });
+//konec dodaje za vreme
+
+
         let playerIDs = tekma.igralci;
         User.find({_id: playerIDs}).lean().exec((err, igralci) => {
             if(err){
@@ -889,6 +910,9 @@ var search = (req, res) => {
     });
 
 };
+
+
+
 
 
 module.exports = {
