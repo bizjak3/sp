@@ -114,6 +114,9 @@ var apiParametri = {
 
 var moje_tekme = (req, res) => {
 
+    if(!req.user){
+        return res.redirect('/login');
+    }
 
     let id = req.user._id.toString();
     id = id+'.jpg';
@@ -171,6 +174,10 @@ const najdiSliko = (req,res) =>{
 }
 
 var profil = (req, res) => {
+
+    if(!req.user){
+        return res.redirect('/login');
+    }
 
     let id = req.user._id.toString();
     id = id+'.jpg';
@@ -253,6 +260,10 @@ var profil_ostali = (req, res) => {
 
 var nastavitve = (req, res) => {
 
+    if(!req.user){
+        return res.redirect('/login');
+    }
+
     let id = req.user._id.toString();
     id = id+'.jpg';
     gfs.files.findOne({ filename: id.toString() }, (err, file) => {
@@ -277,6 +288,10 @@ var nastavitve = (req, res) => {
 };
 
 var nastavitve_uredi = (req, res) => {
+
+    if(!req.user){
+        return res.redirect('/login');
+    }
 
     let id = req.user._id.toString();
     id = id+'.jpg';
@@ -690,6 +705,11 @@ var db = (req, res) => {
 };
 
 const nastavitve_uredi_POST = (req, res) => {
+
+    if(!req.user){
+        return res.redirect('/login');
+    }
+
     const { id, ime, priimek, email, telefon, geslo, geslo1 } = req.body;
     let errors = [];
 
@@ -742,6 +762,11 @@ const nastavitve_uredi_POST = (req, res) => {
 }
 
 const nastavitve_POST = (req, res) => {
+
+    if(!req.user){
+        return res.redirect('/login');
+    }
+
     const {emailOdpoved, emailprihajujoče} = req.body;
     let errors = [];
 
@@ -770,6 +795,10 @@ const nastavitve_POST = (req, res) => {
 }
 
 const nastavitve_osebni_POST = (req,res) =>{
+
+    if(!req.user){
+        return res.redirect('/login');
+    }
 
     const {telPokazi, emailPokazi} = req.body;
     let errors = [];
@@ -830,6 +859,10 @@ const pozabil_geslo =  (req, res) => {
 const nalozi = upload.single('file');
 
 const nalozi_sliko = (req, res) => {
+
+    if(!req.user){
+        return res.redirect('/login');
+    }
 
     res.redirect('/profil');
 
