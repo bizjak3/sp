@@ -14,6 +14,8 @@ module.exports = {
         return rezultat;
     },
     ocenaIgralca: function (ocena) {
+        if(ocena === 0)
+            return "<span class=\"badge badge-secondary\">NI OCENE</span>";
         if(ocena < 2)
             return "<span class=\"badge badge-danger\">SLABA OCENA!</span>";
         if(ocena === 5)
