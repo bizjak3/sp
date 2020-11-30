@@ -119,6 +119,15 @@ Express-flash uporabimo za pokaz sporočil. Če se pojavi napaka se pojavi "flas
 Passport se uporabi za validacijo uporabnika. S passport knjižnico se preveri če je geslo uporabnika pravilno. S passportom naredimo, da če uporabnik ni prijavljen ne mora na homepage. 
 Pošlje ga na login stran.
 
+####@sendgrid/mail
+Uporabljamo za pošiljanje emailov preko sendgrid api-ja
+
+####gridfs-stream
+Za "stream" datoteke na bazo
+
+####multer & multer-gridfs-storage
+Za razkosavanje datoteke na manjše kose
+
 
 ## 3. LP
 
