@@ -337,7 +337,6 @@ const pridobiPodrobnostiTekme = (req, res, povratniKlic) => {
                 }
                 weather.getAllWeather(function(err, temp){
                     if(err) console.log(err);
-                    //console.log(temp);
                     let sodelujoci = [];
                     let pridruzen = false;
                     igralci.forEach(element => {

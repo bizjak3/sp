@@ -35,6 +35,15 @@ module.exports = {
         let k = kraj + "";
         let n = k.split(',');
         return n[n.length - 1].toLowerCase();
+    },
+    status: function (status){
+        if(status === 'prijave'){
+            return "badge-primary";
+        }else if(status === 'zakljucena'){
+            return "badge-success";
+        }else{
+            return "badge-danger";
+        }
     }
 
     //dodal rihard
