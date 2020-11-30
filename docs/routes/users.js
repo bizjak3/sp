@@ -11,10 +11,10 @@ const kontroler = require('../controllers/controller');
 
 
 // Login Page
-router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
+router.get('/login', forwardAuthenticated, (req, res) => res.render('login', {title: "Prijava"}));
 
 // Register Page
-router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
+router.get('/register', forwardAuthenticated, (req, res) => res.render('register', {title: "Registraicja"}));
 
 
 router.post('/register', kontroler.register)
