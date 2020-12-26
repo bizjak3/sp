@@ -1,0 +1,69 @@
+<app-header></app-header>
+
+<div class="container-lg h-100">
+    
+    <div class="row">
+        <!--prva kartica-->
+        <div class="col-md-4 col-sm-12 mb-2">
+            <app-profil-nav></app-profil-nav>
+        </div>
+        
+        <!--druga kartica-->
+        <div class="col-md-8 col-sm-12">
+            <div class="card  border-dark">
+                
+                <!--Ime kartice-->
+                <div class="card-header bg-dark text-white ">
+                    Moj profil
+                </div>
+
+                <!--Tle se začnejo podatki-->
+                <div class="card-body px-1 py-1">
+
+                    <!--ime in priimek-->
+                    <div class="row m-2 info">
+                        <div class="col">
+                            Ime in Priimek
+                        </div>
+                        <div class="col">
+                            {{uporabnik.ime}} {{uporabnik.priimek}}
+                        </div>
+                    </div>
+
+                    <!--Email-->
+                    <div class="row m-2 info">
+                        <div class="col">
+                            Email
+                        </div>
+                        <div class="col info">
+                            {{uporabnik.email}}
+                        </div>
+                    </div>
+
+                    <!--Telefon-->
+                    <div class="row m-2 info">
+                        <div class="col">
+                            Telefon
+                        </div>
+                        <div class="col info">
+                            {{uporabnik.telefon}}
+                        </div>
+                    </div>
+
+                    <!--Grafična ocena-->
+                    <div class="row m-2 info">
+                        <div class="col">
+                            Ocena
+                        </div>
+                        <div class="col info">
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,69 @@
+
+    <div class="card border-dark">
+
+        <!--Ime kartice-->
+        <div class="card-header bg-dark text-white">
+            <div class="row justify-content-center">
+                <div class="col text-center">
+                    
+                </div>
+            </div>
+        </div>
+
+        <!--Tle se začne nav menu-->
+        <div class="card-body px-0 py-0">
+            <nav class="sidebar">
+
+                <!-- tle je slika -->
+                <div class="row">
+                    
+                        <img class="img-fluid profil m-2 mx-auto" width="200" height="40" alt="Image not found" src="/assets/slike/defualtProfile.jpg">
+                    
+                </div>
+
+                <!--opis igralca al neki ?-->
+                <div class="row justify-content-center">
+                    <div class="col text-center">
+                        Amaterski igralec
+                    </div>
+                </div>
+
+                <!-- Tle bi lahko dali kake achievmente ? -->
+                <div class="row justify-content-center">
+                    <div class="col text-center">
+                    
+                    </div>
+                </div>
+
+                <!--število zvezdic-->
+                <div class="row justify-content-center mb-1">
+                    
+                </div>
+
+                <!--Tle so opcije za sprehod po menuju-->
+                <div class="row justify-content-center mb-1">
+                    <div class="col text-center">
+                        <ul class="list-unstyled nav-list">
+                            <li class="list_item " routerLink="/profil">
+                                <i class="fas fa-user"></i><span class="list-text"> Moj profil</span>
+                            </li>
+
+                            <li class="list_item " onclick="window.location.href='moje_tekme'">
+                                <i class="fas fa-history"></i><span class="list-text"> moje_tekme</span>
+                            </li>
+
+                            <li class="list_item" routerLink="/nastavitve">
+                                <i class="fas fa-cog"></i><span class="list-text"> Nastavitve</span>
+                            </li>
+
+                            <li class="list_item noactive" onclick="window.location.href='/logout'">
+                                <i class="fas fa-sign-out-alt"></i><span class="list-text"> Odjava</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    

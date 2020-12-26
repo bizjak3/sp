@@ -1,0 +1,164 @@
+<app-header></app-header>
+
+<!--container za vso vsebino-->
+<div class="container-lg h-100">
+
+
+    <div class="row">
+        <!--prva kartica-->
+        <div class="col-md-4 col-sm-12 mb-2">
+            <app-profil-nav></app-profil-nav>
+        </div>
+
+        <!--Tle se začne druga kartica-->
+        <div class="col-md-8 col-sm-12">
+
+            <!-- zgornj kartica-->
+            <div class="card-deck" >
+                <div class="card  border-dark">
+                    <div class="card-header bg-dark text-white ">
+                        <div class="row">
+                            <div class="col">Nastavitve</div>
+                            <div class="col"><a routerLink="/uredi"><span class="interactive text-white">Uredi osebne podatke</span></a></div>
+                        </div>
+                    </div>
+
+                    <!-- card body-->
+                    <div class="card-body px-1 py-1">
+
+                        <div class="row m-2 info">
+                            <div class="col">
+                                Ime in Priimek
+                            </div>
+                            <div class="col">
+                                {{uporabnik.ime}} {{uporabnik.priimek}}
+                            </div>
+
+                        </div>
+
+                        <div class="row m-2 info">
+                            <div class="col">
+                                Email:
+                            </div>
+                            <div class="col">
+                                {{uporabnik.email}}
+                            </div>
+                        </div>
+
+                        <div class="row m-2 info">
+                            <div class="col">
+                                Telefon
+                            </div>
+                            <div class="col">
+                                {{uporabnik.telefon}}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- srednja kartica-->
+            <form method="POST" action="/nastavitve">
+                <div class="card-deck pt-2">
+                    <div class="card  border-dark">
+                        <div class="card-header bg-dark text-white ">
+                            <div class="row">
+                                <div class="col">Nastavitve obveščanja</div>
+                            </div>
+                        </div>
+
+                        <div class="card-body px-1 py-1">
+                            <div class="row m-2 info border-bottom">
+                                <div class="col">
+                                    Obveščanje
+                                </div>
+                            </div>
+
+                            <div class="row m-2 info">
+                                <div class="col">
+                                    Obvestilo v primeru da tekma odpade:
+                                </div>
+                            </div>
+
+                            <div class="row info m-2 border-bottom">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="emailOdpoved" value="true" id="emailodpoved"  checked >
+                                        <label class="form-check-label" for="emailodpoved">
+                                            Email obveščanje
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row info m-2">
+                                <div class="col">
+                                    <input type="submit" value="Shrani" class="btn btn-success"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- spodnja kartica-->
+            <form method="POST" action="/nastavitve_osebni">
+                <div class="card-deck pt-2">
+                    <div class="card  border-dark">
+                        <div class="card-header bg-dark text-white ">Nastavitve zasebnosti</div>
+                        <div class="card-body px-1 py-1">
+
+                            <div class="row m-2 info border-bottom">
+                                <div class="col">
+                                    Drugi uporabniki lahko vidijo:
+                                </div>
+                            </div>
+
+                            <div class="row info m-2">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="emailPokazi" value="true" id="emailPokazi"  checked >
+                                        <label class="form-check-label" for="emailPokazi">
+                                            Moj email
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="telPokazi" value="true" id="telPokazi" checked>
+                                        <label class="form-check-label" for="telPokazi">
+                                            Mojo telefonsko številko
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row info m-2">
+                                <div class="col">
+                                    <input type="submit" value="Shrani" class="btn btn-success"/>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+            <div class="card-body px-1 py-1">
+
+                <div class="row m-2 info">
+                    <div class="col">
+                        <form action="/izbrisi" method="POST" >
+                            <input type="submit" value="Izbriši me iz aplikacije" class="btn btn-danger btn-block">
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
