@@ -70,6 +70,21 @@ export class AvtentikacijaService {
     }
   }
 
+  public vrniPodatkeUporabnika() {
+    var id = {
+      id: this.vrniId()
+    }
+    return new Promise(resolve=>{
+        this.web.getUporabnikById('/uporabnik', id)//useful if you need the data once and don't want to manually cancel the subscription again)
+         .subscribe(
+            (data:any) => {
+                resolve(data);
+         })
+      })
+  }
+
+
+
   public vrniId() {
     if (this.jePrijavljen()) {
       const zeton: string = this.vrniZeton();

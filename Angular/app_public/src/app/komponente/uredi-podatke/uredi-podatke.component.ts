@@ -38,26 +38,20 @@ export class UrediPodatkeComponent implements OnInit {
   }
 
   public vrniUporabnika() {
-    var id = {
-      id: this.avtentikacijaStoritev.vrniId()
-    }
-    this.web.getUporabnikById('/uporabnik', id).subscribe((user) => {
-      this.loaded = true;
-      this.uporabnik = user;
+    this.avtentikacijaStoritev.vrniPodatkeUporabnika().then((data) => {
+      this.uporabnik = data
+      this.loaded = true
       this.podatki.ime = this.uporabnik.ime
       this.podatki.priimek = this.uporabnik.priimek;
       this.podatki.email = this.uporabnik.email;
       this.podatki.telefon = this.uporabnik.telefon;
       this.podatki.id = this.uporabnik._id;
-    })  
+    })
   }  
 
   spremeni() {
-
     this.web.getUporabnik("/spremeni", this.podatki).subscribe()
     this.odjava();
-
-
   }
 
   public odjava(): void {

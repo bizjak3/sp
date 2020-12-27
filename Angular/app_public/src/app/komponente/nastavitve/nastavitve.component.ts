@@ -26,13 +26,10 @@ export class NastavitveComponent implements OnInit {
   }
 
   public vrniUporabnika() {
-    var id = {
-      id: this.avtentikacijaStoritev.vrniId()
-    }
-    this.web.getUporabnikById('/uporabnik', id).subscribe((user) => {
-      this.loaded = true;
-      this.uporabnik = user;
-    })  
+    this.avtentikacijaStoritev.vrniPodatkeUporabnika().then((data) => {
+      this.uporabnik = data
+      this.loaded = true
+    })
   }  
 
 }
