@@ -16,6 +16,7 @@ export class ProfilComponent implements OnInit {
   user: any;
   uporabnik: any;
   mail: string;
+  loaded = false;
 
   
   
@@ -28,6 +29,7 @@ export class ProfilComponent implements OnInit {
   
 
   ngOnInit(): void {
+    
     this.vrniUporabnika()
   }
 
@@ -36,6 +38,7 @@ export class ProfilComponent implements OnInit {
       id: this.avtentikacijaStoritev.vrniId()
     }
     this.web.getUporabnikById('/uporabnik', id).subscribe((user) => {
+      this.loaded = true;
       this.uporabnik = user;
     })  
   }  

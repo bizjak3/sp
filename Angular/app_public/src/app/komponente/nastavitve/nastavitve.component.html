@@ -30,7 +30,7 @@
                             <div class="col">
                                 Ime in Priimek
                             </div>
-                            <div class="col">
+                            <div *ngIf="loaded" class="col">
                                 {{uporabnik.ime}} {{uporabnik.priimek}}
                             </div>
 
@@ -40,7 +40,7 @@
                             <div class="col">
                                 Email:
                             </div>
-                            <div class="col">
+                            <div *ngIf="loaded" class="col">
                                 {{uporabnik.email}}
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             <div class="col">
                                 Telefon
                             </div>
-                            <div class="col">
+                            <div *ngIf="loaded" class="col">
                                 {{uporabnik.telefon}}
                             </div>
                         </div>

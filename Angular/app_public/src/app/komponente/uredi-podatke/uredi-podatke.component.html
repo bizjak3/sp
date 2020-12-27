@@ -31,7 +31,7 @@
 
 
 
-                        <form name="urediOsebne" (submit)="spremeni()">
+                        <form *ngIf="loaded" name="urediOsebne" (submit)="spremeni()">
 
                             <input type="name" id="idNastavitve" name="id" class="form-control"  [(ngModel)]="podatki.id">
 

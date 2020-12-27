@@ -12,6 +12,9 @@ import { WebRequestService } from './web-request.service'
 export class AvtentikacijaService {
 
   user: any;
+  prova = "PROVA"
+
+  a = this.vrniTrenutnegaUporabnika()
 
   constructor(@Inject(SHRAMBA_BRSKALNIKA) private shramba: Storage, private web: WebRequestService) { }
 
@@ -33,7 +36,6 @@ export class AvtentikacijaService {
       .prijava(uporabnik)
       .then((rezultatAvtentikacije: RezultatAvtentikacije) => {
         this.shraniZeton(rezultatAvtentikacije["žeton"])
-        this.shraniId();
       });
   }
 
@@ -55,37 +57,6 @@ export class AvtentikacijaService {
     return this.shramba.getItem('app-zeton');
   }
 
-  public shraniId() {
-    console.log("SE sporzi shranjevanje")
-    const zeton: string = this.vrniZeton();
-    const uporabnik = JSON.parse(this.b64Utf8(zeton.split('.')[1]));
-
-   
-    this.web.getUporabnik("/prof", uporabnik).subscribe((resUporabnik) => {
-      this.user = resUporabnik;
-      
-      var id = this.user._id;
-      //Shrani ID uporabnika v session
-      this.shramba.setItem('Id', id);
-    })
-  }
-
-  public vrniId() {
-    return this.shramba.getItem('Id');
-  }
-
-  public vrniUporabnikaPrekoId() {
-    var id = {
-      id: this.vrniId()
-    }
-    this.web.getUporabnikById('/uporabnik', id).subscribe((user) => {
-      this.user = user;
-      console.log("USER notr: " + this.user.ime)
-      return this.user
-    })  
-  }
-  
-
   public shraniZeton(zeton: string): void {
     this.shramba.setItem('app-zeton', zeton);
   }
@@ -99,12 +70,23 @@ export class AvtentikacijaService {
     }
   }
 
+  public vrniId() {
+    if (this.jePrijavljen()) {
+      const zeton: string = this.vrniZeton();
+      const {_id} = JSON.parse(this.b64Utf8(zeton.split('.')[1]));
+      
+      var id = _id
+      return id
+    }
+  }
+  
   public vrniTrenutnegaUporabnika(): Uporabnik {
     if (this.jePrijavljen()) {
       const zeton: string = this.vrniZeton();
-      const {elektronskiNaslov, ime} = JSON.parse(this.b64Utf8(zeton.split('.')[1]));
+      const {_id, elektronskiNaslov, ime, priimek} = JSON.parse(this.b64Utf8(zeton.split('.')[1]));
       var email =  elektronskiNaslov
-      return {email, ime} as Uporabnik
+      var id = _id
+      return {id, ime, email, priimek} as Uporabnik
     }
   }
 }

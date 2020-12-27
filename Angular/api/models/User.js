@@ -69,8 +69,6 @@ userSchema.methods.generirajJwt = function() {
   
     return jwt.sign({
       _id: this._id,
-      elektronskiNaslov: this.email,
-      ime: this.ime,
       exp: parseInt(datumPoteka.getTime() / 1000, 10)
     }, process.env.JWT_GESLO);
   };

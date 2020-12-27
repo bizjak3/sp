@@ -13,6 +13,7 @@ export class UrediPodatkeComponent implements OnInit {
 
   uporabnik: any;
   mail: string;
+  loaded = false;
 
   public podatki = {
     ime: "",
@@ -41,6 +42,7 @@ export class UrediPodatkeComponent implements OnInit {
       id: this.avtentikacijaStoritev.vrniId()
     }
     this.web.getUporabnikById('/uporabnik', id).subscribe((user) => {
+      this.loaded = true;
       this.uporabnik = user;
       this.podatki.ime = this.uporabnik.ime
       this.podatki.priimek = this.uporabnik.priimek;

@@ -13,6 +13,7 @@ export class NastavitveComponent implements OnInit {
 
   uporabnik: any;
   mail: string;
+  loaded = false
 
   constructor(
     private data: DataService,
@@ -29,6 +30,7 @@ export class NastavitveComponent implements OnInit {
       id: this.avtentikacijaStoritev.vrniId()
     }
     this.web.getUporabnikById('/uporabnik', id).subscribe((user) => {
+      this.loaded = true;
       this.uporabnik = user;
     })  
   }  

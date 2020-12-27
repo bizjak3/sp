@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   
 
   public prijavniPodatki = {
+    id: "",
     ime: "",
     priimek: "",
     email: "",
