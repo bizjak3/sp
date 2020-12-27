@@ -32,14 +32,6 @@ export class WebRequestService {
       return this.http.delete(this.url + uri);
     }
 
-    getUporabnik(uri: string, uporabnik: Uporabnik) {
-      return this.http.post(this.url + uri, uporabnik)
-    }
-
-    getUporabnikById(uri: string, id: any) {
-      return this.http.post(this.url + uri, id);
-    }
-
     updateUporabnik(uri: string, uporabnik: Uporabnik, novo: any) {
       return this.http.post(this.url + uri, uporabnik, novo)
     }

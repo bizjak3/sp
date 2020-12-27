@@ -3,10 +3,8 @@ const router = express.Router();
 
 const contr = require('../controllers/uporabnik')
 
-router.post('/prof', contr.najdiUporabnika);
-
+router.get('/uporabnik/:id', contr.vrniUporabnikaPrekoId);
 router.post('/spremeni', contr.spremeniUporabnika);
 
-router.post('/uporabnik', contr.vrniUporabnikaPrekoId);
 
 module.exports = router;

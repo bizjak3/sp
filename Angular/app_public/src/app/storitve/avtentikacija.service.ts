@@ -71,11 +71,11 @@ export class AvtentikacijaService {
   }
 
   public vrniPodatkeUporabnika() {
-    var id = {
-      id: this.vrniId()
-    }
+  
+    var id = this.vrniId()
+    
     return new Promise(resolve=>{
-        this.web.getUporabnikById('/uporabnik', id)//useful if you need the data once and don't want to manually cancel the subscription again)
+        this.web.get('/uporabnik/' + id)
          .subscribe(
             (data:any) => {
                 resolve(data);
