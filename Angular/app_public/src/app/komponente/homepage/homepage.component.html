@@ -75,9 +75,14 @@
 
             </div>
 
-            <div class="row py-2 px-2" style="height:10%;">
+            <div *ngIf="jePrijavljen()" class="row py-2 px-2" style="height:10%;">
                 <!-- gumb za ustvaritev nove igre -->
                 <button type="button" routerLink='/ustvariTekmo' class="btn btn-primary " id="gumbNovaIgra"><i class="fas fa-plus mr-2"></i>Ustvari novo tekmo</button>
+            </div>
+
+            <div *ngIf="jePrijavljen() == false"class="row py-2 px-2" style="height:10%;">
+                <!-- gumb za ustvaritev nove igre -->
+                <button disabled="true" type="button" routerLink='/ustvariTekmo' class="btn btn-primary " id="gumbNovaIgra">Za ustvarjanje tekme je potrebna prijava</button>
             </div>
 
 

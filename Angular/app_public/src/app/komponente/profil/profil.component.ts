@@ -3,8 +3,7 @@ import { User } from '../register/user';
 import { DataService} from '../../storitve/data.service';
 import { WebRequestService } from '../../storitve/web-request.service'
 import { AvtentikacijaService } from '../../storitve/avtentikacija.service';
-import { Uporabnik } from '../../modeli/uporabnik'
-import { UrediPodatkeComponent } from '../uredi-podatke/uredi-podatke.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profil',
@@ -21,16 +20,20 @@ export class ProfilComponent implements OnInit {
   
   
   constructor(
-    private data: DataService,
     private web: WebRequestService,
-    private avtentikacijaStoritev: AvtentikacijaService
+    private avtentikacijaStoritev: AvtentikacijaService,
+    private router: Router
     ) { }
 
   
 
   ngOnInit(): void {
-    
-    this.vrniUporabnika()
+    if (this.jePrijavljen()) {
+      this.vrniUporabnika()
+    } else {
+      this.router.navigateByUrl("/")
+    }
+
   }
 
   public vrniUporabnika() {
@@ -39,5 +42,9 @@ export class ProfilComponent implements OnInit {
       this.loaded = true
     })
   }  
+
+  public jePrijavljen(): boolean {
+    return this.avtentikacijaStoritev.jePrijavljen();
+  }
 
 }

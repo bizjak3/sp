@@ -33,7 +33,11 @@ export class UrediPodatkeComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.vrniUporabnika()
+    if (this.jePrijavljen()) {
+      this.vrniUporabnika()
+    } else {
+      this.router.navigateByUrl("/")
+    }
     
   }
 
@@ -57,5 +61,9 @@ export class UrediPodatkeComponent implements OnInit {
   public odjava(): void {
     this.avtentikacijaStoritev.odjava();
     this.router.navigateByUrl("/login")
+  }
+
+  public jePrijavljen(): boolean {
+    return this.avtentikacijaStoritev.jePrijavljen();
   }
 }
