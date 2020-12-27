@@ -30,19 +30,25 @@ export class HomepageComponent implements OnInit {
     return this.avtentikacijaStoritev.jePrijavljen();
   }
 
+  public niPrijavljen(): boolean {
+    if (this.avtentikacijaStoritev.jePrijavljen() == false) {
+      return true
+    }
+  }
+
  
 
   ngOnInit(): void {
 
+    this.web.get("/tekme").subscribe((result) => {
+      this.tekme = result;
+   })
+
     if (!this.avtentikacijaStoritev.jePrijavljen()) {
-      this.router.navigateByUrl("/login")
+      //this.router.navigateByUrl("/login")
     } 
     else {
       this.user = this.avtentikacijaStoritev.vrniUporabnikaPrekoId()
-      
-      this.web.get("/tekme").subscribe((result) => {
-        this.tekme = result;
-     })
     }
     
 

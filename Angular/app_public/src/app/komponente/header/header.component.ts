@@ -24,14 +24,14 @@ export class HeaderComponent implements OnInit {
 
   public odjava(): void {
     this.avtentikacijaStoritev.odjava();
-    this.router.navigateByUrl("/login")
   }
 
   ngOnInit(): void {
-    this.data.currentMessage.subscribe(user => this.user = user)
-    const uporabnik: Uporabnik = this.avtentikacijaStoritev.vrniTrenutnegaUporabnika();
-    this.mail = uporabnik.email;
-    this.ime = uporabnik.ime;
+    if (this.jePrijavljen()) {
+      const uporabnik: Uporabnik = this.avtentikacijaStoritev.vrniTrenutnegaUporabnika();
+      this.mail = uporabnik.email;
+      this.ime = uporabnik.ime;
+    } 
   }
 
   public vrniUporabnika(): string {
@@ -39,8 +39,8 @@ export class HeaderComponent implements OnInit {
     return uporabnik ? uporabnik.ime : 'Gost';
   }
 
-  
-
-  
+  public jePrijavljen(): boolean {
+    return this.avtentikacijaStoritev.jePrijavljen();
+  }
 
 }

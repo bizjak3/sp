@@ -29,13 +29,21 @@
                     <a id="testMenuRazlika1" class="nav-link dropdown-toggle"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user-circle"></i>
                     </a>
-                    <div id="testMenuRazlika2" class="dropdown-menu dropdown-menu-right"  id="dropdownMeni" aria-labelledby="navbarDropdown">
+                    <div *ngIf="jePrijavljen()" id="testMenuRazlika2" class="dropdown-menu dropdown-menu-right"  id="dropdownMeni" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item disabled" href="#"> {{ime}}</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" routerLink="/profil" ><i class="fas fa-user"></i> Profil</a>
                         <a class="dropdown-item" href="/moje_tekme"><i class="fas fa-history"></i> Moje tekme</a>
                         <a class="dropdown-item" routerLink="/nastavitve"><i class="fas fa-cog"></i> Nastavitve</a>
                         <a class="dropdown-item" href="#" (click)="odjava()"><i class="fas fa-sign-out-alt"></i> Odjava</a>
+                    </div>
+
+                    <div *ngIf="jePrijavljen() == false" id="testMenuRazlika2" class="dropdown-menu dropdown-menu-right"  id="dropdownMeni" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item disabled" href="#"> Gost </a>
+                        <div class="dropdown-divider"></div>
+
+                        <a class="dropdown-item" routerLink="/login"> Prijava  <i class="fas fa-sign-in-alt"></i></a>
+                        
                     </div>
                 </li>
             </ul>
