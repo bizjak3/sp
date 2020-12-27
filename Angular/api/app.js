@@ -14,7 +14,7 @@ const profil = require('./routes/profil');
 const db = require('./routes/db');
 const tekma = require('./routes/tekma');
 const avtentikacija = require('./routes/avtentikacija');
-const lastniProfil = require('./routes/lastniProfil');
+const uporabnik = require('./routes/uporabnik');
 
 
 
@@ -34,7 +34,7 @@ app.use('/', profil);
 app.use('/', db);
 app.use('/', tekma);
 app.use('/', avtentikacija);
-app.use('/', lastniProfil);
+app.use('/', uporabnik);
 
 app.use((err, req, res, next) => {
   if (err.name == "UnauthorizedError") {

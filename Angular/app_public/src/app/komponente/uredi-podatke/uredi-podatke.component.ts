@@ -15,9 +15,9 @@ export class UrediPodatkeComponent implements OnInit {
   mail: string;
 
   public podatki = {
-    ime: "-",
-    priimek: "-",
-    email: "-",
+    ime: "",
+    priimek: "",
+    email: "",
     geslo: "",
     geslo2: "",
     telefon: 0,
@@ -31,18 +31,24 @@ export class UrediPodatkeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const uporabnik: Uporabnik = this.avtentikacijaStoritev.vrniTrenutnegaUporabnika();
-    this.mail = uporabnik.email;
-
-    this.web.getUporabnik("/prof", uporabnik).subscribe((uporabnik => {
-      this.uporabnik = uporabnik;
-      this.podatki.ime = this.uporabnik.ime
-      this.podatki.priimek = this.uporabnik.priimek
-      this.podatki.email = this.uporabnik.email
-      this.podatki.telefon = this.uporabnik.telefon
-      this.podatki.id = this.uporabnik._id  
-    }))
+    
+    this.vrniUporabnika()
+    
   }
+
+  public vrniUporabnika() {
+    var id = {
+      id: this.avtentikacijaStoritev.vrniId()
+    }
+    this.web.getUporabnikById('/uporabnik', id).subscribe((user) => {
+      this.uporabnik = user;
+      this.podatki.ime = this.uporabnik.ime
+      this.podatki.priimek = this.uporabnik.priimek;
+      this.podatki.email = this.uporabnik.email;
+      this.podatki.telefon = this.uporabnik.telefon;
+      this.podatki.id = this.uporabnik._id;
+    })  
+  }  
 
   spremeni() {
 

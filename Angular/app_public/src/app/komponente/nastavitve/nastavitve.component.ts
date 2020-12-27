@@ -21,13 +21,16 @@ export class NastavitveComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const uporabnik: Uporabnik = this.avtentikacijaStoritev.vrniTrenutnegaUporabnika();
-    this.mail = uporabnik.email;
-
-    this.web.getUporabnik("/prof", uporabnik).subscribe((uporabnik => {
-      this.uporabnik = uporabnik;
-      console.log(uporabnik)
-    }))
+    this.vrniUporabnika()
   }
+
+  public vrniUporabnika() {
+    var id = {
+      id: this.avtentikacijaStoritev.vrniId()
+    }
+    this.web.getUporabnikById('/uporabnik', id).subscribe((user) => {
+      this.uporabnik = user;
+    })  
+  }  
 
 }

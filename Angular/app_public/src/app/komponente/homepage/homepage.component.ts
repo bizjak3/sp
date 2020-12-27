@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { WebRequestService } from '../../storitve/web-request.service'
-import { User } from '../register/user';
+import { User } from '../../modeli/User';
 import { DataService} from '../../storitve/data.service';
 import { AvtentikacijaService } from '../../storitve/avtentikacija.service'
 import { Uporabnik } from '../../modeli/uporabnik'
@@ -16,13 +16,12 @@ export class HomepageComponent implements OnInit {
   
   
 
-  user: User;
-
-  d: any;
-  uporab: any;
-  constructor(private tekme: WebRequestService, 
+  user: any;
+  tekme: any;
+  
+  constructor(
     private data: DataService, 
-    private uporabnik: WebRequestService,
+    private web: WebRequestService,
     private avtentikacijaStoritev: AvtentikacijaService,
     private router: Router
   ) { }
@@ -31,31 +30,23 @@ export class HomepageComponent implements OnInit {
     return this.avtentikacijaStoritev.jePrijavljen();
   }
 
-  public vrniUporabnika(): string {
-    const uporabnik: Uporabnik = this.avtentikacijaStoritev.vrniTrenutnegaUporabnika();
-    return uporabnik ? uporabnik.ime : 'Gost';
-  }
+ 
 
-  ngOnInit() {
+  ngOnInit(): void {
 
-    if (!this.jePrijavljen()) {
+    if (!this.avtentikacijaStoritev.jePrijavljen()) {
       this.router.navigateByUrl("/login")
+    } 
+    else {
+      this.user = this.avtentikacijaStoritev.vrniUporabnikaPrekoId()
+      
+      this.web.get("/tekme").subscribe((result) => {
+        this.tekme = result;
+     })
     }
-  
-    this.data.currentMessage.subscribe(user => this.user = user)
-    this.tekme.get("/tekme").subscribe((result) => {
-      this.d = result;
-    })
-
-    this.uporabnik.get("/user").subscribe((result) => {
-      this.uporab = result;
-    })
     
 
-    
-
-    
-    
+      
     
   }
 

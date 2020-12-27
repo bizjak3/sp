@@ -2,7 +2,7 @@ const User = require('../models/User');
 
 var najdiUporabnika = (req, res) => {
     
-    User.findOne({email: req.body.email}, 
+    User.findOne({email: req.body.elektronskiNaslov}, 
         (napaka, uporabnik) => {
             if (napaka) {
                 console.log(napaka)
@@ -35,7 +35,22 @@ var spremeniUporabnika = (req, res) => {
     })
 }
 
+var vrniUporabnikaPrekoId =  (req, res) => {
+    
+    var id = req.body.id
+    User.findById(id, (napaka, uporabnik) => {
+        if (napaka) {
+            console.log(napaka)
+        }
+        else {
+            res.send(uporabnik)
+        }
+    })
+    
+}
+
 module.exports = {
     najdiUporabnika,
-    spremeniUporabnika
+    spremeniUporabnika,
+    vrniUporabnikaPrekoId
 }

@@ -13,7 +13,7 @@ import { UrediPodatkeComponent } from '../uredi-podatke/uredi-podatke.component'
 })
 export class ProfilComponent implements OnInit {
 
-  user: User;
+  user: any;
   uporabnik: any;
   mail: string;
 
@@ -25,15 +25,19 @@ export class ProfilComponent implements OnInit {
     private avtentikacijaStoritev: AvtentikacijaService
     ) { }
 
-  ngOnInit(): void {
-    this.data.currentMessage.subscribe(user => this.user = user)
-    const uporabnik: Uporabnik = this.avtentikacijaStoritev.vrniTrenutnegaUporabnika();
-    this.mail = uporabnik.email;
+  
 
-    this.web.getUporabnik("/prof", uporabnik).subscribe((uporabnik => {
-      this.uporabnik = uporabnik;
-      console.log(uporabnik)
-    }))
+  ngOnInit(): void {
+    this.vrniUporabnika()
   }
+
+  public vrniUporabnika() {
+    var id = {
+      id: this.avtentikacijaStoritev.vrniId()
+    }
+    this.web.getUporabnikById('/uporabnik', id).subscribe((user) => {
+      this.uporabnik = user;
+    })  
+  }  
 
 }
