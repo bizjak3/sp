@@ -28,6 +28,10 @@ export class WebRequestService {
       return this.http.post(this.url + uri, user)
     }
 
+    postTekma(uri: string, data: any) {
+      return this.http.post(this.url + uri, data)
+    }
+
     delete(uri: string) {
       return this.http.delete(this.url + uri);
     }

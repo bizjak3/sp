@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as L from "leaflet";
 import * as geo from "esri-leaflet-geocoder"
+import { WebRequestService } from 'src/app/storitve/web-request.service';
+import { AvtentikacijaService } from 'src/app/storitve/avtentikacija.service';
 
 const iconRetinaUrl = 'assets/images/marker-icon-2x.png';
 const iconUrl = 'assets/images/marker-icon.png';
@@ -40,7 +42,10 @@ export class UstvariTekmoComponent implements OnInit {
     opombe: "Opombe"
   }
 
-  constructor() { }
+  constructor(
+    private web: WebRequestService,
+    private avtentikacija: AvtentikacijaService
+  ) { }
 
   ngOnInit(): void {
     this.initMap();
@@ -72,6 +77,11 @@ export class UstvariTekmoComponent implements OnInit {
         this.podatki.lng = e.latlng.lng
       })
     })
+  }
+
+  public ustvariTekmo() {
+
+    this.web.postTekma("/novaTekma/" + this.avtentikacija.vrniId(), this.podatki).subscribe()
   }
 
 
