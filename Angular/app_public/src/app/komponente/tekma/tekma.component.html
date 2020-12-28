@@ -30,7 +30,11 @@
                         <!-- majhen zemljevid -->
                         <div class="row  mb-2 mb-md-1 border border-dark rounded" style="height:60%;">
                             <!--iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d31325.282550843705!2d14.522774429847034!3d46.055292090769285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ssl!2ssi!4v1603358504069!5m2!1ssl!2ssi" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe-->
-                            <div id="mapa_popup_div" style="height:100%; width:100%;"> </div>
+                            <div class="map-container">
+                                <div class="map-frame">
+                                  <div id="map"></div>
+                                </div>
+                              </div>
 
                         </div>
 
@@ -76,7 +80,7 @@
 
                                 <div class="row m-2 border-bottom pb-2">
                                     <div class="col">
-                                        <a class="text-dark" >{{tekma_.kreator}} </a>
+                                        <a class="text-dark" >{{tekma.kreator}} </a>
                                     </div>
                                 </div>
 
@@ -88,7 +92,7 @@
 
                                 <div class="row m-2 border-bottom pb-2">
                                     <div class="col">
-                                        {{tekma_.kraj}}
+                                        {{tekma.kraj}}
                                     </div>
                                 </div>
 
@@ -101,7 +105,7 @@
                                 <div class="row m-2 border-bottom pb-2">
                                     
                                         <div class="col">
-                                            {{tekma_.datum}} | {{tekma_.ura}}
+                                            {{tekma.datum}} | {{tekma.ura}}
                                         </div>
                                     
                                 </div>
@@ -114,7 +118,7 @@
 
                                 <div class="row m-2 info border-bottom pb-2">
                                     <div class="col">
-                                        <span class="badge badge-primary badge-pill">{{tekma_.prijavljeni}}/{{tekma_.maxIgralcev}}</span>
+                                        <span class="badge badge-primary badge-pill">{{tekma.prijavljeni}}/{{tekma.maxIgralcev}}</span>
                                     </div>
                                 </div>
 
@@ -127,7 +131,7 @@
                                 <div class="row m-2 border-bottom pb-2">
                                     
                                         <div class="col">
-                                            {{tekma_.opis}}
+                                            {{tekma.opis}}
                                         </div>
                                    
                                 </div>
