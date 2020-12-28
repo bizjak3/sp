@@ -30,6 +30,7 @@ export class TekmaComponent implements OnInit {
   private map;
 
   tekma: any;
+  igralci: any;
   loaded = false;
   
 
@@ -43,6 +44,7 @@ export class TekmaComponent implements OnInit {
         this.webReq.getTekma(params.id).subscribe((tekma: Tekma) => {
           this.tekma = tekma[0];
           this.loaded = true;
+          this.igralci = this.tekma.igralci
           this.initMap();
         })
       }

@@ -3,6 +3,7 @@ import * as L from "leaflet";
 import * as geo from "esri-leaflet-geocoder"
 import { WebRequestService } from 'src/app/storitve/web-request.service';
 import { AvtentikacijaService } from 'src/app/storitve/avtentikacija.service';
+import { Router } from '@angular/router';
 
 const iconRetinaUrl = 'assets/images/marker-icon-2x.png';
 const iconUrl = 'assets/images/marker-icon.png';
@@ -44,7 +45,8 @@ export class UstvariTekmoComponent implements OnInit {
 
   constructor(
     private web: WebRequestService,
-    private avtentikacija: AvtentikacijaService
+    private avtentikacija: AvtentikacijaService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -82,6 +84,7 @@ export class UstvariTekmoComponent implements OnInit {
   public ustvariTekmo() {
 
     this.web.postTekma("/novaTekma/" + this.avtentikacija.vrniId(), this.podatki).subscribe()
+    this.router.navigateByUrl("/", {skipLocationChange: true})
   }
 
 

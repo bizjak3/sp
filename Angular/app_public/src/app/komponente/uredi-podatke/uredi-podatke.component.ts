@@ -55,12 +55,12 @@ export class UrediPodatkeComponent implements OnInit {
 
   spremeni() {
     this.web.spremeniUporabnika("/spremeni", this.podatki).subscribe()
-    this.router.navigateByUrl("/profil")
+    this.router.navigateByUrl("/profil", {skipLocationChange: true})
   }
 
   public odjava(): void {
     this.avtentikacijaStoritev.odjava();
-    this.router.navigateByUrl("/login")
+    this.router.navigateByUrl("/login", {skipLocationChange: true})
   }
 
   public jePrijavljen(): boolean {

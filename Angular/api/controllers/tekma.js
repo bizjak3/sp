@@ -1,4 +1,5 @@
 const Tekma = require('../models/Tekma')
+const User = require('../models/User')
 
 var podrobnostiTekme = (req, res) => {
     console.log("parametri: " + req.params.id)
@@ -10,8 +11,7 @@ var podrobnostiTekme = (req, res) => {
 }
 
 var ustvariTekmo = (req, res) => {
-    console.log("ID: " + req.params.id)
-    console.log(req.body)
+
     
     let {lat, lng, kraj, datum, ura, min, max, prijavljeni, opombe } = req.body;
 
@@ -33,33 +33,46 @@ var ustvariTekmo = (req, res) => {
         }
     }
 
-    const newTekma = new Tekma({
-        kreator: req.params.id,
-        lat: lat,
-        lng: lng,
-        kraj: kraj,
-        datum: datum,
-        ura: ura,
-        minIgralcev: min,
-        maxIgralcev: max,
-        prijavljeni: prijavljeni,
-        opis: opombe,
-        igralci: [req.params.id],
-        status: "prijave"
-    });
+    User.findById(req.params.id, (napaka, uporabnik) => {
+        if (napaka) {
+            res.status(404)
+        } else {
+            var user = {
+                id: req.params.id,
+                ime: uporabnik.ime,
+                priimek: uporabnik.priimek
+            }
+            const newTekma = new Tekma({
+                kreator: user,
+                lat: lat,
+                lng: lng,
+                kraj: kraj,
+                datum: datum,
+                ura: ura,
+                minIgralcev: min,
+                maxIgralcev: max,
+                prijavljeni: prijavljeni,
+                opis: opombe,
+                igralci: [user],
+                status: "prijave"
+            });
+        
+            newTekma.save()
+                .then(tekma => {
+                    User.updateOne(
+                        {_id: req.user},
+                        { $push: {tekme: tekma.id}},
+                        done
+                    );
+                    res.status(200)
+                })
+                .catch(err => {
+                    res.send(err)
+             });
+        }
+    })
 
-    newTekma.save()
-        .then(tekma => {
-            User.updateOne(
-                {_id: req.user},
-                { $push: {tekme: tekma.id}},
-                done
-            );
-            res.status(200)
-        })
-        .catch(err => {
-            res.send(err)
-     });
+    
 }
 
 module.exports = {

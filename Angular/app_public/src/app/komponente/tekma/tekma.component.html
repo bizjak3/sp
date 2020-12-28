@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body px-1 py-1">
+                            <div *ngIf="loaded" class="card-body px-1 py-1">
 
                                 <!--Podatki o tekmi style "info" je za odebeljene črke-->
                                 
@@ -80,7 +80,7 @@
 
                                 <div class="row m-2 border-bottom pb-2">
                                     <div class="col">
-                                        <a class="text-dark" >{{tekma.kreator}} </a>
+                                        <a class="text-dark" >{{tekma.kreator.ime}} {{tekma.kreator.priimek}}</a>
                                     </div>
                                 </div>
 
@@ -153,8 +153,11 @@
                             </div>
                             <div class="card-body px-1 py-1">
                                 <div class="scrollable" style="height:100%; overflow-y: auto;">
-                                    <ul class="list-group seznam" style="height: 50vh; width:100%; min-height: 300px">
-                                        
+                                    <ul class="list-group seznam" style="height: 50vh; width:100%; min-height: 300px" >
+                                        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let igralec of igralci">
+                                            <a class="col-sm text-dark">{{igralec.ime}} {{igralec.priimek}}</a>
+                                            
+                                        </li>
                                     </ul>
                                     
                                 </div>

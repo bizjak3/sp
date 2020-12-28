@@ -10,7 +10,7 @@ var hourFormat = {
 
 const tekma = new mongoose.Schema({
     kreator: {
-        type: String,
+        type: Object,
         required: true
     },
     lat: {
@@ -50,7 +50,7 @@ const tekma = new mongoose.Schema({
         required: false
     },
     igralci: {
-        type: [String],
+        type: [Object],
         required: false
     },
     status: {
