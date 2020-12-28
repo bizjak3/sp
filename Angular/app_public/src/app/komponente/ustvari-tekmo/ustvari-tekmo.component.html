@@ -1,29 +1,6 @@
 
 <app-header></app-header>
 
-<!-- Nalozi Leaflet -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-      crossorigin=""/>
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
-
-<!-- Nalozi Esri Leaflet-->
-<script src="https://unpkg.com/esri-leaflet@2.5.0/dist/esri-leaflet.js"
-        integrity="sha512-ucw7Grpc+iEQZa711gcjgMBnmd9qju1CICsRaryvX7HJklK0pGl/prxKvtHwpgm5ZHdvAil7YPxI1oWPOWK3UQ=="
-        crossorigin=""></script>
-
-<!-- Nalozi Esri Leaflet Geocoder -->
-<link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.css"
-      integrity="sha512-IM3Hs+feyi40yZhDH6kV8vQMg4Fh20s9OzInIIAc4nx7aMYMfo+IenRUekoYsHZqGkREUgx0VvlEsgm7nCDW9g=="
-      crossorigin="">
-<script src="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.js"
-        integrity="sha512-HrFUyCEtIpxZloTgEKKMq4RFYhxjJkCiF5sDxuAokklOeZ68U2NPfh4MFtyIVWlsKtVbK5GD2/JzFyAfvT5ejA=="
-        crossorigin=""></script>
-
-<!-- ----------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------- -->
 
     <div class="container-lg h-100">
       <div class="ustvari">
@@ -31,11 +8,16 @@
 
           <div class="card-header bg-dark text-white">Ustvari tekmo</div>
 
-          <div>
-              <!--iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d31325.282550843705!2d14.522774429847034!3d46.055292090769285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ssl!2ssi!4v1603358504069!5m2!1ssl!2ssi" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe-->
-              <div id="mapa_ustvari_div" style="width:100%; height:450px;"> </div>
 
+          
+              
+        <div class="map-container">
+          <div class="map-frame">
+            <div id="map"></div>
           </div>
+        </div>
+
+          
 
           <div class="col-sm-12 col-md-12 col-lg-12">
             <form name="ustvari" method="post" action="/ustvari_tekmo" onsubmit="return validacijaTekmaUra()">
@@ -46,27 +28,27 @@
 
                   <div class="form-group">
 
-                      <input id="Input_Okno_LAT"  readonly type="hidden" class="form-control" name="lat" required>
+                      <input id="Input_Okno_LAT"  readonly type="hidden" class="form-control" name="lat" [(ngModel)]="podatki.lat">
                   </div>
 
                   <div class="form-group">
 
-                      <input id="Input_Okno_LNG"  readonly type="hidden" class="form-control" name="lng" required>
+                      <input id="Input_Okno_LNG"  readonly type="hidden" class="form-control" name="lng" [(ngModel)]="podatki.lng">
                   </div>
 
                   <div class="form-group">
                       <label class="">Kraj</label>
-                      <input id="Input_Okno_Kraj"  readonly type="text" class="form-control" name="kraj" required>
+                      <input id="Input_Okno_Kraj"  readonly type="text" class="form-control" name="kraj" [(ngModel)]="podatki.kraj">
                   </div>
 
                 <div class="form-group">
                   <label class="">Datum</label>
-                  <input type="date" class="form-control" name="datum" required>
+                  <input type="date" class="form-control" name="datum" [(ngModel)]="podatki.datum">
                 </div>
 
                 <div class="form-group">
                   <label class="">Ura</label>
-                  <input type="time" class="form-control" name="ura" required>
+                  <input type="time" class="form-control" name="ura" [(ngModel)]="podatki.ura">
                 </div>
 
                 <div class="form-group">
@@ -77,17 +59,17 @@
 
                     <div class="form-group col-md-4">
                       <label class="">Min: </label>
-                      <input type="number" min="4" max="16" step="2" value="4" class="form-control" name="minIgralcev" required>
+                      <input type="number" min="4" max="16" step="2" value="4" class="form-control" name="minIgralcev" [(ngModel)]="podatki.min">
                     </div>
 
                     <div class="form-group col-md-4">
                       <label class="">Max: </label>
-                      <input type="number" min="4" max="16" step="2" value="6" class="form-control" name="maxIgralcev">
+                      <input type="number" min="4" max="16" step="2" value="6" class="form-control" name="maxIgralcev" [(ngModel)]="podatki.max">
                     </div>
 
                     <div class="form-group col-md-4">
                       <label class="">Že prijavljeni: </label>
-                      <input type="number" min="0" value="0" class="form-control" name="prijavljeni">
+                      <input type="number" min="0" value="0" class="form-control" name="prijavljeni" [(ngModel)]="podatki.prijavljeni">
                     </div>
 
                   </div>

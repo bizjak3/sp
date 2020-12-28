@@ -17,7 +17,7 @@ import { NastavitveComponent } from './komponente/nastavitve/nastavitve.componen
 import { DbComponent } from './komponente/db/db.component';
 import { UrediPodatkeComponent } from './komponente/uredi-podatke/uredi-podatke.component';
 import { TekmaComponent } from './komponente/tekma/tekma.component';
-import { MapComponent } from './komponente/map/map.component'
+import { MapComponent } from './komponente/map/map.component';
 
 
 

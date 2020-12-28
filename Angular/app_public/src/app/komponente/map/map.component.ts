@@ -17,6 +17,8 @@ const iconDefault = L.icon({
 });
 L.Marker.prototype.options.icon = iconDefault;
 
+
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -44,5 +46,9 @@ export class MapComponent implements AfterViewInit {
     });
 
     tiles.addTo(this.map);
+
+    this.map.on('click', e => {
+      console.log("CLICK")
+    })
   }
 }
