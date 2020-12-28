@@ -16,7 +16,8 @@ import { UstvariTekmoComponent } from './komponente/ustvari-tekmo/ustvari-tekmo.
 import { NastavitveComponent } from './komponente/nastavitve/nastavitve.component';
 import { DbComponent } from './komponente/db/db.component';
 import { UrediPodatkeComponent } from './komponente/uredi-podatke/uredi-podatke.component';
-import { TekmaComponent } from './komponente/tekma/tekma.component'
+import { TekmaComponent } from './komponente/tekma/tekma.component';
+import { MapComponent } from './komponente/map/map.component'
 
 
 
@@ -33,7 +34,8 @@ import { TekmaComponent } from './komponente/tekma/tekma.component'
     NastavitveComponent,
     DbComponent,
     UrediPodatkeComponent,
-    TekmaComponent
+    TekmaComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
