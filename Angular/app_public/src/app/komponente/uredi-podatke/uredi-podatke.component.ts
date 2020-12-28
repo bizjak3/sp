@@ -54,8 +54,8 @@ export class UrediPodatkeComponent implements OnInit {
   }  
 
   spremeni() {
-    this.web.getUporabnik("/spremeni", this.podatki).subscribe()
-    this.odjava();
+    this.web.spremeniUporabnika("/spremeni", this.podatki).subscribe()
+    this.router.navigateByUrl("/profil")
   }
 
   public odjava(): void {

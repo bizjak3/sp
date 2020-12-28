@@ -39,6 +39,10 @@ export class WebRequestService {
     public prijava(uporabnik: Uporabnik): Promise<RezultatAvtentikacije> {
       return this.avtentikacija('prijava', uporabnik);
     }
+
+    public spremeniUporabnika(uri: string, uporabnik: any) {
+      return this.http.post(this.url + uri, uporabnik)
+    }
   
     public registracija(uporabnik: Uporabnik): Promise<RezultatAvtentikacije> {
       return this.avtentikacija('registracija', uporabnik);
