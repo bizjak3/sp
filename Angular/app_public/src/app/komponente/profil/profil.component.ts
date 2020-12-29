@@ -40,6 +40,7 @@ export class ProfilComponent implements OnInit {
     this.avtentikacijaStoritev.vrniPodatkeUporabnika().then((data) => {
       this.uporabnik = data
       this.loaded = true
+      console.log(this.uporabnik)
     })
   }  
 

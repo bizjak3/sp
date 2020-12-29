@@ -43,7 +43,7 @@ const userSchema = new mongoose.Schema({
         type: Date
     },
     tekme:{
-        type: [String]
+        type: [Object]
     }
 });
 

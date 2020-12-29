@@ -59,11 +59,14 @@ var ustvariTekmo = (req, res) => {
         
             newTekma.save()
                 .then(tekma => {
-                    User.updateOne(
-                        {_id: req.user},
-                        { $push: {tekme: tekma.id}},
-                        done
-                    );
+                    var podatkiTekme = {
+                        id: tekma.id,
+                        kraj: tekma.kraj,
+                        datum: tekma.datum,
+                        ura: tekma.ura
+                    }
+                    uporabnik.tekme.push(podatkiTekme)
+                    uporabnik.save()
                     res.status(200)
                 })
                 .catch(err => {
