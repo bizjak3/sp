@@ -84,7 +84,7 @@ export class UstvariTekmoComponent implements OnInit {
   public ustvariTekmo() {
 
     this.web.postTekma("/novaTekma/" + this.avtentikacija.vrniId(), this.podatki).subscribe()
-    this.router.navigateByUrl("/", {skipLocationChange: true})
+    this.router.navigateByUrl("/")
   }
 
 

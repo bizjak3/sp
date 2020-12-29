@@ -33,14 +33,6 @@ export class HomepageComponent implements OnInit {
     return this.avtentikacijaStoritev.jePrijavljen();
   }
 
-  public niPrijavljen(): boolean {
-    if (this.avtentikacijaStoritev.jePrijavljen() == false) {
-      return true
-    }
-  }
-
- 
-
   ngOnInit(): void {
     
 

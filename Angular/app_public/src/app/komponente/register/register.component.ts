@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
   private izvediRegistracijo(): void {
     this.avtentikacijaStoritev
       .registracija(this.prijavniPodatki)
-      .then(() => this.router.navigateByUrl("/login", {skipLocationChange: true}))
+      .then(() => this.router.navigateByUrl("/login"))
       .catch(sporocilo => this.napakaNaObrazcu = sporocilo);
   }
 }

@@ -74,7 +74,7 @@ export class UrediPodatkeComponent implements OnInit {
 
   public odjava(): void {
     this.avtentikacijaStoritev.odjava();
-    this.router.navigateByUrl("/login", {skipLocationChange: true})
+    this.router.navigateByUrl("/login")
   }
 
   public jePrijavljen(): boolean {
