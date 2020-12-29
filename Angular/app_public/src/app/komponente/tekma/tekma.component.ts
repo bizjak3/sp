@@ -60,10 +60,6 @@ export class TekmaComponent implements OnInit {
         })
       }
     )
-
-
-
-
   }
 
   private initMap(): void {
@@ -98,7 +94,9 @@ export class TekmaComponent implements OnInit {
 
   }
   spremeni(): void {
-    this.webReq.spremeniTekmo("/tekma/"+this.tekma._id+"/spremeniTekmo", this.podatki).subscribe();
+    this.webReq.spremeniTekmo("/tekma/"+this.tekma._id+"/spremeniTekmo", this.podatki).subscribe(() => {
+      this.ngOnInit()
+    });
     this.urejamo = false;
   }
 }
