@@ -28,7 +28,6 @@ export class MojeTekmeComponent implements OnInit {
       this.uporabnik = data
       this.tekme = this.uporabnik.tekme
       this.loaded = true
-      console.log(this.tekme)
       if (this.tekme.length > 0) {
         this.niTekem = false;
       }

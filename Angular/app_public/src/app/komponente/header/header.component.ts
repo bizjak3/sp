@@ -14,10 +14,7 @@ import { WebRequestService } from '../../storitve/web-request.service'
 export class HeaderComponent implements OnInit {
 
   uporabnik: any;
-  ime: string;
-  priimek: string;
   loaded = false;
-  porva: any;
 
   constructor(
     private web: WebRequestService,

@@ -52,7 +52,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "src/assets/js/HomepageMapaSkripta.js"
+              
             ]
           },
           "configurations": {

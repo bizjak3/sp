@@ -14,6 +14,10 @@ export class UrediPodatkeComponent implements OnInit {
   uporabnik: any;
   mail: string;
   loaded = false;
+  sprememba = false;
+  napaka = "";
+
+  sporocilo = ""
 
   public podatki = {
     ime: "",
@@ -54,8 +58,18 @@ export class UrediPodatkeComponent implements OnInit {
   }  
 
   spremeni() {
-    this.web.spremeniUporabnika("/spremeni", this.podatki).subscribe()
-    this.router.navigateByUrl("/profil", {skipLocationChange: true})
+
+    if (this.podatki.geslo != this.podatki.geslo2) {
+      this.napaka = "Gesli se ne ujemata"
+    }
+    else if (!this.podatki.ime || !this.podatki.priimek
+      || !this.podatki.email || !this.podatki.geslo) {
+        this.napaka = "Prosim vnesi vse potrebne podatke"
+    } 
+    else {
+      this.web.spremeniUporabnika("/spremeni", this.podatki).subscribe()
+      this.sprememba = true;
+    }
   }
 
   public odjava(): void {

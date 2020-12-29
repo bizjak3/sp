@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../modeli/User';
-import { DataService} from '../../storitve/data.service';
 import { WebRequestService } from '../../storitve/web-request.service'
 import { AvtentikacijaService } from '../../storitve/avtentikacija.service';
 import { Router } from '@angular/router';
@@ -13,19 +12,14 @@ import { Uporabnik } from 'src/app/modeli/uporabnik';
 })
 export class ProfilComponent implements OnInit {
 
-  user: any;
   uporabnik: User;
   loaded = false;
 
-  
-  
   constructor(
     private web: WebRequestService,
     private avtentikacijaStoritev: AvtentikacijaService,
     private router: Router
     ) { }
-
-  
 
   ngOnInit(): void {
     if (this.jePrijavljen()) {
@@ -40,7 +34,6 @@ export class ProfilComponent implements OnInit {
     this.avtentikacijaStoritev.vrniPodatkeUporabnika().then((data) => {
       this.uporabnik = data
       this.loaded = true
-      console.log(this.uporabnik)
     })
   }  
 
