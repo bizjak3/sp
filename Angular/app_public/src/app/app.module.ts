@@ -5,6 +5,7 @@ import { LoginComponent } from './komponente/login/login.component';
 import { RegisterComponent } from './komponente/register/register.component'
 import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module'
+import { NgxPaginationModule } from 'ngx-pagination'
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './komponente/homepage/homepage.component';
@@ -43,7 +44,8 @@ import { MojeTekmeComponent } from './komponente/moje-tekme/moje-tekme.component
     BrowserModule,
     FormsModule,  
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -54,7 +54,7 @@
                             </div>
                             <div class="row m-2 info">
                                 <div class="col">
-                                    <input  required #mail="ngModel" [class.is-invalid]="mail.invalid" *ngIf="loaded" type="email" id="email" name="email" class="form-control"  value="{{uporabnik.email}}"  [(ngModel)]="podatki.email">
+                                    <input  email="true" required #mail="ngModel" [class.is-invalid]="mail.invalid" *ngIf="loaded" type="email" id="email" name="email" class="form-control"  value="{{uporabnik.email}}"  [(ngModel)]="podatki.email">
                                 </div>
                                 <p class="error"><p id="email_error"></p>
                             </div>

@@ -4,6 +4,7 @@ import { DataService} from '../../storitve/data.service';
 import { AvtentikacijaService} from '../../storitve/avtentikacija.service'
 import { Uporabnik } from '../../modeli/uporabnik'
 import { Router } from '@angular/router';
+import { convertTypeAcquisitionFromJson } from 'typescript';
 
 
 
@@ -18,12 +19,14 @@ export class HomepageComponent implements OnInit {
 
   user: any;
   tekme: any;
+  p: number;
+  d: any;
+  total: number;
 
   uporabnik: any;
   
   
-  constructor(
-    private data: DataService, 
+  constructor( 
     private web: WebRequestService,
     private avtentikacijaStoritev: AvtentikacijaService,
     private router: Router
@@ -37,22 +40,31 @@ export class HomepageComponent implements OnInit {
     
 
     this.web.get("/tekme").subscribe((result) => {
-      this.tekme = result;
-   })
+      this.d = result;
+      console.log(this.d)
+      this.total = this.d.stevilo;
+    })
 
-    if (!this.avtentikacijaStoritev.jePrijavljen()) {
-      //this.router.navigateByUrl("/login")
-      
-    } 
-    else {
-      //this.user = this.avtentikacijaStoritev.vrniUporabnikaPrekoId()
+    this.getTekme(1)
+
+    if (this.avtentikacijaStoritev.jePrijavljen()) {
       this.uporabnik = this.avtentikacijaStoritev.vrniTrenutnegaUporabnika();
-      
-    }
+    } 
     
+  }
 
-      
-    
+  getTekme(p: number) {
+    console.log("AA")
+    this.web.getPage("/page/" + p).subscribe((tekme) => {
+      console.log("SEM PRSU DO SM")
+      this.tekme = tekme
+      console.log(this.tekme)
+    })
+  }
+
+  getPage(pageNum: number) {
+    this.p = pageNum
+    this.getTekme(this.p)
   }
 
   

@@ -43,6 +43,10 @@ export class WebRequestService {
       return this.avtentikacija('prijava', uporabnik);
     }
 
+    getPage(uri: string) {
+      return this.http.get(this.url + uri);
+    }
+
     public spremeniUporabnika(uri: string, uporabnik: any) {
       return this.http.post(this.url + uri, uporabnik)
     }

@@ -25,7 +25,7 @@ export class MarkerService {
 
   makeCapitalMarkers(map: L.map): void {
 
-    this.web.get("/tekme").subscribe((result) => {
+    this.web.get("/markers").subscribe((result) => {
       this.tekme = result;
 
       for (let i = 0; i < this.tekme.length; i++) {

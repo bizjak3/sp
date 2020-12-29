@@ -20,6 +20,13 @@ export class DbComponent implements OnInit {
     )
   }
 
+  vnesi30() {
+    this.webReq.post("/db30").subscribe(
+      data => console.log("Vneseni podatki"),
+      error => console.log(error)
+    )
+  }
+
   izbrisi() {
     this.webReq.post("/db_izbrisi").subscribe(
       data => console.log("Izbrisani podatki"),

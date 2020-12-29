@@ -32,12 +32,20 @@
                             <!-- seznam vseh iger za test samo 9 x iger dodanih -->
                             <ul class="list-group" style="width:100%; height:100%;">
 
-            
+                                <div *ngFor="let tekma of tekme | paginate: { itemsPerPage: 10, currentPage: p , totalItems: total}">
 
-                                    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let tekma of tekme">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <a class="text-dark" routerLink="/tekma/{{tekma._id}}"> {{tekma.kraj}},<br>{{tekma.datum}} | {{tekma.ura}} </a>
                                         <span class="badge badge-primary badge-pill">{{tekma.prijavljeni}}/{{tekma.maxIgralcev}}</span>
                                     </li>
+
+                                </div>
+
+                                    <pagination-controls 
+                                    (pageChange)="getPage($event)" 
+                                    autoHide="true" previousLabel="Nazaj"
+                                    nextLabel="Naprej" 
+                                    ></pagination-controls>
                                
                             </ul>
 

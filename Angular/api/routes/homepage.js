@@ -12,7 +12,11 @@ const avtentikacija = jwt({
 const contrHomepage = require('../controllers/homepage')
 
 
-router.get('/tekme', contrHomepage.homepage);
 
+router.get('/page/:p', contrHomepage.homepage);
+
+router.get("/tekme", contrHomepage.tekme)
+
+router.get("/markers", contrHomepage.markers)
 
 module.exports = router;

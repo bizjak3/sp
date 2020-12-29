@@ -107,5 +107,37 @@ router.post('/db_izbrisi', (req, res) => {
     res.redirect('/');
 })
 
+
+router.post('/db30', (req, res) => {
+
+    console.log(getRandomInRange(45, 47, 1))
+
+    for (var i = 0; i < 30; i++) {
+        let tekma = new Tekma({
+            kreator: "Kreator " + i,
+            lat: getRandomInRange(45, 47, 1),
+            lng: getRandomInRange(13, 16, 1),
+            kraj: "Kraj " + i,
+            datum: "2021-1-1",
+            ura: "15:00",
+            minIgralcev: 4,
+            maxIgralcev: 12,
+            prijavljeni: 4,
+            igralci: [i],
+            status: "prijave"
+        });
+        tekma.save(function (err) {
+            if (err) {
+                console.log(err);
+            }
+        });
+    }
+})
+
+function getRandomInRange(from, to, fixed) {
+    return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
+    // .toFixed() returns string, so ' * 1' is a trick to convert to number
+}
+
 module.exports = router;
 
