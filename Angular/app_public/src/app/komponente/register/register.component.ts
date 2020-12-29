@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from './user';
 import { WebRequestService } from '../../storitve/web-request.service'
 import { Router } from '@angular/router';
 import { DataService} from '../../storitve/data.service';
@@ -21,7 +20,7 @@ export class RegisterComponent implements OnInit {
     private data: DataService,
     private avtentikacijaStoritev: AvtentikacijaService) { }
 
-  user: User;
+  
 
   public prijavniPodatki = {
     ime: "",
@@ -32,7 +31,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.data.currentMessage.subscribe(user => this.user = user)
+   
   }
 
   public posiljanjePodatkov(): void {

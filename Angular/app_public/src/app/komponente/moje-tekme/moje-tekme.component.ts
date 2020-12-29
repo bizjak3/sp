@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PodatkiTekme } from 'src/app/modeli/PodatkiTekme';
 import { AvtentikacijaService } from 'src/app/storitve/avtentikacija.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class MojeTekmeComponent implements OnInit {
 
   uporabnik: any;
   loaded = false;
-  tekme: any;
+  tekme: [PodatkiTekme];
 
   niTekem = true;
 
@@ -27,6 +28,7 @@ export class MojeTekmeComponent implements OnInit {
       this.uporabnik = data
       this.tekme = this.uporabnik.tekme
       this.loaded = true
+      console.log(this.tekme)
       if (this.tekme.length > 0) {
         this.niTekem = false;
       }

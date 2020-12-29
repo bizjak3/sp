@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../register/user';
+import { User } from '../../modeli/User';
 import { DataService} from '../../storitve/data.service';
 import { WebRequestService } from '../../storitve/web-request.service'
 import { AvtentikacijaService } from '../../storitve/avtentikacija.service';
 import { Router } from '@angular/router';
+import { Uporabnik } from 'src/app/modeli/uporabnik';
 
 @Component({
   selector: 'app-profil',
@@ -13,8 +14,7 @@ import { Router } from '@angular/router';
 export class ProfilComponent implements OnInit {
 
   user: any;
-  uporabnik: any;
-  mail: string;
+  uporabnik: User;
   loaded = false;
 
   

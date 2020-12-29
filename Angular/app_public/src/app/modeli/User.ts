@@ -1,5 +1,5 @@
 export class User {
-    constructor(
+  constructor(
     banned: boolean,
     email: string,
     emailDrugi: boolean,
@@ -10,11 +10,11 @@ export class User {
     ocena: number,
     priimek: string,
     steviloOcen: number,
-    tekme: [string],
+    tekme: [Object],
     telDrugi: boolean,
     zgoscenaVrednost: string,
     _id: string,
     __v: number
-    ){}
+  ) {}
     
-  }
+}

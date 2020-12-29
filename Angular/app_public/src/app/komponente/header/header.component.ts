@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../register/user';
 import { DataService} from '../../storitve/data.service';
 import { AvtentikacijaService } from '../../storitve/avtentikacija.service';
 import { Router } from '@angular/router';

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../komponente/register/user'
 import { Uporabnik } from '../modeli/uporabnik';
 import { RezultatAvtentikacije } from './rezultat-avtentikacije';
 
@@ -24,7 +23,7 @@ export class WebRequestService {
       return this.http.post(this.url + uri, "")
     }
 
-    postUser(uri: string, user: User) {
+    postUser(uri: string, user: any) {
       return this.http.post(this.url + uri, user)
     }
 
