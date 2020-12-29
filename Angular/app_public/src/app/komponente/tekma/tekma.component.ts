@@ -36,6 +36,12 @@ export class TekmaComponent implements OnInit {
   pridruzen = true;
   urejamo = false;
 
+  public podatki = {
+    datum: "",
+    ura: "",
+    opis: ""
+  }
+
 
   constructor(private route: ActivatedRoute, private webReq: WebRequestService) { }
 
@@ -49,7 +55,7 @@ export class TekmaComponent implements OnInit {
           this.igralci = this.tekma.igralci;
           this.lahkoUrejamo = true;
           this.pridruzen = true;
-          this.urejamo = true;
+          this.urejamo = false;
           this.initMap();
         })
       }
@@ -88,5 +94,11 @@ export class TekmaComponent implements OnInit {
   neUrejamo(): void {
     this.urejamo = false;
   }
+  izbrisi(): void {
 
+  }
+  spremeni(): void {
+    this.webReq.spremeniTekmo("/tekma/"+this.tekma._id+"/spremeniTekmo", this.podatki).subscribe();
+    this.urejamo = false;
+  }
 }
