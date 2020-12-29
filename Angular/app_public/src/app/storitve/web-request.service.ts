@@ -7,7 +7,7 @@ import { RezultatAvtentikacije } from './rezultat-avtentikacije';
   providedIn: 'root'
 })
 export class WebRequestService {
-  
+
   url = 'http://localhost:3000'
 
   constructor(private http: HttpClient) { }
@@ -46,11 +46,11 @@ export class WebRequestService {
     public spremeniUporabnika(uri: string, uporabnik: any) {
       return this.http.post(this.url + uri, uporabnik)
     }
-  
+
     public registracija(uporabnik: Uporabnik): Promise<RezultatAvtentikacije> {
       return this.avtentikacija('registracija', uporabnik);
     }
-  
+
     private avtentikacija(urlNaslov: string, uporabnik: Uporabnik): Promise<RezultatAvtentikacije> {
       const url: string = `${this.url}/${urlNaslov}`;
       return this.http
@@ -59,10 +59,13 @@ export class WebRequestService {
         .then(rezultat => rezultat as RezultatAvtentikacije)
         .catch(this.obdelajNapako);
     }
-    
+
     private obdelajNapako(napaka: any): Promise<any> {
       console.error('Prišlo je do napake', napaka.error["sporočilo"] || napaka.error.errmsg || napaka.message || napaka);
       return Promise.reject(napaka.error["sporočilo"]|| napaka.error.errmsg || napaka.message || napaka);
     }
-      
+
+    public spremeniTekmo(uri: string, tekma: any){
+      return this.http.post(this.url + uri, tekma);
+    }
 }

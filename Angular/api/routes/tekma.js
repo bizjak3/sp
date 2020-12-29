@@ -8,4 +8,6 @@ router.get('/tekma/:id/tekme', controller.podrobnostiTekme)
 
 router.post('/novaTekma/:id', controller.ustvariTekmo);
 
+router.post('/tekma/:id/spremeniTekmo', controller.spremeniTekmo);
+
 module.exports = router;

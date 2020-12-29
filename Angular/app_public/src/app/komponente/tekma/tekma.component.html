@@ -105,8 +105,8 @@
 
                                     <div class="row m-2 border-bottom pb-2">
                                       <div class="col">
-                                        <input type="date" class="form-control" name="datum" value="{{tekma.datum}}" required>
-                                        <input type="time" class="form-control" name="ura" value="{{tekma.ura}}" required>
+                                        <input type="date" class="form-control" name="datum" value="{{tekma.datum}}" [(ngModel)]="podatki.datum" required>
+                                        <input type="time" class="form-control" name="ura" value="{{tekma.ura}}" [(ngModel)]="podatki.ura" required>
                                       </div>
                                     </div>
 
@@ -128,7 +128,7 @@
                                       </div>
                                     </div>
                                     <div class="col">
-                                      <textarea name="komentarji" class="form-control" rows="4" cols="36"  placeholder="Vnesite dodatne opombe">{{tekma.opis}}</textarea>
+                                      <textarea name="komentarji" class="form-control" rows="4" cols="36" [(ngModel)]="podatki.opis" placeholder="Vnesite dodatne opombe">{{tekma.opis}}</textarea>
                                     </div>
                                     <div id="obvestilo" style="visibility: hidden" class="alert alert-danger">
 

@@ -2,7 +2,7 @@ const Tekma = require('../models/Tekma')
 const User = require('../models/User')
 
 var podrobnostiTekme = (req, res) => {
-    console.log("parametri: " + req.params.id)
+    //console.log("parametri: " + req.params.id)
     Tekma.find({
         _id: req.params.id
     }).then((tekma) => {
@@ -78,7 +78,29 @@ var ustvariTekmo = (req, res) => {
     
 }
 
+var spremeniTekmo = (req, res) => {
+    const {datum, ura, opis} = req.body;
+    Tekma.findOne({_id: req.params.id}, function (err, tekma) {
+        if(err){
+            console.log(err);
+        }else{
+            if(tekma.status == 'prijave'){
+                tekma.datum = datum;
+                tekma.ura = ura;
+                tekma.opis = opis;
+                tekma.save(function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+                res.send(tekma);
+            }
+        }
+    });
+}
+
 module.exports = {
     podrobnostiTekme,
-    ustvariTekmo
+    ustvariTekmo,
+    spremeniTekmo
 }
