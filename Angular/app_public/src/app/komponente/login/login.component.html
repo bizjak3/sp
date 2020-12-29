@@ -27,29 +27,29 @@
                         <div class="col container">
                             <div class="prijava">
 
-                                
+
 
                                 <form novalidate #f="ngForm" (submit)="posiljanjePodatkov()" autocomplete="off">
                                     <div role="alert" *ngIf="napakaNaObrazcu" class="alert alert-danger">{{ napakaNaObrazcu }}</div>
                                     <div class="form-group">
-                                        <input [class.is-invalid]="mail.invalid && mail.touched" #mail="ngModel" type="email" class="form-control"  placeholder="Vnesi elektronski naslov" 
+                                        <input [class.is-invalid]="mail.invalid && mail.touched" #mail="ngModel" type="email" class="form-control"  placeholder="Vnesi elektronski naslov"
                                         name="email" [(ngModel)]="prijavniPodatki.email" email="true">
                                     </div>
-                                        
+
 
                                     <div class="form-group" style="text-align: center;">
                                         <input type="password" class="form-control" id="geslo"
                                         placeholder="Vnesi geslo" name="password" [(ngModel)]="prijavniPodatki.geslo" >
                                     </div>
-                                    
+
                                     <button type="button" class="btn btn-link btn-block" data-toggle="modal"
                                             data-target="#exampleModal">Pozabil sem geslo</button>
 
                                     <input type="submit" class="btn btn-primary btn-block" value="Prijava" >
-                            
+
                                 </form>
                                 <br>
-                            
+
 
 
                              <button routerLink="/register" type="button"  class="btn btn-success btn-block" data-toggle="modal">Registracija</button>

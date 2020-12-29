@@ -9,15 +9,15 @@
           <div class="card-header bg-dark text-white">Ustvari tekmo</div>
 
 
-          
-              
+
+
         <div class="map-container">
           <div class="map-frame">
             <div id="map"></div>
           </div>
         </div>
 
-          
+
 
           <div class="col-sm-12 col-md-12 col-lg-12">
             <form (submit)="ustvariTekmo()">
@@ -76,7 +76,7 @@
 
                 <div class="form-group">
                   <label class="">Opombe</label>
-                  <textarea name="komentarji" class="form-control" rows="4" cols="36"  placeholder="Vnesite dodatne opombe"></textarea>
+                  <textarea name="komentarji" class="form-control" rows="4" cols="36"  placeholder="Vnesite dodatne opombe" [(ngModel)]="podatki.opombe"></textarea>
                 </div>
                 <div id="obvestilo" style="visibility: hidden" class="alert alert-danger">
 

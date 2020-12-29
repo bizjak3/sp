@@ -40,7 +40,7 @@ export class UstvariTekmoComponent implements OnInit {
     min: 0,
     max: 10,
     prijavljeni: 0,
-    opombe: "Opombe"
+    opombe: ""
   }
 
   constructor(
@@ -86,6 +86,8 @@ export class UstvariTekmoComponent implements OnInit {
     this.web.postTekma("/novaTekma/" + this.avtentikacija.vrniId(), this.podatki).subscribe()
     this.router.navigateByUrl("/", {skipLocationChange: true})
   }
+
+
 
 
 }

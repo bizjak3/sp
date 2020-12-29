@@ -32,7 +32,9 @@ export class TekmaComponent implements OnInit {
   tekma: any;
   igralci: any;
   loaded = false;
-  
+  lahkoUrejamo = true;
+  pridruzen = true;
+  urejamo = false;
 
 
   constructor(private route: ActivatedRoute, private webReq: WebRequestService) { }
@@ -44,15 +46,18 @@ export class TekmaComponent implements OnInit {
         this.webReq.getTekma(params.id).subscribe((tekma: Tekma) => {
           this.tekma = tekma[0];
           this.loaded = true;
-          this.igralci = this.tekma.igralci
+          this.igralci = this.tekma.igralci;
+          this.lahkoUrejamo = true;
+          this.pridruzen = true;
+          this.urejamo = true;
           this.initMap();
         })
       }
-    ) 
+    )
 
-    
-      
-    
+
+
+
   }
 
   private initMap(): void {
@@ -69,6 +74,19 @@ export class TekmaComponent implements OnInit {
     tiles.addTo(this.map);
 
     var marker = new L.marker([this.tekma.lat, this.tekma.lng]).addTo(this.map);
+  }
+
+  pridruziSe(): void {
+    this.pridruzen = true;
+  }
+  odjaviSe(): void {
+    this.pridruzen = false;
+  }
+  jaUrejamo(): void {
+    this.urejamo = true;
+  }
+  neUrejamo(): void {
+    this.urejamo = false;
   }
 
 }
