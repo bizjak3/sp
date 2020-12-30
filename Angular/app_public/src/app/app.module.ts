@@ -22,6 +22,7 @@ import { TekmaComponent } from './komponente/tekma/tekma.component';
 import { MapComponent } from './komponente/map/map.component';
 import { MojeTekmeComponent } from './komponente/moje-tekme/moje-tekme.component';
 import { ModalOknoComponent } from './komponente/modal-okno/modal-okno.component';
+import { NapakaComponent } from './komponente/napaka/napaka.component';
 
 
 
@@ -41,7 +42,8 @@ import { ModalOknoComponent } from './komponente/modal-okno/modal-okno.component
     TekmaComponent,
     MapComponent,
     MojeTekmeComponent,
-    ModalOknoComponent
+    ModalOknoComponent,
+    NapakaComponent
   ],
   imports: [
     BrowserModule,
