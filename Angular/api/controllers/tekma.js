@@ -84,6 +84,7 @@ var spremeniTekmo = (req, res) => {
     Tekma.findOne({_id: req.params.id}, function (err, tekma) {
         if(err){
             console.log(err);
+            res.send({sporocilo: err})
         }else{
             if(tekma.status == 'prijave'){
                 tekma.datum = datum;
@@ -94,6 +95,7 @@ var spremeniTekmo = (req, res) => {
                         console.log(err);
                     }
                 });
+                res.send({sporocilo: "Uspesno spremenjeni podatki"})
             }
         }
     });
@@ -121,7 +123,15 @@ var prijaviSeNaTekmo = (req, res, done) => {
                     }
                 })
                 if(!jePrijavljen){
-                    
+
+                    var podatkiTekme = {
+                        id: tekma.id,
+                        kraj: tekma.kraj,
+                        datum: tekma.datum,
+                        ura: tekma.ura
+                    }
+
+                    uporabnik.tekme.push(podatkiTekme)
                     tekma.igralci.push(user)
                     tekma.prijavljeni++;
                     tekma.save()
@@ -130,7 +140,7 @@ var prijaviSeNaTekmo = (req, res, done) => {
             }
         })
     });
-    res.send({sporocilo: "Prijavi"})
+    res.send({sporocilo: "Uspešna prijava"})
 }
 
 var odjaviSeOdTekme = (req, res, done) => {
@@ -159,6 +169,12 @@ var odjaviSeOdTekme = (req, res, done) => {
                             tekma.igralci.splice(i, 1)
                         }
                     }
+
+                    for (var i = 0; i < uporabnik.tekme.length; i++) {
+                        if (uporabnik.tekme[i].id === idTekme) {
+                            uporabnik.tekme.splice(i, 1)
+                        }
+                    }
                     
                     tekma.prijavljeni--;
                     tekma.save()
@@ -167,7 +183,7 @@ var odjaviSeOdTekme = (req, res, done) => {
             }
         })
     });
-    res.send({sporocilo: "Odjavi"})
+    res.send({sporocilo: "Uspešna odjava"})
 }
 
 var izbrisiTekmo = (req, res) => {

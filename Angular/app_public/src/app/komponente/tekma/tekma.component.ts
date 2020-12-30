@@ -129,9 +129,14 @@ export class TekmaComponent implements OnInit {
     this.router.navigateByUrl("/");
   }
   spremeni(): void {
-    this.webReq.spremeniTekmo("/tekma/"+this.tekma._id+"/spremeniTekmo", this.podatki).subscribe(() => {
-      this.ngOnInit()
-    });
+    this.webReq.spremeniTekmo("/tekma/"+this.tekma._id+"/spremeniTekmo", this.podatki).subscribe(
+      result => {
+        console.log(result)
+        this.ngOnInit()
+      },
+      error => console.log(error)
+      
+    );
     
     this.urejamo = false;
   }
