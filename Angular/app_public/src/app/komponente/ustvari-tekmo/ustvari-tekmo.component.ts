@@ -30,6 +30,10 @@ var geocodeService = geo.geocodeService();
 })
 export class UstvariTekmoComponent implements OnInit {
   private map;
+  ustvarjeno = false;
+  result: any;
+  obvestilo: string;
+  status: string;
 
   public podatki = {
     kraj: "",
@@ -83,8 +87,21 @@ export class UstvariTekmoComponent implements OnInit {
 
   public ustvariTekmo() {
 
-    this.web.postTekma("/novaTekma/" + this.avtentikacija.vrniId(), this.podatki).subscribe()
-    this.router.navigateByUrl("/")
+    this.web.postTekma("/novaTekma/" + this.avtentikacija.vrniId(), this.podatki).subscribe(
+      (result) => {
+        this.result = result;
+        this.ustvarjeno = true
+        this.obvestilo = this.result.sporocilo;
+        this.status = this.result.status;
+    },
+    error => {
+      
+      this.result = error.error
+      console.log(this.result)
+      this.obvestilo = this.result.sporocilo;
+      this.status = this.result.status;
+    })
+    
   }
 
 

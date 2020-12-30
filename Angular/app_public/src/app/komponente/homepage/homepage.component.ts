@@ -22,6 +22,7 @@ export class HomepageComponent implements OnInit {
   p: number;
   d: any;
   total: number;
+  sort = -1;
 
   uporabnik: any;
   
@@ -45,7 +46,7 @@ export class HomepageComponent implements OnInit {
       this.total = this.d.stevilo;
     })
 
-    this.getTekme(1)
+    this.getTekme(1, this.sort)
 
     if (this.avtentikacijaStoritev.jePrijavljen()) {
       this.uporabnik = this.avtentikacijaStoritev.vrniTrenutnegaUporabnika();
@@ -53,9 +54,9 @@ export class HomepageComponent implements OnInit {
     
   }
 
-  getTekme(p: number) {
+  getTekme(p: number, d: number) {
     console.log("AA")
-    this.web.getPage("/page/" + p).subscribe((tekme) => {
+    this.web.getPage("/page/" + p + "/" + d).subscribe((tekme) => {
       console.log("SEM PRSU DO SM")
       this.tekme = tekme
       console.log(this.tekme)
@@ -64,7 +65,17 @@ export class HomepageComponent implements OnInit {
 
   getPage(pageNum: number) {
     this.p = pageNum
-    this.getTekme(this.p)
+    this.getTekme(this.p, this.sort)
+  }
+
+  datumGor() {
+    this.sort = -1;
+    this.getTekme(this.p, this.sort)
+  }
+
+  datumDol() {
+    this.sort = 1
+    this.getTekme(this.p, this.sort)
   }
 
   

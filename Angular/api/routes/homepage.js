@@ -13,7 +13,7 @@ const contrHomepage = require('../controllers/homepage')
 
 
 
-router.get('/page/:p', contrHomepage.homepage);
+router.get('/page/:p/:d', contrHomepage.homepage);
 
 router.get("/tekme", contrHomepage.tekme)
 

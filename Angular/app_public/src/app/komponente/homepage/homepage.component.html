@@ -22,9 +22,28 @@
         <div class="col-sm-4 " style="height:100%;">
 
             <div class="row" style=" height:90%;">
+                
                 <div class="card  border-dark" style="width:100%; height:100%;" >
+                    
                     <div class="card-header bg-dark text-white">Seznam tekem</div>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-outline-dark">
+                          <input (click)=datumGor() type="radio" name="options" id="option1" autocomplete="off" checked> Datum <i class="fas fa-arrow-up"></i>
+                        </label>
+                        <label class="btn btn-outline-dark">
+                          <input (click)="datumDol()"type="radio" name="options" id="option2" autocomplete="off"> Datum <i class="fas fa-arrow-down"></i>
+                        </label>
+                        
+                      </div>
+
+                      
                     <div class="card-body px-1 py-1" style="height:100%;">
+                        <pagination-controls class="align-self-end"
+                      (pageChange)="getPage($event)" 
+                      autoHide="true" previousLabel="Nazaj"
+                      nextLabel="Naprej" 
+                      ></pagination-controls>
+                        
 
                         <!-- zavijem da je kartica skrollable in se ne preliva cez -->
                         <div class="scrollable" style="height:100%; overflow-y: auto;">
@@ -41,15 +60,13 @@
 
                                 </div>
 
-                                    <pagination-controls 
-                                    (pageChange)="getPage($event)" 
-                                    autoHide="true" previousLabel="Nazaj"
-                                    nextLabel="Naprej" 
-                                    ></pagination-controls>
-                               
                             </ul>
+                            
+                            
 
                         </div>
+                        
+                        
 
                     </div>
                 </div>

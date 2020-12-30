@@ -25,16 +25,25 @@ var ustvariTekmo = (req, res) => {
     
     let {lat, lng, kraj, datum, ura, min, max, prijavljeni, opombe } = req.body;
 
+    if (!kraj || !datum || !ura) {
+        return res.status(400).json({sporocilo: "Prosim vnesite kraj, datum in uro tekme", status: "danger"})
+    }
+
     prijavljeni += 1;
 
     let d = new Date(datum); //dd-mm-YYYY
     let t = new Date();
 
+    
+
     t.setHours(0, 0, 0, 0);
     d.setHours(0, 0, 0, 0);
 
+    
+    console.log(d.toTimeString())
+
     if(d < t) {
-        return;
+        return res.status(400).json({sporocilo: "Prosim preveri vnešeni datum", status: "danger"});
     }else if(d + "" == t + ""){
         var now = new Date();
 
@@ -44,9 +53,10 @@ var ustvariTekmo = (req, res) => {
     }
 
     User.findById(req.params.id, (napaka, uporabnik) => {
+
         if (napaka) {
             res.status(404)
-        } else {
+        }  else {
             var user = {
                 id: req.params.id,
                 ime: uporabnik.ime,
@@ -78,7 +88,7 @@ var ustvariTekmo = (req, res) => {
                     uporabnik.tekme.push(podatkiTekme)
                     uporabnik.save()
                     
-                    res.status(200)
+                    res.status(200).send({sporocilo: "Tekma uspešno ustvarjena", status: "success"})
                 })
                 .catch(err => {
                     res.send(err)
@@ -188,6 +198,7 @@ var odjaviSeOdTekme = (req, res, done) => {
                     
                     tekma.prijavljeni--;
                     tekma.save()
+                    uporabnik.save()
                     console.log(tekma)
                 }
             }
