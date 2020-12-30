@@ -1,7 +1,10 @@
+import { PodatkiUporabnika } from "./PodatkiUporabnika";
+
 
 export class Tekma {
     constructor(
-        public kreator: string,
+        public _id: string,
+        public kreator: PodatkiUporabnika,
         public lat: number,
         public lng: number,
         public kraj: string,
@@ -11,7 +14,7 @@ export class Tekma {
         public maxIgralcev: number,
         public prijavljeni: number,
         public opis: string,
-        public igralci: [string],
+        public igralci: [PodatkiUporabnika],
         public status: string,
         public zeOcenili: [string]
         

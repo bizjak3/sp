@@ -39,15 +39,15 @@
                         </div>
 
                         <!-- vreme -->
-                        <div  class="row mb-3" style="overflow: hidden; height:40%;">
+                        <div *ngIf="loaded" class="row mb-3" style="overflow: hidden; height:40%;">
                             <div class="h-100 w-100 border border-dark rounded" style="text-align: center; overflow: hidden; ">
                                 <!--iframe src="https://vreme.arso.gov.si/widget/?width=260px&loc={{pridobiMesto tekma.kraj}}" style="border:0; height: 185px; width: 260px;"></iframe-->
                                 <!--iframe src="http://www.weather-mikimuster.com/builder/index.html#/widgets/37.577475/22.130864/kraj/si/c/vertical/3/337abf/250" frameborder="0" scrolling="no" width="250px" height="395px"></iframe-->
 
                                 <br>
-                                <h1 class="display-4 text-center"><i class="fas fa-thermometer-quarter"></i> <strong>°C</strong></h1>
-                                <h5 class="text-center"><i class="fas fa-wind"></i>  m/s</h5>
-                            <h5 class="text-center"></h5>
+                                <h1 class="display-4 text-center"><i class="fas fa-thermometer-quarter"></i> <strong>{{vreme.main.temp }}°C</strong></h1>
+                                <h5 class="text-center"><i class="fas fa-wind"></i> {{ vreme.wind.speed}} m/s</h5>
+                                <h5 class="text-center"><img src="http://openweathermap.org/img/wn/{{ikonaVremena}}.png">{{opisVremena}}</h5>
 
 
                             </div>

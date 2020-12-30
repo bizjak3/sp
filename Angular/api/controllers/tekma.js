@@ -1,12 +1,22 @@
 const Tekma = require('../models/Tekma')
 const User = require('../models/User')
+var weather = require('openweather-apis');
+weather.setUnits('metric');
+weather.setAPPID('2d46165b2a3d0734271c8271f8c9e8fa');
+weather.setLang('sl');
 
 var podrobnostiTekme = (req, res) => {
     //console.log("parametri: " + req.params.id)
     Tekma.find({
         _id: req.params.id
     }).then((tekma) => {
-        res.send(tekma)
+        console.log("LAT:" + tekma[0].lat)
+        weather.setCoordinate(tekma[0].lat, tekma[0].lng);
+        weather.getAllWeather(function(err, vreme) {
+            console.log(vreme)
+            res.send({tekma: tekma[0], vreme: vreme})
+        })
+        
     })
 }
 

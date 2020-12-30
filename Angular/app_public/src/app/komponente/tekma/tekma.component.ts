@@ -31,7 +31,7 @@ export class TekmaComponent implements OnInit {
 
   private map;
 
-  tekma: any;
+  tekma: Tekma;
   igralci: any;
   loaded = false;
   lahkoUrejamo = false;
@@ -40,6 +40,10 @@ export class TekmaComponent implements OnInit {
   ocenjamo = false;
   lahkoOcenjamo = true;
   lahkoPrijavimo = false;
+  vreme: any;
+  result: any;
+  opisVremena: string;
+  ikonaVremena: string;
 
   public podatki = {
     datum: "",
@@ -58,11 +62,16 @@ export class TekmaComponent implements OnInit {
       (params: Params) => {
 
         console.log(params.id)
-        this.webReq.getTekma(params.id).subscribe((tekma: Tekma) => {
-          this.tekma = tekma[0];
-          this.loaded = true;
+        this.webReq.getTekma(params.id).subscribe((podatkiTekme: any) => {
+          this.result = podatkiTekme
+          this.tekma = this.result.tekma;
           this.igralci = this.tekma.igralci;
 
+          this.vreme = this.result.vreme
+          this.opisVremena = this.vreme.weather[0].description
+          this.ikonaVremena = this.vreme.weather[0].icon
+
+          this.loaded = true;
           this.pridruzen = false;
 
           // prijava
@@ -71,7 +80,6 @@ export class TekmaComponent implements OnInit {
               this.pridruzen = true;
             }
           });
-
 
           // ocenjevanje
           if(this.tekma.zeOcenili.includes(this.avtentikacija.vrniId())){
@@ -94,6 +102,7 @@ export class TekmaComponent implements OnInit {
           if (!this.map) {
             this.initMap();
           }
+          
         })
       }
     )
@@ -143,6 +152,8 @@ export class TekmaComponent implements OnInit {
   jaUrejamo(): void {
     this.urejamo = true;
   }
+
+  
 
   neUrejamo(): void {
     this.urejamo = false;
