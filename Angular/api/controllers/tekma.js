@@ -93,8 +93,82 @@ var spremeniTekmo = (req, res) => {
                         console.log(err);
                     }
                 });
-                res.send(tekma);
             }
+        }
+    });
+}
+
+var prijaviSeNaTekmo = (req, res, done) => {
+    User.findById(req.params.user, (err, uporabnik) => {
+        var user = {
+            id: req.params.user,
+            ime: uporabnik.ime,
+            priimek: uporabnik.priimek
+        }
+
+        Tekma.findById(req.params.id, (err, tekma) => {
+            if(tekma.status == "prijave"){
+                var jePrijavljen = false;
+                tekma.igralci.forEach(element => {
+                    if(element.id + "" == user.id + ""){
+                        jePrijavljen = true;
+                    }
+                })
+                if(!jePrijavljen){
+                    Tekma.updateOne(
+                        {_id: req.params.id},
+                        { $push: {igralci: user}},
+                        done
+                    );
+                    Tekma.updateOne(
+                         { _id: req.params.id },
+                         { $inc: { prijavljeni: 1}},
+                         done
+                    );
+                }
+            }
+        })
+    });
+}
+
+var odjaviSeOdTekme = (req, res, done) => {
+    User.findById(req.params.user, (err, uporabnik) => {
+        var user = {
+            id: req.params.user,
+            ime: uporabnik.ime,
+            priimek: uporabnik.priimek
+        }
+
+        Tekma.findById(req.params.id, (err, tekma) => {
+            if(tekma.status == "prijave"){
+                var jePrijavljen = false;
+
+                tekma.igralci.forEach(element => {
+                    if(element.id + "" == user.id + ""){
+                        jePrijavljen = true;
+                    }
+                })
+                if(jePrijavljen){
+                    Tekma.updateOne(
+                        {_id: req.params.id},
+                        { $pull: {igralci: user}},
+                        done
+                    );
+                    Tekma.updateOne(
+                         { _id: req.params.id },
+                         { $inc: { prijavljeni: -1}},
+                         done
+                    );
+                }
+            }
+        })
+    });
+}
+
+var izbrisiTekmo = (req, res) => {
+    Tekma.deleteOne({_id: req.params.id}, function (err){
+        if(err){
+            console.log(err);
         }
     });
 }
@@ -102,5 +176,8 @@ var spremeniTekmo = (req, res) => {
 module.exports = {
     podrobnostiTekme,
     ustvariTekmo,
-    spremeniTekmo
+    spremeniTekmo,
+    prijaviSeNaTekmo,
+    odjaviSeOdTekme,
+    izbrisiTekmo
 }

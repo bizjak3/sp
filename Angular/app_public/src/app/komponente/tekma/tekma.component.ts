@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router'
 import { WebRequestService } from '../../storitve/web-request.service'
+import { AvtentikacijaService } from 'src/app/storitve/avtentikacija.service';
 import { Tekma } from '../../modeli/Tekma'
+import { Router} from '@angular/router'
 import * as L from "leaflet";
 
 const iconRetinaUrl = 'assets/images/marker-icon-2x.png';
@@ -43,7 +45,7 @@ export class TekmaComponent implements OnInit {
   }
 
 
-  constructor(private route: ActivatedRoute, private webReq: WebRequestService) { }
+  constructor(private route: ActivatedRoute, private webReq: WebRequestService, private avtentikacija: AvtentikacijaService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -53,8 +55,16 @@ export class TekmaComponent implements OnInit {
           this.tekma = tekma[0];
           this.loaded = true;
           this.igralci = this.tekma.igralci;
+
+          this.pridruzen = false;
+
+          this.igralci.forEach(element => {
+            if(element.id + "" === this.avtentikacija.vrniId() + ""){
+              this.pridruzen = true;
+            }
+          });
+
           this.lahkoUrejamo = true;
-          this.pridruzen = true;
           this.urejamo = false;
           this.initMap();
         })
@@ -80,9 +90,17 @@ export class TekmaComponent implements OnInit {
 
   pridruziSe(): void {
     this.pridruzen = true;
+    let upo = this.avtentikacija.vrniId();
+    this.webReq.prijaviSeNaTekmo("/tekma/" + this.tekma._id + "/prijaviSe/" + upo, null).subscribe(() => {
+      this.ngOnInit();
+    });
   }
   odjaviSe(): void {
     this.pridruzen = false;
+    let upo = this.avtentikacija.vrniId();
+    this.webReq.odjaviSeOdTekme("/tekma/" + this.tekma._id + "/odjaviSe/" + upo, null).subscribe(() => {
+      this.ngOnInit();
+    });
   }
   jaUrejamo(): void {
     this.urejamo = true;
@@ -91,7 +109,8 @@ export class TekmaComponent implements OnInit {
     this.urejamo = false;
   }
   izbrisi(): void {
-
+    this.webReq.izbrisiTekmo("/tekma/" + this.tekma._id + "/izbrisi").subscribe();
+    this.router.navigateByUrl("/");
   }
   spremeni(): void {
     this.webReq.spremeniTekmo("/tekma/"+this.tekma._id+"/spremeniTekmo", this.podatki).subscribe(() => {
