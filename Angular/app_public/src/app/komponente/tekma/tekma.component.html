@@ -174,13 +174,9 @@
                                   </div>
 
                                   <div class="row m-2 border-bottom pb-2">
-                                    <div class="col" *ngIf="urejamo; else datumUra">
-                                      <input type="date" class="form-control" name="datum" value="{{tekma.datum}}" required>
-                                      <input type="time" class="form-control" name="ura" value="{{tekma.ura}}" required>
-                                    </div>
-                                    <ng-template  class="col" #datumUra>
+                                    <div class="col">
                                       {{tekma.datum}} | {{tekma.ura}}
-                                    </ng-template>
+                                    </div>
                                   </div>
 
                                   <div class="row m-2 info">
@@ -214,27 +210,66 @@
                     <div class="col-lg-4 col-md-12 col-sm-12 mb-1">
                         <div class="card  border-dark">
                             <!--Ime kartice-->
-                            <div class="card-header bg-dark text-white">
+                            <div *ngIf="ocenjamo; else ocene">
+                              <div class="card-header bg-dark text-white">
                                 <div class="row justify-content-center">
-                                    <div class="col text-center">
-                                        Igralci
-                                    </div>
+                                  <div class="col text-center">
+                                    Igralci
+                                  </div>
                                 </div>
-                            </div>
-                            <div class="card-body px-1 py-1">
+                              </div>
+                              <div class="card-body px-1 py-1">
+                                <form (submit)="oceni()">
                                 <div class="scrollable" style="height:100%; overflow-y: auto;">
-                                    <ul class="list-group seznam" style="height: 50vh; width:100%; min-height: 300px" >
-                                        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let igralec of igralci">
-                                            <a class="col-sm text-dark">{{igralec.ime}} {{igralec.priimek}}</a>
-                                        </li>
-                                    </ul>
+                                  <ul class="list-group seznam" style="height: 50vh; width:100%; min-height: 300px" >
+                                      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let igralec of igralci; let i = index;trackBy:trackByIdx">
+                                        <a class="col-sm text-dark">{{igralec.ime}} {{igralec.priimek}}</a>
+                                        <select name="ocena" [(ngModel)]="a.ocene[i]">
+                                          <option>1</option>
+                                          <option>2</option>
+                                          <option selected>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                      </li>
+
+                                  </ul>
                                 </div>
                                 <div class="modal-footer">
-                                    <a *ngIf="loaded" href="/tekma/{{tekma._id}}/oceni">
-                                      <button class="btn btn-primary"><i class="fa fa-star checked"></i> Oceni</button>
-                                    </a>
+                                  <a>
+                                    <button type="submit" class="btn btn-primary"> Shrani</button>
+                                  </a>
+                                  <a (click)="neOcenjevanje()">
+                                    <button class="btn btn-danger"> Prekliči</button>
+                                  </a>
                                 </div>
+                                </form>
+                              </div>
                             </div>
+                            <ng-template #ocene>
+                              <div class="card-header bg-dark text-white">
+                                <div class="row justify-content-center">
+                                  <div class="col text-center">
+                                    Igralci
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card-body px-1 py-1">
+                                <div class="scrollable" style="height:100%; overflow-y: auto;">
+                                  <ul class="list-group seznam" style="height: 50vh; width:100%; min-height: 300px" >
+                                    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let igralec of igralci">
+                                      <a class="col-sm text-dark">{{igralec.ime}} {{igralec.priimek}}</a>
+                                      <a class="col-sm text-dark">{{igralec.ocena}}</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <div class="modal-footer">
+                                  <a (click)="daOcenjevanje()" *ngIf="lahkoOcenjamo">
+                                    <button class="btn btn-primary"><i class="fa fa-star checked"></i> Oceni</button>
+                                  </a>
+                                </div>
+                              </div>
+                            </ng-template>
                         </div>
                     </div>
 
@@ -250,7 +285,7 @@
             <a *ngIf="lahkoUrejamo">
               <button type="button" class="btn btn-secondary" (click)="jaUrejamo()"><i class="fas fa-edit"></i> Uredi</button>
             </a>
-            <a *ngIf="lahkoUrejamo">
+            <a *ngIf="lahkoPrijavimo">
               <a *ngIf="pridruzen; else prijava">
                 <button type="button" class="btn btn-danger" (click)="odjaviSe()"><i class="fas fa-sign-out-alt"></i> Odjavi se</button>
               </a>

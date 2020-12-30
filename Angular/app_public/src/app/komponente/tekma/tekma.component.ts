@@ -34,14 +34,20 @@ export class TekmaComponent implements OnInit {
   tekma: any;
   igralci: any;
   loaded = false;
-  lahkoUrejamo = true;
+  lahkoUrejamo = false;
   pridruzen = true;
   urejamo = false;
+  ocenjamo = false;
+  lahkoOcenjamo = true;
+  lahkoPrijavimo = false;
 
   public podatki = {
     datum: "",
     ura: "",
     opis: ""
+  }
+  public a = {
+    ocene: []
   }
 
 
@@ -50,7 +56,7 @@ export class TekmaComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(
       (params: Params) => {
-        
+
         console.log(params.id)
         this.webReq.getTekma(params.id).subscribe((tekma: Tekma) => {
           this.tekma = tekma[0];
@@ -59,13 +65,31 @@ export class TekmaComponent implements OnInit {
 
           this.pridruzen = false;
 
+          // prijava
           this.igralci.forEach(element => {
             if(element.id + "" === this.avtentikacija.vrniId() + ""){
               this.pridruzen = true;
             }
           });
 
-          this.lahkoUrejamo = true;
+
+          // ocenjevanje
+          if(this.tekma.zeOcenili.includes(this.avtentikacija.vrniId())){
+            this.lahkoOcenjamo = false;
+          }
+          let i = this.tekma.igralci.map(a => a.id);
+          if(!i.includes(this.avtentikacija.vrniId())){
+            this.lahkoOcenjamo = false;
+          }
+
+          if(this.tekma.status == "prijave"){
+            if(this.tekma.kreator.id == this.avtentikacija.vrniId()){
+              this.lahkoUrejamo = true;
+            }
+            this.lahkoOcenjamo = false;
+            this.lahkoPrijavimo = true;
+          }
+
           this.urejamo = false;
           if (!this.map) {
             this.initMap();
@@ -99,7 +123,7 @@ export class TekmaComponent implements OnInit {
     console.log(upo)
     this.webReq.prijaviSeNaTekmo("/prijaviSe/" + this.tekma._id, upo).subscribe((res) => {
       console.log(res)
-      this.ngOnInit()
+      this.ngOnInit();
     });
   }
 
@@ -111,7 +135,7 @@ export class TekmaComponent implements OnInit {
     this.webReq.odjaviSeOdTekme("/odjaviSe/" + this.tekma._id, upo).subscribe((result) => {
       console.log(result)
       this.ngOnInit()
-    }, 
+    },
     error => console.log(error)
     );
   }
@@ -135,9 +159,25 @@ export class TekmaComponent implements OnInit {
         this.ngOnInit()
       },
       error => console.log(error)
-      
+
     );
-    
+
     this.urejamo = false;
+  }
+  daOcenjevanje(): void {
+    this.ocenjamo = true;
+  }
+  neOcenjevanje(): void {
+    this.ocenjamo = false;
+  }
+  oceni(): void {
+    let upo = this.avtentikacija.vrniId();
+    this.webReq.oceniIgralce("/tekma/" + this.tekma._id + "/oceni/" + upo, this.a).subscribe(() => {
+      this.ocenjamo = false;
+      this.ngOnInit();
+    });
+  }
+  trackByIdx(index: number, obj: any): any {
+    return index;
   }
 }

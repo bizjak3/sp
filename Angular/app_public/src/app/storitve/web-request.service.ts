@@ -84,4 +84,8 @@ export class WebRequestService {
     public izbrisiTekmo(uri: string){
       return this.http.get(this.url + uri);
     }
+
+    public oceniIgralce(uri: string, body: any){
+      return this.http.post(this.url + uri, body);
+    }
 }
