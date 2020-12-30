@@ -72,4 +72,16 @@ export class WebRequestService {
     public spremeniTekmo(uri: string, tekma: any){
       return this.http.post(this.url + uri, tekma);
     }
+
+    public prijaviSeNaTekmo(uri: string, body: any | null){
+      return this.http.put(this.url + uri);
+    }
+
+    public odjaviSeOdTekme(uri: string, body: any | null){
+      return this.http.put(this.url + uri);
+    }
+
+    public izbrisiTekmo(uri: string){
+      return this.http.get(this.url + uri);
+    }
 }
