@@ -2,7 +2,7 @@ const Tekma = require('../models/Tekma');
 
 var homepage = (req, res) => {
     let p = req.params.p-1
-    let skip = p * 5;
+    let skip = p * 10;
     console.log("P je: " + p)
     Tekma.find().skip(skip).limit(10).lean().exec({}, function (err, tekma) {
         res.send(tekma)

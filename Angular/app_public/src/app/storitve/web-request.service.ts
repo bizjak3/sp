@@ -73,11 +73,11 @@ export class WebRequestService {
       return this.http.post(this.url + uri, tekma);
     }
 
-    public prijaviSeNaTekmo(uri: string, body: any | null){
+    public prijaviSeNaTekmo(uri: string, body: any){
       return this.http.put(this.url + uri, body);
     }
 
-    public odjaviSeOdTekme(uri: string, body: any | null){
+    public odjaviSeOdTekme(uri: string, body: any){
       return this.http.put(this.url + uri, body);
     }
 

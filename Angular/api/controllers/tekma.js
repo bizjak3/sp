@@ -67,6 +67,7 @@ var ustvariTekmo = (req, res) => {
                     }
                     uporabnik.tekme.push(podatkiTekme)
                     uporabnik.save()
+                    
                     res.status(200)
                 })
                 .catch(err => {
@@ -99,47 +100,50 @@ var spremeniTekmo = (req, res) => {
 }
 
 var prijaviSeNaTekmo = (req, res, done) => {
-    User.findById(req.params.user, (err, uporabnik) => {
+    
+    let idTekme = req.params.id;
+    let idUser = req.body.id
+    User.findById(idUser, (err, uporabnik) => {
         var user = {
-            id: req.params.user,
+            id: idUser,
             ime: uporabnik.ime,
             priimek: uporabnik.priimek
         }
-
-        Tekma.findById(req.params.id, (err, tekma) => {
-            if(tekma.status == "prijave"){
+        Tekma.findById(idTekme, (err, tekma) => {
+            console.log(tekma)
+            if(tekma.status === "prijave"){
+                console.log("Je prijave")
                 var jePrijavljen = false;
                 tekma.igralci.forEach(element => {
+                    console.log(element)
                     if(element.id + "" == user.id + ""){
                         jePrijavljen = true;
                     }
                 })
                 if(!jePrijavljen){
-                    Tekma.updateOne(
-                        {_id: req.params.id},
-                        { $push: {igralci: user}},
-                        done
-                    );
-                    Tekma.updateOne(
-                         { _id: req.params.id },
-                         { $inc: { prijavljeni: 1}},
-                         done
-                    );
+                    
+                    tekma.igralci.push(user)
+                    tekma.prijavljeni++;
+                    tekma.save()
+                    console.log(tekma)
                 }
             }
         })
     });
+    res.send({sporocilo: "Prijavi"})
 }
 
 var odjaviSeOdTekme = (req, res, done) => {
-    User.findById(req.params.user, (err, uporabnik) => {
+    let idTekme = req.params.id;
+    let idUser = req.body.id
+    User.findById(idUser, (err, uporabnik) => {
         var user = {
-            id: req.params.user,
+            id: idUser,
             ime: uporabnik.ime,
             priimek: uporabnik.priimek
         }
 
-        Tekma.findById(req.params.id, (err, tekma) => {
+        Tekma.findById(idTekme, (err, tekma) => {
             if(tekma.status == "prijave"){
                 var jePrijavljen = false;
 
@@ -149,20 +153,21 @@ var odjaviSeOdTekme = (req, res, done) => {
                     }
                 })
                 if(jePrijavljen){
-                    Tekma.updateOne(
-                        {_id: req.params.id},
-                        { $pull: {igralci: user}},
-                        done
-                    );
-                    Tekma.updateOne(
-                         { _id: req.params.id },
-                         { $inc: { prijavljeni: -1}},
-                         done
-                    );
+                    
+                    for (var i = 0; i < tekma.igralci.length; i++) {
+                        if (tekma.igralci[i].id === user.id) {
+                            tekma.igralci.splice(i, 1)
+                        }
+                    }
+                    
+                    tekma.prijavljeni--;
+                    tekma.save()
+                    console.log(tekma)
                 }
             }
         })
     });
+    res.send({sporocilo: "Odjavi"})
 }
 
 var izbrisiTekmo = (req, res) => {

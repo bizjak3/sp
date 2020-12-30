@@ -50,6 +50,7 @@ export class TekmaComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(
       (params: Params) => {
+        
         console.log(params.id)
         this.webReq.getTekma(params.id).subscribe((tekma: Tekma) => {
           this.tekma = tekma[0];
@@ -66,7 +67,9 @@ export class TekmaComponent implements OnInit {
 
           this.lahkoUrejamo = true;
           this.urejamo = false;
-          this.initMap();
+          if (!this.map) {
+            this.initMap();
+          }
         })
       }
     )
@@ -90,24 +93,37 @@ export class TekmaComponent implements OnInit {
 
   pridruziSe(): void {
     this.pridruzen = true;
-    let upo = this.avtentikacija.vrniId();
-    this.webReq.prijaviSeNaTekmo("/tekma/" + this.tekma._id + "/prijaviSe/" + upo, null).subscribe(() => {
-      this.ngOnInit();
+    let upo = {
+      id: this.avtentikacija.vrniId()
+    }
+    console.log(upo)
+    this.webReq.prijaviSeNaTekmo("/prijaviSe/" + this.tekma._id, upo).subscribe((res) => {
+      console.log(res)
+      this.ngOnInit()
     });
   }
+
   odjaviSe(): void {
     this.pridruzen = false;
-    let upo = this.avtentikacija.vrniId();
-    this.webReq.odjaviSeOdTekme("/tekma/" + this.tekma._id + "/odjaviSe/" + upo, null).subscribe(() => {
-      this.ngOnInit();
-    });
+    let upo = {
+      id: this.avtentikacija.vrniId()
+    }
+    this.webReq.odjaviSeOdTekme("/odjaviSe/" + this.tekma._id, upo).subscribe((result) => {
+      console.log(result)
+      this.ngOnInit()
+    }, 
+    error => console.log(error)
+    );
   }
+
   jaUrejamo(): void {
     this.urejamo = true;
   }
+
   neUrejamo(): void {
     this.urejamo = false;
   }
+
   izbrisi(): void {
     this.webReq.izbrisiTekmo("/tekma/" + this.tekma._id + "/izbrisi").subscribe();
     this.router.navigateByUrl("/");
@@ -116,6 +132,7 @@ export class TekmaComponent implements OnInit {
     this.webReq.spremeniTekmo("/tekma/"+this.tekma._id+"/spremeniTekmo", this.podatki).subscribe(() => {
       this.ngOnInit()
     });
+    
     this.urejamo = false;
   }
 }
