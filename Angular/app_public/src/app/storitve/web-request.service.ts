@@ -74,11 +74,11 @@ export class WebRequestService {
     }
 
     public prijaviSeNaTekmo(uri: string, body: any | null){
-      return this.http.put(this.url + uri);
+      return this.http.put(this.url + uri, body);
     }
 
     public odjaviSeOdTekme(uri: string, body: any | null){
-      return this.http.put(this.url + uri);
+      return this.http.put(this.url + uri, body);
     }
 
     public izbrisiTekmo(uri: string){
