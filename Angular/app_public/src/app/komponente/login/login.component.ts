@@ -3,6 +3,9 @@ import { WebRequestService } from '../../storitve/web-request.service'
 import { Router } from '@angular/router';
 import { DataService} from '../../storitve/data.service';
 import { AvtentikacijaService } from '../../storitve/avtentikacija.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ModalOknoComponent } from '../modal-okno/modal-okno.component';
+
 
 @Component({
   selector: 'app-login',
@@ -12,10 +15,13 @@ import { AvtentikacijaService } from '../../storitve/avtentikacija.service';
 export class LoginComponent implements OnInit {
 
   public napakaNaObrazcu: string = "";
+  bsModalRef: BsModalRef;
 
   
 
-  constructor(private webReq: WebRequestService, 
+  constructor(
+    private modalService: BsModalService,
+    private webReq: WebRequestService, 
     private router: Router, 
     private data: DataService,
     private avtentikacijaStoritev: AvtentikacijaService) { }
@@ -53,6 +59,11 @@ export class LoginComponent implements OnInit {
       .prijava(this.prijavniPodatki)
       .then(() => this.router.navigateByUrl("/"))
       .catch(sporocilo => this.napakaNaObrazcu = sporocilo);
+  }
+
+  public openModalWithComponent() {
+    /* this is how we open a Modal Component from another component */
+    this.bsModalRef = this.modalService.show(ModalOknoComponent);
   }
 
 }
