@@ -6,6 +6,7 @@ import { RegisterComponent } from './komponente/register/register.component'
 import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module'
 import { NgxPaginationModule } from 'ngx-pagination'
+import { ModalModule } from 'ngx-bootstrap/modal'
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './komponente/homepage/homepage.component';
@@ -20,6 +21,7 @@ import { UrediPodatkeComponent } from './komponente/uredi-podatke/uredi-podatke.
 import { TekmaComponent } from './komponente/tekma/tekma.component';
 import { MapComponent } from './komponente/map/map.component';
 import { MojeTekmeComponent } from './komponente/moje-tekme/moje-tekme.component';
+import { ModalOknoComponent } from './komponente/modal-okno/modal-okno.component';
 
 
 
@@ -38,14 +40,16 @@ import { MojeTekmeComponent } from './komponente/moje-tekme/moje-tekme.component
     UrediPodatkeComponent,
     TekmaComponent,
     MapComponent,
-    MojeTekmeComponent
+    MojeTekmeComponent,
+    ModalOknoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,  
     HttpClientModule,
     AppRoutingModule, 
-    NgxPaginationModule
+    NgxPaginationModule,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

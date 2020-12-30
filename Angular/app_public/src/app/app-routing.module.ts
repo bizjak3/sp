@@ -17,6 +17,7 @@ import { DbComponent } from './komponente/db/db.component';
 import { UrediPodatkeComponent } from './komponente/uredi-podatke/uredi-podatke.component';
 import { TekmaComponent } from './komponente/tekma/tekma.component'
 import { MojeTekmeComponent } from './komponente/moje-tekme/moje-tekme.component';
+import { ModalOknoComponent } from './komponente/modal-okno/modal-okno.component'
 
 const routes: Routes = [
   
@@ -63,6 +64,10 @@ const routes: Routes = [
     {
       path: "mojeTekme",
       component: MojeTekmeComponent
+    },
+    {
+      path: "okno",
+      component: ModalOknoComponent
     }
   ]
 
