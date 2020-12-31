@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Uporabnik } from '../modeli/uporabnik';
 import { RezultatAvtentikacije } from './rezultat-avtentikacije';
+import { SHRAMBA_BRSKALNIKA } from './shramba'
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,17 @@ export class WebRequestService {
 
   url = 'http://localhost:3000'
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    @Inject(SHRAMBA_BRSKALNIKA) private shramba: Storage
+    ) { }
+
+    httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.shramba.getItem('app-zeton')}`
+      })
+    };
+
     get(uri: string) {
       return this.http.get(this.url +  uri)
     }
@@ -20,15 +31,15 @@ export class WebRequestService {
     }
 
     post(uri: string) {
-      return this.http.post(this.url + uri, "")
+      return this.http.post(this.url + uri, "", this.httpLastnosti)
     }
 
     postUser(uri: string, user: any) {
-      return this.http.post(this.url + uri, user)
+      return this.http.post(this.url + uri, user, this.httpLastnosti)
     }
 
     postTekma(uri: string, data: any) {
-      return this.http.post(this.url + uri, data)
+      return this.http.post(this.url + uri, data, this.httpLastnosti)
     }
 
     delete(uri: string) {
@@ -36,7 +47,7 @@ export class WebRequestService {
     }
 
     updateUporabnik(uri: string, uporabnik: Uporabnik, novo: any) {
-      return this.http.post(this.url + uri, uporabnik, novo)
+      return this.http.post(this.url + uri, {uporabnik, novo}, this.httpLastnosti)
     }
 
     public prijava(uporabnik: Uporabnik): Promise<RezultatAvtentikacije> {
@@ -48,7 +59,7 @@ export class WebRequestService {
     }
 
     public spremeniUporabnika(uri: string, uporabnik: any) {
-      return this.http.post(this.url + uri, uporabnik)
+      return this.http.post(this.url + uri, uporabnik, this.httpLastnosti)
     }
 
     public registracija(uporabnik: Uporabnik): Promise<RezultatAvtentikacije> {
@@ -70,23 +81,23 @@ export class WebRequestService {
     }
 
     public spremeniTekmo(uri: string, tekma: any){
-      return this.http.post(this.url + uri, tekma);
+      return this.http.post(this.url + uri, tekma, this.httpLastnosti);
     }
 
     public prijaviSeNaTekmo(uri: string, body: any){
-      return this.http.put(this.url + uri, body);
+      return this.http.put(this.url + uri, body), this.httpLastnosti;
     }
 
     public odjaviSeOdTekme(uri: string, body: any){
-      return this.http.put(this.url + uri, body);
+      return this.http.put(this.url + uri, body, this.httpLastnosti);
     }
 
     public izbrisiTekmo(uri: string){
-      return this.http.get(this.url + uri);
+      return this.http.get(this.url + uri, this.httpLastnosti);
     }
 
     public oceniIgralce(uri: string, body: any){
-      return this.http.post(this.url + uri, body);
+      return this.http.post(this.url + uri, body, this.httpLastnosti);
     }
 
     public spremeniStatusTekme(uri: string, body: any){

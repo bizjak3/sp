@@ -51,10 +51,10 @@ var vrniUporabnikaPrekoId =  (req, res) => {
     console.log(id)
     User.findById(id, (napaka, uporabnik) => {
         if (napaka) {
-            console.log(napaka)
+            return res.status(500).json({sporocilo: napaka})
         }
         else {
-            res.send(uporabnik)
+            res.status(200).send(uporabnik)
         }
     })
     
