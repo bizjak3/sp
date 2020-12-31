@@ -44,6 +44,10 @@ const userSchema = new mongoose.Schema({
     },
     tekme:{
         type: [Object]
+    },
+    status: {
+        type: String,
+        default: "user" // admin, user
     }
 });
 
