@@ -248,10 +248,10 @@ var oceniIgralce = (req, res, done) => {
                     i++;
                 }
             });
-
+            res.status(201).send({sporocilo: "oceni"});
         });
     })
-    res.status(201).send({sporocilo: "oceni"});
+
 }
 
 var spremeniStatus = (req, res) => {
