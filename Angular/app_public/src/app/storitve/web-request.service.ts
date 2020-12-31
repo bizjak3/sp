@@ -85,7 +85,7 @@ export class WebRequestService {
     }
 
     public prijaviSeNaTekmo(uri: string, body: any){
-      return this.http.put(this.url + uri, body), this.httpLastnosti;
+      return this.http.put(this.url + uri, body, this.httpLastnosti);
     }
 
     public odjaviSeOdTekme(uri: string, body: any){
