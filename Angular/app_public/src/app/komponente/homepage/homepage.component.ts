@@ -24,6 +24,7 @@ export class HomepageComponent implements OnInit {
   total: number;
   sort = -1;
   niTekem = false;
+  stat = "prijave"
 
   uporabnik: any;
   

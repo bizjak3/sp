@@ -257,12 +257,12 @@ var oceniIgralce = (req, res, done) => {
 var spremeniStatus = (req, res) => {
     Tekma.findOne({_id: req.params.id}, (err, tekma) => {
         if(err){
-            res.status(500).json({sporocilo: err})
+            return res.status(500).json({sporocilo: err})
         }
         tekma.status = "zakljucena";
         tekma.save();
+        res.status(201).send({sporocilo: "status"});
     });
-    res.status(201).send({sporocilo: "status"});
 }
 
 module.exports = {
