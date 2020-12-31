@@ -6,6 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class OcenePipe implements PipeTransform {
 
   transform(value: number): string {
+    var stevilo = 0;
     if(value == "Ne ocenjen" || value == 0){
       return "Ne ocenjen";
     }

@@ -265,6 +265,8 @@ var spremeniStatus = (req, res) => {
     });
 }
 
+
+
 module.exports = {
     podrobnostiTekme,
     ustvariTekmo,

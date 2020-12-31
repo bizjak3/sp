@@ -16,30 +16,40 @@ export class WebRequestService {
     @Inject(SHRAMBA_BRSKALNIKA) private shramba: Storage
     ) { }
 
-    httpLastnosti = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${this.shramba.getItem('app-zeton')}`
-      })
-    };
-
     get(uri: string) {
       return this.http.get(this.url +  uri)
     }
 
     getTekma(id: string) {
+      
       return this.http.get(this.url + "/tekma/" + id + "/tekme")
     }
 
     post(uri: string) {
-      return this.http.post(this.url + uri, "", this.httpLastnosti)
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.shramba.getItem('app-zeton')}`
+        })
+      };
+      return this.http.post(this.url + uri, "", httpLastnosti)
     }
 
     postUser(uri: string, user: any) {
-      return this.http.post(this.url + uri, user, this.httpLastnosti)
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.shramba.getItem('app-zeton')}`
+        })
+      };
+      return this.http.post(this.url + uri, user, httpLastnosti)
     }
 
     postTekma(uri: string, data: any) {
-      return this.http.post(this.url + uri, data, this.httpLastnosti)
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.shramba.getItem('app-zeton')}`
+        })
+      };
+      return this.http.post(this.url + uri, data, httpLastnosti)
     }
 
     delete(uri: string) {
@@ -47,7 +57,12 @@ export class WebRequestService {
     }
 
     updateUporabnik(uri: string, uporabnik: Uporabnik, novo: any) {
-      return this.http.post(this.url + uri, {uporabnik, novo}, this.httpLastnosti)
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.shramba.getItem('app-zeton')}`
+        })
+      };
+      return this.http.post(this.url + uri, {uporabnik, novo}, httpLastnosti)
     }
 
     public prijava(uporabnik: Uporabnik): Promise<RezultatAvtentikacije> {
@@ -59,7 +74,12 @@ export class WebRequestService {
     }
 
     public spremeniUporabnika(uri: string, uporabnik: any) {
-      return this.http.post(this.url + uri, uporabnik, this.httpLastnosti)
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.shramba.getItem('app-zeton')}`
+        })
+      };
+      return this.http.post(this.url + uri, uporabnik, httpLastnosti)
     }
 
     public registracija(uporabnik: Uporabnik): Promise<RezultatAvtentikacije> {
@@ -81,23 +101,48 @@ export class WebRequestService {
     }
 
     public spremeniTekmo(uri: string, tekma: any){
-      return this.http.post(this.url + uri, tekma, this.httpLastnosti);
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.shramba.getItem('app-zeton')}`
+        })
+      };
+      return this.http.post(this.url + uri, tekma, httpLastnosti);
     }
 
     public prijaviSeNaTekmo(uri: string, body: any){
-      return this.http.put(this.url + uri, body, this.httpLastnosti);
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.shramba.getItem('app-zeton')}`
+        })
+      };
+      return this.http.put(this.url + uri, body, httpLastnosti);
     }
 
     public odjaviSeOdTekme(uri: string, body: any){
-      return this.http.put(this.url + uri, body, this.httpLastnosti);
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.shramba.getItem('app-zeton')}`
+        })
+      };
+      return this.http.put(this.url + uri, body, httpLastnosti);
     }
 
     public izbrisiTekmo(uri: string){
-      return this.http.get(this.url + uri, this.httpLastnosti);
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.shramba.getItem('app-zeton')}`
+        })
+      };
+      return this.http.get(this.url + uri, httpLastnosti);
     }
 
     public oceniIgralce(uri: string, body: any){
-      return this.http.post(this.url + uri, body, this.httpLastnosti);
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.shramba.getItem('app-zeton')}`
+        })
+      };
+      return this.http.post(this.url + uri, body, httpLastnosti);
     }
 
     public spremeniStatusTekme(uri: string, body: any){
