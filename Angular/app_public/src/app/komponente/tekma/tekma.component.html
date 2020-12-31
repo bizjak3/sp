@@ -258,7 +258,7 @@
                                 <div class="scrollable" style="height:100%; overflow-y: auto;">
                                   <ul class="list-group seznam" style="height: 50vh; width:100%; min-height: 300px" >
                                     <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let igralec of igralci">
-                                      <a class="col-sm text-dark">{{igralec.ime}} {{igralec.priimek}}</a>
+                                      <a routerLink="/uporabnik/{{igralec.id}}" class="col-sm text-dark">{{igralec.ime}} {{igralec.priimek}}</a>
                                       <a class="col-sm text-dark">{{igralec.ocena}}</a>
                                     </li>
                                   </ul>

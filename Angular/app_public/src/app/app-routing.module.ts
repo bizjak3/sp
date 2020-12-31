@@ -19,6 +19,7 @@ import { TekmaComponent } from './komponente/tekma/tekma.component'
 import { MojeTekmeComponent } from './komponente/moje-tekme/moje-tekme.component';
 import { ModalOknoComponent } from './komponente/modal-okno/modal-okno.component'
 import { NapakaComponent } from './komponente/napaka/napaka.component';
+import { InfoUporabnikComponent } from './komponente/info-uporabnik/info-uporabnik.component';
 
 const routes: Routes = [
   
@@ -69,6 +70,10 @@ const routes: Routes = [
     {
       path: "okno",
       component: ModalOknoComponent
+    },
+    {
+      path: "uporabnik/:id",
+      component: InfoUporabnikComponent
     },
     {
       path: "**",

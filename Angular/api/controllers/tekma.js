@@ -10,10 +10,8 @@ var podrobnostiTekme = (req, res) => {
     Tekma.find({
         _id: req.params.id
     }).then((tekma) => {
-        console.log("LAT:" + tekma[0].lat)
         weather.setCoordinate(tekma[0].lat, tekma[0].lng);
         weather.getAllWeather(function(err, vreme) {
-            console.log(vreme)
             res.send({tekma: tekma[0], vreme: vreme})
         })
         
@@ -39,8 +37,6 @@ var ustvariTekmo = (req, res) => {
     t.setHours(0, 0, 0, 0);
     d.setHours(0, 0, 0, 0);
 
-    
-    console.log(d.toTimeString())
 
     if(d < t) {
         return res.status(400).json({sporocilo: "Prosim preveri vnešeni datum", status: "danger"});
@@ -48,7 +44,7 @@ var ustvariTekmo = (req, res) => {
         var now = new Date();
 
         if (now.getHours() + ":" + now.getMinutes() > ura + "") {
-            return;
+            return res.status(400).json({sporocilo: "Prosim preveri uro", status: "danger"});;
         }
     }
 
@@ -91,7 +87,7 @@ var ustvariTekmo = (req, res) => {
                     res.status(200).send({sporocilo: "Tekma uspešno ustvarjena", status: "success"})
                 })
                 .catch(err => {
-                    res.send(err)
+                    res.status(500).send(err)
              });
         }
     })
@@ -112,17 +108,16 @@ var spremeniTekmo = (req, res) => {
                 tekma.opis = opis;
                 tekma.save(function (err) {
                     if (err) {
-                        console.log(err);
+                        return res.status(500).json({sporocilo: err})
                     }
                 });
-                res.send({sporocilo: "Uspesno spremenjeni podatki"})
+                res.status(201).send({sporocilo: "Uspesno spremenjeni podatki"})
             }
         }
     });
 }
 
-var prijaviSeNaTekmo = (req, res, done) => {
-    
+var prijaviSeNaTekmo = (req, res) => {
     let idTekme = req.params.id;
     let idUser = req.body.id
     User.findById(idUser, (err, uporabnik) => {
@@ -132,12 +127,9 @@ var prijaviSeNaTekmo = (req, res, done) => {
             priimek: uporabnik.priimek
         }
         Tekma.findById(idTekme, (err, tekma) => {
-            console.log(tekma)
             if(tekma.status === "prijave"){
-                console.log("Je prijave")
                 var jePrijavljen = false;
                 tekma.igralci.forEach(element => {
-                    console.log(element)
                     if(element.id + "" == user.id + ""){
                         jePrijavljen = true;
                     }
@@ -155,15 +147,15 @@ var prijaviSeNaTekmo = (req, res, done) => {
                     tekma.igralci.push(user)
                     tekma.prijavljeni++;
                     tekma.save()
-                    console.log(tekma)
+                    uporabnik.save()
+                    return res.status(200).send({sporocilo: "Uspešna prijava"})
                 }
             }
         })
     });
-    res.send({sporocilo: "Uspešna prijava"})
 }
 
-var odjaviSeOdTekme = (req, res, done) => {
+var odjaviSeOdTekme = (req, res) => {
     let idTekme = req.params.id;
     let idUser = req.body.id
     User.findById(idUser, (err, uporabnik) => {
@@ -199,18 +191,30 @@ var odjaviSeOdTekme = (req, res, done) => {
                     tekma.prijavljeni--;
                     tekma.save()
                     uporabnik.save()
-                    console.log(tekma)
+                    return res.status(200).send({sporocilo: "Uspešna odjava"})
                 }
             }
         })
     });
-    res.send({sporocilo: "Uspešna odjava"})
 }
 
 var izbrisiTekmo = (req, res) => {
+    User.find({"tekme.id": req.params.id}).then((uporabniki) => {
+        for (var i = 0; i < uporabniki.length; i++) {
+            for (var j = 0; j < uporabniki[i].tekme.length; j++) {
+                console.log(uporabniki[i].tekme[j].id)
+                if (uporabniki[i].tekme[j].id === req.params.id) {
+                    uporabniki[i].tekme.splice(j, 1)
+                    uporabniki[i].save()
+                }
+            }
+        }
+    })
     Tekma.deleteOne({_id: req.params.id}, function (err){
         if(err){
-            console.log(err);
+            res.status(500).json({sporocilo: err})
+        } else {
+            res.status(204)
         }
     });
 }
@@ -247,7 +251,7 @@ var oceniIgralce = (req, res, done) => {
 
         });
     })
-    res.send({sporocilo: "oceni"});
+    res.status(201).send({sporocilo: "oceni"});
 }
 
 module.exports = {

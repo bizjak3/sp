@@ -125,7 +125,6 @@ export class TekmaComponent implements OnInit {
   }
 
   pridruziSe(): void {
-    this.pridruzen = true;
     let upo = {
       id: this.avtentikacija.vrniId()
     }
@@ -133,17 +132,17 @@ export class TekmaComponent implements OnInit {
     this.webReq.prijaviSeNaTekmo("/prijaviSe/" + this.tekma._id, upo).subscribe((res) => {
       console.log(res)
       this.ngOnInit();
+      this.pridruzen = true;
     });
   }
 
   odjaviSe(): void {
-    this.pridruzen = false;
     let upo = {
       id: this.avtentikacija.vrniId()
     }
     this.webReq.odjaviSeOdTekme("/odjaviSe/" + this.tekma._id, upo).subscribe((result) => {
-      console.log(result)
       this.ngOnInit()
+      this.pridruzen = false;
     },
     error => console.log(error)
     );

@@ -48,6 +48,7 @@ var spremeniUporabnika = (req, res) => {
 var vrniUporabnikaPrekoId =  (req, res) => {
     
     var id = req.params.id;
+    console.log(id)
     User.findById(id, (napaka, uporabnik) => {
         if (napaka) {
             console.log(napaka)

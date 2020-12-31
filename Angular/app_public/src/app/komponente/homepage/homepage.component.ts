@@ -23,6 +23,7 @@ export class HomepageComponent implements OnInit {
   d: any;
   total: number;
   sort = -1;
+  niTekem = false;
 
   uporabnik: any;
   
@@ -42,7 +43,6 @@ export class HomepageComponent implements OnInit {
 
     this.web.get("/tekme").subscribe((result) => {
       this.d = result;
-      console.log(this.d)
       this.total = this.d.stevilo;
     })
 
@@ -55,11 +55,11 @@ export class HomepageComponent implements OnInit {
   }
 
   getTekme(p: number, d: number) {
-    console.log("AA")
     this.web.getPage("/page/" + p + "/" + d).subscribe((tekme) => {
-      console.log("SEM PRSU DO SM")
       this.tekme = tekme
-      console.log(this.tekme)
+      if (this.tekme < 1) {
+        this.niTekem = true
+      } 
     })
   }
 
