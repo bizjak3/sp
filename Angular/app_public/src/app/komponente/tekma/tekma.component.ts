@@ -102,7 +102,11 @@ export class TekmaComponent implements OnInit {
           if (!this.map) {
             this.initMap();
           }
-          
+
+          if(this.checkTime()){
+            console.log("here");
+            this.spremeniStatus();
+          }
         })
       }
     )
@@ -152,7 +156,7 @@ export class TekmaComponent implements OnInit {
     this.urejamo = true;
   }
 
-  
+
 
   neUrejamo(): void {
     this.urejamo = false;
@@ -189,5 +193,24 @@ export class TekmaComponent implements OnInit {
   }
   trackByIdx(index: number, obj: any): any {
     return index;
+  }
+
+  checkTime(): boolean {
+    let d = new Date();
+    let dd = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+
+    if(dd >= this.tekma.datum){
+      let t = d.getHours()+":"+d.getMinutes();
+      if(t > this.tekma.ura){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  spremeniStatus(): void {
+    this.webReq.spremeniStatusTekme("/tekma/" + this.tekma._id + "/spremeniStatus", null).subscribe();
+    this.lahkoOcenjamo = true;
+    this.lahkoPrijavimo = false;
   }
 }

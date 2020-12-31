@@ -88,4 +88,8 @@ export class WebRequestService {
     public oceniIgralce(uri: string, body: any){
       return this.http.post(this.url + uri, body);
     }
+
+    public spremeniStatusTekme(uri: string, body: any){
+      return this.http.put(this.url + uri, body);
+    }
 }

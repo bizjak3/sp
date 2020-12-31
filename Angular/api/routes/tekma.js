@@ -17,4 +17,6 @@ router.get('/tekma/:id/izbrisi', controller.izbrisiTekmo)
 
 router.post('/tekma/:id/oceni/:user', controller.oceniIgralce);
 
+router.put('/tekma/:id/spremeniStatus', controller.spremeniStatus);
+
 module.exports = router;

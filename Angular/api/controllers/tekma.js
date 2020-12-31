@@ -254,6 +254,17 @@ var oceniIgralce = (req, res, done) => {
     res.status(201).send({sporocilo: "oceni"});
 }
 
+var spremeniStatus = (req, res) => {
+    Tekma.findOne({_id: req.params.id}, (err, tekma) => {
+        if(err){
+            res.status(500).json({sporocilo: err})
+        }
+        tekma.status = "zakljucena";
+        tekma.save();
+    });
+    res.status(201).send({sporocilo: "status"});
+}
+
 module.exports = {
     podrobnostiTekme,
     ustvariTekmo,
@@ -261,5 +272,6 @@ module.exports = {
     prijaviSeNaTekmo,
     odjaviSeOdTekme,
     izbrisiTekmo,
-    oceniIgralce
+    oceniIgralce,
+    spremeniStatus
 }
