@@ -38,11 +38,7 @@
 
                       
                     <div class="card-body px-1 py-1" style="height:100%;">
-                        <pagination-controls class="align-self-end"
-                      (pageChange)="getPage($event)" 
-                      autoHide="true" previousLabel="Nazaj"
-                      nextLabel="Naprej" 
-                      ></pagination-controls>
+                        
 
                       <p *ngIf="niTekem" class="text-dark" style="text-align: center;"> Ni nobene tekme na voljo </p>
                         
@@ -62,6 +58,11 @@
                                     </li>
 
                                 </div>
+                                <pagination-controls class="align-self-end"
+                      (pageChange)="getPage($event)" 
+                      autoHide="true" previousLabel="Nazaj"
+                      nextLabel="Naprej" 
+                      ></pagination-controls>
 
                             </ul>
                             

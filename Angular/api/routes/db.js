@@ -92,7 +92,7 @@ router.post('/db', (req, res, done) => {
 
 });
 
-router.post('/db_izbrisi', (req, res) => {
+router.delete('/db_izbrisi', (req, res) => {
     Tekma.deleteMany({}, function(err) {
             if (err) {
                 console.log(err)
@@ -104,7 +104,7 @@ router.post('/db_izbrisi', (req, res) => {
             console.log(err);
         }
     });
-    res.redirect('/');
+    res.status(200).json({sporocilo: "Uspsno izbrisana baza"})
 })
 
 
@@ -112,13 +112,17 @@ router.post('/db30', (req, res) => {
 
     console.log(getRandomInRange(45, 47, 1))
 
-    for (var i = 0; i < 30; i++) {
+    for (var i = 1; i < 31; i++) {
+        var datum = "2021-1-" + i.toString()
+        if (i < 10) {
+            var datum = "2021-1-0" + i.toString()
+        }
         let tekma = new Tekma({
             kreator: "Kreator " + i,
             lat: getRandomInRange(45, 47, 1),
             lng: getRandomInRange(13, 16, 1),
             kraj: "Kraj " + i,
-            datum: "2021-1-1",
+            datum: datum,
             ura: "15:00",
             minIgralcev: 4,
             maxIgralcev: 12,

@@ -28,7 +28,7 @@ export class DbComponent implements OnInit {
   }
 
   izbrisi() {
-    this.webReq.post("/db_izbrisi").subscribe(
+    this.webReq.delete("/db_izbrisi").subscribe(
       data => console.log("Izbrisani podatki"),
       error => console.log(error)
     )
