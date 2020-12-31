@@ -248,10 +248,10 @@ var oceniIgralce = (req, res, done) => {
                     i++;
                 }
             });
-
+            res.status(201).send({sporocilo: "oceni"});
         });
     })
-    res.status(201).send({sporocilo: "oceni"});
+
 }
 
 var spremeniStatus = (req, res) => {
@@ -261,8 +261,9 @@ var spremeniStatus = (req, res) => {
         }
         tekma.status = "zakljucena";
         tekma.save();
+        res.status(201).send({sporocilo: "status"});
     });
-    res.status(201).send({sporocilo: "status"});
+
 }
 
 module.exports = {

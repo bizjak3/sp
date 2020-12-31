@@ -210,7 +210,9 @@ export class TekmaComponent implements OnInit {
 
   spremeniStatus(): void {
     this.webReq.spremeniStatusTekme("/tekma/" + this.tekma._id + "/spremeniStatus", null).subscribe();
-    this.lahkoOcenjamo = true;
+    if(this.pridruzen != false){
+      this.lahkoOcenjamo = true;
+    }
     this.lahkoPrijavimo = false;
   }
 }
