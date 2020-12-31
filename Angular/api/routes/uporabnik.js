@@ -10,7 +10,7 @@ const avtentikacija = jwt({
 const contr = require('../controllers/uporabnik')
 
 router.get('/uporabnik/:id', contr.vrniUporabnikaPrekoId);
-router.post('/spremeni', avtentikacija, contr.spremeniUporabnika);
+router.post('/spremeni',  contr.spremeniUporabnika);
 
 router.post("/pozabilGeslo", contr.pozabilGeslo)
 

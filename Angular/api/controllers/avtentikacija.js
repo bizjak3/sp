@@ -17,7 +17,7 @@ const registracija = (req, res) => {
           res.status(400).json({"sporočilo": "Uporabnik s tem elektronskim naslovom je že registriran"});
         }
         else {
-          res.status(500).json({"sporočilo": "AA"});
+          res.status(500).json({"sporočilo": napaka});
         }
       } else {
         res.status(200).json({"žeton": uporabnik.generirajJwt()});
