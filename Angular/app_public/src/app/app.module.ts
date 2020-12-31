@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router' 
+import { Routes, RouterModule } from '@angular/router'
 import { LoginComponent } from './komponente/login/login.component';
 import { RegisterComponent } from './komponente/register/register.component'
 import { FormsModule } from '@angular/forms'
@@ -24,18 +24,19 @@ import { MojeTekmeComponent } from './komponente/moje-tekme/moje-tekme.component
 import { ModalOknoComponent } from './komponente/modal-okno/modal-okno.component';
 import { NapakaComponent } from './komponente/napaka/napaka.component';
 import { InfoUporabnikComponent } from './komponente/info-uporabnik/info-uporabnik.component';
+import { OcenePipe } from './pipes/ocene.pipe';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent, 
-    RegisterComponent, 
-    HomepageComponent, 
-    HeaderComponent, 
-    ProfilComponent, 
-    ProfilNavComponent, 
+    LoginComponent,
+    RegisterComponent,
+    HomepageComponent,
+    HeaderComponent,
+    ProfilComponent,
+    ProfilNavComponent,
     UstvariTekmoComponent,
     NastavitveComponent,
     DbComponent,
@@ -45,13 +46,14 @@ import { InfoUporabnikComponent } from './komponente/info-uporabnik/info-uporabn
     MojeTekmeComponent,
     ModalOknoComponent,
     NapakaComponent,
-    InfoUporabnikComponent
+    InfoUporabnikComponent,
+    OcenePipe
   ],
   imports: [
     BrowserModule,
-    FormsModule,  
+    FormsModule,
     HttpClientModule,
-    AppRoutingModule, 
+    AppRoutingModule,
     NgxPaginationModule,
     ModalModule.forRoot()
   ],

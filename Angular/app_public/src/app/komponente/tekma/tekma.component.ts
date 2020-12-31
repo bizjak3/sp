@@ -91,7 +91,7 @@ export class TekmaComponent implements OnInit {
           }
 
           if(this.tekma.status == "prijave"){
-            if(this.tekma.kreator.id == this.avtentikacija.vrniId()){
+            if(this.tekma.kreator.id == this.avtentikacija.vrniId() || this.avtentikacija.vrniUporabnika().status == "admin"){
               this.lahkoUrejamo = true;
             }
             this.lahkoOcenjamo = false;
