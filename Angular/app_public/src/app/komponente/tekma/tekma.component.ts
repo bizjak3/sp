@@ -44,6 +44,7 @@ export class TekmaComponent implements OnInit {
   result: any;
   opisVremena: string;
   ikonaVremena: string;
+  statusAdmin: boolean;
 
   public podatki = {
     datum: "",
@@ -91,9 +92,15 @@ export class TekmaComponent implements OnInit {
           }
 
           if(this.tekma.status == "prijave"){
-            if(this.tekma.kreator.id == this.avtentikacija.vrniId() || this.avtentikacija.vrniUporabnika().status == "admin"){
-              this.lahkoUrejamo = true;
-            }
+
+            this.avtentikacija.vrniPodatkeUporabnika().then((res) => {
+              this.result = res;
+              this.statusAdmin = this.result.admin
+              if (this.tekma.kreator.id == this.avtentikacija.vrniId() || this.statusAdmin){
+                this.lahkoUrejamo = true;
+              }
+            })
+
             this.lahkoOcenjamo = false;
             this.lahkoPrijavimo = true;
           }
