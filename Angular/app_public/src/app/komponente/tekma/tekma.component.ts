@@ -83,9 +83,7 @@ export class TekmaComponent implements OnInit {
           });
 
           // ocenjevanje
-          if(this.tekma.zeOcenili.includes(this.avtentikacija.vrniId())){
-            this.lahkoOcenjamo = false;
-          }
+
           let i = this.tekma.igralci.map(a => a.id);
           if(!i.includes(this.avtentikacija.vrniId())){
             this.lahkoOcenjamo = false;
@@ -113,6 +111,10 @@ export class TekmaComponent implements OnInit {
           if(this.checkTime()){
             console.log("here");
             this.spremeniStatus();
+          }
+
+          if(this.tekma.zeOcenili.includes(this.avtentikacija.vrniId())){
+            this.lahkoOcenjamo = false;
           }
         })
       }
