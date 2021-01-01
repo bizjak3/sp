@@ -233,33 +233,34 @@ var izbrisiTekmo = (req, res) => {
 var oceniIgralce = (req, res, done) => {
     const ocene = req.body.ocene;
     console.log(ocene);
+
     Tekma.findOne( {_id: req.params.id}, (err, tekma) => {
-        Tekma.updateOne(
-            {_id: req.params.id},
-            { $push: { zeOcenili: req.params.user}},
-            done
-        );
+        tekma.zeOcenili.push(req.params.user)
+        console.log(tekma.zeOcenili)
+        tekma.save()
         let playerIDs = tekma.igralci.map(a => a.id);
         console.log(playerIDs);
         User.find({_id: playerIDs}, function (err, igralci){
             if(err){
                 console.log(err);
-            }
-            let i = 0;
-            igralci.map(user => {
-                if(ocene[i] >= 1 || ocene[i] <= 5){
-                    let trenutnaOcena = user.ocena;
-                    let trenutnoSteviloOcen = user.steviloOcen;
+            } else {
+                let i = 0;
+                igralci.map(user => {
+                    if(ocene[i] >= 1 || ocene[i] <= 5){
+                        let trenutnaOcena = user.ocena;
+                        let trenutnoSteviloOcen = user.steviloOcen;
 
-                    let koncnaOcena = trenutnaOcena + (ocene[i] - trenutnaOcena) / trenutnoSteviloOcen;
-                    let koncnoStevilo = trenutnoSteviloOcen + 1;
-                    user.ocena = koncnaOcena;
-                    user.steviloOcen = koncnoStevilo;
-                    user.save();
-                    i++;
-                }
-            });
-            res.status(201).send({sporocilo: "oceni"});
+                        let koncnaOcena = trenutnaOcena + (ocene[i] - trenutnaOcena) / trenutnoSteviloOcen;
+                        let koncnoStevilo = trenutnoSteviloOcen + 1;
+                        user.ocena = koncnaOcena;
+                        user.steviloOcen = koncnoStevilo;
+                        user.save();
+                        i++;
+                    }
+                });
+            return res.status(201).send({sporocilo: "oceni"});
+            }
+            
         });
     })
 
