@@ -10,9 +10,9 @@ var swaggerOptions = {
   swaggerDefinition: {
     openapi: "3.0.0",
     info: {
-      title: "EduGeoCache",
+      title: "Tap Play",
       version: "1.0.0",
-      description: "EduGeoCache REST API"
+      description: "Tap and Play REST API"
     },
     license: {
       name: "GNU LGPLv3",
