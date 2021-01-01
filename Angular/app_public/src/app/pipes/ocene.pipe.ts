@@ -7,7 +7,7 @@ export class OcenePipe implements PipeTransform {
 
   transform(value: number): string {
     var stevilo = 0;
-    if(value == "Ne ocenjen" || value == 0){
+    if( value == 0){
       return "Ne ocenjen";
     }
     return Math.round(value*10)/10 + "";

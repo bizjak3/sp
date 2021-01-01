@@ -204,7 +204,17 @@ export class TekmaComponent implements OnInit {
 
   checkTime(): boolean {
     let d = new Date();
-    let dd = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+    let dd = d.getFullYear()+"-";
+    if(d.getMonth() + 1 < 10){
+      dd += "0";
+    }
+    dd += (d.getMonth() + 1) + "-";
+    if(d.getDate() < 10){
+      dd += "0";
+    }
+    dd += d.getDate();
+    console.log(dd);
+    console.log(this.tekma.datum);
 
     if(dd >= this.tekma.datum){
       let t = d.getHours()+":"+d.getMinutes();
