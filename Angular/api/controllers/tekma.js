@@ -10,10 +10,14 @@ var podrobnostiTekme = (req, res) => {
     Tekma.find({
         _id: req.params.id
     }).then((tekma) => {
-        weather.setCoordinate(tekma[0].lat, tekma[0].lng);
-        weather.getAllWeather(function(err, vreme) {
-            res.send({tekma: tekma[0], vreme: vreme})
+        if (!tekma) {
+            res.status(404).json({sporocilo: "Iskana tekma ne obstaja"})
+        } else {
+            weather.setCoordinate(tekma[0].lat, tekma[0].lng);
+            weather.getAllWeather(function(err, vreme) {
+                res.status(200).send({tekma: tekma[0], vreme: vreme})
         })
+        }
         
     })
 }
@@ -49,6 +53,10 @@ var ustvariTekmo = (req, res) => {
     }
 
     User.findById(req.params.id, (napaka, uporabnik) => {
+
+        if (!uporabnik) {
+            return res.status(404).json({sporocilo: "Uporabnik s tem idjem ne obstaja"})
+        }
 
         if (napaka) {
             res.status(404)
@@ -132,6 +140,7 @@ var prijaviSeNaTekmo = (req, res) => {
                 tekma.igralci.forEach(element => {
                     if(element.id + "" == user.id + ""){
                         jePrijavljen = true;
+                        return res.status(409).res.json({sporocilo: "Uporabnik je že prijavljen"})
                     }
                 })
                 if(!jePrijavljen){
@@ -192,6 +201,8 @@ var odjaviSeOdTekme = (req, res) => {
                     tekma.save()
                     uporabnik.save()
                     return res.status(200).send({sporocilo: "Uspešna odjava"})
+                } else {
+                    return res.status(409).json({sporocilo: "Uporabnik je že odjavljen"})
                 }
             }
         })

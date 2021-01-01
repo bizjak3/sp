@@ -113,6 +113,36 @@ const crypto = require('crypto');
  *        ura:
  *         type: string
  *         example: 15.30
+ *   UporabnikSpremeni:
+ *    type: object
+ *    description: Podatki za spremembo lastnih podatkov
+ *    properties:
+ *     id:
+ *      type: string
+ *      exmple: gh3g2h313123
+ *     ime:
+ *      type: string
+ *      writeOnly: true
+ *      example: Janez
+ *     priimek:
+ *      type: string
+ *      writeOnly: true
+ *      example: Novak
+ *     email:
+ *      type: string
+ *      example: janez@novak.com
+ *     telefon:
+ *      type: string
+ *      example: 123456789
+ *     geslo:
+ *      type: string
+ *      format: password
+ *      example: geslo123
+ *    required:
+ *     - ime
+ *     - priimek
+ *     - email
+ *     - geslo
  */
 
 const userSchema = new mongoose.Schema({

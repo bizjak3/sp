@@ -105,7 +105,7 @@ module.exports = Tekma;
  *     minIgralcev:
  *      type: number
  *      description: Minimalno število igralcev da se tekma izvede
- *      exampe: 8
+ *      example: 8
  *     maxIgralcev:
  *      description: Največje število igralcev na tekmi
  *      type: number
@@ -141,5 +141,39 @@ module.exports = Tekma;
  *      items:
  *       type: string
  *       example: jh414jkhkopj5k3j5
+ *   UstvariTekmo:
+ *      type: object
+ *      properties:
+ *          lat:
+ *           type: number
+ *           example: 45.45454
+ *          lng: 
+ *           type: number
+ *           example: 22.2222 
+ *          kraj: 
+ *           type: string
+ *           example: Teslova Ulica 50, Ljubljana
+ *          datum:
+ *           type: string
+ *           example: 24.05.2021
+ *          ura: 
+ *           type: string
+ *           example: 15.30
+ *          minIgralcev:
+ *           type: number
+ *           description: Minimalno število igralcev da se tekma izvede
+ *           example: 8
+ *          maxIgralcev:
+ *           description: Največje število igralcev na tekmi
+ *           type: number
+ *           example: 16
+ *          opis:
+ *           description: Opis tekme
+ *           type: string
+ *           example: Prosim prinesite žogo
+ *          prijavljeni:
+ *           description: Število prijavljenih igralcev na tekmo
+ *           type: number
+ *           example: 6           
  */
 
