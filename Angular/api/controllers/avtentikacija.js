@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const User = require('../models/User');
 
 const registracija = (req, res) => {
-    if (!req.body.ime || !req.body.email|| !req.body.geslo) {
+    if (!req.body.ime || !req.body.email|| !req.body.geslo || !req.body.priimek) {
       return res.status(400).json({"sporočilo": "Zahtevani so vsi podatki"});
     }
 
-    if (!req.body.geslo.length < 6) {
+    if (req.body.geslo.length < 6) {
       return res.status(400).json({"sporočilo": "Geslo mora vsebovati vsaj 6 znakov"})
     }
 

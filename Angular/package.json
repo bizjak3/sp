@@ -20,6 +20,8 @@
     "mongoose": "^5.11.8",
     "openweather-apis": "^4.4.1",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "swagger-jsdoc": "^6.0.0",
+    "swagger-ui-express": "^4.1.6"
   }
 }

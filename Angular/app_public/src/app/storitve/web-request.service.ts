@@ -9,7 +9,7 @@ import { SHRAMBA_BRSKALNIKA } from './shramba'
 })
 export class WebRequestService {
 
-  url = 'http://localhost:3000'
+  url = 'http://localhost:3000/api'
 
   constructor(
     private http: HttpClient,

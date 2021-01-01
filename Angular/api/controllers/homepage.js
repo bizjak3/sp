@@ -29,6 +29,7 @@ var markers = (req, res) => {
         if (err) {
             return res.status(500).json({sporocilo: err})
         } else {
+            
             res.status(200).send(tekme)
         } 
     });
