@@ -27,11 +27,18 @@ const posljiEmail = (email,subject,text) => {
 var spremeniUporabnika = (req, res) => {
     
     const {id, ime, priimek, email, telefon, geslo} = req.body;
-    console.log("ID: " + id)
+
+    if (!ime || !priimek || !email || !geslo) {
+        return res.status(400).json({sporocilo: "Prosim preglej vnešene podatke",  status: "danger"})
+    }
+
+    if (geslo.length < 6) {
+        return res.status(400).json({sporocilo: "Geslo mora vsebovati vsaj 6 znakov", status: "danger"})
+    }
     User.findOne({_id: id},
     (napaka, uporabnik) => {
         if (napaka) {
-            console.log(napaka)
+            return res.status(500).json({sporocilo: napaka, status: "danger"})
         }else {
             console.log(ime)
             uporabnik.ime = ime;
@@ -41,6 +48,7 @@ var spremeniUporabnika = (req, res) => {
             uporabnik.nastaviGeslo(geslo)
             
             uporabnik.save()
+            return res.status(400).json({sporocilo: "Uspešno spremenjeni podatki", status: "success"})
         }
     })
 }

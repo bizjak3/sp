@@ -15,9 +15,12 @@ export class UrediPodatkeComponent implements OnInit {
   mail: string;
   loaded = false;
   sprememba = false;
-  napaka = "";
-
+  result: any;
+  obvestilo: string;
+  status: string
   sporocilo = ""
+  gesli = false;
+  napaka = false;
 
   public podatki = {
     ime: "",
@@ -60,15 +63,25 @@ export class UrediPodatkeComponent implements OnInit {
   spremeni() {
 
     if (this.podatki.geslo != this.podatki.geslo2) {
-      this.napaka = "Gesli se ne ujemata"
-    }
-    else if (!this.podatki.ime || !this.podatki.priimek
-      || !this.podatki.email || !this.podatki.geslo) {
-        this.napaka = "Prosim vnesi vse potrebne podatke"
+      this.gesli = true
     } 
+    
     else {
-      this.web.spremeniUporabnika("/spremeni", this.podatki).subscribe()
-      this.sprememba = true;
+      this.gesli = false
+      this.web.spremeniUporabnika("/spremeni", this.podatki).subscribe(
+        result => {
+          this.result = result;
+          this.obvestilo = this.result.sporocilo
+          this.status = this.result.status
+          this.sprememba = true;
+        },
+        error => {
+          this.result = error.error;
+          this.obvestilo = this.result.sporocilo
+          this.status = this.result.status
+          this.sprememba = true;
+        }
+      )
     }
   }
 

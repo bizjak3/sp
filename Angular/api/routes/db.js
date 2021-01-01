@@ -29,6 +29,21 @@ router.post('/db', (req, res, done) => {
             }
       });
 
+      let tekma = new Tekma({
+        kreator: "Kreator tekme",
+        lat: 46.0503162990623,
+        lng: 14.468446969985964,
+        kraj: "Fakulteta za Računalništvo in Informatiko",
+        datum: "2021-01-10",
+        ura: "15:00",
+        minIgralcev: 4,
+        maxIgralcev: 12,
+        prijavljeni: 4,
+        igralci: ["Kreator tekme"],
+        status: "prijave"
+    });
+    tekma.save()
+
 });
 
 router.delete('/db_izbrisi', (req, res) => {

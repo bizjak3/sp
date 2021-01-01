@@ -6,6 +6,11 @@ const registracija = (req, res) => {
     if (!req.body.ime || !req.body.email|| !req.body.geslo) {
       return res.status(400).json({"sporočilo": "Zahtevani so vsi podatki"});
     }
+
+    if (!req.body.geslo.length < 6) {
+      return res.status(400).json({"sporočilo": "Geslo mora vsebovati vsaj 6 znakov"})
+    }
+
     const uporabnik = new User();
     uporabnik.ime = req.body.ime;
     uporabnik.priimek = req.body.priimek;

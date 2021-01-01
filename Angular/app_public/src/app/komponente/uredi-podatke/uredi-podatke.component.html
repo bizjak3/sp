@@ -24,8 +24,8 @@
 
                     <!-- card body-->
                     <div class="card-body px-1 py-1">
-                        <div role="alert" *ngIf="sprememba" style="text-align: center" class="alert alert-success">Podatki uspešno spremenjeni</div>
-                        <div role="alert" *ngIf="napaka" style="text-align: center" class="alert alert-danger">{{napaka}}</div>
+                        <div role="alert" *ngIf="sprememba" style="text-align: center" class="alert alert-{{status}}">{{obvestilo}}</div>
+                        <div role="alert" *ngIf="gesli" style="text-align: center" class="alert alert-danger">Gesli se ne ujemata</div>
 
                         <div class="row m-2 info">
                             Ime in Priimek
