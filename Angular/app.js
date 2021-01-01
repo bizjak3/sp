@@ -5,6 +5,7 @@ const cors = require('cors')
 var passport = require('passport');
 var swaggerJsdoc = require('swagger-jsdoc')
 var swaggerUi = require('swagger-ui-express')
+var path = require('path');
 
 var swaggerOptions = {
   swaggerDefinition: {
@@ -35,14 +36,23 @@ require('dotenv').config();
 require('./api/models/db');
 require('./api/konfiguracija/passport');
 
-var distDir = __dirname + "/dist/";
-app.use(express.static(distDir));
-
 const db = require('./api/routes/db');
 var indexApi = require('./api/routes/index')
 
+if (process.env.NODE_ENV === 'production') {
+  app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https')
+      res.redirect(`https://${req.header('host')}${req.url}`);
+    else
+      next();
+  });
+}
+
 app.use(cors())  
 app.use(bodyParser.json())
+
+
+app.use(express.static(path.join(__dirname, 'app_public', 'build')));
 
 app.use(passport.initialize());
 
@@ -54,6 +64,10 @@ app.use('/api', (req, res, next) => {
 
 app.use('/api', db);
 app.use('/api', indexApi)
+app.get('*', (req, res, next) => {
+  res.sendFile(path.join(__dirname, 'app_public', 'build', 'index.html'));
+});
+
 
 indexApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 indexApi.get("/swagger.json", (req, res) => {
@@ -66,7 +80,7 @@ app.use((err, req, res, next) => {
   }
 });
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log("Server started on port 3000")
 })
