@@ -35,6 +35,9 @@ require('dotenv').config();
 require('./api/models/db');
 require('./api/konfiguracija/passport');
 
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
+
 const db = require('./api/routes/db');
 var indexApi = require('./api/routes/index')
 
@@ -63,6 +66,7 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.listen(3000, () => {
+const port = process.env.PORT || 3000
+app.listen(port, () => {
     console.log("Server started on port 3000")
 })

@@ -9,6 +9,7 @@ var hourFormat = {
 };
 
 const tekma = new mongoose.Schema({
+    
     kreator: {
         type: Object,
         required: true

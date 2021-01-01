@@ -52,7 +52,7 @@
                                 <div *ngFor="let tekma of tekme | paginate: { itemsPerPage: 10, currentPage: p , totalItems: total}">
 
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <a class="text-dark" routerLink="/tekma/{{tekma._id}}"> {{tekma.kraj}},<br>{{tekma.datum}} | {{tekma.ura}} </a>
+                                        <a id="tekma" class="text-dark" routerLink="/tekma/{{tekma._id}}"> {{tekma.kraj}},<br>{{tekma.datum}} | {{tekma.ura}} </a>
                                         <span *ngIf="tekma.status == stat" class="badge badge-primary badge-pill">{{tekma.prijavljeni}}/{{tekma.maxIgralcev}}</span>
                                         <span *ngIf="tekma.status != stat" class="badge badge-danger badge-pill"><i class="far fa-times-circle"></i> {{tekma.prijavljeni}}/{{tekma.maxIgralcev}}</span>
                                     </li>

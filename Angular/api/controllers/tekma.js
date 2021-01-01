@@ -95,7 +95,7 @@ var ustvariTekmo = (req, res) => {
                     res.status(200).send({sporocilo: "Tekma uspešno ustvarjena", status: "success"})
                 })
                 .catch(err => {
-                    res.status(500).send(err)
+                    res.status(500).json({sporocilo: err})
              });
         }
     })

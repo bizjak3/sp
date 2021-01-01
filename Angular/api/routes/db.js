@@ -1,11 +1,13 @@
 
 const express = require('express');
 const router = express.Router();
+var mongoose = require('mongoose');
 
 const Tekma = require('../models/Tekma');
 const User = require('../models/User');
 
 const bcrypt = require('bcrypt');
+const { isValidObjectId } = require('mongoose');
 
 
 router.post('/db', (req, res, done) => {
@@ -28,13 +30,12 @@ router.post('/db', (req, res, done) => {
                 res.status(200).json({"žeton": uporabnik.generirajJwt()});
             }
       });
-
-      let tekma = new Tekma({
+      let tekma = new Tekma({  
         kreator: "Kreator tekme",
         lat: 46.0503162990623,
         lng: 14.468446969985964,
         kraj: "Fakulteta za Računalništvo in Informatiko",
-        datum: "2021-01-10",
+        datum: "2022-01-10",
         ura: "15:00",
         minIgralcev: 4,
         maxIgralcev: 12,
@@ -42,9 +43,13 @@ router.post('/db', (req, res, done) => {
         igralci: ["Kreator tekme"],
         status: "prijave"
     });
+    
+    tekma._id = "aaaaaaaaaaaaaaaaaaaaaa5a"
     tekma.save()
 
 });
+
+
 
 router.delete('/db_izbrisi', (req, res) => {
     Tekma.deleteMany({}, function(err) {
