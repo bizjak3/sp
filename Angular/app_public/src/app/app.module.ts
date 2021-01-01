@@ -25,6 +25,7 @@ import { ModalOknoComponent } from './komponente/modal-okno/modal-okno.component
 import { NapakaComponent } from './komponente/napaka/napaka.component';
 import { InfoUporabnikComponent } from './komponente/info-uporabnik/info-uporabnik.component';
 import { OcenePipe } from './pipes/ocene.pipe';
+import { DatumPipe } from './pipes/datum.pipe';
 
 
 
@@ -47,7 +48,8 @@ import { OcenePipe } from './pipes/ocene.pipe';
     ModalOknoComponent,
     NapakaComponent,
     InfoUporabnikComponent,
-    OcenePipe
+    OcenePipe,
+    DatumPipe
   ],
   imports: [
     BrowserModule,

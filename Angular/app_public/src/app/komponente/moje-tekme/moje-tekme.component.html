@@ -25,17 +25,17 @@
 
                         <!-- seznam vseh iger -->
                         <ul class="list-group" *ngIf="loaded">
-                            
+
                                 <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let tekma of tekme">
-                                    <a class="text-dark" routerLink="/tekma/{{tekma.id}}"> {{tekma.kraj}},<br>{{tekma.datum}} | {{tekma.ura}} </a>
+                                    <a class="text-dark" routerLink="/tekma/{{tekma.id}}"> {{tekma.kraj}},<br>{{tekma.datum | datum}} | {{tekma.ura}} </a>
                                     <span class="badge  badge-pill"></span>
                                 </li>
 
                                 <li class="list-group-item d-flex justify-content-between align-items-center" *ngIf="niTekem">
                                     <a class="text-dark"> Niste prijavljeni na nobeno tekmo </a>
-                                    
+
                                 </li>
-                           
+
 
 
                         </ul>

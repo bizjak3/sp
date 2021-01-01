@@ -81,7 +81,7 @@
 
                                     <div class="row m-2 border-bottom pb-2">
                                       <div class="col">
-                                        <a class="text-dark">{{tekma.kreator.ime}} {{tekma.kreator.priimek}}</a>
+                                        <a routerLink="/uporabnik/{{tekma.kreator.id}}" class="text-dark">{{tekma.kreator.ime}} {{tekma.kreator.priimek}}</a>
                                       </div>
                                     </div>
 
@@ -151,7 +151,7 @@
 
                                   <div class="row m-2 border-bottom pb-2">
                                     <div class="col">
-                                      <a class="text-dark">{{tekma.kreator.ime}} {{tekma.kreator.priimek}}</a>
+                                      <a routerLink="/uporabnik/{{tekma.kreator.id}}" class="text-dark">{{tekma.kreator.ime}} {{tekma.kreator.priimek}}</a>
                                     </div>
                                   </div>
 
@@ -175,7 +175,7 @@
 
                                   <div class="row m-2 border-bottom pb-2">
                                     <div class="col">
-                                      {{tekma.datum}} | {{tekma.ura}}
+                                      {{tekma.datum | datum}} | {{tekma.ura}}
                                     </div>
                                   </div>
 
@@ -197,7 +197,7 @@
                                     </div>
                                   </div>
 
-                                  <div class="row m-2 border-bottom pb-2">
+                                  <div class="col row m-2 border-bottom pb-2">
                                       {{tekma.opis}}
                                   </div>
                                 </ng-template>
