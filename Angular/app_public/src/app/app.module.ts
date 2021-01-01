@@ -26,6 +26,7 @@ import { NapakaComponent } from './komponente/napaka/napaka.component';
 import { InfoUporabnikComponent } from './komponente/info-uporabnik/info-uporabnik.component';
 import { OcenePipe } from './pipes/ocene.pipe';
 import { DatumPipe } from './pipes/datum.pipe';
+import { ZvezdicePipe } from './pipes/zvezdice.pipe';
 
 
 
@@ -49,7 +50,8 @@ import { DatumPipe } from './pipes/datum.pipe';
     NapakaComponent,
     InfoUporabnikComponent,
     OcenePipe,
-    DatumPipe
+    DatumPipe,
+    ZvezdicePipe
   ],
   imports: [
     BrowserModule,

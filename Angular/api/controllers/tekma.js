@@ -232,11 +232,9 @@ var izbrisiTekmo = (req, res) => {
 
 var oceniIgralce = (req, res, done) => {
     const ocene = req.body.ocene;
-    console.log(ocene);
 
     Tekma.findOne( {_id: req.params.id}, (err, tekma) => {
         tekma.zeOcenili.push(req.params.user)
-        console.log(tekma.zeOcenili)
         tekma.save()
         let playerIDs = tekma.igralci.map(a => a.id);
         console.log(playerIDs);

@@ -24,7 +24,8 @@ router.get("/markers", contrHomepage.markers) // Pridobi tekme za markerje
 // Uporabnik
 router.get('/uporabnik/:id', contrUporabnik.vrniUporabnikaPrekoId); // Vrne podatke uporabnika
 router.post('/spremeni',  contrUporabnik.spremeniUporabnika);
-router.post("/pozabilGeslo", contrUporabnik.pozabilGeslo)
+router.post("/pozabilGeslo", contrUporabnik.pozabilGeslo);
+router.post('/ocena', contrUporabnik.vrniOcene);
 
 // Tekme
 router.get('/tekma/:id/tekme', controller.podrobnostiTekme)
