@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module'
 import { NgxPaginationModule } from 'ngx-pagination'
 import { ModalModule } from 'ngx-bootstrap/modal'
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { ServiceWorkerModule } from '@angular/service-worker'
 
 import { AppComponent } from './app.component';
@@ -62,7 +61,6 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     AppRoutingModule,
     NgxPaginationModule,
-    MatProgressSpinnerModule,
     ModalModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

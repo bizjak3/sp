@@ -82,11 +82,6 @@
                 <div id="obvestilo" style="visibility: hidden" class="alert alert-danger">
 
                 </div>
-
-                  <div *ngIf="clickUstvari"class="spinner-wrapper">
-                    <span>Ustvarjam tekmo...      </span>
-                    <mat-spinner class="mat-spinner-color" [diameter]="40" mode="indeterminate"></mat-spinner>
-                  </div>
                 
                 <div *ngIf="obvestilo" class="text-center col-sm-12 col-md-12 col-lg-12">
                   <div role="alert"  class="alert alert-{{status}}">{{obvestilo}}</div>

@@ -20,12 +20,3 @@
     
   }
 
-  .mat-spinner-color {
-    width: 100px
-  }
-
-  .spinner-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
