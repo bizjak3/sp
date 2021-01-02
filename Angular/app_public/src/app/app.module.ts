@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module'
 import { NgxPaginationModule } from 'ngx-pagination'
 import { ModalModule } from 'ngx-bootstrap/modal'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { ServiceWorkerModule } from '@angular/service-worker'
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './komponente/homepage/homepage.component';
@@ -28,6 +29,7 @@ import { InfoUporabnikComponent } from './komponente/info-uporabnik/info-uporabn
 import { OcenePipe } from './pipes/ocene.pipe';
 import { DatumPipe } from './pipes/datum.pipe';
 import { ZvezdicePipe } from './pipes/zvezdice.pipe';
+import { environment } from '../environments/environment';
 
 
 
@@ -61,7 +63,8 @@ import { ZvezdicePipe } from './pipes/zvezdice.pipe';
     AppRoutingModule,
     NgxPaginationModule,
     MatProgressSpinnerModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

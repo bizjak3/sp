@@ -3,13 +3,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Uporabnik } from '../modeli/uporabnik';
 import { RezultatAvtentikacije } from './rezultat-avtentikacije';
 import { SHRAMBA_BRSKALNIKA } from './shramba'
-
+import { environment } from '../../environments/environment'
+ 
 @Injectable({
   providedIn: 'root'
 })
 export class WebRequestService {
 
-  url = 'http://localhost:3000/api'
+  //url = 'http://localhost:3000/api'
+  private url = environment.apiUrl;
 
   constructor(
     private http: HttpClient,
