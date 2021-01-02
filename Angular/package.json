@@ -33,6 +33,7 @@
     "openweather-apis": "^4.4.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "swagger-jsdoc": "^6.0.0",
     "swagger-ui-express": "^4.1.6",
