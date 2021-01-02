@@ -1,11 +1,11 @@
 
-    <div class="card border-dark">
+    <div *ngIf="loaded" class="card border-dark">
 
         <!--Ime kartice-->
         <div class="card-header bg-dark text-white">
             <div class="row justify-content-center">
                 <div class="col text-center">
-                    
+                  {{uporabnik.ime}} {{uporabnik.priimek}}
                 </div>
             </div>
         </div>
@@ -16,45 +16,70 @@
 
                 <!-- tle je slika -->
                 <div class="row">
-                    
+
                         <img class="img-fluid profil m-2 mx-auto" width="200" height="40" alt="Image not found" src="/assets/slike/defualtProfile.jpg">
-                    
+
                 </div>
 
                 <!--opis igralca al neki ?-->
                 <div class="row justify-content-center">
                     <div class="col text-center">
-                        Amaterski igralec
+                      <span class="{{uporabnik.ocena | oceneTag }}">{{uporabnik.ocena | oceneTagText }}</span>
                     </div>
                 </div>
 
                 <!-- Tle bi lahko dali kake achievmente ? -->
                 <div class="row justify-content-center">
                     <div class="col text-center">
-                    
+
                     </div>
                 </div>
 
                 <!--število zvezdic-->
                 <div class="row justify-content-center mb-1">
-                    
+                    <span class="fa fa-star {{uporabnik.ocena | zvezdice: 1}}"></span>
+                    <span class="fa fa-star {{uporabnik.ocena | zvezdice: 2}}"></span>
+                    <span class="fa fa-star {{uporabnik.ocena | zvezdice: 3}}"></span>
+                    <span class="fa fa-star {{uporabnik.ocena | zvezdice: 4}}"></span>
+                    <span class="fa fa-star {{uporabnik.ocena | zvezdice: 5}}"></span>
                 </div>
 
                 <!--Tle so opcije za sprehod po menuju-->
                 <div class="row justify-content-center mb-1">
                     <div class="col text-center">
                         <ul class="list-unstyled nav-list">
-                            <li class="list_item " routerLink="/profil">
-                                <i class="fas fa-user"></i><span class="list-text"> Moj profil</span>
+                          <ng-template [ngIf]="this.stran == '/profil'">
+                            <li class="list_item active" routerLink="/profil">
+                              <i class="fas fa-user"></i><span class="list-text"> Moj profil</span>
                             </li>
-
-                            <li class="list_item " routerLink="/mojeTekme">
-                                <i class="fas fa-history"></i><span class="list-text"> moje_tekme</span>
+                          </ng-template>
+                          <ng-template [ngIf]="this.stran != '/profil'">
+                            <li class="list_item" routerLink="/profil">
+                              <i class="fas fa-user"></i><span class="list-text"> Moj profil</span>
                             </li>
+                          </ng-template>
 
+                          <ng-template [ngIf]="this.stran == '/mojeTekme'">
+                            <li class="list_item active" routerLink="/profil">
+                              <i class="fas fa-user"></i><span class="list-text"> Moje tekme</span>
+                            </li>
+                          </ng-template>
+                          <ng-template [ngIf]="this.stran != '/mojeTekme'">
+                            <li class="list_item" routerLink="/mojeTekme">
+                              <i class="fas fa-user"></i><span class="list-text"> Moje tekme</span>
+                            </li>
+                          </ng-template>
+
+                          <ng-template [ngIf]="this.stran == '/nastavitve'">
+                            <li class="list_item active" routerLink="/nastavitve">
+                              <i class="fas fa-user"></i><span class="list-text"> Nastavitve</span>
+                            </li>
+                          </ng-template>
+                          <ng-template [ngIf]="this.stran != '/nastavitve'">
                             <li class="list_item" routerLink="/nastavitve">
-                                <i class="fas fa-cog"></i><span class="list-text"> Nastavitve</span>
+                              <i class="fas fa-user"></i><span class="list-text"> Nastavitve</span>
                             </li>
+                          </ng-template>
 
                             <li class="list_item noactive" (click)="odjava()">
                                 <i class="fas fa-sign-out-alt"></i><span class="list-text"> Odjava</span>
@@ -66,4 +91,3 @@
         </div>
     </div>
 
-    
