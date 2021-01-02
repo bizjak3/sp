@@ -21,8 +21,8 @@ export class WebRequestService {
     }
 
     getTekma(id: string) {
-      
       return this.http.get(this.url + "/tekma/" + id + "/tekme")
+
     }
 
     post(uri: string) {
@@ -147,5 +147,9 @@ export class WebRequestService {
 
     public spremeniStatusTekme(uri: string, body: any){
       return this.http.put(this.url + uri, body);
+    }
+
+    public getOcene(uri: string, body: any){
+      return this.http.post(this.url + uri, body);
     }
 }

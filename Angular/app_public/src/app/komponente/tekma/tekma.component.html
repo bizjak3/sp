@@ -259,7 +259,11 @@
                                   <ul class="list-group seznam" style="height: 50vh; width:100%; min-height: 300px" >
                                     <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let igralec of igralci">
                                       <a routerLink="/uporabnik/{{igralec.id}}" class="col-sm text-dark">{{igralec.ime}} {{igralec.priimek}}</a>
-                                      <a class="col-sm text-dark">{{igralec.ocena}}</a>
+                                      <span class="fa fa-star {{igralec.ocena | zvezdice: 1}}"></span>
+                                      <span class="fa fa-star {{igralec.ocena | zvezdice: 2}}"></span>
+                                      <span class="fa fa-star {{igralec.ocena | zvezdice: 3}}"></span>
+                                      <span class="fa fa-star {{igralec.ocena | zvezdice: 4}}"></span>
+                                      <span class="fa fa-star {{igralec.ocena | zvezdice: 5}}"></span>
                                     </li>
                                   </ul>
                                 </div>

@@ -62,8 +62,12 @@ export class TekmaComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
 
-        console.log(params.id)
+        //console.log(params.id)
         this.webReq.getTekma(params.id).subscribe((podatkiTekme: any) => {
+
+          /*
+
+          */
           this.result = podatkiTekme
           this.tekma = this.result.tekma;
           this.igralci = this.tekma.igralci;
@@ -74,7 +78,13 @@ export class TekmaComponent implements OnInit {
 
           this.loaded = true;
           this.pridruzen = false;
-
+          var upos = this.tekma.igralci.map(i => i.id);
+          this.webReq.getOcene("/ocena", upos).subscribe((res) => {
+            let i = 0;
+            for(i; i < res.length; i++){
+              this.igralci[i].ocena = res[i];
+            }
+          });
           // prijava
           this.igralci.forEach(element => {
             if(element.id + "" === this.avtentikacija.vrniId() + ""){
@@ -103,13 +113,16 @@ export class TekmaComponent implements OnInit {
             this.lahkoPrijavimo = true;
           }
 
+          if(!this.avtentikacija.vrniId()){
+            this.lahkoPrijavimo = false;
+          }
+
           this.urejamo = false;
           if (!this.map) {
             this.initMap();
           }
 
           if(this.checkTime()){
-            console.log("here");
             this.spremeniStatus();
           }
 

@@ -56,7 +56,7 @@ var spremeniUporabnika = (req, res) => {
 var vrniUporabnikaPrekoId =  (req, res) => {
     
     var id = req.params.id;
-    console.log(id)
+    //console.log(id)
     User.findById(id, (napaka, uporabnik) => {
         if (napaka) {
             return res.status(500).json({sporocilo: napaka})
@@ -93,8 +93,18 @@ var pozabilGeslo =  (req, res) => {
     })
 }
 
+var vrniOcene = (req, res) => {
+    let ids = req.body;
+    User.find({_id : ids}, (err, users) => {
+        let ocene = users.map(u => u.ocena);
+        res.status(200).send(ocene);
+    });
+
+}
+
 module.exports = {
     spremeniUporabnika,
     vrniUporabnikaPrekoId, 
-    pozabilGeslo
+    pozabilGeslo,
+    vrniOcene
 }
