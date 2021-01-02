@@ -5,7 +5,7 @@
     const chrome = require("selenium-webdriver/chrome");
     const expect = require("chai").expect;
 
-    let aplikacijaUrl = "http://localhost:4200"
+    let aplikacijaUrl = "http//localhost:4200"
     let seleniumStreznikUrl = "http://localhost:4445/wd/hub";
     let brskalnik, jwtZeton;
 
@@ -43,20 +43,18 @@
       .build();
     });
 
+    describe("Ime funkcionalnost", function() {
+      this.timeout(30 * 1000);
+      before(() => {brskalnik.get(aplikacijaUrl)});
 
-    describe("Test 123", async function() {
-        this.timeout(30 * 1000);
-        before(async function() { await brskalnik.get(aplikacijaUrl); });
-        
-        it("Stevilo tekem", async () => {
-            await pocakajStranNalozena(brskalnik, 10, "//h4");
-            let lokacije = await brskalnik.findElements(By.id(tekma))
-            expect(lokacije).to.be.an("array").to.have.lengthOf(2)
-        })
-        
-        
+
+      it("Stevilo tekem na zacetni strani", async () => {
+        await pocakajStranNalozena(brskalnik, 10, "//h3");
+        let tekme = await brskalnik.findElements(By.css("tekma"));
+        expect(tekme).to.be.an("array").to.have.lengthOf(3);
+      });
     })
-
+    
     after(async () => {
         brskalnik.quit();
       });
@@ -64,4 +62,4 @@
   } catch (napaka) {
       console.log("Med testom je prislo do napaka")
   }
-})
+})();
