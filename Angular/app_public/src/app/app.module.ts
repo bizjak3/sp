@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module'
 import { NgxPaginationModule } from 'ngx-pagination'
 import { ModalModule } from 'ngx-bootstrap/modal'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './komponente/homepage/homepage.component';
@@ -59,6 +60,7 @@ import { ZvezdicePipe } from './pipes/zvezdice.pipe';
     HttpClientModule,
     AppRoutingModule,
     NgxPaginationModule,
+    MatProgressSpinnerModule,
     ModalModule.forRoot()
   ],
   providers: [],

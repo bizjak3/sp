@@ -18,24 +18,19 @@ router.post('/db', (req, res, done) => {
     uporabnik.email = "admin@admin.com"
     uporabnik.admin = true;
     uporabnik.nastaviGeslo(geslo);
-    uporabnik.save(napaka => {
-        if (napaka) {
-            if (napaka.code == 11000) {
-                res.status(400).json({"sporočilo": "Uporabnik s tem elektronskim naslovom je že registriran"});
-            }
-            else {
-                res.status(500).json({"sporočilo": napaka});
-            }
-            } else {
-                res.status(200).json({"žeton": uporabnik.generirajJwt()});
-            }
-      });
+    uporabnik.generirajJwt()
+    uporabnik.save()
+
       let tekma = new Tekma({  
-        kreator: "Kreator tekme",
+        kreator: {
+            id: uporabnik._id,
+            ime: uporabnik.ime,
+            priimek: uporabnik.priimek
+        },
         lat: 46.0503162990623,
         lng: 14.468446969985964,
         kraj: "Fakulteta za Računalništvo in Informatiko",
-        datum: "2022-01-10",
+        datum: "2020-01-10",
         ura: "15:00",
         minIgralcev: 4,
         maxIgralcev: 12,
@@ -46,6 +41,8 @@ router.post('/db', (req, res, done) => {
     
     tekma._id = "aaaaaaaaaaaaaaaaaaaaaa5a"
     tekma.save()
+
+    res.status(200).json({sporocilo: "OK"})
 
 });
 

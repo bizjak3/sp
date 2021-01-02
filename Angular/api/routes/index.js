@@ -26,6 +26,7 @@ router.get('/uporabnik/:id', contrUporabnik.vrniUporabnikaPrekoId); // Vrne poda
 router.post('/spremeni',  contrUporabnik.spremeniUporabnika);
 router.post("/pozabilGeslo", contrUporabnik.pozabilGeslo);
 router.post('/ocena', contrUporabnik.vrniOcene);
+router.post('/zasebnost/:id', contrUporabnik.zasebnost)
 
 // Tekme
 router.get('/tekma/:id/tekme', controller.podrobnostiTekme)

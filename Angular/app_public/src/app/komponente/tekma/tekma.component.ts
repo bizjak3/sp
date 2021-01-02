@@ -38,7 +38,7 @@ export class TekmaComponent implements OnInit {
   pridruzen = true;
   urejamo = false;
   ocenjamo = false;
-  lahkoOcenjamo = true;
+  lahkoOcenjamo = false;
   lahkoPrijavimo = false;
   vreme: any;
   result: any;
@@ -62,12 +62,8 @@ export class TekmaComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
 
-        //console.log(params.id)
         this.webReq.getTekma(params.id).subscribe((podatkiTekme: any) => {
 
-          /*
-
-          */
           this.result = podatkiTekme
           this.tekma = this.result.tekma;
           this.igralci = this.tekma.igralci;
@@ -81,7 +77,9 @@ export class TekmaComponent implements OnInit {
           var upos = this.tekma.igralci.map(i => i.id);
           this.webReq.getOcene("/ocena", upos).subscribe((res) => {
             let i = 0;
-            for(i; i < res.length; i++){
+            this.result = res;
+            console.log(this.result)
+            for(i; i < this.result.length; i++){
               this.igralci[i].ocena = res[i];
             }
           });
@@ -95,11 +93,11 @@ export class TekmaComponent implements OnInit {
           // ocenjevanje
 
           let i = this.tekma.igralci.map(a => a.id);
-          if(!i.includes(this.avtentikacija.vrniId())){
-            this.lahkoOcenjamo = false;
+          if(i.includes(this.avtentikacija.vrniId()) || this.avtentikacija.jePrijavljen()){
+            this.lahkoOcenjamo = true;
           }
 
-          if(this.tekma.status == "prijave"){
+          if(this.tekma.status == "prijave" && this.avtentikacija.jePrijavljen()){
 
             this.avtentikacija.vrniPodatkeUporabnika().then((res) => {
               this.result = res;

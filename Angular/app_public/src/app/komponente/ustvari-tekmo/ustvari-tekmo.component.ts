@@ -34,6 +34,7 @@ export class UstvariTekmoComponent implements OnInit {
   result: any;
   obvestilo: string;
   status: string;
+  clickUstvari = false
 
   public podatki = {
     kraj: "",
@@ -86,16 +87,18 @@ export class UstvariTekmoComponent implements OnInit {
   }
 
   public ustvariTekmo() {
+    this.clickUstvari = true;
 
     this.web.postTekma("/novaTekma/" + this.avtentikacija.vrniId(), this.podatki).subscribe(
       (result) => {
+        this.clickUstvari = false;
         this.result = result;
         this.ustvarjeno = true
         this.obvestilo = this.result.sporocilo;
         this.status = this.result.status;
     },
     error => {
-      
+      this.clickUstvari = false
       this.result = error.error
       console.log(this.result)
       this.obvestilo = this.result.sporocilo;

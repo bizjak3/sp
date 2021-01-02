@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { PodatkiTekme } from 'src/app/modeli/PodatkiTekme';
 import { User } from 'src/app/modeli/User';
 import { WebRequestService } from 'src/app/storitve/web-request.service';
+import { convertTypeAcquisitionFromJson } from 'typescript';
 
 @Component({
   selector: 'app-info-uporabnik',
@@ -14,6 +15,8 @@ export class InfoUporabnikComponent implements OnInit {
   uporabnik: any;
   loaded: boolean = false
   tekme: PodatkiTekme
+  mail: boolean = true;
+  telefon: boolean = true
 
   constructor(
     private route: ActivatedRoute,
@@ -27,7 +30,9 @@ export class InfoUporabnikComponent implements OnInit {
           result => {
             this.uporabnik = result;
             this.loaded = true;
-            if (this.uporabnik.ocena == 0) {
+            this.mail = this.uporabnik.emailDrugi;
+            this.telefon = this.uporabnik.telDrugi;
+            if (this.uporabnik.ocena == NaN) {
               this.uporabnik.ocena = "Ne ocenjen"
             }
             this.tekme = this.uporabnik.tekme

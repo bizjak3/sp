@@ -15,6 +15,11 @@ export class NastavitveComponent implements OnInit {
   uporabnik: any;
   mail: string;
   loaded = false
+  vidiMail = true;
+  vidiTel = true
+  sporocilo: string
+  result: any;
+  status: string
 
   constructor(
     private data: DataService,
@@ -35,11 +40,33 @@ export class NastavitveComponent implements OnInit {
     this.avtentikacijaStoritev.vrniPodatkeUporabnika().then((data) => {
       this.uporabnik = data
       this.loaded = true
+      this.vidiMail = this.uporabnik.emailDrugi
+      this.vidiTel = this.uporabnik.telDrugi
     })
   }  
 
   public jePrijavljen(): boolean {
     return this.avtentikacijaStoritev.jePrijavljen();
+  }
+
+  public submit() {
+    let obj = {
+      mail: this.vidiMail,
+      tel: this.vidiTel
+    }
+    this.web.postUser("/zasebnost/" + this.avtentikacijaStoritev.vrniId(), obj).subscribe(
+      
+      result => {
+        this.result = result;
+        this.sporocilo = this.result.sporocilo
+        this.status = this.result.status;
+      },
+      error => {
+        this.result = error.error;
+        this.sporocilo = this.result.sporocilo;
+        this.status = this.result.status;
+      }
+    )
   }
 
 }

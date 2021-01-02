@@ -102,9 +102,27 @@ var vrniOcene = (req, res) => {
 
 }
 
+var zasebnost = (req, res) => {
+    console.log(req.body)
+    let mail = req.body.mail
+    let telefon = req.body.tel
+    console.log(req.params.id)
+    User.findById(req.params.id, (err, uporabnik) => {
+        if (err) {
+            res.status(500).json({sporocilo: err, status: "danger"})
+        } else {
+            uporabnik.emailDrugi = mail;
+            uporabnik.telDrugi = telefon;
+            uporabnik.save()
+            res.status(201).json({sporocilo: "Uspešno spremenjeno", status: "success"})
+        }
+    })
+}
+
 module.exports = {
     spremeniUporabnika,
     vrniUporabnikaPrekoId, 
     pozabilGeslo,
-    vrniOcene
+    vrniOcene,
+    zasebnost
 }

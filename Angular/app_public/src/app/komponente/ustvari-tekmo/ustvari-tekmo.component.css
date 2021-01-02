@@ -14,3 +14,18 @@
   #map {
     height: 100%;
   }
+
+  .mat-spinner-color::ng-deep circle{
+    stroke: #135add !important;
+    
+  }
+
+  .mat-spinner-color {
+    width: 100px
+  }
+
+  .spinner-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

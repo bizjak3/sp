@@ -81,8 +81,12 @@
                             <div class="col">
                                 Email:
                             </div>
-                            <div class="col">
+                            <div *ngIf="mail" class="col">
                                 {{uporabnik.email}}
+                            </div>
+
+                            <div *ngIf="mail==false" class="col">
+                                Uporabnik noče deliti maila
                             </div>
                         </div>
 
@@ -90,8 +94,11 @@
                             <div class="col">
                                 Telefon
                             </div>
-                            <div class="col">
+                            <div *ngIf="telefon"class="col">
                                {{uporabnik.telefon}}
+                            </div>
+                            <div *ngIf="telefon==false" class="col">
+                                Uporabnik noče deliti telefonske številke
                             </div>
                         </div>
                         <div class="row m-2 info">
