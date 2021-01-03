@@ -37,10 +37,6 @@ const routes: Routes = [
       component: HomepageComponent
     }, 
     {
-      path: 'profil',
-      component: ProfilComponent
-    },
-    {
       path: 'nav',
       component: ProfilNavComponent
     },
@@ -49,24 +45,12 @@ const routes: Routes = [
       component: UstvariTekmoComponent
     },
     {
-      path: "nastavitve",
-      component: NastavitveComponent
-    },
-    {
       path: "db",
       component: DbComponent
     },
     {
-      path: "uredi",
-      component: UrediPodatkeComponent
-    },
-    {
       path: "tekma/:id",
       component: TekmaComponent
-    },
-    {
-      path: "mojeTekme",
-      component: MojeTekmeComponent
     },
     {
       path: "okno",
@@ -79,6 +63,16 @@ const routes: Routes = [
     {
       path: "search",
       component: SearchComponent
+    },
+    {
+      path: "profil",
+      component: ProfilNavComponent,
+      children: [
+        {path: "info", component: ProfilComponent},
+        {path: "nastavitve", component: NastavitveComponent},
+        {path: "mojeTekme", component: MojeTekmeComponent},
+        {path: "uredi", component: UrediPodatkeComponent}
+      ]
     },
     {
       path: "**",

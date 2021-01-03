@@ -57,14 +57,12 @@ var search = (req, res) => {
         }
 
         User.find().exec((err,user) => {
-            console.log(user)
             if (user) {
                 for(var i=0; i < user.length; i++) {
                     let trenutniIme = (user[i].ime).toLowerCase();
                     let trenutniPriimek = (user[i].priimek).toLowerCase();
                     
                     if (trenutniIme.includes(iskalni_niz2) || trenutniPriimek.includes(iskalni_niz2)) {
-                        console.log(user[i])
                         tabelaUporabnikov.push(user[i]);
                     }
                 }

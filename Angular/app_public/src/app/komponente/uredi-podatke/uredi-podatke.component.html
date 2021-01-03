@@ -1,17 +1,4 @@
-<app-header></app-header>
 
-<!--container za vso vsebino-->
-<div class="container-lg h-100">
-
-
-    <div class="row">
-        <!--prva kartica-->
-        <div class="col-md-4 col-sm-12 mb-2">
-            <app-profil-nav></app-profil-nav>
-        </div>
-
-        <!--Tle se začne druga kartica-->
-        <div class="col-md-8 col-sm-12">
 
             <!-- zgornj kartica-->
             <div class="card-deck" >
@@ -106,44 +93,9 @@
                 </div>
             </div>
 
-            <!-- spodnja kartica-->
-            <div class="card-deck pt-2">
-                <div class="card  border-dark">
-                    <div class="card-header bg-dark text-white ">
-                        <div class="row">
-                            <div class="col">Spremeba profilne slike</div>
-                        </div>
-                    </div>
+            
 
-                    <!-- card body-->
-                    <div class="card-body px-1 py-1">
+                    
 
-                        <div class="row m-2 info">
-                            <div class="col">
-                                <form action="/upload" method="POST" enctype="multipart/form-data">
-                                    <div class="custom-file mb-3">
-                                        <input type="file" name="file" id="file" class="custom-file-input">
-                                        <label for="file" class="custom-file-label">Izberi datoteko</label>
-                                    </div>
-                                    <input type="submit" value="naloži" class="btn btn-primary btn-block">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="row m-2 info">
-                            <div class="col">
-                                <form method="POST" action="/delete?_methode=DELETE">
-                                    <input type="submit" value="Izbriši" class="btn-danger btn- btn-block">
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-    </div>
-</div>
+        
 

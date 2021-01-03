@@ -20,7 +20,7 @@ router.post('/prijava', contrAvtentikacija.prijava); // Prijava
 router.get('/page/:p/:d', contrHomepage.homepage); // Pridobi tekme (pagination, filter)
 router.get("/tekme", contrHomepage.tekme) // Pridobi stevilo vseh tekem
 router.get("/markers", contrHomepage.markers) // Pridobi tekme za markerje
-router.put('/search/:niz', contrHomepage.search)
+router.get('/search/:niz', contrHomepage.search)
 
 // Uporabnik
 router.get('/uporabnik/:id', contrUporabnik.vrniUporabnikaPrekoId); // Vrne podatke uporabnika
@@ -209,6 +209,42 @@ module.exports = router;
  *     "500":
  *      description: Napaka na strežniku pri dostopu do podatkovne baze.
  */
+
+ /**
+  * @swagger
+  * /search/{niz}:
+  *  get:
+  *   summary: Iskanje
+  *   tags: [Homepage]
+  *   parameters:
+  *     - in: path
+  *       name: niz
+  *       schema: 
+  *         type: string
+  *         example: Janez
+  *   responses:
+  *     "200":
+  *      description: Uspešna zahteva
+  *      content:  
+  *       application/json:
+  *         schema:
+  *           type: object
+  *           properties: 
+  *             tabelaTekem:
+  *               type: array
+  *               items: 
+  *                 tekme:
+  *                   $ref: "#/components/schemas/Tekma"
+  *             tabelaUporabnikov:
+  *               type: array
+  *               items:
+  *                 uporabniki:
+  *                   $ref: "#/components/schemas/Uporabnik"    
+  *      "500":
+  *       description: Napaka na strežniku pri dostopu do podatkovne baze               
+  *                   
+  *            
+  */
 
 // UPORABNIK -----------------------------------------------------------------------------------------------------------
 
