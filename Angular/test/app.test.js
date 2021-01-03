@@ -1,5 +1,7 @@
 const { async } = require("rxjs");
 
+// docker run -d -p 4445:4444 -p 5901:5900 --shm-size=2g selenium/standalone-chrome-debug 
+
 (async function TapPlay() {
     const { exec } = require("child_process");
     const { describe, it, after, before } = require("mocha");
@@ -69,21 +71,37 @@ const { async } = require("rxjs");
       before(() => {brskalnik.get(aplikacijaUrl)});
 
       it("Izberi Fakulteta za Računalništvo in Informatiko", async() => {
-        await pocakajStranNalozena(brskalnik, 10, "//div")
+        await pocakajStranNalozena(brskalnik, 10, "//a[contains(text(), 'Fakulteta')]")
         let povezava = await brskalnik.findElement(By.xpath("//a[contains(text(), 'Fakulteta')]"));
-        expect(povezava).to.not.be.empty;
+        expect(povezava).not.to.be.empty;
         await povezava.click();
       })
 
       context("Ustreznost podatkov na strani s podrobnostmi tekme", function() {
 
-        it("Stran podatkov dela", async() => {
-          await pocakajStranNalozena(brskalnik, 10, "//div")
-          let naslov = await brskalnik.findElement(By.css("#exampleModalCenter"))
-          
+        it("Ustrezen kraj na strani podatkov", async() => {
+          await pocakajStranNalozena(brskalnik, 10, "//a[contains(text(), 'Tjas')]")
+          let naslov = await brskalnik.findElement(By.css("#kraj"))
           expect(naslov).to.not.be.empty;
+          expect(await naslov.getText()).to.have.string("Fakulteta za Računalništvo in Informatiko")
+        })
+
+        it("Ustrezen kreator tekme", async() => {
+          await pocakajStranNalozena(brskalnik, 10, "//a[contains(text(), 'Tjas')]")
+          let kreator = await brskalnik.findElement(By.css("#kreator"))
+          expect(kreator).to.not.be.empty;
+          expect(await kreator.getText()).to.have.string("Tjas Leghissa")
+        })
+  
+        it("Ustrezen datum tekme", async() => {
+          await pocakajStranNalozena(brskalnik, 10, "//a[contains(text(), 'Tjas')]")
+          let datum = await brskalnik.findElement(By.xpath("//p[contains(text(), '31')]"))
+          expect(datum).to.not.be.empty;
+          expect(await datum.getText()).to.have.string("31. 01. 2021 | 18:40")
         })
       })
+
+    
 
     })
 
@@ -192,26 +210,92 @@ const { async } = require("rxjs");
       this.timeout(30*1000);
       before(async function() {await brskalnik.get(aplikacijaUrl)});
         
-      it("Cick na gumb za novo igro", async function() {
-        await pocakajStranNalozena(brskalnik, 10, "//*[@id='map']");
-        let gumb = await brskalnik.findElement(By.css("#gumbNovaIgra")).click();
+      context("Začetna stran", function() {
+        it("Vrni se na začetno stran", async function() {
+          await pocakajStranNalozena(brskalnik, 20, "//*[@id='gumbNovaIgra']");
+          let gumb = await brskalnik.findElement(By.css("#gumbNovaIgra"));
+        })
+  
+        it("Izberi tekmo na fakulteti", async function() {
+          await pocakajStranNalozena(brskalnik, 10, "//a[contains(text(), 'Fakulteta')]");
+          let f = await brskalnik.findElement(By.xpath("//a[contains(text(), 'Fakulteta')]"));
+          await f.click()
+        })
       })
 
+      context("Stran tekme", function() {
+        it("Stran tekme", async function() {
+          await pocakajStranNalozena(brskalnik, 10, "//*[@id='kraj']");
+          let gumb = await brskalnik.findElement(By.css("#kraj"));
+          expect(gumb).not.to.be.empty;
+        })
+  
+        it("Pridruži se tekmi", async function() {
+          await pocakajStranNalozena(brskalnik, 10, "//*[@id='kraj']");
+          await brskalnik.findElement(By.css("button[class='btn btn-primary']")).click();
+        })
+      })
+      
+
+      
+      describe("Preveri če se je pridružu in odjavi se", function() {
+        this.timeout(30*1000);
+        before(async function() {await brskalnik.get(aplikacijaUrl)});
+
+        context("Začetna stran", function {
+          it("Izberi tekmo na fakulteti", async function() {
+            await pocakajStranNalozena(brskalnik, 10, "//a[contains(text(), 'Fakulteta')]");
+            let f = await brskalnik.findElement(By.xpath("//a[contains(text(), 'Fakulteta')]"));
+            await f.click()
+          })
+        })
+        
+        context("Stran tekme", function() {
+          it("Preveri če je pridružen", async function() {
+            await pocakajStranNalozena(brskalnik, 10, "//a[contains(text(), 'Marko')]");
+            let ime = await brskalnik.findElement(By.css("button[class='btn btn-danger']"));
+            expect(ime).not.to.be.empty;
+          })
+  
+          it("Odjavi se", async function() {
+            let gumb = await brskalnik.findElement(By.css("button[class='btn btn-danger']"));
+            expect(gumb).not.to.be.empty;
+            await gumb.click()
+          })
+        })
+      })
+
+
+
+      
+
+      
+      /*
       it("Strani ustvari tekmo deluje", async function() {
         await pocakajStranNalozena(brskalnik, 10, "//*[@id='map']");
-        let mapa = await brskalnik.findElement(By.css("#map")).click();
+        let lat = await brskalnik.findElement(By.css("#Input_Okno_LAT"));
+        expect(lat).not.to.be.empty;
+        lat.sendKeys(45)
+
+        let lng = await brskalnik.findElement(By.css("#Input_Okno_LNG"));
+        expect(lng).not.to.be.empty;
+        lng.sendKeys(15)
+
+        let kraj = await brskalnik.findElement(By.css("#Input_Okno_Kraj"));
+        expect(kraj).not.to.be.empty;
+        kraj.sendKeys("Ljubljana test")
     
         let datum = await brskalnik.findElement(By.css("input[name='datum']"));
         expect(datum).not.to.be.empty;
-        datum.sendKeys("26.03.2021")
+        datum.sendKeys("26-03-2021")
 
         let ura = await brskalnik.findElement(By.css("input[name='ura']"));
         expect(ura).not.to.be.empty;
         ura.sendKeys("21:00");
 
-        let gumb = await brskalnik.findElement(By.css("input[value='Ustvari']"));
-        gumb.click()
+        let gumb = await brskalnik.findElement(By.css("input[value='Ustvari']")).click();
       })
+      */
     })
 
     
