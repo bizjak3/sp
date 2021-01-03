@@ -1,0 +1,8 @@
+http://localhost:4200/
+http://localhost:4200/login
+http://localhost:4200/register
+http://localhost:4200/profil
+http://localhost:4200/mojeTekme
+http://localhost:4200/nastavitve
+http://localhost:4200/uredi
+http://localhost:4200/ustvariTekmo
