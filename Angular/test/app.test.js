@@ -238,11 +238,11 @@ const { async } = require("rxjs");
       
 
       
-      describe("Preveri če se je pridružu in odjavi se", function() {
+      describe("Preveri če se je pridružu in odjavi se od tekme", function() {
         this.timeout(30*1000);
         before(async function() {await brskalnik.get(aplikacijaUrl)});
 
-        context("Začetna stran", function {
+        context("Začetna stran", function() {
           it("Izberi tekmo na fakulteti", async function() {
             await pocakajStranNalozena(brskalnik, 10, "//a[contains(text(), 'Fakulteta')]");
             let f = await brskalnik.findElement(By.xpath("//a[contains(text(), 'Fakulteta')]"));
@@ -257,7 +257,7 @@ const { async } = require("rxjs");
             expect(ime).not.to.be.empty;
           })
   
-          it("Odjavi se", async function() {
+          it("Odjavi se od tekme", async function() {
             let gumb = await brskalnik.findElement(By.css("button[class='btn btn-danger']"));
             expect(gumb).not.to.be.empty;
             await gumb.click()
@@ -266,7 +266,38 @@ const { async } = require("rxjs");
       })
 
 
+      describe("Odjavi se", function() {
+        this.timeout(30*1000);
+        before(async function() {await brskalnik.get(aplikacijaUrl)});
 
+        it("Cick na gumb za prikaz odjave", async function() {
+          let gumb = await brskalnik.findElement(By.css("#testMenuRazlika1"));
+          expect(gumb).to.not.be.empty;
+          await gumb.click();
+        })
+
+        it("Odjavi se", async function() {
+          let povezava = await brskalnik.findElement(By.xpath("//a[contains(text(), 'Odjava')]"));
+          expect(povezava).not.to.be.empty;
+          await povezava.click()
+        })
+      })
+
+      describe("Preveri da je uporabnik odjavljen", function() {
+        this.timeout(30*1000);
+        before(async function() {await brskalnik.get(aplikacijaUrl)});
+
+        it("Cick na gumb za prikaz statusa prijave/odjave", async function() {
+          let gumb = await brskalnik.findElement(By.css("#testMenuRazlika1"));
+          expect(gumb).to.not.be.empty;
+          await gumb.click();
+        })
+
+        it("Uporabnik je odjavljen", async function() {
+          let povezava = await brskalnik.findElement(By.xpath("//a[contains(text(), 'Prijava')]"));
+          expect(povezava).not.to.be.empty;
+        })
+      })
       
 
       
