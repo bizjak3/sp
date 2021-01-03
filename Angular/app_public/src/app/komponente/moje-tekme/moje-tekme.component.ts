@@ -78,9 +78,9 @@ export class MojeTekmeComponent implements OnInit {
         for(var tekma of this.tekme) {
           var trenutniDatum = tekma.datum;
           var mesec = trenutniDatum.split("-");
-          mesec = parseInt(mesec[1]);
-          console.log(typeof(mesec));
-          var mesec1 = mesec - 1;
+          var mesecc = parseInt(mesec[1]);
+          //console.log(typeof(mesecc));
+          var mesec1 = mesecc - 1;
 
           this.testtabelca[mesec1] ++;
 
