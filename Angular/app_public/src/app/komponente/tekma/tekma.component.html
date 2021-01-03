@@ -13,7 +13,13 @@
 
 <!-- okno - okno se vstavi po navbar-ju direktno v body in pred tistim kontejnerjem za vsebino -->
 <div class="container-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="card border-dark" >
+  
+  <div *ngIf="loaded == false" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+    </div>
+  </div>
+
+    <div  class="card border-dark" >
 
         <div class="card-header bg-dark text-white">
             <h5 class="modal-title text-white" id="exampleModalLongTitle">Tekma</h5>

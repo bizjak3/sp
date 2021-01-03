@@ -1,25 +1,15 @@
-<app-header></app-header>
 
-<!--container za vso vsebino-->
-<div class="container-lg h-100">
-
-
-    <div class="row">
-        <!--prva kartica-->
-        <div class="col-md-4 col-sm-12 mb-2">
-            <app-profil-nav></app-profil-nav>
-        </div>
-
-        <!--Tle se začne druga kartica-->
-        <div class="col-md-8 col-sm-12">
-
+<div *ngIf="loaded == false" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+    </div>
+  </div>
             <!-- zgornj kartica-->
-            <div class="card-deck" >
+            <div *ngIf="loaded" class="card-deck" >
                 <div class="card  border-dark">
                     <div class="card-header bg-dark text-white ">
                         <div class="row">
                             <div class="col">Nastavitve</div>
-                            <div class="col"><a routerLink="/uredi"><span class="interactive text-white">Uredi osebne podatke</span></a></div>
+                            <div class="col"><a routerLink="/profil/uredi"><span class="interactive text-white">Uredi osebne podatke</span></a></div>
                         </div>
                     </div>
 
@@ -59,7 +49,7 @@
             </div>
 
             <!-- srednja kartica-->
-            <form method="POST" action="/nastavitve">
+            <form *ngIf="loaded" method="POST" action="/nastavitve">
                 <div class="card-deck pt-2">
                     <div class="card  border-dark">
                         <div class="card-header bg-dark text-white ">
@@ -103,7 +93,7 @@
             </form>
 
             <!-- spodnja kartica-->
-            <form (submit)="submit()">
+            <form *ngIf="loaded"(submit)="submit()">
                 <div class="card-deck pt-2">
                     <div class="card  border-dark">
                         <div class="card-header bg-dark text-white ">Nastavitve zasebnosti</div>
@@ -143,7 +133,7 @@
                 </div>
             </form>
 
-            <div class="card-body px-1 py-1">
+            <div *ngIf="loaded" class="card-body px-1 py-1">
                 <div *ngIf="sporocilo" role="alert"  class="alert alert-{{status}}">{{sporocilo}}</div>
 
                 <div class="row m-2 info">
@@ -157,9 +147,4 @@
 
             </div>
 
-        </div>
-
-    </div>
-
-
-</div>
+        

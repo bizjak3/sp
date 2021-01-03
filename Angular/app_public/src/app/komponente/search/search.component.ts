@@ -17,12 +17,13 @@ export class SearchComponent implements OnInit {
   tabelaTekem: any;
   tabelaUporabnikov: any;
   result: any;
+  stat = "prijave"
 
   ngOnInit(): void {
   }
 
   search() {
-    this.web.search('/search/' + this.niz, null).subscribe(
+    this.web.get('/search/' + this.niz).subscribe(
       (result) => {
         this.result = result;
         this.tabelaTekem = this.result.tabelaTekem
