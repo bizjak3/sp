@@ -82,7 +82,6 @@ export class HomepageComponent implements OnInit {
   }
 
   public jePovezava(): boolean {
-    console.log("here");
     return this.povezavaStoritev.jePovezava;
   }
 
