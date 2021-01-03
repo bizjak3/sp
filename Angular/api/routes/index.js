@@ -28,6 +28,7 @@ router.post('/spremeni',  contrUporabnik.spremeniUporabnika);
 router.post("/pozabilGeslo", contrUporabnik.pozabilGeslo);
 router.post('/ocena', contrUporabnik.vrniOcene);
 router.post('/zasebnost/:id', contrUporabnik.zasebnost)
+router.delete('/izbrisiMe/:id', contrUporabnik.izbrisi)
 
 
 // Tekme

@@ -73,4 +73,17 @@ export class NastavitveComponent implements OnInit {
   public jePovezava(): boolean {
     return this.povezavaStoritev.jePovezava;
   }
+
+  public izbrisi() {
+    this.web.delete("/izbrisiMe/" + this.avtentikacijaStoritev.vrniId()).subscribe( 
+      result => {
+      console.log(result)
+      this.avtentikacijaStoritev.odjava();
+      this.router.navigateByUrl("/")
+    },
+    error => {
+      this.avtentikacijaStoritev.odjava();
+      this.router.navigateByUrl("/")
+    })
+  }
 }

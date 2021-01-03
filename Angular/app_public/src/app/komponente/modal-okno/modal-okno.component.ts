@@ -30,7 +30,7 @@ export class ModalOknoComponent implements OnInit {
     }
     this.web.postTekma("/pozabilGeslo", x).subscribe(
       result => {
-        res: analyzeAndValidateNgModules;
+        this.poslano = true;
         this.res = result;
         this.status = this.res.status
         this.sporocilo = this.res.sporocilo

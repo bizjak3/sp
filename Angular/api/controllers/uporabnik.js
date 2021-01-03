@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const sgMail = require('@sendgrid/mail');
+const Tekma = require('../models/Tekma');
 //sgMail.setApiKey('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');
 sgMail.setApiKey(process.env.MAIL_API);
 
@@ -85,7 +86,7 @@ var pozabilGeslo =  (req, res) => {
             uporabnik.nastaviGeslo(novoGeslo)
             uporabnik.save()
             posljiEmail(mail,'Sprememba gesla', "Novo geslo je: " + novoGeslo);
-            res.status(200).json({sporocilo: "Mail uspešno poslana", status: "success"})
+            res.status(200).json({sporocilo: "Preglej elektronski naslov", status: "success"})
         }
         else {  
             res.status(401).json({sporocilo: "Uporabnik s tem elektronskim naslovom ne obstaja", status: "danger"})
@@ -122,10 +123,59 @@ var zasebnost = (req, res) => {
     })
 }
 
+var izbrisi = (req, res) => {
+    let id = req.params.id;
+    console.log(id)
+
+    Tekma.find({}, (err, tekma) => {
+        if (err) {}
+        else {
+            for (var i = 0; i < tekma.length; i++) {
+                if(tekma[i].status == "prijave"){
+                    var jePrijavljen = false;
+        
+                    tekma[i].igralci.forEach(element => {
+                        if(element.id + "" == id + ""){
+                            jePrijavljen = true;
+                        }
+                    })
+                    if(jePrijavljen){
+                        
+                        for (var j = 0; j < tekma[i].igralci.length; j++) {
+                            if (tekma[i].igralci[j].id === id) {
+                                tekma[i].igralci.splice(j, 1)
+                            }
+                        }
+                        
+                        tekma[i].prijavljeni--;
+                        tekma[i].save()
+                        //return res.status(200).send({sporocilo: "Uspešno"})
+                    } else {
+                    }
+                }
+            }
+        } 
+    })
+    
+
+    console.log("Sm tle")
+
+    User.deleteOne({_id: id}, (err) => {
+        if (err) {
+            return res.status(500).json({sporocilo: err})
+        } else {
+            return res.status(200).send("Izbrisan")
+        }
+    })
+    
+    
+}
+
 module.exports = {
     spremeniUporabnika,
     vrniUporabnikaPrekoId, 
     pozabilGeslo,
     vrniOcene,
-    zasebnost
+    zasebnost,
+    izbrisi
 }

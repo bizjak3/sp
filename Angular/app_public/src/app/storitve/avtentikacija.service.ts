@@ -49,8 +49,6 @@ export class AvtentikacijaService {
 
   public odjava(): void {
     this.shramba.removeItem('app-zeton');
-    this.shramba.removeItem('id')
-    this.shramba.removeItem('Id')
   }
 
   public vrniZeton(): string {
