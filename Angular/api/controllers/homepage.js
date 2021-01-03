@@ -1,7 +1,6 @@
 const Tekma = require('../models/Tekma');
 
 var homepage = (req, res) => {
-    console.log(req.params.d)
     let d = req.params.d
     let p = req.params.p-1
     let skip = p * 10;
