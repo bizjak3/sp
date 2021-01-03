@@ -282,19 +282,19 @@
             </div>
 
         </div>
-        <div class="modal-footer ">
+        <div class="modal-footer" >
             <a *ngIf="lahkoUrejamo">
-              <button type="button" class="btn btn-secondary" (click)="izbrisi()"><i class="fas fa-trash-alt"></i> Izbriši</button>
+              <button type="button" [disabled]="!jePovezava()" class="btn btn-secondary" (click)="izbrisi()"><i class="fas fa-trash-alt"></i> Izbriši</button>
             </a>
             <a *ngIf="lahkoUrejamo">
-              <button type="button" class="btn btn-secondary" (click)="jaUrejamo()"><i class="fas fa-edit"></i> Uredi</button>
+              <button type="button" [disabled]="!jePovezava()" class="btn btn-secondary" (click)="jaUrejamo()"><i class="fas fa-edit"></i> Uredi</button>
             </a>
             <a *ngIf="lahkoPrijavimo">
               <a *ngIf="pridruzen; else prijava">
-                <button type="button" class="btn btn-danger" (click)="odjaviSe()"><i class="fas fa-sign-out-alt"></i> Odjavi se</button>
+                <button type="button" [disabled]="!jePovezava()" class="btn btn-danger" (click)="odjaviSe()"><i class="fas fa-sign-out-alt"></i> Odjavi se</button>
               </a>
               <ng-template #prijava>
-                <button type="button" class="btn btn-primary" (click)="pridruziSe()"><i class="fas fa-sign-in-alt"></i> Pridruži se</button>
+                <button type="button" [disabled]="!jePovezava()" class="btn btn-primary" (click)="pridruziSe()"><i class="fas fa-sign-in-alt"></i> Pridruži se</button>
               </ng-template>
             </a>
         </div>
