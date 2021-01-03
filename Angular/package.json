@@ -5,12 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha test --bail --reporter mochawesome --reporter-options autoOpen=true,reportDir=test/porocilo,reportFilename=porocilo,json=false",
-    "ng": "ng",
-    "start": "node app.js",
-    "build": "ng build",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "ng build --output-path dist"
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",

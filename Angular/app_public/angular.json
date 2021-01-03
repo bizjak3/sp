@@ -180,8 +180,5 @@
       }
     }
   },
-  "defaultProject": "AngularTapPlay",
-  "cli": {
-    "analytics": false
-  }
+  "defaultProject": "AngularTapPlay"
 }

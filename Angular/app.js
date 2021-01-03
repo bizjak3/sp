@@ -20,7 +20,8 @@ var swaggerOptions = {
       url: "https://choosealicense.com/licenses/lgpl-3.0"
     },
     servers: [
-      { url: "http://localhost:3000/api" } 
+      { url: "http://localhost:3000/api" },
+      { url: "https://ang-tap-play.herokuapp.com/api" }
     ]
   },
   apis: [
@@ -38,6 +39,14 @@ require('./api/konfiguracija/passport');
 
 const db = require('./api/routes/db');
 var indexApi = require('./api/routes/index')
+
+app.disable('x-powered-by');
+app.use((req, res, next) => {
+  res.header('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  next();
+});
 
 if (process.env.NODE_ENV === 'production') {
   app.use((req, res, next) => {
@@ -73,6 +82,7 @@ indexApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 indexApi.get("/swagger.json", (req, res) => {
   res.status(200).json(swaggerDocument);
 });
+
 
 app.use((err, req, res, next) => {
   if (err.name == "UnauthorizedError") {
