@@ -53,7 +53,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              
+
             ]
           },
           "configurations": {
@@ -85,6 +85,33 @@
               ],
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
+            },
+            "docker": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.docker.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
             }
           }
         },
@@ -153,5 +180,8 @@
       }
     }
   },
-  "defaultProject": "AngularTapPlay"
+  "defaultProject": "AngularTapPlay",
+  "cli": {
+    "analytics": false
+  }
 }
