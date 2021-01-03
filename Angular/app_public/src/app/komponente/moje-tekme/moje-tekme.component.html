@@ -33,9 +33,32 @@
 
                         </ul>
 
+
+                      <!-- graf zacetek -->
+                      <div>
+                        <div *ngIf="loaded">
+                          <div style="display: block">
+
+                            <canvas baseChart
+                                    [datasets]="barChartData"
+                                    [labels]="barChartLabels"
+                                    [options]="barChartOptions"
+                                    [plugins]="barChartPlugins"
+                                    [legend]="barChartLegend"
+                                    [chartType]="barChartType"
+                                    [colors]="chartColors">
+                            </canvas>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <!-- graf konec -->
+
+
                     </div>
 
                 </div>
             </div>
-        
+
 

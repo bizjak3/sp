@@ -32,6 +32,7 @@ import { environment } from '../environments/environment';
 import {oceneTagPipe} from "./pipes/ocenaTag.pipe";
 import {oceneTagTextPipe} from "./pipes/ocenaTagText.pipe";
 import { SearchComponent } from './komponente/search/search.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -68,6 +69,7 @@ import { SearchComponent } from './komponente/search/search.component';
     AppRoutingModule,
     NgxPaginationModule,
     ModalModule.forRoot(),
+    ChartsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
