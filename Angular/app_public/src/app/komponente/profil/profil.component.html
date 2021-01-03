@@ -1,5 +1,8 @@
-
-            <div class="card  border-dark">
+<div *ngIf="loaded == false" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+    </div>
+  </div>
+            <div *ngIf="loaded" class="card  border-dark">
 
                 <!--Ime kartice-->
                 <div class="card-header bg-dark text-white ">
