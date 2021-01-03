@@ -20,7 +20,8 @@ var swaggerOptions = {
       url: "https://choosealicense.com/licenses/lgpl-3.0"
     },
     servers: [
-      { url: "http://localhost:3000/api" } 
+      { url: "http://localhost:3000/api" },
+      { url: "https://ang-tap-play.herokuapp.com/api" }
     ]
   },
   apis: [

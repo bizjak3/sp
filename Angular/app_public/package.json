@@ -8,7 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-heroku": "ng build --prod --output-path build"
+    "build-heroku": "ng build --prod --output-path build",
+    "build-docker-test": "ng build --configuration=production,docker --output-path build && cd build && http-server",
+    "build-heroku-test": "ng build --prod --output-path build && cd build && http-server",
+    "build-docker": "ng build --configuration=production,docker --output-path build"
   },
   "private": true,
   "dependencies": {

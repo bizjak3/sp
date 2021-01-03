@@ -52,7 +52,7 @@ const { async } = require("rxjs");
       before(() => {brskalnik.get(aplikacijaUrl)});
 
 
-      it("Stevilo tekem na zacetni strani", async () => {
+      it("Število tekem na zacetni strani", async () => {
         await pocakajStranNalozena(brskalnik, 10, "//div");
         let tekme = await brskalnik.findElements(By.css("#tekma"));
         expect(tekme).to.be.an("array").to.have.lengthOf(3);

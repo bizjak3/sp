@@ -1,0 +1,138 @@
+/* ZACETEK SKUPNO ================================================================================= */
+
+/* KONEC SKUPNO =================================================================================== */
+
+
+
+
+/* ZACETEK TJASS =================================================================================== */
+.registracija{
+    padding: 20px;
+}
+
+
+.imeZgoraj{
+    display: none;
+}
+
+#idNastavitve {
+    display: none;
+}
+
+
+
+@media only screen and (max-width: 767px) {
+
+    .slika{
+        display: none;
+    }
+
+    .imeZgoraj{
+        display: block;
+    }
+
+}
+
+#headerLogoPrijava{
+    width: 30px;
+    margin-right: 5px;
+}
+
+.checked{
+    color: orange;
+}
+
+/* KONEC TJAS ===================================================================================== */
+
+
+
+
+/* ZACETEK MATJAZ ================================================================================= */
+
+
+/* krogec za sliko*/
+.profilka{
+    border-radius: 50%;
+}
+
+
+.list_item{
+    padding: 20px;
+}
+.sidebar .nav-list li.active{
+    background-color: tomato;
+    color: black;
+}
+
+.sidebar .nav-list li.noactive{
+    color: black;
+}
+
+.sidebar .nav-list li{
+    position: relative;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.list-text{
+    font-size: 17px;
+    color: black;
+}
+
+.noactive:hover{
+    background-color: lightgray!important;
+}
+
+.info{
+
+    font-weight: bolder;
+    font-size: 20px;
+    padding: 3px;
+}
+
+.border-info{
+    border-style: solid!important;
+    border-width: 4px!important;
+}
+.profil{
+    border-radius: 50%;
+}
+
+.interactive{
+    color: darkblue;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.checked {
+    color: orange;
+}
+
+/* KONEC MATJAZ =================================================================================== */
+
+
+
+
+/* ZACETEK MITJA ================================================================================== */
+
+
+
+/* KONEC MITJA ==================================================================================== */
+
+
+
+
+/* ZACETEK RIHARD ================================================================================= */
+
+
+#gumbNovaIgra {
+    width:100%;
+    height:100%;
+    font-size:2.2vh;
+    display: flex;
+    align-items: center; /* Vertical center alignment */
+    justify-content: center; /* Horizontal center alignment */
+
+}
+
+/* KONEC RIHARD =================================================================================== */
