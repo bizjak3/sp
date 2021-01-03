@@ -1,0 +1,8 @@
+http://localhost:3000/tekme
+http://localhost:3000/markers
+http://localhost:3000/uporabnik
+http://localhost:3000/tekma
+http://localhost:3000/prijava
+http://localhost:3000/registracija
+http://localhost:3000/spremeni
+http://localhost:3000/pozabilGeslo
