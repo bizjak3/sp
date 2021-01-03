@@ -94,7 +94,7 @@
 
                             <div class="row info m-2">
                                 <div class="col">
-                                    <input type="submit" value="Shrani" class="btn btn-success"/>
+                                    <input type="submit" [disabled]="!jePovezava()"  value="Shrani" class="btn btn-success"/>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
 
                             <div class="row info m-2">
                                 <div class="col">
-                                    <input type="submit" value="Shrani" class="btn btn-success"/>
+                                    <input type="submit" [disabled]="!jePovezava()"  value="Shrani" class="btn btn-success"/>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
                 <div class="row m-2 info">
                     <div class="col">
                         <form action="/izbrisi" method="POST" >
-                            <input type="submit" value="Izbriši me iz aplikacije" class="btn btn-danger btn-block">
+                            <input type="submit" [disabled]="!jePovezava()"  value="Izbriši me iz aplikacije" class="btn btn-danger btn-block">
                         </form>
                     </div>
                 </div>

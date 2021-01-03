@@ -22,6 +22,10 @@
                 <input class="form-control-sm ml-sm-1 " name="search_niz" type="text" placeholder="Išči" aria-label="Search">
             </form>
 
+            <div *ngIf="!jePovezava()">
+              <a class="nav-link disabled"><i class="fas fa-exclamation-triangle"></i></a>
+            </div>
+
             <!-- dropwdown meni -->
             <ul class="navbar-nav ml-2">
 
@@ -43,7 +47,7 @@
                         <div class="dropdown-divider"></div>
 
                         <a class="dropdown-item" routerLink="/login"> Prijava  <i class="fas fa-sign-in-alt"></i></a>
-                        
+
                     </div>
                 </li>
             </ul>

@@ -23,7 +23,26 @@
         "files": [
           "/assets/**",
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+        ],
+        "urls": [
+          "https://fonts.gstatic.com/**",
+          "https://fonts.googleapis.com/**"
         ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "tap-play-api",
+      "urls": [
+        "http://localhost:3000/**",
+        "https://ang-tap-play.herokuapp.com/api/**"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 20,
+        "maxAge": "1h",
+        "timeout": "5s"
       }
     }
   ]

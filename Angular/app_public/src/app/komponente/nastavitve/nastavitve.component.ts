@@ -4,6 +4,7 @@ import { WebRequestService } from '../../storitve/web-request.service'
 import { AvtentikacijaService } from '../../storitve/avtentikacija.service';
 import { Uporabnik } from '../../modeli/uporabnik'
 import { Router } from '@angular/router';
+import { PovezavaService } from '../../storitve/povezava.service';
 
 @Component({
   selector: 'app-nastavitve',
@@ -25,7 +26,8 @@ export class NastavitveComponent implements OnInit {
     private data: DataService,
     private web: WebRequestService,
     private avtentikacijaStoritev: AvtentikacijaService,
-    private router: Router
+    private router: Router,
+    private povezavaStoritev: PovezavaService
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +45,7 @@ export class NastavitveComponent implements OnInit {
       this.vidiMail = this.uporabnik.emailDrugi
       this.vidiTel = this.uporabnik.telDrugi
     })
-  }  
+  }
 
   public jePrijavljen(): boolean {
     return this.avtentikacijaStoritev.jePrijavljen();
@@ -55,7 +57,7 @@ export class NastavitveComponent implements OnInit {
       tel: this.vidiTel
     }
     this.web.postUser("/zasebnost/" + this.avtentikacijaStoritev.vrniId(), obj).subscribe(
-      
+
       result => {
         this.result = result;
         this.sporocilo = this.result.sporocilo
@@ -68,5 +70,7 @@ export class NastavitveComponent implements OnInit {
       }
     )
   }
-
+  public jePovezava(): boolean {
+    return this.povezavaStoritev.jePovezava;
+  }
 }
