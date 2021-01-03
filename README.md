@@ -165,7 +165,10 @@ https://tap-n-play.herokuapp.com
 
 ## 4. LP
 
-SPA aplikacija na eni strani
+Ukazi za zagon aplikacije:
+* dsfsdf
+* sdfds
+* gfdgdf
 
 
 ## 5. LP
