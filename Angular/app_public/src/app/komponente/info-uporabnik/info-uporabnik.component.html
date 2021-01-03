@@ -13,7 +13,7 @@
                 <div class="card-header bg-dark text-white">
                     <div class="row justify-content-center">
                         <div class="col text-center">
-
+                          {{uporabnik.ime}} {{uporabnik.priimek}}
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                         <!--opis igralca al neki ?-->
                         <div class="row justify-content-center">
                             <div class="col text-center">
-                                Amaterski igralec
+                              <span class="{{uporabnik.ocena | oceneTag }}">{{uporabnik.ocena | oceneTagText }}</span>
                             </div>
                         </div>
 
@@ -45,7 +45,11 @@
 
                         <!--število zvezdic-->
                         <div class="row justify-content-center mb-1">
-
+                          <span class="fa fa-star {{uporabnik.ocena | zvezdice: 1}}"></span>
+                          <span class="fa fa-star {{uporabnik.ocena | zvezdice: 2}}"></span>
+                          <span class="fa fa-star {{uporabnik.ocena | zvezdice: 3}}"></span>
+                          <span class="fa fa-star {{uporabnik.ocena | zvezdice: 4}}"></span>
+                          <span class="fa fa-star {{uporabnik.ocena | zvezdice: 5}}"></span>
                         </div>
                     </nav>
                 </div>
