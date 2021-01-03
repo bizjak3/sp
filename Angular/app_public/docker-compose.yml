@@ -4,9 +4,9 @@ version: '3.5'
 services:
   app:
     container_name: docker-angular
-    build: "app_public"
+    build: ""
     ports:
-      - '4000:4000'
+      - '4200:4200'
 
 
 
