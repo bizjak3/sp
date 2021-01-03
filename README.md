@@ -171,3 +171,17 @@ SPA aplikacija na eni strani
 ## 5. LP
 
 Varnostno zaščitena progresivna aplikacija
+
+### OWASP ZAP report
+Po prvem generiranju poročila smo odstranili nekaj napak, in sicer:
+-X-Frame-Options Header Not Set
+-Cross Site Scripting Weakness (Reflected in JSON Response)
+-Server Leaks Information via "X-Powered-By" HTTP Response Header Field(s)
+
+Ostali pa so nam še dve "napaki" srednje nevarnosti, ki se jih zaradi uporabe APIja ne moremo izogniti.
+#### Cross-Domain Misconfiguration
+Ta napaka je zato ker imamo "res.header('Access-Control-Allow-Origin', '*');" Lahko bi spremenili * v link na heroku, vendar zaradi omejitev testa ne moremo pognati na heroku, torej napaka ostaja v poročilu.
+
+#### CSP: Wildccard Directive
+Napaka je zaradi vračanja statičnih podatkov iz strežnika in se ji ne moremo izogniti. 
+
