@@ -237,7 +237,6 @@ var oceniIgralce = (req, res, done) => {
         tekma.zeOcenili.push(req.params.user)
         tekma.save()
         let playerIDs = tekma.igralci.map(a => a.id);
-        console.log(playerIDs);
         User.find({_id: playerIDs}, function (err, igralci){
             if(err){
                 console.log(err);

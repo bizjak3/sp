@@ -103,7 +103,6 @@ var vrniOcene = (req, res) => {
 }
 
 var zasebnost = (req, res) => {
-    console.log(req.body)
     let mail = req.body.mail
     let telefon = req.body.tel
     console.log(req.params.id)
