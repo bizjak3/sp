@@ -25,6 +25,7 @@
     "@angular/service-worker": "~11.0.5",
     "angular2-flash-messages": "^3.0.1",
     "bootstrap": "^4.5.3",
+    "compression": "^1.7.4",
     "esri-leaflet-geocoder": "^2.3.3",
     "jquery": "^3.5.1",
     "leaflet": "^1.7.1",

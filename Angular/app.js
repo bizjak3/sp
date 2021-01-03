@@ -6,6 +6,9 @@ var passport = require('passport');
 var swaggerJsdoc = require('swagger-jsdoc')
 var swaggerUi = require('swagger-ui-express')
 var path = require('path');
+var compression = require('compression');
+
+app.use(compression());
 
 var swaggerOptions = {
   swaggerDefinition: {
