@@ -172,11 +172,19 @@ SPA aplikacija na eni strani
 
 Varnostno zaščitena progresivna aplikacija
 
+### Razlike med uporabniki
+
+Na voljo so 3 različni tipi uporabnikov:
+* Gost - Kot gost lahko brskamo po tekmah in uporabnikih, ne moremo pa uporabljati vseh funkcionalnosti navadnega uporabnika.
+* Navaden uporabnik - Navaden uporabnik lahko uporablja iste funkcionalnosti kot gost in dodatne funkcionalnosti kot so ustvarjanje tekme, urejanje in brisanje lastnih tekem ter prijava in odjava na ustvarjene tekme. Lahko tudi oceni igralce na igranih tekmah.
+* Administrator - Administrator ima iste možnosti kot uporabnik s tem, da lahko ureja in briše tudi tekme, ki jih ni ustvaril. 
+  
+
 ### OWASP ZAP report
 Po prvem generiranju poročila smo odstranili nekaj napak, in sicer:
--X-Frame-Options Header Not Set
--Cross Site Scripting Weakness (Reflected in JSON Response)
--Server Leaks Information via "X-Powered-By" HTTP Response Header Field(s)
+* X-Frame-Options Header Not Set
+* Cross Site Scripting Weakness (Reflected in JSON Response)
+* Server Leaks Information via "X-Powered-By" HTTP Response Header Field(s)
 
 Ostali pa so nam še dve "napaki" srednje nevarnosti, ki se jih zaradi uporabe APIja ne moremo izogniti.
 #### Cross-Domain Misconfiguration
