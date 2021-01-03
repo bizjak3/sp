@@ -4,7 +4,7 @@ import { AvtentikacijaService } from '../../storitve/avtentikacija.service';
 import { Router } from '@angular/router';
 import { Uporabnik } from '../../modeli/uporabnik'
 import { WebRequestService } from '../../storitve/web-request.service'
-
+import { PovezavaService } from '../../storitve/povezava.service';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +20,9 @@ export class HeaderComponent implements OnInit {
     private web: WebRequestService,
     private data: DataService,
     private avtentikacijaStoritev: AvtentikacijaService,
-    private router: Router) { }
+    private router: Router,
+    private povezavaStoritev: PovezavaService
+    ) { }
 
   public odjava(): void {
     this.avtentikacijaStoritev.odjava();
@@ -30,7 +32,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     if (this.jePrijavljen()) {
       this.vrniUporabnika()
-    } 
+    }
   }
 
   public jePrijavljen(): boolean {
@@ -42,6 +44,10 @@ export class HeaderComponent implements OnInit {
       this.uporabnik = data
       this.loaded = true
     })
-  }  
+  }
+
+  public jePovezava(): boolean {
+    return this.povezavaStoritev.jePovezava;
+  }
 
 }

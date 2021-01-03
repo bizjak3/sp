@@ -45,5 +45,4 @@ export class ProfilNavComponent implements OnInit {
   public jePrijavljen(): boolean {
     return this.avtentikacijaStoritev.jePrijavljen();
   }
-
 }

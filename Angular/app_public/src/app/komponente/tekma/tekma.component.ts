@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router'
 import { WebRequestService } from '../../storitve/web-request.service'
 import { AvtentikacijaService } from 'src/app/storitve/avtentikacija.service';
+import { PovezavaService } from '../../storitve/povezava.service';
 import { Tekma } from '../../modeli/Tekma'
 import { Router} from '@angular/router'
 import * as L from "leaflet";
@@ -56,7 +57,11 @@ export class TekmaComponent implements OnInit {
   }
 
 
-  constructor(private route: ActivatedRoute, private webReq: WebRequestService, private avtentikacija: AvtentikacijaService, private router: Router) { }
+  constructor(private route: ActivatedRoute,
+  private webReq: WebRequestService,
+  private avtentikacija: AvtentikacijaService,
+  private router: Router,
+  private povezavaStoritev: PovezavaService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -244,5 +249,9 @@ export class TekmaComponent implements OnInit {
       this.lahkoOcenjamo = true;
     }
     this.lahkoPrijavimo = false;
+  }
+
+  public jePovezava(): boolean {
+    return this.povezavaStoritev.jePovezava;
   }
 }

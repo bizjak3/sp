@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { WebRequestService } from '../../storitve/web-request.service'
 import { DataService} from '../../storitve/data.service';
 import { AvtentikacijaService} from '../../storitve/avtentikacija.service'
+import { PovezavaService } from '../../storitve/povezava.service';
 import { Uporabnik } from '../../modeli/uporabnik'
 import { Router } from '@angular/router';
 import { convertTypeAcquisitionFromJson } from 'typescript';
@@ -14,8 +15,8 @@ import { convertTypeAcquisitionFromJson } from 'typescript';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-  
-  
+
+
 
   user: any;
   tekme: any;
@@ -27,12 +28,13 @@ export class HomepageComponent implements OnInit {
   stat = "prijave"
 
   uporabnik: any;
-  
-  
-  constructor( 
+
+
+  constructor(
     private web: WebRequestService,
     private avtentikacijaStoritev: AvtentikacijaService,
-    private router: Router
+    private router: Router,
+    private povezavaStoritev: PovezavaService
   ) { }
 
   public jePrijavljen(): boolean {
@@ -40,7 +42,7 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
 
     this.web.get("/tekme").subscribe((result) => {
       this.d = result;
@@ -51,8 +53,8 @@ export class HomepageComponent implements OnInit {
 
     if (this.avtentikacijaStoritev.jePrijavljen()) {
       this.uporabnik = this.avtentikacijaStoritev.vrniTrenutnegaUporabnika();
-    } 
-    
+    }
+
   }
 
   getTekme(p: number, d: number) {
@@ -60,7 +62,7 @@ export class HomepageComponent implements OnInit {
       this.tekme = tekme
       if (this.tekme < 1) {
         this.niTekem = true
-      } 
+      }
     })
   }
 
@@ -79,7 +81,11 @@ export class HomepageComponent implements OnInit {
     this.getTekme(this.p, this.sort)
   }
 
-  
-  
+  public jePovezava(): boolean {
+    console.log("here");
+    return this.povezavaStoritev.jePovezava;
+  }
+
+
 
 }
