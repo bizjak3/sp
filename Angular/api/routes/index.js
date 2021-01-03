@@ -20,6 +20,7 @@ router.post('/prijava', contrAvtentikacija.prijava); // Prijava
 router.get('/page/:p/:d', contrHomepage.homepage); // Pridobi tekme (pagination, filter)
 router.get("/tekme", contrHomepage.tekme) // Pridobi stevilo vseh tekem
 router.get("/markers", contrHomepage.markers) // Pridobi tekme za markerje
+router.put('/search/:niz', contrHomepage.search)
 
 // Uporabnik
 router.get('/uporabnik/:id', contrUporabnik.vrniUporabnikaPrekoId); // Vrne podatke uporabnika
@@ -27,6 +28,7 @@ router.post('/spremeni',  contrUporabnik.spremeniUporabnika);
 router.post("/pozabilGeslo", contrUporabnik.pozabilGeslo);
 router.post('/ocena', contrUporabnik.vrniOcene);
 router.post('/zasebnost/:id', contrUporabnik.zasebnost)
+
 
 // Tekme
 router.get('/tekma/:id/tekme', controller.podrobnostiTekme)

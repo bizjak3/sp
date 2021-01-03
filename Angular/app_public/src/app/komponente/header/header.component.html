@@ -6,7 +6,7 @@
 
         <!-- navbar logo -->
         <a class="navbar-brand" routerLink="/">
-            <img src="/assets/slike/logo_svetel.png" id="headerLogo"> <b><i>Tap & Play</i></b>
+            <img src="/assets/slike/logo_svetel.png" alt="Logo" id="headerLogo"> <b><i>Tap & Play</i></b>
         </a>
 
         <!-- za kolaps pri majhnih zaslonih -->
@@ -17,11 +17,10 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
             <!-- Search form -->
-            <form class="form-inline ml-auto" method="put" action="/search">
-                <button class="btn btn-sm btn-outline-light my-2 my-sm-0" type="submit"> <i class="fas fa-search"></i></button>
-                <input class="form-control-sm ml-sm-1 " name="search_niz" type="text" placeholder="Išči" aria-label="Search">
-            </form>
-
+            <div class="ml-auto">
+                <button routerLink="/search"class="btn btn-sm btn-outline-light my-2 my-sm-0" type="submit"> <i class="fas fa-search"></i>  Iskanje</button>
+            </div>
+                
             <div *ngIf="!jePovezava()">
               <a class="nav-link disabled"><i class="fas fa-exclamation-triangle"></i></a>
             </div>

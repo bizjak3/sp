@@ -20,6 +20,7 @@ import { MojeTekmeComponent } from './komponente/moje-tekme/moje-tekme.component
 import { ModalOknoComponent } from './komponente/modal-okno/modal-okno.component'
 import { NapakaComponent } from './komponente/napaka/napaka.component';
 import { InfoUporabnikComponent } from './komponente/info-uporabnik/info-uporabnik.component';
+import { SearchComponent } from './komponente/search/search.component';
 
 const routes: Routes = [
   
@@ -74,6 +75,10 @@ const routes: Routes = [
     {
       path: "uporabnik/:id",
       component: InfoUporabnikComponent
+    },
+    {
+      path: "search",
+      component: SearchComponent
     },
     {
       path: "**",
