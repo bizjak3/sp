@@ -20,7 +20,11 @@ router.post('/db', (req, res, done) => {
     uporabnik.nastaviGeslo(geslo);
     uporabnik.generirajJwt()
     uporabnik.save()
-
+    let a = {
+        id: uporabnik._id,
+        ime: uporabnik.ime,
+        priimek: uporabnik.priimek
+    }
       let tekma = new Tekma({  
         kreator: {
             id: uporabnik._id,
@@ -30,12 +34,12 @@ router.post('/db', (req, res, done) => {
         lat: 46.0503162990623,
         lng: 14.468446969985964,
         kraj: "Fakulteta za Računalništvo in Informatiko",
-        datum: "2020-01-10",
+        datum: "2021-01-10",
         ura: "15:00",
         minIgralcev: 4,
         maxIgralcev: 12,
         prijavljeni: 4,
-        igralci: ["Kreator tekme"],
+        igralci: [a],
         status: "prijave"
     });
     
