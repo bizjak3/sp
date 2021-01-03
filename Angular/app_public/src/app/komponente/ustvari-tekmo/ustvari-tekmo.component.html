@@ -82,6 +82,12 @@
                 <div id="obvestilo" style="visibility: hidden" class="alert alert-danger">
 
                 </div>
+
+                <div *ngIf="clickUstvari" class="d-flex justify-content-center">
+                  <span >Ustvarjam tekmo...    </span>
+                  <div class="spinner-border text-primary" role="status">
+                  </div>
+                </div>
                 
                 <div *ngIf="obvestilo" class="text-center col-sm-12 col-md-12 col-lg-12">
                   <div role="alert"  class="alert alert-{{status}}">{{obvestilo}}</div>
@@ -89,7 +95,7 @@
                 </div>
 
                 <div *ngIf="ustvarjeno == false"class="text-center col-sm-12 col-md-12 col-lg-12">
-                  <input type="submit" class="btn btn-success col-md-3 mt-1" value="Ustvari">
+                  <button [disabled]="clickUstvari" type="submit" class="btn btn-success col-md-3 mt-1" value="Ustvari">Ustvari</button>
                   <input type="reset" class="btn btn-warning col-md-3 mt-1" value="Ponastavi">
                   <a href="/" class="btn btn-danger col-md-3 mt-1">Prekliči</a>
                 </div>
