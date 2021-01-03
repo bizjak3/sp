@@ -100,7 +100,6 @@ export class UstvariTekmoComponent implements OnInit {
     error => {
       this.clickUstvari = false
       this.result = error.error
-      console.log(this.result)
       this.obvestilo = this.result.sporocilo;
       this.status = this.result.status;
     })
