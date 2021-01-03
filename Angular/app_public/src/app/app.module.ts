@@ -31,6 +31,7 @@ import { ZvezdicePipe } from './pipes/zvezdice.pipe';
 import { environment } from '../environments/environment';
 import {oceneTagPipe} from "./pipes/ocenaTag.pipe";
 import {oceneTagTextPipe} from "./pipes/ocenaTagText.pipe";
+import { SearchComponent } from './komponente/search/search.component';
 
 
 
@@ -57,7 +58,8 @@ import {oceneTagTextPipe} from "./pipes/ocenaTagText.pipe";
     DatumPipe,
     ZvezdicePipe,
     oceneTagPipe,
-    oceneTagTextPipe
+    oceneTagTextPipe,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

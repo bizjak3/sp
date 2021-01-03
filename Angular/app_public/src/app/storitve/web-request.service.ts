@@ -154,4 +154,8 @@ export class WebRequestService {
     public getOcene(uri: string, body: any){
       return this.http.post(this.url + uri, body);
     }
+
+    public search(uri: string, body: any) {
+      return this.http.put(this.url + uri, null);
+    }
 }
