@@ -96,8 +96,12 @@ var pozabilGeslo =  (req, res) => {
 var vrniOcene = (req, res) => {
     let ids = req.body;
     User.find({_id : ids}, (err, users) => {
-        let ocene = users.map(u => u.ocena);
-        res.status(200).send(ocene);
+        if (err) {
+            res.status(500).json({sporocilo: err, status: "danger"})
+        } else {
+            let ocene = users.map(u => u.ocena);
+            res.status(200).send(ocene);
+        }
     });
 
 }
