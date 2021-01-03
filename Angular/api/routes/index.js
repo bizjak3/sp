@@ -290,7 +290,9 @@ module.exports = router;
  *                  status:
  *                    description: Status za prikaz barve bootstrap alerta
  *                    type: string
- *                    example: danger                     
+ *                    example: danger  
+ *         "401":
+ *           description: Unauthorized                   
  *         "500":
  *           description: Napaka na strežniku pri spremembi podatkov.
  */
@@ -342,7 +344,9 @@ module.exports = router;
  *                  status:
  *                    description: Status za prikaz barve bootstrap alerta
  *                    type: string
- *                    example: danger 
+ *                    example: danger
+ *        "401":
+ *          description: Unauthorized 
  *        "500":
  *          description: Napaka na strežniku     
  */
@@ -461,6 +465,8 @@ module.exports = router;
  *    responses:
  *      "201": 
  *       description: Uspešno spremenjeni podatki tekme
+ *      "401":
+ *       description: Unauthorized
  *      "500":
  *       description: Napaka na strežniku 
  */
@@ -488,6 +494,8 @@ module.exports = router;
  *    responses:
  *      "200": 
  *       description: Uspešno prijavljen na tekmo
+ *      "401":
+ *       description: Unauthorized
  *      "409":
  *       description: Uporabnik je že prijavljen
  *      "500":
@@ -519,6 +527,8 @@ module.exports = router;
  *       description: Uspešno odjavljen od tekme
  *      "409":
  *       description: Uporabnik je že odjavljen
+ *      "401":
+ *       description: Unauthorized
  *      "500":
  *       description: Napaka na strežniku
  */
@@ -536,6 +546,8 @@ module.exports = router;
  *        name: idTekme
  *        example: 123IdTekme123
  *    responses:
+ *      "401":
+ *        description: Unauthorized
  *      "200": 
  *       description: Uspešno spremenjen status tekme
  *      "500":
@@ -555,6 +567,8 @@ module.exports = router;
  *        name: idTekme
  *        example: 123IdTekme123
  *    responses:
+ *      "401":
+ *        description: Unauthorized
  *      "200": 
  *       description: Uspešno izbrisana tekma
  *      "500":
