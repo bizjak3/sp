@@ -201,9 +201,9 @@ Ta napaka je zato ker imamo "res.header('Access-Control-Allow-Origin', '*');" La
 Napaka je zaradi vračanja statičnih podatkov iz strežnika in se ji ne moremo izogniti. 
 
 ### Lighthouse
-* enable text compression
+* Enable text compression
 nismo omogočili samo na heroku, ker na heroku text compression ni delalo
-* buttons do not have accessible name
+* Buttons do not have accessible name
 zato ker nekaterim gumbom zaradi estetske vrednosti, nismo hoteli dodati tekstovnega imena v gumb
 * The page does not contain a heading, skip link, or landmark region
 nismo popravili ker heading imamo v index.html, skip link in landmark region, nismo hoteli onemogočati dostopnosti ponovljivih elementov s tipkovnico, ker hočemo da so vsi elementi dostopni s tipkovnico
