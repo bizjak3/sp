@@ -166,10 +166,14 @@ https://tap-n-play.herokuapp.com
 ## 4. LP
 
 Ukazi za zagon aplikacije:
-* dsfsdf
-* sdfds
-* gfdgdf
+* Sprva pridobite našo aplikacijo z GIT-a. To lahko storite kar znotraj "Webstorma", s tem da klonirate naš repozitorij (Get from version control), ali pa kar shranite zip datoteko.   
+* Znotraj datoteke se v terminalu premaknete v mapo Angular ("cd Angular"). Aplikacijo boste zagnali v Docker-ju ali lokalno. V terminal napišete "npm install". Nato počakate, da se naložijo vse potrebne datoteke in vzpostavi okolje. 
+* V terminal se nato vpiše "npm start" za zagon strežnika.
+* Odpremo novo instanco terminala, brez zapiranja prejšnjega, ter se postavimo v mapo "app_public", in nato za lokalno vzpostavitev vpišemo "ng serve", za Docker pa "npm run build-docker".
+* Če smo aplikacijo zagnali v Dockerju je ta dostopna na localhost:3000, če pa lokalno je dostopna na localhost:4200
 
+Povezava do heroku aplikacije:
+https://ang-tap-play.herokuapp.com/
 
 ## 5. LP
 
