@@ -209,7 +209,7 @@ zato ker nekaterim gumbom zaradi estetske vrednosti, nismo hoteli dodati tekstov
 nismo popravili ker heading imamo v index.html, skip link in landmark region, nismo hoteli onemogočati dostopnosti ponovljivih elementov s tipkovnico, ker hočemo da so vsi elementi dostopni s tipkovnico
 * Background and foreground colors do not have a sufficient contrast ratio.
 ni napaka, je namensko tako, zaradi izgleda, ki smo ga hoteli
-* List items (<li>) are not contained within <ul> or <ol> parent elements.
+* List items "li" are not contained within "ul" or "ol" parent elements.
 napako da, zaradi načina uporabe "pagination"
 * Missing source maps for large first-party JavaScript
 nismo dali obeh datotek, zaradi izgube na hitrosti
